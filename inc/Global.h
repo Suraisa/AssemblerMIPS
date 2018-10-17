@@ -9,10 +9,10 @@
  * Usage: <br/>
  * <br/>
  * ./assembler.exe
- * 
+ *
  * To know makefile's rules, please use in the terminal inside the project folder:
  * make help
- * 
+ *
  * You can read the Readme for more information.
  *
  *
@@ -24,5 +24,11 @@
  */
 
 #define fileNameSize 256
+
+#define HASHVALUE 31
+
+#define HASHLENGTH 20
+
+#define HASHCHAR 3
 
 #endif
