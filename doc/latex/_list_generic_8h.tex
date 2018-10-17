@@ -1,0 +1,247 @@
+\hypertarget{_list_generic_8h}{}\section{/home/suraisa/\+Documents/\+Projet\+Info2/inc/\+List\+Generic.h File Reference}
+\label{_list_generic_8h}\index{/home/suraisa/\+Documents/\+Projet\+Info2/inc/\+List\+Generic.\+h@{/home/suraisa/\+Documents/\+Projet\+Info2/inc/\+List\+Generic.\+h}}
+
+
+List-\/related stuff.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_n_o_d_e}{N\+O\+DE}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{struct_n_o_d_e}{N\+O\+DE} $\ast$ \hyperlink{_list_generic_8h_aabca0732ef20d0d82f70f05012926226}{L\+I\+ST}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_list_generic_8h_aabca0732ef20d0d82f70f05012926226}{L\+I\+ST} \hyperlink{_list_generic_8h_a7b364724c474744018c72b111cbf8195}{Create\+List} ()
+\begin{DoxyCompactList}\small\item\em Create an empty list. \end{DoxyCompactList}\item 
+int \hyperlink{_list_generic_8h_a0a61ed111cff720a304ddbc43fcbc28d}{Is\+Empty} (\hyperlink{_list_generic_8h_aabca0732ef20d0d82f70f05012926226}{L\+I\+ST} list)
+\begin{DoxyCompactList}\small\item\em Test if the list is empty. \end{DoxyCompactList}\item 
+void \hyperlink{_list_generic_8h_aaded60990e074990eada0e27f712ca98}{Add\+In\+Front} (\hyperlink{_list_generic_8h_aabca0732ef20d0d82f70f05012926226}{L\+I\+ST} $\ast$list, void $\ast$data\+To\+Add, void($\ast$display)(void $\ast$), void($\ast$erased\+Data\+Value)(void $\ast$), size\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Add a value in front of the list. \end{DoxyCompactList}\item 
+void \hyperlink{_list_generic_8h_a542ccb986a4edf06b879597ac0d9cf07}{Add\+At\+Last} (\hyperlink{_list_generic_8h_aabca0732ef20d0d82f70f05012926226}{L\+I\+ST} $\ast$list, void $\ast$data\+To\+Add, void($\ast$display)(void $\ast$), void($\ast$erased\+Data\+Value)(void $\ast$), size\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Add a value on the last position of the list. \end{DoxyCompactList}\item 
+void \hyperlink{_list_generic_8h_a978eaf2bf8013749d2623c801c663bcb}{Erased\+In\+Front} (\hyperlink{_list_generic_8h_aabca0732ef20d0d82f70f05012926226}{L\+I\+ST} $\ast$list)
+\begin{DoxyCompactList}\small\item\em Desallocate the element in front of the list. \end{DoxyCompactList}\item 
+void \hyperlink{_list_generic_8h_a286f5fb3a370e717e86bc3edec8e6a30}{Erased\+At\+Last} (\hyperlink{_list_generic_8h_aabca0732ef20d0d82f70f05012926226}{L\+I\+ST} $\ast$list)
+\begin{DoxyCompactList}\small\item\em Desallocate the element on the last position of the list. \end{DoxyCompactList}\item 
+void \hyperlink{_list_generic_8h_a54ff8cbf2a3e93ad6e293b124e8b0a4f}{Erased\+List} (\hyperlink{_list_generic_8h_aabca0732ef20d0d82f70f05012926226}{L\+I\+ST} $\ast$list)
+\begin{DoxyCompactList}\small\item\em Desallocate all elements of the list. \end{DoxyCompactList}\item 
+void \hyperlink{_list_generic_8h_a25a8a99bcb426cf3dad9344a9aeb39ee}{Display} (\hyperlink{_list_generic_8h_aabca0732ef20d0d82f70f05012926226}{L\+I\+ST} list)
+\begin{DoxyCompactList}\small\item\em Display the list thanks to the function display of the list. \end{DoxyCompactList}\item 
+int \hyperlink{_list_generic_8h_aaa9aa4fb93f0959283ed7cfd9b9fd135}{Size\+List} (\hyperlink{_list_generic_8h_aabca0732ef20d0d82f70f05012926226}{L\+I\+ST} list)
+\begin{DoxyCompactList}\small\item\em Give the size of the list. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+List-\/related stuff. 
+
+Contains the List structure definition and the associated prototypes to have multiple types inside the list. 
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{_list_generic_8h_aabca0732ef20d0d82f70f05012926226}\label{_list_generic_8h_aabca0732ef20d0d82f70f05012926226}} 
+\index{List\+Generic.\+h@{List\+Generic.\+h}!L\+I\+ST@{L\+I\+ST}}
+\index{L\+I\+ST@{L\+I\+ST}!List\+Generic.\+h@{List\+Generic.\+h}}
+\subsubsection{\texorpdfstring{L\+I\+ST}{LIST}}
+{\footnotesize\ttfamily typedef struct \hyperlink{struct_n_o_d_e}{N\+O\+DE}$\ast$  \hyperlink{_list_generic_8h_aabca0732ef20d0d82f70f05012926226}{L\+I\+ST}}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{_list_generic_8h_a542ccb986a4edf06b879597ac0d9cf07}\label{_list_generic_8h_a542ccb986a4edf06b879597ac0d9cf07}} 
+\index{List\+Generic.\+h@{List\+Generic.\+h}!Add\+At\+Last@{Add\+At\+Last}}
+\index{Add\+At\+Last@{Add\+At\+Last}!List\+Generic.\+h@{List\+Generic.\+h}}
+\subsubsection{\texorpdfstring{Add\+At\+Last()}{AddAtLast()}}
+{\footnotesize\ttfamily void Add\+At\+Last (\begin{DoxyParamCaption}\item[{\hyperlink{_list_generic_8h_aabca0732ef20d0d82f70f05012926226}{L\+I\+ST} $\ast$}]{list,  }\item[{void $\ast$}]{data\+To\+Add,  }\item[{void($\ast$)(void $\ast$)}]{display,  }\item[{void($\ast$)(void $\ast$)}]{erased\+Data\+Value,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+
+
+Add a value on the last position of the list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & Pointer on a list to add an element on it. \\
+\hline
+{\em data\+To\+Add} & Pointer of the value to add. \\
+\hline
+{\em display} & Pointer of a function which take a void$\ast$ on parameter.\textquotesingle{}s use to recognize the value type (generally use a display for the value added). \\
+\hline
+{\em erased\+Data\+Value} & Pointer of a function which take a void$\ast$ on parameter.\textquotesingle{}s use to desallocate the data inside the value. \\
+\hline
+{\em size} & size\+\_\+t represente the size of the data\+To\+Add. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 29 of file List\+Generic.\+c.
+
+\mbox{\Hypertarget{_list_generic_8h_aaded60990e074990eada0e27f712ca98}\label{_list_generic_8h_aaded60990e074990eada0e27f712ca98}} 
+\index{List\+Generic.\+h@{List\+Generic.\+h}!Add\+In\+Front@{Add\+In\+Front}}
+\index{Add\+In\+Front@{Add\+In\+Front}!List\+Generic.\+h@{List\+Generic.\+h}}
+\subsubsection{\texorpdfstring{Add\+In\+Front()}{AddInFront()}}
+{\footnotesize\ttfamily void Add\+In\+Front (\begin{DoxyParamCaption}\item[{\hyperlink{_list_generic_8h_aabca0732ef20d0d82f70f05012926226}{L\+I\+ST} $\ast$}]{list,  }\item[{void $\ast$}]{data\+To\+Add,  }\item[{void($\ast$)(void $\ast$)}]{display,  }\item[{void($\ast$)(void $\ast$)}]{erased\+Data\+Value,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+
+
+Add a value in front of the list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & Pointer on a list to add an element on it. \\
+\hline
+{\em data\+To\+Add} & Pointer of the value to add. \\
+\hline
+{\em display} & Pointer of a function which take a void$\ast$ on parameter.\textquotesingle{}s use to recognize the value type (generally use a display for the value added). \\
+\hline
+{\em erased\+Data\+Value} & Pointer of a function which take a void$\ast$ on parameter.\textquotesingle{}s use to desallocate the data inside the value. \\
+\hline
+{\em size} & size\+\_\+t represente the size of the data\+To\+Add. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 13 of file List\+Generic.\+c.
+
+\mbox{\Hypertarget{_list_generic_8h_a7b364724c474744018c72b111cbf8195}\label{_list_generic_8h_a7b364724c474744018c72b111cbf8195}} 
+\index{List\+Generic.\+h@{List\+Generic.\+h}!Create\+List@{Create\+List}}
+\index{Create\+List@{Create\+List}!List\+Generic.\+h@{List\+Generic.\+h}}
+\subsubsection{\texorpdfstring{Create\+List()}{CreateList()}}
+{\footnotesize\ttfamily \hyperlink{_list_generic_8h_aabca0732ef20d0d82f70f05012926226}{L\+I\+ST} Create\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Create an empty list. 
+
+
+
+Definition at line 3 of file List\+Generic.\+c.
+
+\mbox{\Hypertarget{_list_generic_8h_a25a8a99bcb426cf3dad9344a9aeb39ee}\label{_list_generic_8h_a25a8a99bcb426cf3dad9344a9aeb39ee}} 
+\index{List\+Generic.\+h@{List\+Generic.\+h}!Display@{Display}}
+\index{Display@{Display}!List\+Generic.\+h@{List\+Generic.\+h}}
+\subsubsection{\texorpdfstring{Display()}{Display()}}
+{\footnotesize\ttfamily void Display (\begin{DoxyParamCaption}\item[{\hyperlink{_list_generic_8h_aabca0732ef20d0d82f70f05012926226}{L\+I\+ST}}]{list }\end{DoxyParamCaption})}
+
+
+
+Display the list thanks to the function display of the list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & L\+I\+ST to display. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 113 of file List\+Generic.\+c.
+
+\mbox{\Hypertarget{_list_generic_8h_a286f5fb3a370e717e86bc3edec8e6a30}\label{_list_generic_8h_a286f5fb3a370e717e86bc3edec8e6a30}} 
+\index{List\+Generic.\+h@{List\+Generic.\+h}!Erased\+At\+Last@{Erased\+At\+Last}}
+\index{Erased\+At\+Last@{Erased\+At\+Last}!List\+Generic.\+h@{List\+Generic.\+h}}
+\subsubsection{\texorpdfstring{Erased\+At\+Last()}{ErasedAtLast()}}
+{\footnotesize\ttfamily void Erased\+At\+Last (\begin{DoxyParamCaption}\item[{\hyperlink{_list_generic_8h_aabca0732ef20d0d82f70f05012926226}{L\+I\+ST} $\ast$}]{list }\end{DoxyParamCaption})}
+
+
+
+Desallocate the element on the last position of the list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & Pointer on a list to erased an element. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 76 of file List\+Generic.\+c.
+
+\mbox{\Hypertarget{_list_generic_8h_a978eaf2bf8013749d2623c801c663bcb}\label{_list_generic_8h_a978eaf2bf8013749d2623c801c663bcb}} 
+\index{List\+Generic.\+h@{List\+Generic.\+h}!Erased\+In\+Front@{Erased\+In\+Front}}
+\index{Erased\+In\+Front@{Erased\+In\+Front}!List\+Generic.\+h@{List\+Generic.\+h}}
+\subsubsection{\texorpdfstring{Erased\+In\+Front()}{ErasedInFront()}}
+{\footnotesize\ttfamily void Erased\+In\+Front (\begin{DoxyParamCaption}\item[{\hyperlink{_list_generic_8h_aabca0732ef20d0d82f70f05012926226}{L\+I\+ST} $\ast$}]{list }\end{DoxyParamCaption})}
+
+
+
+Desallocate the element in front of the list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & Pointer on a list to erased an element. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 58 of file List\+Generic.\+c.
+
+\mbox{\Hypertarget{_list_generic_8h_a54ff8cbf2a3e93ad6e293b124e8b0a4f}\label{_list_generic_8h_a54ff8cbf2a3e93ad6e293b124e8b0a4f}} 
+\index{List\+Generic.\+h@{List\+Generic.\+h}!Erased\+List@{Erased\+List}}
+\index{Erased\+List@{Erased\+List}!List\+Generic.\+h@{List\+Generic.\+h}}
+\subsubsection{\texorpdfstring{Erased\+List()}{ErasedList()}}
+{\footnotesize\ttfamily void Erased\+List (\begin{DoxyParamCaption}\item[{\hyperlink{_list_generic_8h_aabca0732ef20d0d82f70f05012926226}{L\+I\+ST} $\ast$}]{list }\end{DoxyParamCaption})}
+
+
+
+Desallocate all elements of the list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & Pointer on the list. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 95 of file List\+Generic.\+c.
+
+\mbox{\Hypertarget{_list_generic_8h_a0a61ed111cff720a304ddbc43fcbc28d}\label{_list_generic_8h_a0a61ed111cff720a304ddbc43fcbc28d}} 
+\index{List\+Generic.\+h@{List\+Generic.\+h}!Is\+Empty@{Is\+Empty}}
+\index{Is\+Empty@{Is\+Empty}!List\+Generic.\+h@{List\+Generic.\+h}}
+\subsubsection{\texorpdfstring{Is\+Empty()}{IsEmpty()}}
+{\footnotesize\ttfamily int Is\+Empty (\begin{DoxyParamCaption}\item[{\hyperlink{_list_generic_8h_aabca0732ef20d0d82f70f05012926226}{L\+I\+ST}}]{list }\end{DoxyParamCaption})}
+
+
+
+Test if the list is empty. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & L\+I\+ST to test. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/\#1 if the list is empty.~\newline
+-\/\#0 if it\textquotesingle{}s not 
+\end{DoxyReturn}
+
+
+Definition at line 8 of file List\+Generic.\+c.
+
+\mbox{\Hypertarget{_list_generic_8h_aaa9aa4fb93f0959283ed7cfd9b9fd135}\label{_list_generic_8h_aaa9aa4fb93f0959283ed7cfd9b9fd135}} 
+\index{List\+Generic.\+h@{List\+Generic.\+h}!Size\+List@{Size\+List}}
+\index{Size\+List@{Size\+List}!List\+Generic.\+h@{List\+Generic.\+h}}
+\subsubsection{\texorpdfstring{Size\+List()}{SizeList()}}
+{\footnotesize\ttfamily int Size\+List (\begin{DoxyParamCaption}\item[{\hyperlink{_list_generic_8h_aabca0732ef20d0d82f70f05012926226}{L\+I\+ST}}]{list }\end{DoxyParamCaption})}
+
+
+
+Give the size of the list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & L\+I\+ST desired. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The size of the list in an integer value. 
+\end{DoxyReturn}
+
+
+Definition at line 122 of file List\+Generic.\+c.
+

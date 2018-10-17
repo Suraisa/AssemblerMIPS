@@ -1,0 +1,245 @@
+\hypertarget{_utils_8h}{}\section{/home/suraisa/\+Documents/\+Projet\+Info2/inc/\+Utils.h File Reference}
+\label{_utils_8h}\index{/home/suraisa/\+Documents/\+Projet\+Info2/inc/\+Utils.\+h@{/home/suraisa/\+Documents/\+Projet\+Info2/inc/\+Utils.\+h}}
+
+
+Utils stuff.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}List\+Generic.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Queue\+Generic.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Display\+Type.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \hyperlink{_utils_8h_a8592209ba3adb4746f53764d85169329}{String\+Size} (char $\ast$string)
+\begin{DoxyCompactList}\small\item\em Return string\textquotesingle{}s size. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{_utils_8h_aba3c5315d486256d4d397a0447be84ba}{Concatenate\+Char\+List} (\hyperlink{_list_generic_8h_aabca0732ef20d0d82f70f05012926226}{L\+I\+ST} list)
+\begin{DoxyCompactList}\small\item\em Concatenate a list of char to make a string.\textquotesingle{}ll construct the string from the end of the list to the front. \end{DoxyCompactList}\item 
+long int \hyperlink{_utils_8h_af50066ebe8d336820cbf55fdbb2670a9}{Concatenate\+Int\+List} (\hyperlink{_list_generic_8h_aabca0732ef20d0d82f70f05012926226}{L\+I\+ST})
+\begin{DoxyCompactList}\small\item\em Concatenate a list of int to make a long int.\textquotesingle{}ll construct the string from the end of the list to the front. \end{DoxyCompactList}\item 
+int \hyperlink{_utils_8h_a3805bd90609cea3384b20541a8ac5184}{Char\+Is\+Number} (char value)
+\begin{DoxyCompactList}\small\item\em test if the value is a number. \end{DoxyCompactList}\item 
+int \hyperlink{_utils_8h_a9b4fef5a6601265e1a9510db9354d567}{Char\+Is\+Lower\+Letter} (char value)
+\begin{DoxyCompactList}\small\item\em test if the value is lowercase letter. \end{DoxyCompactList}\item 
+int \hyperlink{_utils_8h_a7ae20e27cad0e5de490124b2300c31e0}{Char\+Is\+Upper\+Letter} (char value)
+\begin{DoxyCompactList}\small\item\em test if the value is uppercase letter. \end{DoxyCompactList}\item 
+int \hyperlink{_utils_8h_a6773ac0b76c3151ba37b2f82c41ec2a7}{Char\+Is\+Letter} (char value)
+\begin{DoxyCompactList}\small\item\em test if the value is a letter. \end{DoxyCompactList}\item 
+int \hyperlink{_utils_8h_adf1a56f840470b3aa87d6af134f2451f}{Char\+Is\+Hexadecimal} (char value)
+\begin{DoxyCompactList}\small\item\em test if the value is an hexadecimal letter. \end{DoxyCompactList}\item 
+int \hyperlink{_utils_8h_acc607e84ddbf89954d64a039c21a2865}{Char\+Is\+Number\+Letter} (char value)
+\begin{DoxyCompactList}\small\item\em test if the value is a letter or a number. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Utils stuff. 
+
+Contains some convenient functions. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{_utils_8h_adf1a56f840470b3aa87d6af134f2451f}\label{_utils_8h_adf1a56f840470b3aa87d6af134f2451f}} 
+\index{Utils.\+h@{Utils.\+h}!Char\+Is\+Hexadecimal@{Char\+Is\+Hexadecimal}}
+\index{Char\+Is\+Hexadecimal@{Char\+Is\+Hexadecimal}!Utils.\+h@{Utils.\+h}}
+\subsubsection{\texorpdfstring{Char\+Is\+Hexadecimal()}{CharIsHexadecimal()}}
+{\footnotesize\ttfamily int Char\+Is\+Hexadecimal (\begin{DoxyParamCaption}\item[{char}]{value }\end{DoxyParamCaption})}
+
+
+
+test if the value is an hexadecimal letter. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & Char to test. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/\#1 If it\textquotesingle{}s true.~\newline
+-\/\#0 If it\textquotesingle{}s not 
+\end{DoxyReturn}
+
+
+Definition at line 95 of file Utils.\+c.
+
+\mbox{\Hypertarget{_utils_8h_a6773ac0b76c3151ba37b2f82c41ec2a7}\label{_utils_8h_a6773ac0b76c3151ba37b2f82c41ec2a7}} 
+\index{Utils.\+h@{Utils.\+h}!Char\+Is\+Letter@{Char\+Is\+Letter}}
+\index{Char\+Is\+Letter@{Char\+Is\+Letter}!Utils.\+h@{Utils.\+h}}
+\subsubsection{\texorpdfstring{Char\+Is\+Letter()}{CharIsLetter()}}
+{\footnotesize\ttfamily int Char\+Is\+Letter (\begin{DoxyParamCaption}\item[{char}]{value }\end{DoxyParamCaption})}
+
+
+
+test if the value is a letter. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & Char to test. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/\#1 If it\textquotesingle{}s true.~\newline
+-\/\#0 If it\textquotesingle{}s not 
+\end{DoxyReturn}
+
+
+Definition at line 90 of file Utils.\+c.
+
+\mbox{\Hypertarget{_utils_8h_a9b4fef5a6601265e1a9510db9354d567}\label{_utils_8h_a9b4fef5a6601265e1a9510db9354d567}} 
+\index{Utils.\+h@{Utils.\+h}!Char\+Is\+Lower\+Letter@{Char\+Is\+Lower\+Letter}}
+\index{Char\+Is\+Lower\+Letter@{Char\+Is\+Lower\+Letter}!Utils.\+h@{Utils.\+h}}
+\subsubsection{\texorpdfstring{Char\+Is\+Lower\+Letter()}{CharIsLowerLetter()}}
+{\footnotesize\ttfamily int Char\+Is\+Lower\+Letter (\begin{DoxyParamCaption}\item[{char}]{value }\end{DoxyParamCaption})}
+
+
+
+test if the value is lowercase letter. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & Char to test. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/\#1 If it\textquotesingle{}s true.~\newline
+-\/\#0 If it\textquotesingle{}s not 
+\end{DoxyReturn}
+
+
+Definition at line 85 of file Utils.\+c.
+
+\mbox{\Hypertarget{_utils_8h_a3805bd90609cea3384b20541a8ac5184}\label{_utils_8h_a3805bd90609cea3384b20541a8ac5184}} 
+\index{Utils.\+h@{Utils.\+h}!Char\+Is\+Number@{Char\+Is\+Number}}
+\index{Char\+Is\+Number@{Char\+Is\+Number}!Utils.\+h@{Utils.\+h}}
+\subsubsection{\texorpdfstring{Char\+Is\+Number()}{CharIsNumber()}}
+{\footnotesize\ttfamily int Char\+Is\+Number (\begin{DoxyParamCaption}\item[{char}]{value }\end{DoxyParamCaption})}
+
+
+
+test if the value is a number. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & Char to test. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/\#1 If it\textquotesingle{}s true.~\newline
+-\/\#0 If it\textquotesingle{}s not 
+\end{DoxyReturn}
+
+
+Definition at line 75 of file Utils.\+c.
+
+\mbox{\Hypertarget{_utils_8h_acc607e84ddbf89954d64a039c21a2865}\label{_utils_8h_acc607e84ddbf89954d64a039c21a2865}} 
+\index{Utils.\+h@{Utils.\+h}!Char\+Is\+Number\+Letter@{Char\+Is\+Number\+Letter}}
+\index{Char\+Is\+Number\+Letter@{Char\+Is\+Number\+Letter}!Utils.\+h@{Utils.\+h}}
+\subsubsection{\texorpdfstring{Char\+Is\+Number\+Letter()}{CharIsNumberLetter()}}
+{\footnotesize\ttfamily int Char\+Is\+Number\+Letter (\begin{DoxyParamCaption}\item[{char}]{value }\end{DoxyParamCaption})}
+
+
+
+test if the value is a letter or a number. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & Char to test. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/\#1 If it\textquotesingle{}s true.~\newline
+-\/\#0 If it\textquotesingle{}s not 
+\end{DoxyReturn}
+
+
+Definition at line 100 of file Utils.\+c.
+
+\mbox{\Hypertarget{_utils_8h_a7ae20e27cad0e5de490124b2300c31e0}\label{_utils_8h_a7ae20e27cad0e5de490124b2300c31e0}} 
+\index{Utils.\+h@{Utils.\+h}!Char\+Is\+Upper\+Letter@{Char\+Is\+Upper\+Letter}}
+\index{Char\+Is\+Upper\+Letter@{Char\+Is\+Upper\+Letter}!Utils.\+h@{Utils.\+h}}
+\subsubsection{\texorpdfstring{Char\+Is\+Upper\+Letter()}{CharIsUpperLetter()}}
+{\footnotesize\ttfamily int Char\+Is\+Upper\+Letter (\begin{DoxyParamCaption}\item[{char}]{value }\end{DoxyParamCaption})}
+
+
+
+test if the value is uppercase letter. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & Char to test. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/\#1 If it\textquotesingle{}s true.~\newline
+-\/\#0 If it\textquotesingle{}s not 
+\end{DoxyReturn}
+
+
+Definition at line 80 of file Utils.\+c.
+
+\mbox{\Hypertarget{_utils_8h_aba3c5315d486256d4d397a0447be84ba}\label{_utils_8h_aba3c5315d486256d4d397a0447be84ba}} 
+\index{Utils.\+h@{Utils.\+h}!Concatenate\+Char\+List@{Concatenate\+Char\+List}}
+\index{Concatenate\+Char\+List@{Concatenate\+Char\+List}!Utils.\+h@{Utils.\+h}}
+\subsubsection{\texorpdfstring{Concatenate\+Char\+List()}{ConcatenateCharList()}}
+{\footnotesize\ttfamily char$\ast$ Concatenate\+Char\+List (\begin{DoxyParamCaption}\item[{\hyperlink{_list_generic_8h_aabca0732ef20d0d82f70f05012926226}{L\+I\+ST}}]{list }\end{DoxyParamCaption})}
+
+
+
+Concatenate a list of char to make a string.\textquotesingle{}ll construct the string from the end of the list to the front. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & List of char to concatenate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a string of concatenate char. 
+\end{DoxyReturn}
+
+
+Definition at line 18 of file Utils.\+c.
+
+\mbox{\Hypertarget{_utils_8h_af50066ebe8d336820cbf55fdbb2670a9}\label{_utils_8h_af50066ebe8d336820cbf55fdbb2670a9}} 
+\index{Utils.\+h@{Utils.\+h}!Concatenate\+Int\+List@{Concatenate\+Int\+List}}
+\index{Concatenate\+Int\+List@{Concatenate\+Int\+List}!Utils.\+h@{Utils.\+h}}
+\subsubsection{\texorpdfstring{Concatenate\+Int\+List()}{ConcatenateIntList()}}
+{\footnotesize\ttfamily long int Concatenate\+Int\+List (\begin{DoxyParamCaption}\item[{\hyperlink{_list_generic_8h_aabca0732ef20d0d82f70f05012926226}{L\+I\+ST}}]{ }\end{DoxyParamCaption})}
+
+
+
+Concatenate a list of int to make a long int.\textquotesingle{}ll construct the string from the end of the list to the front. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & List of int to concatenate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a long int of concatenate int. 
+\end{DoxyReturn}
+
+
+Definition at line 53 of file Utils.\+c.
+
+\mbox{\Hypertarget{_utils_8h_a8592209ba3adb4746f53764d85169329}\label{_utils_8h_a8592209ba3adb4746f53764d85169329}} 
+\index{Utils.\+h@{Utils.\+h}!String\+Size@{String\+Size}}
+\index{String\+Size@{String\+Size}!Utils.\+h@{Utils.\+h}}
+\subsubsection{\texorpdfstring{String\+Size()}{StringSize()}}
+{\footnotesize\ttfamily unsigned int String\+Size (\begin{DoxyParamCaption}\item[{char $\ast$}]{string }\end{DoxyParamCaption})}
+
+
+
+Return string\textquotesingle{}s size. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em string} & Char$\ast$ to analyse. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+an unsigned int which represent the string\textquotesingle{}s size. 
+\end{DoxyReturn}
+
+
+Definition at line 3 of file Utils.\+c.
+

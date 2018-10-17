@@ -1,0 +1,142 @@
+\hypertarget{_state_machine_8c}{}\section{/home/suraisa/\+Documents/\+Projet\+Info2/src/\+State\+Machine.c File Reference}
+\label{_state_machine_8c}\index{/home/suraisa/\+Documents/\+Projet\+Info2/src/\+State\+Machine.\+c@{/home/suraisa/\+Documents/\+Projet\+Info2/src/\+State\+Machine.\+c}}
+{\ttfamily \#include \char`\"{}State\+Machine.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{_state_machine_8c_a9a4fb031fd1d0383d5003043ca45bc00}{Init\+State\+Machine} (char reading\+Char, \hyperlink{struct_s_t_a_t_e_m_a_c_h_i_n_e}{S\+T\+A\+T\+E\+M\+A\+C\+H\+I\+NE} $\ast$state\+Machine, unsigned long int line\+Number)
+\begin{DoxyCompactList}\small\item\em It\textquotesingle{}s the Init state\+Machine which change the state\+Machine\textquotesingle{}s state to the right one. \end{DoxyCompactList}\item 
+void \hyperlink{_state_machine_8c_ac53569f912577fe2c5da24e47e83fe42}{State\+Machine} (char $\ast$reading\+Char, \hyperlink{_queue_generic_8h_aafc57d44738df70f43ac87ed969eed47}{Q\+U\+E\+UE} $\ast$lexeme\+Queue, \hyperlink{_list_generic_8h_aabca0732ef20d0d82f70f05012926226}{L\+I\+ST} $\ast$reading\+Value, \hyperlink{struct_s_t_a_t_e_m_a_c_h_i_n_e}{S\+T\+A\+T\+E\+M\+A\+C\+H\+I\+NE} $\ast$state\+Machine, unsigned long int $\ast$line\+Number, int finished\+File)
+\begin{DoxyCompactList}\small\item\em It\textquotesingle{}s the brain of the state\+Machine which sends the state\+Machine to the right state and do a process according of this state. \end{DoxyCompactList}\item 
+void \hyperlink{_state_machine_8c_a5b6034368559dcdfbf82ae84ba191535}{Lexeme\+Treatment} (\hyperlink{_queue_generic_8h_aafc57d44738df70f43ac87ed969eed47}{Q\+U\+E\+UE} $\ast$lexeme\+Queue, \hyperlink{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647}{S\+T\+A\+TE} state, \hyperlink{_list_generic_8h_aabca0732ef20d0d82f70f05012926226}{L\+I\+ST} $\ast$reading\+Value, unsigned long int line\+Number)
+\begin{DoxyCompactList}\small\item\em Add a Lexeme in the lexeme\+Queue according of the state, the list of value read and the number of line. \end{DoxyCompactList}\item 
+void \hyperlink{_state_machine_8c_a6528ae32478c57079d2c790da4506c6f}{Print\+Error} (unsigned long int line\+Number, char $\ast$problem, char wrong\+Value, char $\ast$state)
+\begin{DoxyCompactList}\small\item\em Print an the error of the state\+Machine in color. \end{DoxyCompactList}\item 
+void \hyperlink{_state_machine_8c_a3ad5dc0a1fe4a3091ce0b17d7de090ea}{Initialization} (\hyperlink{struct_s_t_a_t_e_m_a_c_h_i_n_e}{S\+T\+A\+T\+E\+M\+A\+C\+H\+I\+NE} $\ast$state\+Machine)
+\begin{DoxyCompactList}\small\item\em Initialize the state\+Machine. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{_state_machine_8c_a3ad5dc0a1fe4a3091ce0b17d7de090ea}\label{_state_machine_8c_a3ad5dc0a1fe4a3091ce0b17d7de090ea}} 
+\index{State\+Machine.\+c@{State\+Machine.\+c}!Initialization@{Initialization}}
+\index{Initialization@{Initialization}!State\+Machine.\+c@{State\+Machine.\+c}}
+\subsubsection{\texorpdfstring{Initialization()}{Initialization()}}
+{\footnotesize\ttfamily void Initialization (\begin{DoxyParamCaption}\item[{\hyperlink{struct_s_t_a_t_e_m_a_c_h_i_n_e}{S\+T\+A\+T\+E\+M\+A\+C\+H\+I\+NE} $\ast$}]{state\+Machine }\end{DoxyParamCaption})}
+
+
+
+Initialize the state\+Machine. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state\+Machine} & Pointeur on the state\+Machine to initialize. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 345 of file State\+Machine.\+c.
+
+\mbox{\Hypertarget{_state_machine_8c_a9a4fb031fd1d0383d5003043ca45bc00}\label{_state_machine_8c_a9a4fb031fd1d0383d5003043ca45bc00}} 
+\index{State\+Machine.\+c@{State\+Machine.\+c}!Init\+State\+Machine@{Init\+State\+Machine}}
+\index{Init\+State\+Machine@{Init\+State\+Machine}!State\+Machine.\+c@{State\+Machine.\+c}}
+\subsubsection{\texorpdfstring{Init\+State\+Machine()}{InitStateMachine()}}
+{\footnotesize\ttfamily void Init\+State\+Machine (\begin{DoxyParamCaption}\item[{char}]{reading\+Char,  }\item[{\hyperlink{struct_s_t_a_t_e_m_a_c_h_i_n_e}{S\+T\+A\+T\+E\+M\+A\+C\+H\+I\+NE} $\ast$}]{state\+Machine,  }\item[{unsigned long int}]{line\+Number }\end{DoxyParamCaption})}
+
+
+
+It\textquotesingle{}s the Init state\+Machine which change the state\+Machine\textquotesingle{}s state to the right one. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reading\+Char} & Char which send you to the correct state. \\
+\hline
+{\em state\+Machine} & Pointeur on the state\+Machine to change the state or add an error. \\
+\hline
+{\em line\+Number} & Unsigned long int represent the line position in the file to decrypt. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 3 of file State\+Machine.\+c.
+
+\mbox{\Hypertarget{_state_machine_8c_a5b6034368559dcdfbf82ae84ba191535}\label{_state_machine_8c_a5b6034368559dcdfbf82ae84ba191535}} 
+\index{State\+Machine.\+c@{State\+Machine.\+c}!Lexeme\+Treatment@{Lexeme\+Treatment}}
+\index{Lexeme\+Treatment@{Lexeme\+Treatment}!State\+Machine.\+c@{State\+Machine.\+c}}
+\subsubsection{\texorpdfstring{Lexeme\+Treatment()}{LexemeTreatment()}}
+{\footnotesize\ttfamily void Lexeme\+Treatment (\begin{DoxyParamCaption}\item[{\hyperlink{_queue_generic_8h_aafc57d44738df70f43ac87ed969eed47}{Q\+U\+E\+UE} $\ast$}]{lexeme\+Queue,  }\item[{\hyperlink{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647}{S\+T\+A\+TE}}]{state,  }\item[{\hyperlink{_list_generic_8h_aabca0732ef20d0d82f70f05012926226}{L\+I\+ST} $\ast$}]{reading\+Value,  }\item[{unsigned long int}]{line\+Number }\end{DoxyParamCaption})}
+
+
+
+Add a Lexeme in the lexeme\+Queue according of the state, the list of value read and the number of line. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lexeme\+Queue} & Pointeur on a Q\+U\+E\+UE of Lexemes that you want to update. \\
+\hline
+{\em reading\+Value} & Pointeur on a L\+I\+ST of the lexeme value\textquotesingle{}s information. \\
+\hline
+{\em state} & S\+T\+A\+TE represent the state of the lexeme to add. \\
+\hline
+{\em line\+Number} & Unsigned long int represent the line position of this lexeme. \\
+\hline
+{\em finished\+File} & Integer to know if the file is ended or not. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 326 of file State\+Machine.\+c.
+
+\mbox{\Hypertarget{_state_machine_8c_a6528ae32478c57079d2c790da4506c6f}\label{_state_machine_8c_a6528ae32478c57079d2c790da4506c6f}} 
+\index{State\+Machine.\+c@{State\+Machine.\+c}!Print\+Error@{Print\+Error}}
+\index{Print\+Error@{Print\+Error}!State\+Machine.\+c@{State\+Machine.\+c}}
+\subsubsection{\texorpdfstring{Print\+Error()}{PrintError()}}
+{\footnotesize\ttfamily void Print\+Error (\begin{DoxyParamCaption}\item[{unsigned long int}]{line\+Number,  }\item[{char $\ast$}]{problem,  }\item[{char}]{wrong\+Value,  }\item[{char $\ast$}]{state }\end{DoxyParamCaption})}
+
+
+
+Print an the error of the state\+Machine in color. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em line\+Number} & Unsigned long int represent the line position of the error. \\
+\hline
+{\em problem} & String to represent the problem. \\
+\hline
+{\em wrong\+Value} & Char which create an error. \\
+\hline
+{\em state} & String to represent in which state we have an error. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 333 of file State\+Machine.\+c.
+
+\mbox{\Hypertarget{_state_machine_8c_ac53569f912577fe2c5da24e47e83fe42}\label{_state_machine_8c_ac53569f912577fe2c5da24e47e83fe42}} 
+\index{State\+Machine.\+c@{State\+Machine.\+c}!State\+Machine@{State\+Machine}}
+\index{State\+Machine@{State\+Machine}!State\+Machine.\+c@{State\+Machine.\+c}}
+\subsubsection{\texorpdfstring{State\+Machine()}{StateMachine()}}
+{\footnotesize\ttfamily void State\+Machine (\begin{DoxyParamCaption}\item[{char $\ast$}]{reading\+Char,  }\item[{\hyperlink{_queue_generic_8h_aafc57d44738df70f43ac87ed969eed47}{Q\+U\+E\+UE} $\ast$}]{lexeme\+Queue,  }\item[{\hyperlink{_list_generic_8h_aabca0732ef20d0d82f70f05012926226}{L\+I\+ST} $\ast$}]{reading\+Value,  }\item[{\hyperlink{struct_s_t_a_t_e_m_a_c_h_i_n_e}{S\+T\+A\+T\+E\+M\+A\+C\+H\+I\+NE} $\ast$}]{state\+Machine,  }\item[{unsigned long int $\ast$}]{line\+Number,  }\item[{int}]{finished\+File }\end{DoxyParamCaption})}
+
+
+
+It\textquotesingle{}s the brain of the state\+Machine which sends the state\+Machine to the right state and do a process according of this state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reading\+Char} & Pointer on the char currently read in the file to decrypt. \\
+\hline
+{\em lexeme\+Queue} & Pointeur on a Q\+U\+E\+UE of Lexemes it updates it during the process of lexeme decrypting. \\
+\hline
+{\em reading\+Value} & Pointeur on a L\+I\+ST, to stock values which don\textquotesingle{}t have lexeme for now (this function will use it, use just an empty list). \\
+\hline
+{\em state\+Machine} & Pointeur on the state\+Machine. To know in which S\+T\+A\+TE are the treatment or to add an error. \\
+\hline
+{\em line\+Number} & Pointer on an unsigned long int represent the line position in the file to decrypt. It will be incrementated during the process. \\
+\hline
+{\em finished\+File} & Integer to know if the file is ended or not. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 92 of file State\+Machine.\+c.
+

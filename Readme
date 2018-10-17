@@ -1,0 +1,45 @@
+# MIPS Assembler Project
+# Clémenceau Sandra and Gomes Cardoso Raphaël
+
+
+--- Software purpose ---
+Convert the MIPS "Assembly Language" to be understood by this processor
+
+--- How to compile ---
+Open a terminal on the project's root.
+Use "make release" to generate the assembler.exe which is the assembler.
+
+You can compile all test files inside test folder with the command : "make allTest" 
+Other rules are available, write "make help" to find them.
+
+
+--- How to use the software ---
+Put the file that you want to interpret inside the "files" folder.
+
+After compilation, use in a terminal on the project's root:
+"./assembler.exe" to run the sofware.
+
+Follow the instruction of written in the terminal.
+
+
+
+--- Folder management ---
+# root :
+Have :
+- The makefile
+- doxyfile to generate the documentation
+
+# inc folder:
+Has all the needed libraries created for the software.
+
+# src folder:
+Contain all sources files (.c files).
+
+# test folder:
+Has all test files.
+
+# obj folder :
+Has all object file to facilitate the compilation.
+
+# doc folder:
+Contain the index file to the documentation.

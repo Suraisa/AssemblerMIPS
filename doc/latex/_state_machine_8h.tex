@@ -1,0 +1,260 @@
+\hypertarget{_state_machine_8h}{}\section{/home/suraisa/\+Documents/\+Projet\+Info2/inc/\+State\+Machine.h File Reference}
+\label{_state_machine_8h}\index{/home/suraisa/\+Documents/\+Projet\+Info2/inc/\+State\+Machine.\+h@{/home/suraisa/\+Documents/\+Projet\+Info2/inc/\+State\+Machine.\+h}}
+
+
+State\+Machine-\/related stuff.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}List\+Generic.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Queue\+Generic.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Display\+Type.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Lexeme.\+h\char`\"{}}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_s_t_a_t_e_m_a_c_h_i_n_e}{S\+T\+A\+T\+E\+M\+A\+C\+H\+I\+NE}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647}{S\+T\+A\+TE} \{ \newline
+\hyperlink{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647a423e7f42ac796f5b41b670cdf6e4a34a}{P\+A\+R\+E\+N\+T\+H\+E\+S\+I\+S\+L\+E\+FT}, 
+\hyperlink{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647a2f6f4944af48fe40968fb6dcb1f04218}{P\+A\+R\+E\+N\+T\+H\+E\+S\+I\+S\+R\+I\+G\+HT}, 
+\hyperlink{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647af81277bcd86412fe04bb68718ea09392}{C\+O\+M\+MA}, 
+\hyperlink{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647aceb7c305772dab23a260960771180df3}{R\+E\+G\+I\+S\+T\+ER}, 
+\newline
+\hyperlink{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647ae3852cb010d5e422026faf83b3c16f0e}{D\+I\+R\+E\+C\+T\+I\+VE}, 
+\hyperlink{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647aae696377c19e507b64e16be78ce3bbdb}{C\+O\+M\+M\+E\+NT}, 
+\hyperlink{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647a12a90dfe20486bbe3e075afcd19ef2d0}{N\+U\+M\+B\+ER}, 
+\hyperlink{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647ad291187b973c32b575bbb9e59e497710}{H\+E\+X\+A\+D\+E\+C\+I\+M\+AL}, 
+\newline
+\hyperlink{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647af08a543d5a1549321682e12569d0fbd6}{D\+E\+C\+I\+M\+AL}, 
+\hyperlink{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647aee847e634a4297b274316de8a8ca9921}{S\+T\+R\+I\+NG}, 
+\hyperlink{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647ae3d30ffaffa3c06ed917e565dda1fbc5}{S\+Y\+M\+B\+OL}, 
+\hyperlink{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647a520e09ffec033636dba711f3441cc600}{R\+E\+T\+U\+RN}, 
+\newline
+\hyperlink{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647a29cf94637337909c3813bb50d6e9b3ee}{C\+O\+L\+ON}, 
+\hyperlink{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647a6411d9d6073252e4d316493506bbb979}{O\+P\+E\+R\+A\+T\+OR}, 
+\hyperlink{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647a0cb1b2c6a7db1f1084886c98909a3f36}{I\+N\+IT}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{_state_machine_8h_a3ad5dc0a1fe4a3091ce0b17d7de090ea}{Initialization} (\hyperlink{struct_s_t_a_t_e_m_a_c_h_i_n_e}{S\+T\+A\+T\+E\+M\+A\+C\+H\+I\+NE} $\ast$state\+Machine)
+\begin{DoxyCompactList}\small\item\em Initialize the state\+Machine. \end{DoxyCompactList}\item 
+void \hyperlink{_state_machine_8h_a9a4fb031fd1d0383d5003043ca45bc00}{Init\+State\+Machine} (char reading\+Char, \hyperlink{struct_s_t_a_t_e_m_a_c_h_i_n_e}{S\+T\+A\+T\+E\+M\+A\+C\+H\+I\+NE} $\ast$state\+Machine, unsigned long int line\+Number)
+\begin{DoxyCompactList}\small\item\em It\textquotesingle{}s the Init state\+Machine which change the state\+Machine\textquotesingle{}s state to the right one. \end{DoxyCompactList}\item 
+void \hyperlink{_state_machine_8h_ac53569f912577fe2c5da24e47e83fe42}{State\+Machine} (char $\ast$reading\+Char, \hyperlink{_queue_generic_8h_aafc57d44738df70f43ac87ed969eed47}{Q\+U\+E\+UE} $\ast$lexeme\+Queue, \hyperlink{_list_generic_8h_aabca0732ef20d0d82f70f05012926226}{L\+I\+ST} $\ast$reading\+Value, \hyperlink{struct_s_t_a_t_e_m_a_c_h_i_n_e}{S\+T\+A\+T\+E\+M\+A\+C\+H\+I\+NE} $\ast$state\+Machine, unsigned long int $\ast$line\+Number, int finished\+File)
+\begin{DoxyCompactList}\small\item\em It\textquotesingle{}s the brain of the state\+Machine which sends the state\+Machine to the right state and do a process according of this state. \end{DoxyCompactList}\item 
+void \hyperlink{_state_machine_8h_a5b6034368559dcdfbf82ae84ba191535}{Lexeme\+Treatment} (\hyperlink{_queue_generic_8h_aafc57d44738df70f43ac87ed969eed47}{Q\+U\+E\+UE} $\ast$lexeme\+Queue, \hyperlink{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647}{S\+T\+A\+TE} state, \hyperlink{_list_generic_8h_aabca0732ef20d0d82f70f05012926226}{L\+I\+ST} $\ast$reading\+Value, unsigned long int line\+Number)
+\begin{DoxyCompactList}\small\item\em Add a Lexeme in the lexeme\+Queue according of the state, the list of value read and the number of line. \end{DoxyCompactList}\item 
+void \hyperlink{_state_machine_8h_a6528ae32478c57079d2c790da4506c6f}{Print\+Error} (unsigned long int line\+Number, char $\ast$problem, char wrong\+Value, char $\ast$state)
+\begin{DoxyCompactList}\small\item\em Print an the error of the state\+Machine in color. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+State\+Machine-\/related stuff. 
+
+Contains the state\+Machine structure definition and the associated prototypes. 
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647}\label{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647}} 
+\index{State\+Machine.\+h@{State\+Machine.\+h}!S\+T\+A\+TE@{S\+T\+A\+TE}}
+\index{S\+T\+A\+TE@{S\+T\+A\+TE}!State\+Machine.\+h@{State\+Machine.\+h}}
+\subsubsection{\texorpdfstring{S\+T\+A\+TE}{STATE}}
+{\footnotesize\ttfamily enum \hyperlink{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647}{S\+T\+A\+TE}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{P\+A\+R\+E\+N\+T\+H\+E\+S\+I\+S\+L\+E\+FT@{P\+A\+R\+E\+N\+T\+H\+E\+S\+I\+S\+L\+E\+FT}!State\+Machine.\+h@{State\+Machine.\+h}}\index{State\+Machine.\+h@{State\+Machine.\+h}!P\+A\+R\+E\+N\+T\+H\+E\+S\+I\+S\+L\+E\+FT@{P\+A\+R\+E\+N\+T\+H\+E\+S\+I\+S\+L\+E\+FT}}}\mbox{\Hypertarget{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647a423e7f42ac796f5b41b670cdf6e4a34a}\label{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647a423e7f42ac796f5b41b670cdf6e4a34a}} 
+P\+A\+R\+E\+N\+T\+H\+E\+S\+I\+S\+L\+E\+FT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{P\+A\+R\+E\+N\+T\+H\+E\+S\+I\+S\+R\+I\+G\+HT@{P\+A\+R\+E\+N\+T\+H\+E\+S\+I\+S\+R\+I\+G\+HT}!State\+Machine.\+h@{State\+Machine.\+h}}\index{State\+Machine.\+h@{State\+Machine.\+h}!P\+A\+R\+E\+N\+T\+H\+E\+S\+I\+S\+R\+I\+G\+HT@{P\+A\+R\+E\+N\+T\+H\+E\+S\+I\+S\+R\+I\+G\+HT}}}\mbox{\Hypertarget{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647a2f6f4944af48fe40968fb6dcb1f04218}\label{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647a2f6f4944af48fe40968fb6dcb1f04218}} 
+P\+A\+R\+E\+N\+T\+H\+E\+S\+I\+S\+R\+I\+G\+HT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{C\+O\+M\+MA@{C\+O\+M\+MA}!State\+Machine.\+h@{State\+Machine.\+h}}\index{State\+Machine.\+h@{State\+Machine.\+h}!C\+O\+M\+MA@{C\+O\+M\+MA}}}\mbox{\Hypertarget{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647af81277bcd86412fe04bb68718ea09392}\label{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647af81277bcd86412fe04bb68718ea09392}} 
+C\+O\+M\+MA&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{R\+E\+G\+I\+S\+T\+ER@{R\+E\+G\+I\+S\+T\+ER}!State\+Machine.\+h@{State\+Machine.\+h}}\index{State\+Machine.\+h@{State\+Machine.\+h}!R\+E\+G\+I\+S\+T\+ER@{R\+E\+G\+I\+S\+T\+ER}}}\mbox{\Hypertarget{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647aceb7c305772dab23a260960771180df3}\label{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647aceb7c305772dab23a260960771180df3}} 
+R\+E\+G\+I\+S\+T\+ER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{D\+I\+R\+E\+C\+T\+I\+VE@{D\+I\+R\+E\+C\+T\+I\+VE}!State\+Machine.\+h@{State\+Machine.\+h}}\index{State\+Machine.\+h@{State\+Machine.\+h}!D\+I\+R\+E\+C\+T\+I\+VE@{D\+I\+R\+E\+C\+T\+I\+VE}}}\mbox{\Hypertarget{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647ae3852cb010d5e422026faf83b3c16f0e}\label{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647ae3852cb010d5e422026faf83b3c16f0e}} 
+D\+I\+R\+E\+C\+T\+I\+VE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{C\+O\+M\+M\+E\+NT@{C\+O\+M\+M\+E\+NT}!State\+Machine.\+h@{State\+Machine.\+h}}\index{State\+Machine.\+h@{State\+Machine.\+h}!C\+O\+M\+M\+E\+NT@{C\+O\+M\+M\+E\+NT}}}\mbox{\Hypertarget{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647aae696377c19e507b64e16be78ce3bbdb}\label{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647aae696377c19e507b64e16be78ce3bbdb}} 
+C\+O\+M\+M\+E\+NT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{N\+U\+M\+B\+ER@{N\+U\+M\+B\+ER}!State\+Machine.\+h@{State\+Machine.\+h}}\index{State\+Machine.\+h@{State\+Machine.\+h}!N\+U\+M\+B\+ER@{N\+U\+M\+B\+ER}}}\mbox{\Hypertarget{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647a12a90dfe20486bbe3e075afcd19ef2d0}\label{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647a12a90dfe20486bbe3e075afcd19ef2d0}} 
+N\+U\+M\+B\+ER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{H\+E\+X\+A\+D\+E\+C\+I\+M\+AL@{H\+E\+X\+A\+D\+E\+C\+I\+M\+AL}!State\+Machine.\+h@{State\+Machine.\+h}}\index{State\+Machine.\+h@{State\+Machine.\+h}!H\+E\+X\+A\+D\+E\+C\+I\+M\+AL@{H\+E\+X\+A\+D\+E\+C\+I\+M\+AL}}}\mbox{\Hypertarget{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647ad291187b973c32b575bbb9e59e497710}\label{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647ad291187b973c32b575bbb9e59e497710}} 
+H\+E\+X\+A\+D\+E\+C\+I\+M\+AL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{D\+E\+C\+I\+M\+AL@{D\+E\+C\+I\+M\+AL}!State\+Machine.\+h@{State\+Machine.\+h}}\index{State\+Machine.\+h@{State\+Machine.\+h}!D\+E\+C\+I\+M\+AL@{D\+E\+C\+I\+M\+AL}}}\mbox{\Hypertarget{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647af08a543d5a1549321682e12569d0fbd6}\label{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647af08a543d5a1549321682e12569d0fbd6}} 
+D\+E\+C\+I\+M\+AL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S\+T\+R\+I\+NG@{S\+T\+R\+I\+NG}!State\+Machine.\+h@{State\+Machine.\+h}}\index{State\+Machine.\+h@{State\+Machine.\+h}!S\+T\+R\+I\+NG@{S\+T\+R\+I\+NG}}}\mbox{\Hypertarget{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647aee847e634a4297b274316de8a8ca9921}\label{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647aee847e634a4297b274316de8a8ca9921}} 
+S\+T\+R\+I\+NG&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S\+Y\+M\+B\+OL@{S\+Y\+M\+B\+OL}!State\+Machine.\+h@{State\+Machine.\+h}}\index{State\+Machine.\+h@{State\+Machine.\+h}!S\+Y\+M\+B\+OL@{S\+Y\+M\+B\+OL}}}\mbox{\Hypertarget{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647ae3d30ffaffa3c06ed917e565dda1fbc5}\label{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647ae3d30ffaffa3c06ed917e565dda1fbc5}} 
+S\+Y\+M\+B\+OL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{R\+E\+T\+U\+RN@{R\+E\+T\+U\+RN}!State\+Machine.\+h@{State\+Machine.\+h}}\index{State\+Machine.\+h@{State\+Machine.\+h}!R\+E\+T\+U\+RN@{R\+E\+T\+U\+RN}}}\mbox{\Hypertarget{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647a520e09ffec033636dba711f3441cc600}\label{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647a520e09ffec033636dba711f3441cc600}} 
+R\+E\+T\+U\+RN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{C\+O\+L\+ON@{C\+O\+L\+ON}!State\+Machine.\+h@{State\+Machine.\+h}}\index{State\+Machine.\+h@{State\+Machine.\+h}!C\+O\+L\+ON@{C\+O\+L\+ON}}}\mbox{\Hypertarget{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647a29cf94637337909c3813bb50d6e9b3ee}\label{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647a29cf94637337909c3813bb50d6e9b3ee}} 
+C\+O\+L\+ON&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{O\+P\+E\+R\+A\+T\+OR@{O\+P\+E\+R\+A\+T\+OR}!State\+Machine.\+h@{State\+Machine.\+h}}\index{State\+Machine.\+h@{State\+Machine.\+h}!O\+P\+E\+R\+A\+T\+OR@{O\+P\+E\+R\+A\+T\+OR}}}\mbox{\Hypertarget{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647a6411d9d6073252e4d316493506bbb979}\label{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647a6411d9d6073252e4d316493506bbb979}} 
+O\+P\+E\+R\+A\+T\+OR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{I\+N\+IT@{I\+N\+IT}!State\+Machine.\+h@{State\+Machine.\+h}}\index{State\+Machine.\+h@{State\+Machine.\+h}!I\+N\+IT@{I\+N\+IT}}}\mbox{\Hypertarget{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647a0cb1b2c6a7db1f1084886c98909a3f36}\label{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647a0cb1b2c6a7db1f1084886c98909a3f36}} 
+I\+N\+IT&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 17 of file State\+Machine.\+h.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{_state_machine_8h_a3ad5dc0a1fe4a3091ce0b17d7de090ea}\label{_state_machine_8h_a3ad5dc0a1fe4a3091ce0b17d7de090ea}} 
+\index{State\+Machine.\+h@{State\+Machine.\+h}!Initialization@{Initialization}}
+\index{Initialization@{Initialization}!State\+Machine.\+h@{State\+Machine.\+h}}
+\subsubsection{\texorpdfstring{Initialization()}{Initialization()}}
+{\footnotesize\ttfamily void Initialization (\begin{DoxyParamCaption}\item[{\hyperlink{struct_s_t_a_t_e_m_a_c_h_i_n_e}{S\+T\+A\+T\+E\+M\+A\+C\+H\+I\+NE} $\ast$}]{state\+Machine }\end{DoxyParamCaption})}
+
+
+
+Initialize the state\+Machine. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state\+Machine} & Pointeur on the state\+Machine to initialize. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 345 of file State\+Machine.\+c.
+
+\mbox{\Hypertarget{_state_machine_8h_a9a4fb031fd1d0383d5003043ca45bc00}\label{_state_machine_8h_a9a4fb031fd1d0383d5003043ca45bc00}} 
+\index{State\+Machine.\+h@{State\+Machine.\+h}!Init\+State\+Machine@{Init\+State\+Machine}}
+\index{Init\+State\+Machine@{Init\+State\+Machine}!State\+Machine.\+h@{State\+Machine.\+h}}
+\subsubsection{\texorpdfstring{Init\+State\+Machine()}{InitStateMachine()}}
+{\footnotesize\ttfamily void Init\+State\+Machine (\begin{DoxyParamCaption}\item[{char}]{reading\+Char,  }\item[{\hyperlink{struct_s_t_a_t_e_m_a_c_h_i_n_e}{S\+T\+A\+T\+E\+M\+A\+C\+H\+I\+NE} $\ast$}]{state\+Machine,  }\item[{unsigned long int}]{line\+Number }\end{DoxyParamCaption})}
+
+
+
+It\textquotesingle{}s the Init state\+Machine which change the state\+Machine\textquotesingle{}s state to the right one. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reading\+Char} & Char which send you to the correct state. \\
+\hline
+{\em state\+Machine} & Pointeur on the state\+Machine to change the state or add an error. \\
+\hline
+{\em line\+Number} & Unsigned long int represent the line position in the file to decrypt. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 3 of file State\+Machine.\+c.
+
+\mbox{\Hypertarget{_state_machine_8h_a5b6034368559dcdfbf82ae84ba191535}\label{_state_machine_8h_a5b6034368559dcdfbf82ae84ba191535}} 
+\index{State\+Machine.\+h@{State\+Machine.\+h}!Lexeme\+Treatment@{Lexeme\+Treatment}}
+\index{Lexeme\+Treatment@{Lexeme\+Treatment}!State\+Machine.\+h@{State\+Machine.\+h}}
+\subsubsection{\texorpdfstring{Lexeme\+Treatment()}{LexemeTreatment()}}
+{\footnotesize\ttfamily void Lexeme\+Treatment (\begin{DoxyParamCaption}\item[{\hyperlink{_queue_generic_8h_aafc57d44738df70f43ac87ed969eed47}{Q\+U\+E\+UE} $\ast$}]{lexeme\+Queue,  }\item[{\hyperlink{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647}{S\+T\+A\+TE}}]{state,  }\item[{\hyperlink{_list_generic_8h_aabca0732ef20d0d82f70f05012926226}{L\+I\+ST} $\ast$}]{reading\+Value,  }\item[{unsigned long int}]{line\+Number }\end{DoxyParamCaption})}
+
+
+
+Add a Lexeme in the lexeme\+Queue according of the state, the list of value read and the number of line. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lexeme\+Queue} & Pointeur on a Q\+U\+E\+UE of Lexemes that you want to update. \\
+\hline
+{\em reading\+Value} & Pointeur on a L\+I\+ST of the lexeme value\textquotesingle{}s information. \\
+\hline
+{\em state} & S\+T\+A\+TE represent the state of the lexeme to add. \\
+\hline
+{\em line\+Number} & Unsigned long int represent the line position of this lexeme. \\
+\hline
+{\em finished\+File} & Integer to know if the file is ended or not. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 326 of file State\+Machine.\+c.
+
+\mbox{\Hypertarget{_state_machine_8h_a6528ae32478c57079d2c790da4506c6f}\label{_state_machine_8h_a6528ae32478c57079d2c790da4506c6f}} 
+\index{State\+Machine.\+h@{State\+Machine.\+h}!Print\+Error@{Print\+Error}}
+\index{Print\+Error@{Print\+Error}!State\+Machine.\+h@{State\+Machine.\+h}}
+\subsubsection{\texorpdfstring{Print\+Error()}{PrintError()}}
+{\footnotesize\ttfamily void Print\+Error (\begin{DoxyParamCaption}\item[{unsigned long int}]{line\+Number,  }\item[{char $\ast$}]{problem,  }\item[{char}]{wrong\+Value,  }\item[{char $\ast$}]{state }\end{DoxyParamCaption})}
+
+
+
+Print an the error of the state\+Machine in color. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em line\+Number} & Unsigned long int represent the line position of the error. \\
+\hline
+{\em problem} & String to represent the problem. \\
+\hline
+{\em wrong\+Value} & Char which create an error. \\
+\hline
+{\em state} & String to represent in which state we have an error. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 333 of file State\+Machine.\+c.
+
+\mbox{\Hypertarget{_state_machine_8h_ac53569f912577fe2c5da24e47e83fe42}\label{_state_machine_8h_ac53569f912577fe2c5da24e47e83fe42}} 
+\index{State\+Machine.\+h@{State\+Machine.\+h}!State\+Machine@{State\+Machine}}
+\index{State\+Machine@{State\+Machine}!State\+Machine.\+h@{State\+Machine.\+h}}
+\subsubsection{\texorpdfstring{State\+Machine()}{StateMachine()}}
+{\footnotesize\ttfamily void State\+Machine (\begin{DoxyParamCaption}\item[{char $\ast$}]{reading\+Char,  }\item[{\hyperlink{_queue_generic_8h_aafc57d44738df70f43ac87ed969eed47}{Q\+U\+E\+UE} $\ast$}]{lexeme\+Queue,  }\item[{\hyperlink{_list_generic_8h_aabca0732ef20d0d82f70f05012926226}{L\+I\+ST} $\ast$}]{reading\+Value,  }\item[{\hyperlink{struct_s_t_a_t_e_m_a_c_h_i_n_e}{S\+T\+A\+T\+E\+M\+A\+C\+H\+I\+NE} $\ast$}]{state\+Machine,  }\item[{unsigned long int $\ast$}]{line\+Number,  }\item[{int}]{finished\+File }\end{DoxyParamCaption})}
+
+
+
+It\textquotesingle{}s the brain of the state\+Machine which sends the state\+Machine to the right state and do a process according of this state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reading\+Char} & Pointer on the char currently read in the file to decrypt. \\
+\hline
+{\em lexeme\+Queue} & Pointeur on a Q\+U\+E\+UE of Lexemes it updates it during the process of lexeme decrypting. \\
+\hline
+{\em reading\+Value} & Pointeur on a L\+I\+ST, to stock values which don\textquotesingle{}t have lexeme for now (this function will use it, use just an empty list). \\
+\hline
+{\em state\+Machine} & Pointeur on the state\+Machine. To know in which S\+T\+A\+TE are the treatment or to add an error. \\
+\hline
+{\em line\+Number} & Pointer on an unsigned long int represent the line position in the file to decrypt. It will be incrementated during the process. \\
+\hline
+{\em finished\+File} & Integer to know if the file is ended or not. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 92 of file State\+Machine.\+c.
+
