@@ -92,4 +92,13 @@ void Display(LIST list);
  */
 int SizeList(LIST list);
 
+/**
+ * @param list LIST desired.
+ * @param number Unsigned long int : number of element you want to pop from the list.
+ * @return A list of poped element.
+ * @brief Pop "number" element of the list, if number is higher than the list's size, it will stop at the last element of the list.
+ *
+ */
+LIST PopInFront(LIST *list, unsigned long int number);
+
 #endif

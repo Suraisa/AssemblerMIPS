@@ -34,9 +34,18 @@ int main()
     a = 2;
     AddInFront(&list, &a, &DisplayInt, NULL, sizeof(long int));
 
+    LIST popedList = PopInFront(&list, 2);
+
+    printf("\nPoped list :");
+
+    Display(popedList);
+
+    printf("\nList :");
+
     Display(list);
     
     ErasedList(&list);
+    ErasedList(&popedList);
 
     return 0;
 }

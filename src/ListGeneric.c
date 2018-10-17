@@ -15,9 +15,9 @@ void AddInFront(LIST *list, void *dataToAdd, void (*display)(void *), void (*era
     LIST newNode = CreateList();
     newNode = (LIST)calloc(1, sizeof(*newNode));
     newNode->data = malloc(size);
-    
+
     if (newNode->data == NULL)
-            return;
+        return;
 
     memmove(newNode->data, dataToAdd, size);
     newNode->next = *list;
@@ -35,12 +35,12 @@ void AddAtLast(LIST *list, void *dataToAdd, void (*display)(void *), void (*eras
     newNode->data = malloc(size);
 
     if (newNode->data == NULL)
-            return;
+        return;
 
     memmove(newNode->data, dataToAdd, size);
     newNode->display = display;
     newNode->erasedDataValue = erasedDataValue;
-    
+
     if (!IsEmpty(copy))
     {
         while (!IsEmpty(copy->next))
@@ -64,7 +64,7 @@ void ErasedInFront(LIST *list)
     {
         LIST copy = *list;
         (*list) = (*list)->next;
-        if(copy->erasedDataValue != NULL)
+        if (copy->erasedDataValue != NULL)
         {
             (copy->erasedDataValue)(copy->data);
         }
@@ -84,10 +84,10 @@ void ErasedAtLast(LIST *list)
     {
         copy = copy->next;
     }
-    if(copy->erasedDataValue != NULL)
-        {
-            (copy->erasedDataValue)(copy->data);
-        }
+    if (copy->erasedDataValue != NULL)
+    {
+        (copy->erasedDataValue)(copy->data);
+    }
     free(copy->data);
     free(copy);
 }
@@ -100,7 +100,7 @@ void ErasedList(LIST *list)
     for (nodeI = *list; !IsEmpty(nodeI); nodeI = nodeISuiv)
     {
         nodeISuiv = nodeI->next;
-        if(nodeI->erasedDataValue != NULL)
+        if (nodeI->erasedDataValue != NULL)
         {
             (nodeI->erasedDataValue)(nodeI->data);
         }
@@ -108,6 +108,21 @@ void ErasedList(LIST *list)
         free(nodeI);
     }
     *list = NULL;
+}
+
+LIST PopInFront(LIST *list, unsigned long int number)
+{
+    LIST popedList = *list;
+    LIST copy = *list;
+    int counter = 1;
+    while (!IsEmpty(copy->next) && counter < number)
+    {
+        copy = copy->next;
+        counter++;
+    }
+    *list = copy->next;
+    copy->next = NULL;
+    return popedList;
 }
 
 void Display(LIST list)
