@@ -7,6 +7,7 @@ lib = -lm
 doxygenFile = doxyfile
 
 RELEASE = assembler.exe
+DEBUG = assembler.dbg
 
 incFiles = $(wildcard $(inc)/*.h)
 obj = $(patsubst $(src)%.c, $(objdir)%.o, $(wildcard $(src)/*.c))
@@ -34,6 +35,15 @@ $(objdir)/%.o : $(src)/%.c
 
 $(objdir)/%.o : $(test)/%.c
 	$(CC) -c -g -I$(inc) -o $@ $<
+
+debug: $(obj)
+	$(CC) -o $(DEBUG) $^ $(lib)
+
+$(objdir)/%.o : $(src)/%.c
+	$(CC) -c -I$(inc) -o $@ $<
+
+$(objdir)/%.o : $(test)/%.c
+	$(CC) -c -I$(inc) -o $@ $<
 
 release: $(obj)
 	$(CC) -o $(RELEASE) $^ $(lib)

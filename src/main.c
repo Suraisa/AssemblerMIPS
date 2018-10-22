@@ -49,5 +49,8 @@ int main()
     printf("\n\nThe file doesn't exit in the 'file' folder or you don't have enough memory available\n\n");
   }
 
+  if(stateMachine.error)
+    return -1;
+
   return 0;
 }

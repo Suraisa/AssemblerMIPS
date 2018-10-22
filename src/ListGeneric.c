@@ -60,17 +60,14 @@ void ErasedInFront(LIST *list)
     if (IsEmpty(*list))
         return;
 
-    else
+    LIST copy = *list;
+    (*list) = (*list)->next;
+    if (copy->erasedDataValue != NULL)
     {
-        LIST copy = *list;
-        (*list) = (*list)->next;
-        if (copy->erasedDataValue != NULL)
-        {
-            (copy->erasedDataValue)(copy->data);
-        }
-        free(copy->data);
-        free(copy);
+        (copy->erasedDataValue)(copy->data);
     }
+    free(copy->data);
+    free(copy);
 }
 
 void ErasedAtLast(LIST *list)
@@ -78,18 +75,34 @@ void ErasedAtLast(LIST *list)
     if (IsEmpty(*list))
         return;
 
-    LIST copy = *list;
+    LIST previousCopy = (*list);
 
-    while (!IsEmpty(copy->next))
+    if (IsEmpty(previousCopy->next))
     {
-        copy = copy->next;
+        if (previousCopy->erasedDataValue != NULL)
+        {
+            (previousCopy->erasedDataValue)(previousCopy->data);
+        }
+        free(previousCopy->data);
+        free(previousCopy);
+        *list = NULL;
     }
-    if (copy->erasedDataValue != NULL)
+    else
     {
-        (copy->erasedDataValue)(copy->data);
+        LIST copy = previousCopy->next;
+        while (!IsEmpty(copy->next))
+        {
+            copy = copy->next;
+            previousCopy = previousCopy->next;
+        }
+        if (copy->erasedDataValue != NULL)
+        {
+            (copy->erasedDataValue)(copy->data);
+        }
+        free(copy->data);
+        free(copy);
+        previousCopy->next = NULL;
     }
-    free(copy->data);
-    free(copy);
 }
 
 void ErasedList(LIST *list)
