@@ -17,7 +17,7 @@ char *definedType[15] =
      "OPERATOR",
      "INIT"};
 
-char *CreateType(STATE state)
+char *CreateType(LEXEME_STATE state)
 {
     return definedType[state];
 }
@@ -54,7 +54,7 @@ void *CreateValue(LIST list)
     }
 }
 
-LEXEME CreateLexeme(STATE state, LIST list, unsigned long int lineNumber)
+LEXEME CreateLexeme(LEXEME_STATE state, LIST list, unsigned long int lineNumber)
 {
     LEXEME lexeme;
     lexeme.type = CreateType(state);

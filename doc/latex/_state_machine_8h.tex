@@ -42,7 +42,7 @@ enum \hyperlink{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647}{S\+T\+A\+TE
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{_state_machine_8h_a3ad5dc0a1fe4a3091ce0b17d7de090ea}{Initialization} (\hyperlink{struct_s_t_a_t_e_m_a_c_h_i_n_e}{S\+T\+A\+T\+E\+M\+A\+C\+H\+I\+NE} $\ast$state\+Machine)
+void \hyperlink{_state_machine_8h_a3ad5dc0a1fe4a3091ce0b17d7de090ea}{InitializationLexemeFsm} (\hyperlink{struct_s_t_a_t_e_m_a_c_h_i_n_e}{S\+T\+A\+T\+E\+M\+A\+C\+H\+I\+NE} $\ast$state\+Machine)
 \begin{DoxyCompactList}\small\item\em Initialize the state\+Machine. \end{DoxyCompactList}\item 
 void \hyperlink{_state_machine_8h_a9a4fb031fd1d0383d5003043ca45bc00}{Init\+State\+Machine} (char reading\+Char, \hyperlink{struct_s_t_a_t_e_m_a_c_h_i_n_e}{S\+T\+A\+T\+E\+M\+A\+C\+H\+I\+NE} $\ast$state\+Machine, unsigned long int line\+Number)
 \begin{DoxyCompactList}\small\item\em It\textquotesingle{}s the Init state\+Machine which change the state\+Machine\textquotesingle{}s state to the right one. \end{DoxyCompactList}\item 
@@ -63,7 +63,7 @@ Contains the state\+Machine structure definition and the associated prototypes.
 \mbox{\Hypertarget{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647}\label{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647}} 
 \index{State\+Machine.\+h@{State\+Machine.\+h}!S\+T\+A\+TE@{S\+T\+A\+TE}}
 \index{S\+T\+A\+TE@{S\+T\+A\+TE}!State\+Machine.\+h@{State\+Machine.\+h}}
-\subsubsection{\texorpdfstring{S\+T\+A\+TE}{STATE}}
+\subsubsection{\texorpdfstring{S\+T\+A\+TE}{LEXEME_STATE}}
 {\footnotesize\ttfamily enum \hyperlink{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647}{S\+T\+A\+TE}}
 
 \begin{DoxyEnumFields}{Enumerator}
@@ -136,10 +136,10 @@ Definition at line 17 of file State\+Machine.\+h.
 
 \subsection{Function Documentation}
 \mbox{\Hypertarget{_state_machine_8h_a3ad5dc0a1fe4a3091ce0b17d7de090ea}\label{_state_machine_8h_a3ad5dc0a1fe4a3091ce0b17d7de090ea}} 
-\index{State\+Machine.\+h@{State\+Machine.\+h}!Initialization@{Initialization}}
-\index{Initialization@{Initialization}!State\+Machine.\+h@{State\+Machine.\+h}}
-\subsubsection{\texorpdfstring{Initialization()}{Initialization()}}
-{\footnotesize\ttfamily void Initialization (\begin{DoxyParamCaption}\item[{\hyperlink{struct_s_t_a_t_e_m_a_c_h_i_n_e}{S\+T\+A\+T\+E\+M\+A\+C\+H\+I\+NE} $\ast$}]{state\+Machine }\end{DoxyParamCaption})}
+\index{State\+Machine.\+h@{State\+Machine.\+h}!InitializationLexemeFsm@{InitializationLexemeFsm}}
+\index{InitializationLexemeFsm@{InitializationLexemeFsm}!State\+Machine.\+h@{State\+Machine.\+h}}
+\subsubsection{\texorpdfstring{InitializationLexemeFsm()}{InitializationLexemeFsm()}}
+{\footnotesize\ttfamily void InitializationLexemeFsm (\begin{DoxyParamCaption}\item[{\hyperlink{struct_s_t_a_t_e_m_a_c_h_i_n_e}{S\+T\+A\+T\+E\+M\+A\+C\+H\+I\+NE} $\ast$}]{state\+Machine }\end{DoxyParamCaption})}
 
 
 
@@ -157,7 +157,7 @@ Definition at line 345 of file State\+Machine.\+c.
 \mbox{\Hypertarget{_state_machine_8h_a9a4fb031fd1d0383d5003043ca45bc00}\label{_state_machine_8h_a9a4fb031fd1d0383d5003043ca45bc00}} 
 \index{State\+Machine.\+h@{State\+Machine.\+h}!Init\+State\+Machine@{Init\+State\+Machine}}
 \index{Init\+State\+Machine@{Init\+State\+Machine}!State\+Machine.\+h@{State\+Machine.\+h}}
-\subsubsection{\texorpdfstring{Init\+State\+Machine()}{InitStateMachine()}}
+\subsubsection{\texorpdfstring{Init\+State\+Machine()}{InitLexemeFsm()}}
 {\footnotesize\ttfamily void Init\+State\+Machine (\begin{DoxyParamCaption}\item[{char}]{reading\+Char,  }\item[{\hyperlink{struct_s_t_a_t_e_m_a_c_h_i_n_e}{S\+T\+A\+T\+E\+M\+A\+C\+H\+I\+NE} $\ast$}]{state\+Machine,  }\item[{unsigned long int}]{line\+Number }\end{DoxyParamCaption})}
 
 
@@ -232,7 +232,7 @@ Definition at line 333 of file State\+Machine.\+c.
 \mbox{\Hypertarget{_state_machine_8h_ac53569f912577fe2c5da24e47e83fe42}\label{_state_machine_8h_ac53569f912577fe2c5da24e47e83fe42}} 
 \index{State\+Machine.\+h@{State\+Machine.\+h}!State\+Machine@{State\+Machine}}
 \index{State\+Machine@{State\+Machine}!State\+Machine.\+h@{State\+Machine.\+h}}
-\subsubsection{\texorpdfstring{State\+Machine()}{StateMachine()}}
+\subsubsection{\texorpdfstring{State\+Machine()}{LexemeFsm()}}
 {\footnotesize\ttfamily void State\+Machine (\begin{DoxyParamCaption}\item[{char $\ast$}]{reading\+Char,  }\item[{\hyperlink{_queue_generic_8h_aafc57d44738df70f43ac87ed969eed47}{Q\+U\+E\+UE} $\ast$}]{lexeme\+Queue,  }\item[{\hyperlink{_list_generic_8h_aabca0732ef20d0d82f70f05012926226}{L\+I\+ST} $\ast$}]{reading\+Value,  }\item[{\hyperlink{struct_s_t_a_t_e_m_a_c_h_i_n_e}{S\+T\+A\+T\+E\+M\+A\+C\+H\+I\+NE} $\ast$}]{state\+Machine,  }\item[{unsigned long int $\ast$}]{line\+Number,  }\item[{int}]{finished\+File }\end{DoxyParamCaption})}
 
 

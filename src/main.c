@@ -3,7 +3,7 @@
 #include "QueueGeneric.h"
 #include "Global.h"
 #include "Utils.h"
-#include "StateMachine.h"
+#include "FSMLexeme.h"
 #include "ListGeneric.h"
 #include <string.h>
 
@@ -12,8 +12,8 @@ int main()
 
   FILE *readingFile;
   char readingChar;
-  STATEMACHINE stateMachine;
-  Initialization(&stateMachine);
+  LEXEME_FSM stateMachine;
+  InitializationLexemeFsm(&stateMachine);
   unsigned long int lineNumber = 1;
   LIST ReadingValue = CreateList();
   QUEUE lexemeQueue = CreateQueue();
@@ -33,7 +33,7 @@ int main()
     while ((!feof(readingFile)))
     {
       readingChar = fgetc(readingFile);
-      StateMachine(&readingChar, &lexemeQueue, &ReadingValue, &stateMachine, &lineNumber, feof(readingFile));
+      LexemeFsm(&readingChar, &lexemeQueue, &ReadingValue, &stateMachine, &lineNumber, feof(readingFile));
     }
 
     if(!stateMachine.error)

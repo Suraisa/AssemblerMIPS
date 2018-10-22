@@ -1,6 +1,6 @@
-#include "StateMachine.h"
+#include "FSMLexeme.h"
 
-void InitStateMachine(char readingChar, STATEMACHINE *stateMachine, unsigned long int lineNumber)
+void InitLexemeFsm(char readingChar, LEXEME_FSM *stateMachine, unsigned long int lineNumber)
 {
     switch (readingChar)
     {
@@ -89,7 +89,7 @@ void InitStateMachine(char readingChar, STATEMACHINE *stateMachine, unsigned lon
     }
 }
 
-void StateMachine(char *readingChar, QUEUE *lexemeQueue, LIST *readingValue, STATEMACHINE *stateMachine, unsigned long int *lineNumber, int finishedFile)
+void LexemeFsm(char *readingChar, QUEUE *lexemeQueue, LIST *readingValue, LEXEME_FSM *stateMachine, unsigned long int *lineNumber, int finishedFile)
 {
     if (finishedFile && IsEmpty(*readingValue))
         return;
@@ -104,10 +104,10 @@ void StateMachine(char *readingChar, QUEUE *lexemeQueue, LIST *readingValue, STA
     {
     case INIT:
     {
-        InitStateMachine(*readingChar, stateMachine, *lineNumber);
+        InitLexemeFsm(*readingChar, stateMachine, *lineNumber);
         if (stateMachine->currentState != INIT)
         {
-            StateMachine(readingChar, lexemeQueue, readingValue, stateMachine, lineNumber, 0);
+            LexemeFsm(readingChar, lexemeQueue, readingValue, stateMachine, lineNumber, 0);
             break;
         }
         break;
@@ -157,7 +157,7 @@ void StateMachine(char *readingChar, QUEUE *lexemeQueue, LIST *readingValue, STA
         {
             LexemeTreatment(lexemeQueue, stateMachine->currentState, readingValue, *lineNumber);
             stateMachine->currentState = INIT;
-            StateMachine(readingChar, lexemeQueue, readingValue, stateMachine, lineNumber, 0);
+            LexemeFsm(readingChar, lexemeQueue, readingValue, stateMachine, lineNumber, 0);
         }
         break;
     }
@@ -190,7 +190,7 @@ void StateMachine(char *readingChar, QUEUE *lexemeQueue, LIST *readingValue, STA
                 LexemeTreatment(lexemeQueue, stateMachine->currentState, readingValue, *lineNumber);
                 stateMachine->currentState = INIT;
                 stateMachine->inState = !stateMachine->inState;
-                StateMachine(readingChar, lexemeQueue, readingValue, stateMachine, lineNumber, 0);
+                LexemeFsm(readingChar, lexemeQueue, readingValue, stateMachine, lineNumber, 0);
             }
             else
             {
@@ -219,7 +219,7 @@ void StateMachine(char *readingChar, QUEUE *lexemeQueue, LIST *readingValue, STA
                 LexemeTreatment(lexemeQueue, stateMachine->currentState, readingValue, *lineNumber);
                 stateMachine->currentState = INIT;
                 stateMachine->inState = !stateMachine->inState;
-                StateMachine(readingChar, lexemeQueue, readingValue, stateMachine, lineNumber, 0);
+                LexemeFsm(readingChar, lexemeQueue, readingValue, stateMachine, lineNumber, 0);
             }
             else
             {
@@ -246,7 +246,7 @@ void StateMachine(char *readingChar, QUEUE *lexemeQueue, LIST *readingValue, STA
         {
             LexemeTreatment(lexemeQueue, stateMachine->currentState, readingValue, *lineNumber);
             stateMachine->currentState = INIT;
-            StateMachine(readingChar, lexemeQueue, readingValue, stateMachine, lineNumber, 0);
+            LexemeFsm(readingChar, lexemeQueue, readingValue, stateMachine, lineNumber, 0);
             break;
         }   
         if (SizeList(*readingValue) == 1)
@@ -282,7 +282,7 @@ void StateMachine(char *readingChar, QUEUE *lexemeQueue, LIST *readingValue, STA
         {
             LexemeTreatment(lexemeQueue, stateMachine->currentState, readingValue, *lineNumber);
             stateMachine->currentState = INIT;
-            StateMachine(readingChar, lexemeQueue, readingValue, stateMachine, lineNumber, 0);
+            LexemeFsm(readingChar, lexemeQueue, readingValue, stateMachine, lineNumber, 0);
             break;
         }
         if (CharIsHexadecimal(*readingChar))
@@ -308,7 +308,7 @@ void StateMachine(char *readingChar, QUEUE *lexemeQueue, LIST *readingValue, STA
             {
                 LexemeTreatment(lexemeQueue, stateMachine->currentState, readingValue, *lineNumber);
                 stateMachine->currentState = INIT;
-                StateMachine(readingChar, lexemeQueue, readingValue, stateMachine, lineNumber, 0);
+                LexemeFsm(readingChar, lexemeQueue, readingValue, stateMachine, lineNumber, 0);
 
             }
             else
@@ -323,7 +323,7 @@ void StateMachine(char *readingChar, QUEUE *lexemeQueue, LIST *readingValue, STA
     }
 }
 
-void LexemeTreatment(QUEUE* lexemeQueue, STATE state, LIST* readingValue, unsigned long int lineNumber)
+void LexemeTreatment(QUEUE* lexemeQueue, LEXEME_STATE state, LIST* readingValue, unsigned long int lineNumber)
 {
     LEXEME lexemeToAdd = CreateLexeme(state, *readingValue, lineNumber);
     PushQueue(lexemeQueue, &lexemeToAdd, DisplayLexeme, ErasedValueLexeme, sizeof(LEXEME));
@@ -342,7 +342,7 @@ void PrintError(unsigned long int lineNumber, char* problem, char wrongValue, ch
     }
 }
 
-void Initialization(STATEMACHINE* stateMachine)
+void InitializationLexemeFsm(LEXEME_FSM* stateMachine)
 {
     stateMachine->currentState = INIT;
     stateMachine->error = 0;

@@ -10,14 +10,14 @@
 
 #include "ListGeneric.h"
 #include "Utils.h"
-#include "StateMachine.h"
+#include "FSMLexeme.h"
 
 typedef struct
 {
     char *type;
     unsigned long int lineNumber;
     void *value;
-    STATE state;
+    LEXEME_STATE state;
 } LEXEME;
 
 /**
@@ -31,7 +31,7 @@ extern char *definedType[15];
  * @brief This function creates the lexeme type thanks to the equivalent state.
  *
  */
-char *CreateType(STATE state);
+char *CreateType(LEXEME_STATE state);
 
 /**
  * @param list of char, integer or one string.
@@ -47,7 +47,7 @@ void *CreateValue(LIST list);
  * @brief This function sends a Lexeme with the information sent.
  *
  */
-LEXEME CreateLexeme(STATE state, LIST list, unsigned long int line);
+LEXEME CreateLexeme(LEXEME_STATE state, LIST list, unsigned long int line);
 
 /**
  * @param lexeme pointeur of the lexeme where you want to delete the value.

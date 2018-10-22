@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>MIPS 32 assembler From Scratch: /home/suraisa/Documents/ProjetInfo2/src/StateMachine.c File Reference</title>
+<title>MIPS 32 assembler From Scratch: /home/suraisa/Documents/ProjetInfo2/src/LexemeFsm.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -83,42 +83,42 @@ $(document).ready(function(){initNavTree('_state_machine_8c.html','');});
   <div class="summary">
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">StateMachine.c File Reference</div>  </div>
+<div class="title">LexemeFsm.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="_state_machine_8h_source.html">StateMachine.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="_state_machine_8h_source.html">FSMLexeme.h</a>&quot;</code><br />
 </div>
 <p><a href="_state_machine_8c_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a9a4fb031fd1d0383d5003043ca45bc00"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_state_machine_8c.html#a9a4fb031fd1d0383d5003043ca45bc00">InitStateMachine</a> (char readingChar, <a class="el" href="struct_s_t_a_t_e_m_a_c_h_i_n_e.html">STATEMACHINE</a> *stateMachine, unsigned long int lineNumber)</td></tr>
+<tr class="memitem:a9a4fb031fd1d0383d5003043ca45bc00"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_state_machine_8c.html#a9a4fb031fd1d0383d5003043ca45bc00">InitLexemeFsm</a> (char readingChar, <a class="el" href="struct_s_t_a_t_e_m_a_c_h_i_n_e.html">LEXEME_FSM</a> *stateMachine, unsigned long int lineNumber)</td></tr>
 <tr class="memdesc:a9a4fb031fd1d0383d5003043ca45bc00"><td class="mdescLeft">&#160;</td><td class="mdescRight">It's the Init stateMachine which change the stateMachine's state to the right one.  <a href="#a9a4fb031fd1d0383d5003043ca45bc00">More...</a><br /></td></tr>
 <tr class="separator:a9a4fb031fd1d0383d5003043ca45bc00"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac53569f912577fe2c5da24e47e83fe42"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_state_machine_8c.html#ac53569f912577fe2c5da24e47e83fe42">StateMachine</a> (char *readingChar, <a class="el" href="_queue_generic_8h.html#aafc57d44738df70f43ac87ed969eed47">QUEUE</a> *lexemeQueue, <a class="el" href="_list_generic_8h.html#aabca0732ef20d0d82f70f05012926226">LIST</a> *readingValue, <a class="el" href="struct_s_t_a_t_e_m_a_c_h_i_n_e.html">STATEMACHINE</a> *stateMachine, unsigned long int *lineNumber, int finishedFile)</td></tr>
+<tr class="memitem:ac53569f912577fe2c5da24e47e83fe42"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_state_machine_8c.html#ac53569f912577fe2c5da24e47e83fe42">LexemeFsm</a> (char *readingChar, <a class="el" href="_queue_generic_8h.html#aafc57d44738df70f43ac87ed969eed47">QUEUE</a> *lexemeQueue, <a class="el" href="_list_generic_8h.html#aabca0732ef20d0d82f70f05012926226">LIST</a> *readingValue, <a class="el" href="struct_s_t_a_t_e_m_a_c_h_i_n_e.html">LEXEME_FSM</a> *stateMachine, unsigned long int *lineNumber, int finishedFile)</td></tr>
 <tr class="memdesc:ac53569f912577fe2c5da24e47e83fe42"><td class="mdescLeft">&#160;</td><td class="mdescRight">It's the brain of the stateMachine which sends the stateMachine to the right state and do a process according of this state.  <a href="#ac53569f912577fe2c5da24e47e83fe42">More...</a><br /></td></tr>
 <tr class="separator:ac53569f912577fe2c5da24e47e83fe42"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5b6034368559dcdfbf82ae84ba191535"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_state_machine_8c.html#a5b6034368559dcdfbf82ae84ba191535">LexemeTreatment</a> (<a class="el" href="_queue_generic_8h.html#aafc57d44738df70f43ac87ed969eed47">QUEUE</a> *lexemeQueue, <a class="el" href="_state_machine_8h.html#a275a67132f10277ada3a0ee3d616b647">STATE</a> state, <a class="el" href="_list_generic_8h.html#aabca0732ef20d0d82f70f05012926226">LIST</a> *readingValue, unsigned long int lineNumber)</td></tr>
+<tr class="memitem:a5b6034368559dcdfbf82ae84ba191535"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_state_machine_8c.html#a5b6034368559dcdfbf82ae84ba191535">LexemeTreatment</a> (<a class="el" href="_queue_generic_8h.html#aafc57d44738df70f43ac87ed969eed47">QUEUE</a> *lexemeQueue, <a class="el" href="_state_machine_8h.html#a275a67132f10277ada3a0ee3d616b647">LEXEME_STATE</a> state, <a class="el" href="_list_generic_8h.html#aabca0732ef20d0d82f70f05012926226">LIST</a> *readingValue, unsigned long int lineNumber)</td></tr>
 <tr class="memdesc:a5b6034368559dcdfbf82ae84ba191535"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a Lexeme in the lexemeQueue according of the state, the list of value read and the number of line.  <a href="#a5b6034368559dcdfbf82ae84ba191535">More...</a><br /></td></tr>
 <tr class="separator:a5b6034368559dcdfbf82ae84ba191535"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6528ae32478c57079d2c790da4506c6f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_state_machine_8c.html#a6528ae32478c57079d2c790da4506c6f">PrintError</a> (unsigned long int lineNumber, char *problem, char wrongValue, char *state)</td></tr>
 <tr class="memdesc:a6528ae32478c57079d2c790da4506c6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print an the error of the stateMachine in color.  <a href="#a6528ae32478c57079d2c790da4506c6f">More...</a><br /></td></tr>
 <tr class="separator:a6528ae32478c57079d2c790da4506c6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3ad5dc0a1fe4a3091ce0b17d7de090ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_state_machine_8c.html#a3ad5dc0a1fe4a3091ce0b17d7de090ea">Initialization</a> (<a class="el" href="struct_s_t_a_t_e_m_a_c_h_i_n_e.html">STATEMACHINE</a> *stateMachine)</td></tr>
+<tr class="memitem:a3ad5dc0a1fe4a3091ce0b17d7de090ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_state_machine_8c.html#a3ad5dc0a1fe4a3091ce0b17d7de090ea">InitializationLexemeFsm</a> (<a class="el" href="struct_s_t_a_t_e_m_a_c_h_i_n_e.html">LEXEME_FSM</a> *stateMachine)</td></tr>
 <tr class="memdesc:a3ad5dc0a1fe4a3091ce0b17d7de090ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the stateMachine.  <a href="#a3ad5dc0a1fe4a3091ce0b17d7de090ea">More...</a><br /></td></tr>
 <tr class="separator:a3ad5dc0a1fe4a3091ce0b17d7de090ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a3ad5dc0a1fe4a3091ce0b17d7de090ea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3ad5dc0a1fe4a3091ce0b17d7de090ea">&#9670;&nbsp;</a></span>Initialization()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ad5dc0a1fe4a3091ce0b17d7de090ea">&#9670;&nbsp;</a></span>InitializationLexemeFsm()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Initialization </td>
+          <td class="memname">void InitializationLexemeFsm </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_s_t_a_t_e_m_a_c_h_i_n_e.html">STATEMACHINE</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="struct_s_t_a_t_e_m_a_c_h_i_n_e.html">LEXEME_FSM</a> *&#160;</td>
           <td class="paramname"><em>stateMachine</em></td><td>)</td>
           <td></td>
         </tr>
@@ -133,18 +133,18 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_state_machine_8c_source.html#l00345">345</a> of file <a class="el" href="_state_machine_8c_source.html">StateMachine.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_state_machine_8c_source.html#l00345">345</a> of file <a class="el" href="_state_machine_8c_source.html">LexemeFsm.c</a>.</p>
 
 </div>
 </div>
 <a id="a9a4fb031fd1d0383d5003043ca45bc00"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9a4fb031fd1d0383d5003043ca45bc00">&#9670;&nbsp;</a></span>InitStateMachine()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a4fb031fd1d0383d5003043ca45bc00">&#9670;&nbsp;</a></span>InitLexemeFsm()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void InitStateMachine </td>
+          <td class="memname">void InitLexemeFsm </td>
           <td>(</td>
           <td class="paramtype">char&#160;</td>
           <td class="paramname"><em>readingChar</em>, </td>
@@ -152,7 +152,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="struct_s_t_a_t_e_m_a_c_h_i_n_e.html">STATEMACHINE</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="struct_s_t_a_t_e_m_a_c_h_i_n_e.html">LEXEME_FSM</a> *&#160;</td>
           <td class="paramname"><em>stateMachine</em>, </td>
         </tr>
         <tr>
@@ -179,7 +179,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_state_machine_8c_source.html#l00003">3</a> of file <a class="el" href="_state_machine_8c_source.html">StateMachine.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_state_machine_8c_source.html#l00003">3</a> of file <a class="el" href="_state_machine_8c_source.html">LexemeFsm.c</a>.</p>
 
 </div>
 </div>
@@ -198,7 +198,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="_state_machine_8h.html#a275a67132f10277ada3a0ee3d616b647">STATE</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="_state_machine_8h.html#a275a67132f10277ada3a0ee3d616b647">LEXEME_STATE</a>&#160;</td>
           <td class="paramname"><em>state</em>, </td>
         </tr>
         <tr>
@@ -226,14 +226,14 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">lexemeQueue</td><td>Pointeur on a QUEUE of Lexemes that you want to update. </td></tr>
     <tr><td class="paramname">readingValue</td><td>Pointeur on a LIST of the lexeme value's information. </td></tr>
-    <tr><td class="paramname">state</td><td>STATE represent the state of the lexeme to add. </td></tr>
+    <tr><td class="paramname">state</td><td>LEXEME_STATE represent the state of the lexeme to add. </td></tr>
     <tr><td class="paramname">lineNumber</td><td>Unsigned long int represent the line position of this lexeme. </td></tr>
     <tr><td class="paramname">finishedFile</td><td>Integer to know if the file is ended or not. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_state_machine_8c_source.html#l00326">326</a> of file <a class="el" href="_state_machine_8c_source.html">StateMachine.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_state_machine_8c_source.html#l00326">326</a> of file <a class="el" href="_state_machine_8c_source.html">LexemeFsm.c</a>.</p>
 
 </div>
 </div>
@@ -286,18 +286,18 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_state_machine_8c_source.html#l00333">333</a> of file <a class="el" href="_state_machine_8c_source.html">StateMachine.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_state_machine_8c_source.html#l00333">333</a> of file <a class="el" href="_state_machine_8c_source.html">LexemeFsm.c</a>.</p>
 
 </div>
 </div>
 <a id="ac53569f912577fe2c5da24e47e83fe42"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac53569f912577fe2c5da24e47e83fe42">&#9670;&nbsp;</a></span>StateMachine()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ac53569f912577fe2c5da24e47e83fe42">&#9670;&nbsp;</a></span>LexemeFsm()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void StateMachine </td>
+          <td class="memname">void LexemeFsm </td>
           <td>(</td>
           <td class="paramtype">char *&#160;</td>
           <td class="paramname"><em>readingChar</em>, </td>
@@ -317,7 +317,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="struct_s_t_a_t_e_m_a_c_h_i_n_e.html">STATEMACHINE</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="struct_s_t_a_t_e_m_a_c_h_i_n_e.html">LEXEME_FSM</a> *&#160;</td>
           <td class="paramname"><em>stateMachine</em>, </td>
         </tr>
         <tr>
@@ -346,14 +346,14 @@ Functions</h2></td></tr>
     <tr><td class="paramname">readingChar</td><td>Pointer on the char currently read in the file to decrypt. </td></tr>
     <tr><td class="paramname">lexemeQueue</td><td>Pointeur on a QUEUE of Lexemes it updates it during the process of lexeme decrypting. </td></tr>
     <tr><td class="paramname">readingValue</td><td>Pointeur on a LIST, to stock values which don't have lexeme for now (this function will use it, use just an empty list). </td></tr>
-    <tr><td class="paramname">stateMachine</td><td>Pointeur on the stateMachine. To know in which STATE are the treatment or to add an error. </td></tr>
+    <tr><td class="paramname">stateMachine</td><td>Pointeur on the stateMachine. To know in which LEXEME_STATE are the treatment or to add an error. </td></tr>
     <tr><td class="paramname">lineNumber</td><td>Pointer on an unsigned long int represent the line position in the file to decrypt. It will be incrementated during the process. </td></tr>
     <tr><td class="paramname">finishedFile</td><td>Integer to know if the file is ended or not. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_state_machine_8c_source.html#l00092">92</a> of file <a class="el" href="_state_machine_8c_source.html">StateMachine.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_state_machine_8c_source.html#l00092">92</a> of file <a class="el" href="_state_machine_8c_source.html">LexemeFsm.c</a>.</p>
 
 </div>
 </div>
@@ -362,7 +362,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_43e0a1f539e00dcfa1a6bc4d4fee4fc2.html">home</a></li><li class="navelem"><a class="el" href="dir_c7d086eefe5b81c64356794b683d1013.html">suraisa</a></li><li class="navelem"><a class="el" href="dir_c69c8faa49c3763be72a8fadecf53f91.html">Documents</a></li><li class="navelem"><a class="el" href="dir_69470d06046ec7286e839c4dc62517fd.html">ProjetInfo2</a></li><li class="navelem"><a class="el" href="dir_aee88a008643d790686b4bde6ab6b9af.html">src</a></li><li class="navelem"><a class="el" href="_state_machine_8c.html">StateMachine.c</a></li>
+    <li class="navelem"><a class="el" href="dir_43e0a1f539e00dcfa1a6bc4d4fee4fc2.html">home</a></li><li class="navelem"><a class="el" href="dir_c7d086eefe5b81c64356794b683d1013.html">suraisa</a></li><li class="navelem"><a class="el" href="dir_c69c8faa49c3763be72a8fadecf53f91.html">Documents</a></li><li class="navelem"><a class="el" href="dir_69470d06046ec7286e839c4dc62517fd.html">ProjetInfo2</a></li><li class="navelem"><a class="el" href="dir_aee88a008643d790686b4bde6ab6b9af.html">src</a></li><li class="navelem"><a class="el" href="_state_machine_8c.html">LexemeFsm.c</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
