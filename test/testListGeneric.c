@@ -36,11 +36,11 @@ int main()
 
     LIST popedList = PopInFront(&list, 2);
 
-    printf("\nPoped list :");
+    printf("\nPoped list :\n");
 
     Display(popedList);
 
-    printf("\nList :");
+    printf("\nList :\n");
 
     Display(list);
     

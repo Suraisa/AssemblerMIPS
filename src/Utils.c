@@ -101,3 +101,14 @@ int CharIsNumberLetter(char value)
 {
     return CharIsLetter(value) || CharIsHexadecimal(value);
 }
+
+void StringUpper(char* string)
+{
+    while(*string)
+    {
+        if(islower(*string))
+        {
+            *string = toupper(*string);
+        }
+    }
+}

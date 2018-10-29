@@ -6,6 +6,7 @@
 #include "FSMLexeme.h"
 #include "ListGeneric.h"
 #include <string.h>
+#include "DicoInstruct.h"
 
 int main()
 {
@@ -17,8 +18,12 @@ int main()
   unsigned long int lineNumber = 1;
   LIST ReadingValue = CreateList();
   QUEUE lexemeQueue = CreateQueue();
+  INSTRUCTION* dictionary;
 
   char fileToRead[fileNameSize];
+
+  if(!(dictionary = InitializeDicoInstruct("src/DicoInstruct.txt")))
+    return -1;
 
   printf("\n\nWrite a file's name inside the 'file' folder to use the MISP assembler on this file:\n\n");
   scanf("%s",fileToRead);
@@ -48,6 +53,8 @@ int main()
   {
     printf("\n\nThe file doesn't exit in the 'file' folder or you don't have enough memory available\n\n");
   }
+
+  free(dictionary);
 
   if(stateMachine.error)
     return -1;

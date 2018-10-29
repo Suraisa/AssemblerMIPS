@@ -10,6 +10,8 @@
 
 #include <stdio.h>
 #include <math.h>
+#include <ctype.h>
+#include <string.h>
 #include "ListGeneric.h"
 #include "QueueGeneric.h"
 #include "DisplayType.h"
@@ -85,5 +87,7 @@ int CharIsHexadecimal(char value);
  *
  */
 int CharIsNumberLetter(char value);
+
+void StringUpper(char* string);
 
 #endif
