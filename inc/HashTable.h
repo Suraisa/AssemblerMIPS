@@ -5,6 +5,7 @@
 #include <math.h>
 #include "ListGeneric.h"
 #include "DisplayType.h"
+#include "Global.h"
 
 /**
  * @return -#1 if the list is empty.\n-#0 if it's not

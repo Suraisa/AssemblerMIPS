@@ -1,7 +1,7 @@
 # include "HashTable.h"
 
 LIST* CreateHashTable(){
-  LIST[HASHLENGTH] hashTable;
+  LIST hashTable[HASHLENGTH];
   return hashTable;
 }
 
@@ -16,5 +16,5 @@ int Hash(char* string){
 void AddHashTable(LIST** hash,char** string){
   int index;
   index=Hash(string);
-  AddInFront((*hash)[index],string,DisplayString, NULL, sizeof(*string))
+  AddInFront((*hash)[index],string,DisplayString, NULL, sizeof(*string));
 }
