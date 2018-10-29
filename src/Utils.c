@@ -104,11 +104,16 @@ int CharIsNumberLetter(char value)
 
 void StringUpper(char* string)
 {
-    while(*string)
+    int index = 0;
+    char uppedString[100];
+    strcpy(uppedString, string);
+    while(string[index] != '\0')
     {
-        if(islower(*string))
+        if(islower(uppedString[index]))
         {
-            *string = toupper(*string);
+            uppedString[index] = toupper(uppedString[index]);
         }
+        index++;
     }
+    strcpy(string, uppedString);
 }

@@ -32,7 +32,6 @@ INSTRUCTION*InitializeDicoInstruct(char *nameDicoFile)
     while(index<sizeDico && !feof(file))
     {
         fscanf(file, "%s %c %c", (dictionary[index].id), &(dictionary[index].type), &(dictionary[index].typeNumber));
-        printf("%s %c %c\n", (dictionary[index].id), (dictionary[index].type), (dictionary[index].typeNumber));
         index++;
     }
 
@@ -49,16 +48,16 @@ INSTRUCTION*InitializeDicoInstruct(char *nameDicoFile)
 int IndexInstruction(INSTRUCTION* dictionary, char *instructionName)
 {
     int index = 0;
-    int isEqual = 1;
+    int isNotEqual = 0;
 
     StringUpper(instructionName);
 
-    while (index < sizeDico && (isEqual = strcmp(dictionary[index].id, instructionName) != 1))
+    while (index < sizeDico && (isNotEqual = strcmp(dictionary[index].id, instructionName) != 0))
     {
         index++;
     }
 
-    if(isEqual != 1)
+    if(isNotEqual)
         return -1;
 
     return index;
