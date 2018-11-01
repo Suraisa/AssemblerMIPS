@@ -122,7 +122,7 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE *lexemeQueue, COLLECTION_
         {
             LEXEME* lexeme = (LEXEME *)(*lexemeQueue)->data;
             if(lexeme->state == HEXADECIMAL || lexeme->state == DECIMAL)
-                collections->collection[stateMachine->actualCollection];
+                //collections->collection[stateMachine->actualCollection];
             stateMachine->previousState = stateMachine->currentState;
             stateMachine->currentState = INIT_COLLECTION;
             break;
