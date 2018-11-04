@@ -12,16 +12,24 @@ typedef enum
     BSS
 } COLLECTIONS;
 
+typedef struct
+{
+    int operandNumber;
+    QUEUE lexemeList[3];
+} INSTRUCTION_DATA;
+
 typedef union
 {
-    QUEUE lexemeList[3];
+    INSTRUCTION_DATA instruction;
+    LIST directiveValue;
     COLLECTIONS section;
-}COLLECTION_DATA;
+} COLLECTION_DATA;
 
 typedef struct
 {
     QUEUE collection[3];
-    LIST* labelTable;
+    unsigned long int shift[3];
+    LIST labelTable[HASHLENGTH];
 } COLLECTION_LISTS;
 
 #include "FSMCollection.h"
@@ -29,14 +37,23 @@ typedef struct
 typedef struct
 {
     COLLECTION_STATE state;
-    int operandNumber;
     unsigned long int shift;
     char dataType;
     COLLECTION_DATA data;
 } SECTION;
 
+extern char* collectionType[11];
+
+extern char* collectionSection[3];
+
 void InitializeCollectionLists(COLLECTION_LISTS* collections);
 
-// void PushCollections(COLLECTION_LISTS* collection, );
+SECTION* CreateDirectiveSection(COLLECTION_STATE state, unsigned long int shift, LIST lexemeList);
+
+void DisplaySection(void* value);
+
+void ErasedSection(void* value);
+
+void ErasedCollectionLists(void* value);
 
 #endif

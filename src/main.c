@@ -33,6 +33,7 @@ int main()
 /*
 Lexemes' treatment
 */
+  printf("\n\nLexemes' treatment:\n\n");
 
   if(readingFile != NULL)
   {
@@ -61,6 +62,8 @@ Lexemes' treatment
 Collections' treatment
 */
 
+  printf("\n\nCollections' treatment:\n\n");
+
   INSTRUCTION* dictionary;
   COLLECTION_FSM collectionStateMachine;
   COLLECTION_LISTS collections;
@@ -75,8 +78,13 @@ Collections' treatment
     CollectionFsm(&collectionStateMachine, &lexemeQueue, &collections);
   }
 
+  Display(collections.collection[0]);
+  Display(collections.collection[1]);
+  Display(collections.collection[2]);
+
   free(dictionary);
   ErasedQueue(&lexemeQueue);
+  ErasedCollectionLists(&collections);
 
   if(lexemeStateMachine.error)
     return -1;

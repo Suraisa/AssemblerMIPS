@@ -90,4 +90,6 @@ int CharIsNumberLetter(char value);
 
 void StringUpper(char* string);
 
+unsigned long int StringHexToDecimal(char* value);
+
 #endif

@@ -117,3 +117,10 @@ void StringUpper(char* string)
     }
     strcpy(string, uppedString);
 }
+
+unsigned long int StringHexToDecimal(char* value)
+{
+    char *next;
+    unsigned long int decimal = strtol(value, &next, 16);
+    return decimal;
+}

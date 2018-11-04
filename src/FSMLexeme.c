@@ -123,14 +123,12 @@ void LexemeFsm(char *readingChar, QUEUE *lexemeQueue, LIST *readingValue, LEXEME
         else if (*readingChar == '"' && !stateMachine->inState)
         {
             stateMachine->inState = !stateMachine->inState;
-            AddInFront(readingValue, readingChar, &DisplayChar, NULL, sizeof(char));
         }
         else if (*readingChar == '"' && stateMachine->inState)
         {
             if(*(char*)(*readingValue)->data != 0x5c)
             {
                 stateMachine->inState = !stateMachine->inState;
-                AddInFront(readingValue, readingChar, &DisplayChar, NULL, sizeof(char));
             }
             else
             {
