@@ -213,7 +213,7 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE *lexemeQueue, COLLECTION_
                     unsigned long int concatenatedStringSize = ((stateMachine->nextShift)[stateMachine->actualCollection]-(stateMachine->shift)[stateMachine->actualCollection]);
                     if(concatenatedStringSize > 18)
                     {
-                        printf("\nERROR: The size of the concatenated string is too big : %lu\n",concatenatedStringSize,((LEXEME*)(popedLexeme->data))->lineNumber);                        
+                        printf("\nERROR: The size of the concatenated string is too big : %lu (line %lu)\n",concatenatedStringSize,((LEXEME*)(popedLexeme->data))->lineNumber);                        
                     }
                     ErasedList(&popedLexeme);
                     (stateMachine->nextShift)[stateMachine->actualCollection] += 1;
@@ -240,13 +240,13 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE *lexemeQueue, COLLECTION_
                 case STRING:
                 {
                     (stateMachine->nextShift)[stateMachine->actualCollection] += StringSize((char*)((LEXEME*)(popedLexeme->data))->value)-1;
-                    if(IsEmpty(lexemeQueue))
+                    if(IsEmpty(*lexemeQueue))
                     {
                         unsigned long int concatenatedStringSize = ((stateMachine->nextShift)[stateMachine->actualCollection]-(stateMachine->shift)[stateMachine->actualCollection]);
                         if(concatenatedStringSize > 18)
                         {
                             stateMachine->error = 1;
-                            printf("\nERROR: The size of the concatenated string is too big : %lu\n",concatenatedStringSize,((LEXEME*)(popedLexeme->data))->lineNumber);                        
+                            printf("\nERROR: The size of the concatenated string is too big : %lu (line %lu)\n",concatenatedStringSize,((LEXEME*)(popedLexeme->data))->lineNumber);                        
                         }
                         (stateMachine->nextShift)[stateMachine->actualCollection] += 1;
                     }
