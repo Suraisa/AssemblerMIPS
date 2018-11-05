@@ -4,6 +4,9 @@ int main()
 {
 
     LIST* hashTable=CreateHashTable();
+    if (!hashTable)
+      return -1;
+
     char* a = "test";
     char* b = "secondtest";
     char* c = "thirdtest";
@@ -22,21 +25,36 @@ int main()
     ie=Hash(e);
     printf("Index of %s : %d \n",e,ie);
 
-    printf("test2");
-    printf("test3");
+
     LIST** ptr_hash=&hashTable;
     char** ptr_a=&a;
-    AddHashTable(ptr_hash,ptr_a);
+    if(!AddHashTable(ptr_hash,ptr_a))
+    {
+        printf("String already present");
+    }
     char** ptr_b=&b;
-    AddHashTable(ptr_hash,ptr_b);
+    if(!AddHashTable(ptr_hash,ptr_b))
+    {
+        printf("String already present");
+    }
     char** ptr_c=&c;
-    AddHashTable(ptr_hash,ptr_c);
+    if(!AddHashTable(ptr_hash,ptr_c))
+    {
+        printf("String already present");
+    }
     char** ptr_d=&d;
-    AddHashTable(ptr_hash,ptr_d);
+    if(!AddHashTable(ptr_hash,ptr_d))
+    {
+        printf("String already present");
+    }
     char** ptr_e=&e;
-    AddHashTable(ptr_hash,ptr_e);
+    if(!AddHashTable(ptr_hash,ptr_e))
+    {
+        printf("String already present");
+    }
     DisplayHashTable(hashTable);
 
     ErasedHashTable(ptr_hash);
     DisplayHashTable(hashTable);
+    return 0;
 }
