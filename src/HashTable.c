@@ -1,7 +1,12 @@
 # include "HashTable.h"
 
 LIST* CreateHashTable(){
-  LIST hashTable[HASHLENGTH];
+  LIST* hashTable=calloc(HASHLENGTH,sizeof(*hashTable));
+  if (!hashTable){
+    for (int index=0 ; index<HASHCHAR ; index++ ){
+      hashTable[index]=CreateList();
+    }
+  }
   return hashTable;
 }
 
@@ -13,8 +18,30 @@ int Hash(char* string){
   return sum%HASHLENGTH;
 }
 
-void AddHashTable(LIST** hash,char** string){
+int AddHashTable(LIST** hash,char** string){
   int index;
-  index=Hash(string);
-  AddInFront((*hash)[index],string,DisplayString, NULL, sizeof(*string));
+  index=Hash(*string);
+  LIST nodeI;
+  for (nodeI = (*hash)[index]; !IsEmpty(nodeI); nodeI = nodeI->next)
+  {
+      if (!strcmp(*(char**)nodeI->data,*string)){
+        return 0;
+      }
+  }
+  AddInFront(&((*hash)[index]),string,DisplayString, NULL, sizeof(*string));
+  return 1;
+}
+
+void DisplayHashTable(LIST* hashTable){
+  for (int index=0;index<HASHLENGTH;index++){
+    printf("Index %d :\n",index);
+    Display(hashTable[index]);
+  }
+}
+
+void ErasedHashTable(LIST** hash)
+{
+  for (int index=0;index<HASHLENGTH;index++){
+    ErasedList(&((*hash)[index]));
+  }
 }
