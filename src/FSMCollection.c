@@ -276,9 +276,6 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE *lexemeQueue, COLLECTION_
                     break;
                 }
                 case RETURN:
-                {
-
-                }
                 case COMMENT:
                 {
                     if(stateMachine->currentState != 3)
@@ -511,30 +508,42 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE *lexemeQueue, COLLECTION_
                 {
                     break;
                 }
-                (stateMachine->shift)[stateMachine->actualCollection] = (stateMachine->nextShift)[stateMachine->actualCollection];
-                int dictionaryIndex = IndexInstruction(instructionDictionary, (char*)((LEXEME*)popedLexeme->data)->value);
-                if(dictionaryIndex == -1)
+                else if(stateMachine->actualCollection == TEXT)
                 {
+                    (stateMachine->shift)[stateMachine->actualCollection] = (stateMachine->nextShift)[stateMachine->actualCollection];
+                    int dictionaryIndex = IndexInstruction(instructionDictionary, (char*)((LEXEME*)popedLexeme->data)->value);
+                    if(dictionaryIndex == -1)
+                    {
+                        ErasedList(&popedLexeme);
+                        stateMachine->error = 1;
+                        stateMachine->previousState = stateMachine->currentState;
+                        stateMachine->currentState = INIT_COLLECTION;
+                        break;
+                    }
+                    stateMachine->previousState = stateMachine->currentState;
+
+                    if(instructionDictionary[dictionaryIndex].typeNumber == '0' || IsEmpty(*lexemeQueue) || ((LEXEME *)(*lexemeQueue)->data)->state == RETURN || ((LEXEME *)(*lexemeQueue)->data)->state == COMMENT)
+                    {
+                        SECTION* section = CreateInstructionSection(stateMachine->currentState, (stateMachine->shift)[stateMachine->actualCollection], instructionDictionary[dictionaryIndex].id, instructionDictionary[dictionaryIndex].typeNumber);
+                        (stateMachine->shift)[stateMachine->actualCollection] = (stateMachine->nextShift)[stateMachine->actualCollection];                    
+                        (stateMachine->nextShift)[stateMachine->actualCollection] += 4;
+                        stateMachine->currentState = INIT_COLLECTION;
+                        break;
+                    }                
+                    stateMachine->currentState = INSTRUCTION1;
+                    SECTION* section = CreateInstructionSection(stateMachine->currentState, (stateMachine->shift)[stateMachine->actualCollection], instructionDictionary[dictionaryIndex].id, instructionDictionary[dictionaryIndex].typeNumber);
+                    AddInFront(&(collections->collection[stateMachine->actualCollection]), section, DisplaySection, ErasedSection, sizeof(*section));
+                    break;
+                }
+                else
+                {
+                    printf("\nERROR: Instruction are available in: '%s'\n",collectionSection[TEXT]);
                     ErasedList(&popedLexeme);
                     stateMachine->error = 1;
                     stateMachine->previousState = stateMachine->currentState;
                     stateMachine->currentState = INIT_COLLECTION;
                     break;
                 }
-                stateMachine->previousState = stateMachine->currentState;
-
-                if(instructionDictionary[dictionaryIndex].typeNumber == '0' || IsEmpty(*lexemeQueue) || ((LEXEME *)(*lexemeQueue)->data)->state == RETURN || ((LEXEME *)(*lexemeQueue)->data)->state == COMMENT)
-                {
-                    SECTION* section = CreateInstructionSection(stateMachine->currentState, (stateMachine->shift)[stateMachine->actualCollection], instructionDictionary[dictionaryIndex].id, instructionDictionary[dictionaryIndex].typeNumber);
-                    (stateMachine->shift)[stateMachine->actualCollection] = (stateMachine->nextShift)[stateMachine->actualCollection];                    
-                    (stateMachine->nextShift)[stateMachine->actualCollection] += 4;
-                    stateMachine->currentState = INIT_COLLECTION;
-                    break;
-                }                
-                stateMachine->currentState = INSTRUCTION1;
-                SECTION* section = CreateInstructionSection(stateMachine->currentState, (stateMachine->shift)[stateMachine->actualCollection], instructionDictionary[dictionaryIndex].id, instructionDictionary[dictionaryIndex].typeNumber);
-                AddInFront(&(collections->collection[stateMachine->actualCollection]), section, DisplaySection, ErasedSection, sizeof(*section));
-                break;
             }
             break;
         }
