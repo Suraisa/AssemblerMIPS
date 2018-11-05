@@ -125,6 +125,9 @@ void ErasedList(LIST *list)
 
 LIST PopInFront(LIST *list, unsigned long int number)
 {
+    if(number<1)
+        return NULL;
+        
     LIST popedList = *list;
     LIST copy = *list;
     int counter = 1;

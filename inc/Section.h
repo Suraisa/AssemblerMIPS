@@ -5,15 +5,26 @@
 #include "QueueGeneric.h"
 #include "HashTable.h"
 
+#ifndef ENUM_COLLECTION
+#define ENUM_COLLECTION
 typedef enum
 {
     TEXT,
     DATA,
     BSS
 } COLLECTIONS;
+#endif
+
+typedef enum
+{
+    INST,
+    DIR,
+    LABEL
+} COLLECTION_DATA_TYPE;
 
 typedef struct
 {
+    char* name;
     int operandNumber;
     QUEUE lexemeList[3];
 } INSTRUCTION_DATA;
@@ -48,7 +59,13 @@ extern char* collectionSection[3];
 
 void InitializeCollectionLists(COLLECTION_LISTS* collections);
 
-SECTION* CreateDirectiveSection(COLLECTION_STATE state, unsigned long int shift, LIST lexemeList);
+SECTION* CreateInstructionSection(COLLECTION_STATE state, unsigned long int shift, char* instructionName, int operandNumber);
+
+SECTION* CreateDirectiveSection(COLLECTION_STATE state, unsigned long int shift, LIST* lexemeList);
+
+int NumberLexemeOperand(LIST lexemeList);
+
+int AddOperand(COLLECTION_FSM* stateMachine, SECTION* section, LIST* lexemeList);
 
 void DisplaySection(void* value);
 
