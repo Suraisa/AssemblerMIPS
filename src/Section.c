@@ -61,15 +61,18 @@ SECTION* CreateDirectiveSection(COLLECTION_STATE state, unsigned long int shift,
     return section;
 }
 
-// SECTION* CreateLabelSection(COLLECTION_FSM stateMachine, unsigned long int shift)
-// {
-//     SECTION* section = calloc(1, sizeof(*section));
-//     section->state = collectionSection[stateMachine.actualCollection];
-//     section->shift = shift;
-//     section->dataType = LABEL;
+SECTION* CreateLabelSection(COLLECTION_FSM stateMachine, unsigned long int lineNumber)
+{
+    SECTION* section = calloc(1, sizeof(*section));
+    section->state = collectionSection[stateMachine.actualCollection];
+    section->shift = stateMachine.nextShift;
+    section->dataType = LABEL;
+    section->data.label.section = stateMachine.actualCollection;
+    section->data.label.lineNumber = lineNumber;
 
-//     return section;
-// }
+    return section;
+}
+
 int NumberLexemeOperand(LIST lexemeList)
 {
     LIST nodeI;
@@ -126,7 +129,8 @@ void DisplaySection(void* value)
         }
         case 2:
         {
-            printf("Label section: %17s\n", collectionSection[section.data.section]);
+            printf("\nLine number: %19lu\n", section.data.label.lineNumber);
+            printf("Label section: %17s\n", collectionSection[section.data.label.section]);
             break;
         }
     }

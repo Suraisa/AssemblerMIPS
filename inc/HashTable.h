@@ -6,6 +6,7 @@
 #include "ListGeneric.h"
 #include "DisplayType.h"
 #include "Global.h"
+#include "Section.h"
 
 /**
  * @return a table of HASHLENGTH elements

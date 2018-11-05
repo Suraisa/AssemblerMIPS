@@ -506,6 +506,8 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE *lexemeQueue, COLLECTION_
             {
                 if(!IsEmpty(*lexemeQueue) && ((LEXEME *)(*lexemeQueue)->data)->state == COLON)
                 {
+                    SECTION* section = CreateLabelSection(*stateMachine, ((LEXEME *)(*lexemeQueue)->data)->lineNumber);
+                    if()
                     break;
                 }
                 else if(stateMachine->actualCollection == TEXT)

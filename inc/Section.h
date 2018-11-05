@@ -29,11 +29,17 @@ typedef struct
     QUEUE lexemeList[3];
 } INSTRUCTION_DATA;
 
+typedef struct
+{
+    COLLECTIONS section;
+    unsigned long int lineNumber;
+} LABEL_DATA;
+
 typedef union
 {
     INSTRUCTION_DATA instruction;
     LIST directiveValue;
-    COLLECTIONS section;
+    LABEL_DATA label;
 } COLLECTION_DATA;
 
 typedef struct
@@ -62,6 +68,8 @@ void InitializeCollectionLists(COLLECTION_LISTS* collections);
 SECTION* CreateInstructionSection(COLLECTION_STATE state, unsigned long int shift, char* instructionName, int operandNumber);
 
 SECTION* CreateDirectiveSection(COLLECTION_STATE state, unsigned long int shift, LIST* lexemeList);
+
+SECTION* CreateLabelSection(COLLECTION_FSM stateMachine, unsigned long int lineNumber);
 
 int NumberLexemeOperand(LIST lexemeList);
 
