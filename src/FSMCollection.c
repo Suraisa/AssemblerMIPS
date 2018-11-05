@@ -408,7 +408,6 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE *lexemeQueue, COLLECTION_
                     }
                     else
                     {
-                        printf("%d", stateMachine->inState);
                         printf("\nERROR: You can't use : '%s' now (line %lu)\n",((LEXEME*)(popedLexeme->data))->type,((LEXEME*)(popedLexeme->data))->lineNumber);
                         stateMachine->error = 1;
                         stateMachine->previousState = stateMachine->currentState;
@@ -522,19 +521,19 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE *lexemeQueue, COLLECTION_
                     stateMachine->currentState = INIT_COLLECTION;
                     break;
                 }
-
-                SECTION* section = CreateInstructionSection(stateMachine->currentState, (stateMachine->shift)[stateMachine->actualCollection], instructionDictionary[dictionaryIndex].id, instructionDictionary[dictionaryIndex].typeNumber);
-                PushQueue(&(collections->collection[stateMachine->actualCollection]), section, DisplaySection, ErasedSection, sizeof(*section));
                 stateMachine->previousState = stateMachine->currentState;
 
                 if(instructionDictionary[dictionaryIndex].typeNumber == '0' || IsEmpty(*lexemeQueue) || ((LEXEME *)(*lexemeQueue)->data)->state == RETURN || ((LEXEME *)(*lexemeQueue)->data)->state == COMMENT)
                 {
+                    SECTION* section = CreateInstructionSection(stateMachine->currentState, (stateMachine->shift)[stateMachine->actualCollection], instructionDictionary[dictionaryIndex].id, instructionDictionary[dictionaryIndex].typeNumber);
+                    (stateMachine->shift)[stateMachine->actualCollection] = (stateMachine->nextShift)[stateMachine->actualCollection];                    
                     (stateMachine->nextShift)[stateMachine->actualCollection] += 4;
                     stateMachine->currentState = INIT_COLLECTION;
                     break;
-                }
-
+                }                
                 stateMachine->currentState = INSTRUCTION1;
+                SECTION* section = CreateInstructionSection(stateMachine->currentState, (stateMachine->shift)[stateMachine->actualCollection], instructionDictionary[dictionaryIndex].id, instructionDictionary[dictionaryIndex].typeNumber);
+                AddInFront(&(collections->collection[stateMachine->actualCollection]), section, DisplaySection, ErasedSection, sizeof(*section));
                 break;
             }
             break;
@@ -542,6 +541,7 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE *lexemeQueue, COLLECTION_
         case INSTRUCTION1:
         {
             int nbOperand = '0';
+            unsigned long int lineNumber = 0;
             do
             {
                 int numberLexemes = NumberLexemeOperand(*lexemeQueue);
@@ -552,13 +552,15 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE *lexemeQueue, COLLECTION_
                     {
                         if(!AddOperand(stateMachine, (SECTION*)(collections->collection[stateMachine->actualCollection]->data), &lexemeList))
                         {
-                            printf("\nERROR: Too many operand in instruction: '%s' (line %lu)\n", ((SECTION*)(collections->collection[stateMachine->actualCollection]->data))->data.instruction.name, ((LEXEME *)(*lexemeQueue)->data)->lineNumber);
+                            printf("\nERROR: Too many operand in instruction: '%s' (line %lu)\n", ((SECTION*)(collections->collection[stateMachine->actualCollection]->data))->data.instruction.name, ((LEXEME *)lexemeList->data)->lineNumber);
+                            ErasedInFront(&(collections->collection[stateMachine->actualCollection]));                            
                             ErasedList(&lexemeList);
                             stateMachine->error = 1;
                             stateMachine->previousState = stateMachine->currentState;
                             stateMachine->currentState = INIT_COLLECTION;
                             break;
                         }
+                        stateMachine->inState = 0;
                         nbOperand++;
                         ((SECTION*)(collections->collection[stateMachine->actualCollection]->data))->data.instruction.operandNumber = nbOperand;
                     }
@@ -566,7 +568,8 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE *lexemeQueue, COLLECTION_
                     {
                         if (!AddOperand(stateMachine, (SECTION*)(collections->collection[stateMachine->actualCollection]->data), &lexemeList))
                         {
-                            printf("\nERROR: Too many operand in instruction: '%s' (line %lu)\n", ((SECTION*)(collections->collection[stateMachine->actualCollection]->data))->data.instruction.name, ((LEXEME *)(*lexemeQueue)->data)->lineNumber);
+                            printf("\nERROR: Too many operand in instruction: '%s' (line %lu)\n", ((SECTION*)(collections->collection[stateMachine->actualCollection]->data))->data.instruction.name, ((LEXEME *)lexemeList->data)->lineNumber);
+                            ErasedInFront(&(collections->collection[stateMachine->actualCollection]));                            
                             ErasedList(&lexemeList);
                             stateMachine->error = 1;
                             stateMachine->previousState = stateMachine->currentState;
@@ -575,32 +578,52 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE *lexemeQueue, COLLECTION_
                         }
                         else
                         {
+                            nbOperand++;
                             if(((LEXEME *)(*lexemeQueue)->data)->state == COMMA)
                             {
+                                if(!stateMachine->inState)
+                                {
+                                    lineNumber = ((LEXEME *)(*lexemeQueue)->data)->lineNumber;
+                                    stateMachine->inState = !stateMachine->inState;
+                                }
                                 ErasedInFront(lexemeQueue);
                             }
                             else
                             {
+                                stateMachine->inState = 0;
                                 stateMachine->previousState = stateMachine->currentState;
+                                (stateMachine->shift)[stateMachine->actualCollection] = (stateMachine->nextShift)[stateMachine->actualCollection];
+                                (stateMachine->nextShift)[stateMachine->actualCollection] += 4;
                                 stateMachine->currentState = INIT_COLLECTION;
-                                nbOperand++;
                                 ((SECTION*)(collections->collection[stateMachine->actualCollection]->data))->data.instruction.operandNumber = nbOperand;
                                 break;
                             }
                         }
-                        nbOperand++;
                     }
                 }
                 else
                 {
+                    if(stateMachine->inState)
+                    {
+                        printf("\nERROR: In instruction: '%s' because of : ',' (line %lu)\n", ((SECTION*)(collections->collection[stateMachine->actualCollection]->data))->data.instruction.name, lineNumber);
+                        ErasedInFront(&(collections->collection[stateMachine->actualCollection]));
+                        stateMachine->error = 1;
+                        stateMachine->inState = 2;
+                        stateMachine->previousState = stateMachine->currentState;
+                        stateMachine->currentState = INIT_COLLECTION;
+                        break;
+                    }
+                    stateMachine->inState = 0;
                     stateMachine->previousState = stateMachine->currentState;
+                    (stateMachine->shift)[stateMachine->actualCollection] = (stateMachine->nextShift)[stateMachine->actualCollection];
+                    (stateMachine->nextShift)[stateMachine->actualCollection] += 4;
                     stateMachine->currentState = INIT_COLLECTION;
                     nbOperand++;
                     ((SECTION*)(collections->collection[stateMachine->actualCollection]->data))->data.instruction.operandNumber = nbOperand;
                     break;
                 }
             }
-            while(nbOperand != ((SECTION*)(collections->collection[stateMachine->actualCollection]->data))->data.instruction.operandNumber);            
+            while(stateMachine->inState != 2 || nbOperand != ((SECTION*)(collections->collection[stateMachine->actualCollection]->data))->data.instruction.operandNumber);            
             break;
         }
         default:

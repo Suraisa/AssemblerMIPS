@@ -84,14 +84,14 @@ int NumberLexemeOperand(LIST lexemeList)
 int AddOperand(COLLECTION_FSM* stateMachine, SECTION* section, LIST* lexemeList)
 {
     int index='0';
-    while (index<'2' && !IsEmpty(section->data.instruction.lexemeList[index]))
+    while (index<'3' && !IsEmpty(section->data.instruction.lexemeList[index-'0']))
     {
         index++;
     }
     if (index>=section->data.instruction.operandNumber)
         return 0;
-    
-    section->data.instruction.lexemeList[index] = *lexemeList;
+
+    section->data.instruction.lexemeList[index-'0'] = *lexemeList;
     return 1;
 }
 

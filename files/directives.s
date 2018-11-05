@@ -8,4 +8,5 @@
 .ascizz "test1\"","2"
 .space 2
 .text
-DIV 2, 3, 4
+DIV 2,2
+SRL 2,3,3
