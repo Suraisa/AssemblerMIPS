@@ -7,3 +7,5 @@
 .byte 2,3,5,-2
 .ascizz "test1\"","2"
 .space 2
+.text
+DIV 2, 3, 4

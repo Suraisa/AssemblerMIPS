@@ -79,7 +79,7 @@ void DisplayLexeme(void *value)
 
     if (((LEXEME *)value)->state == DECIMAL)
     {
-        printf("Value: %25ld", *(long int *)((LEXEME *)value)->value);  
+        printf("Value: %25ld", *(long int *)((LEXEME *)value)->value);
     }
     else if (((LEXEME *)value)->state == RETURN)
     {

@@ -75,11 +75,11 @@ Collections' treatment
 
   while(!IsEmpty(lexemeQueue))
   {
-    CollectionFsm(&collectionStateMachine, &lexemeQueue, &collections);
+    CollectionFsm(&collectionStateMachine, &lexemeQueue, &collections, dictionary);
   }
 
   Display(collections.collection[0]);
-  Display(collections.collection[1]);
+  //Display(collections.collection[1]);
   Display(collections.collection[2]);
 
   free(dictionary);
