@@ -3,7 +3,6 @@
 
 #include "ListGeneric.h"
 #include "QueueGeneric.h"
-#include "HashTable.h"
 
 #ifndef ENUM_COLLECTION
 #define ENUM_COLLECTION
@@ -26,13 +25,14 @@ typedef struct
 {
     char* name;
     int operandNumber;
+    unsigned long int lineNumber;
     QUEUE lexemeList[3];
 } INSTRUCTION_DATA;
 
 typedef struct
 {
     COLLECTIONS section;
-    unsigned long int lineNumber;
+    QUEUE lexemeList;
 } LABEL_DATA;
 
 typedef union
@@ -45,8 +45,7 @@ typedef union
 typedef struct
 {
     QUEUE collection[3];
-    unsigned long int shift[3];
-    LIST labelTable[HASHLENGTH];
+    LIST* labelTable;
 } COLLECTION_LISTS;
 
 #include "FSMCollection.h"
@@ -63,19 +62,23 @@ extern char* collectionType[11];
 
 extern char* collectionSection[3];
 
+#include "HashTable.h"
+
 void InitializeCollectionLists(COLLECTION_LISTS* collections);
 
-SECTION* CreateInstructionSection(COLLECTION_STATE state, unsigned long int shift, char* instructionName, int operandNumber);
+SECTION* CreateInstructionSection(COLLECTION_STATE state, unsigned long int shift, char* instructionName, int operandNumber, unsigned long int lineNumber);
 
 SECTION* CreateDirectiveSection(COLLECTION_STATE state, unsigned long int shift, LIST* lexemeList);
 
-SECTION* CreateLabelSection(COLLECTION_FSM stateMachine, unsigned long int lineNumber);
+SECTION* CreateLabelSection(COLLECTION_FSM stateMachine, LIST* lexemeList);
 
 int NumberLexemeOperand(LIST lexemeList);
 
 int AddOperand(COLLECTION_FSM* stateMachine, SECTION* section, LIST* lexemeList);
 
 void DisplaySection(void* value);
+
+void DisplayCollectionLists(COLLECTION_LISTS collections);
 
 void ErasedSection(void* value);
 

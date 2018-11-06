@@ -1,5 +1,19 @@
 #include "FSMCollection.h"
 
+int InitializationCollection(COLLECTION_LISTS* collectionLists)
+{
+    collectionLists->labelTable = CreateHashTable();
+    if(!collectionLists->labelTable)
+        return 0;
+
+    int index;
+    for(index = 0; index<3; index++)
+    {
+        collectionLists->collection[index] = CreateList();
+    }
+    return 1;
+}
+
 void InitializationCollectionFsm(COLLECTION_FSM *stateMachine)
 {
     stateMachine->previousState = INIT_COLLECTION;
@@ -37,6 +51,13 @@ void InitCollectionFsm(COLLECTION_FSM *stateMachine, QUEUE *lexemeQueue)
             stateMachine->currentState = DIR0;
             break;
         }
+        case COLON:
+        {
+            if(stateMachine->previousState == INSTRUCTION0)
+                break;
+
+            printf("\nERROR: You can't use: '%s' here (line %lu)\n",((LEXEME *)(*lexemeQueue)->data)->type, (((LEXEME *)(*lexemeQueue)->data)->lineNumber));
+        }
         default:
         {
             stateMachine->previousState = stateMachine->currentState;
@@ -50,9 +71,6 @@ void InitCollectionFsm(COLLECTION_FSM *stateMachine, QUEUE *lexemeQueue)
 
 void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE *lexemeQueue, COLLECTION_LISTS* collections, INSTRUCTION* instructionDictionary)
 {
-    if (IsEmpty(*lexemeQueue))
-        return;
-
     switch (stateMachine->currentState)
     {
         case INIT_COLLECTION:
@@ -494,6 +512,7 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE *lexemeQueue, COLLECTION_
         case INSTRUCTION0:
         {
             LIST popedLexeme = PopInFront(lexemeQueue, 1);
+            unsigned long int lineNumber = ((LEXEME*)popedLexeme->data)->lineNumber;
             if(!IsEmpty(*lexemeQueue) && (((LEXEME *)(*lexemeQueue)->data)->state == STRING || ((LEXEME *)(*lexemeQueue)->data)->state == DIRECTIVE || ((LEXEME *)(*lexemeQueue)->data)->state == COMMA))
             {
                 stateMachine->error = 1;
@@ -506,8 +525,14 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE *lexemeQueue, COLLECTION_
             {
                 if(!IsEmpty(*lexemeQueue) && ((LEXEME *)(*lexemeQueue)->data)->state == COLON)
                 {
-                    SECTION* section = CreateLabelSection(*stateMachine, ((LEXEME *)(*lexemeQueue)->data)->lineNumber);
-                    if()
+                    SECTION* section = CreateLabelSection(*stateMachine, &popedLexeme);
+                    if(!AddHashTable(&(collections->labelTable), section))
+                    {
+                        stateMachine->error = 1;
+                        printf("\nERROR: Two label with the same name: '%s' (line %lu)\n", (char*)((LEXEME*)popedLexeme->data)->value, lineNumber);
+                    }
+                    stateMachine->previousState = stateMachine->currentState;
+                    stateMachine->currentState = INIT_COLLECTION;
                     break;
                 }
                 else if(stateMachine->actualCollection == TEXT)
@@ -518,6 +543,7 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE *lexemeQueue, COLLECTION_
                     {
                         ErasedList(&popedLexeme);
                         stateMachine->error = 1;
+                        printf("\nERROR: The instruction '%s' doesn't exist (line %lu)\n", (char*)((LEXEME*)popedLexeme->data)->value, lineNumber);
                         stateMachine->previousState = stateMachine->currentState;
                         stateMachine->currentState = INIT_COLLECTION;
                         break;
@@ -526,14 +552,25 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE *lexemeQueue, COLLECTION_
 
                     if(instructionDictionary[dictionaryIndex].typeNumber == '0' || IsEmpty(*lexemeQueue) || ((LEXEME *)(*lexemeQueue)->data)->state == RETURN || ((LEXEME *)(*lexemeQueue)->data)->state == COMMENT)
                     {
-                        SECTION* section = CreateInstructionSection(stateMachine->currentState, (stateMachine->shift)[stateMachine->actualCollection], instructionDictionary[dictionaryIndex].id, instructionDictionary[dictionaryIndex].typeNumber);
+                        if(((SECTION*)(collections->collection[stateMachine->actualCollection]->data))->data.instruction.lineNumber == lineNumber)
+                        {
+                            ErasedList(&popedLexeme);
+                            stateMachine->error = 1;
+                            printf("\nERROR: You have two instructions on the same line (line %lu)\n", lineNumber);
+                            stateMachine->previousState = stateMachine->currentState;
+                            stateMachine->currentState = INIT_COLLECTION;
+                        break;
+                        }
+
+                        SECTION* section = CreateInstructionSection(stateMachine->currentState, (stateMachine->shift)[stateMachine->actualCollection], instructionDictionary[dictionaryIndex].id, instructionDictionary[dictionaryIndex].typeNumber,lineNumber);
                         (stateMachine->shift)[stateMachine->actualCollection] = (stateMachine->nextShift)[stateMachine->actualCollection];                    
                         (stateMachine->nextShift)[stateMachine->actualCollection] += 4;
                         stateMachine->currentState = INIT_COLLECTION;
+                        AddInFront(&(collections->collection[stateMachine->actualCollection]), section, DisplaySection, ErasedSection, sizeof(*section));
                         break;
                     }                
                     stateMachine->currentState = INSTRUCTION1;
-                    SECTION* section = CreateInstructionSection(stateMachine->currentState, (stateMachine->shift)[stateMachine->actualCollection], instructionDictionary[dictionaryIndex].id, instructionDictionary[dictionaryIndex].typeNumber);
+                    SECTION* section = CreateInstructionSection(stateMachine->currentState, (stateMachine->shift)[stateMachine->actualCollection], instructionDictionary[dictionaryIndex].id, instructionDictionary[dictionaryIndex].typeNumber,lineNumber);
                     AddInFront(&(collections->collection[stateMachine->actualCollection]), section, DisplaySection, ErasedSection, sizeof(*section));
                     break;
                 }

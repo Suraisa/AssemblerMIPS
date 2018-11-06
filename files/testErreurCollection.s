@@ -10,3 +10,8 @@
 .text
 DIV 2,2
 SRL 2,3,3
+test:tesT:div 7,8
+.bss
+flip:.space 10
+.text
+DIV 2,5

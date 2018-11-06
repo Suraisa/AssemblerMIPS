@@ -31,7 +31,9 @@ int main()
   
 
 /*
+------------------
 Lexemes' treatment
+------------------
 */
   printf("\n\nLexemes' treatment:\n\n");
 
@@ -53,13 +55,16 @@ Lexemes' treatment
   else
   {
     printf("\n\nThe file doesn't exit in the 'file' folder or you don't have enough memory available\n\n");
+    return -1;
   }
 
   if(lexemeStateMachine.error)
     return -1;
 
 /*
+----------------------
 Collections' treatment
+----------------------
 */
 
   printf("\n\nCollections' treatment:\n\n");
@@ -69,7 +74,16 @@ Collections' treatment
   COLLECTION_LISTS collections;
 
   if(!(dictionary = InitializeDicoInstruct("src/DicoInstruct.txt")))
+  {
+    printf("\n\nYou don't have enough memory available for the dictionary.\n\n");
     return -1;
+  }
+
+  if(!(InitializationCollection(&collections)))
+  {
+    printf("\n\nYou don't have enough memory available for the hashTable.\n\n");
+    return -1;
+  }
 
   InitializationCollectionFsm(&collectionStateMachine);
 
@@ -78,17 +92,17 @@ Collections' treatment
     CollectionFsm(&collectionStateMachine, &lexemeQueue, &collections, dictionary);
   }
 
-  Display(collections.collection[0]);
-  //Display(collections.collection[1]);
-  Display(collections.collection[2]);
+  if(!collectionStateMachine.error)
+  {
+    DisplayCollectionLists(collections);  
+  }
 
   free(dictionary);
   ErasedQueue(&lexemeQueue);
   ErasedCollectionLists(&collections);
 
-  if(lexemeStateMachine.error)
+  if(collectionStateMachine.error)
     return -1;
-
 
   return 0;
 }

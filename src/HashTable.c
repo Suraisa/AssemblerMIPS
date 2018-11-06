@@ -1,47 +1,59 @@
-# include "HashTable.h"
+#include "HashTable.h"
+#include "Section.h"
 
-LIST* CreateHashTable(){
-  LIST* hashTable=calloc(HASHLENGTH,sizeof(*hashTable));
-  if (!hashTable){
-    for (int index=0 ; index<HASHCHAR ; index++ ){
-      hashTable[index]=CreateList();
+
+LIST *CreateHashTable()
+{
+  LIST *hashTable = calloc(HASHLENGTH, sizeof(*hashTable));
+  if (!hashTable)
+  {
+    for (int index = 0; index < HASHCHAR; index++)
+    {
+      hashTable[index] = CreateList();
     }
   }
   return hashTable;
 }
 
-int Hash(char* string){
-  int sum=0;
-  for (int index=0 ; index<HASHCHAR ; index++ ){
-    sum+=string[index]*pow(HASHVALUE,index);
+int Hash(char *string)
+{
+  int sum = 0;
+  for (int index = 0; index < HASHCHAR; index++)
+  {
+    sum += string[index] * pow(HASHVALUE, index);
   }
-  return sum%HASHLENGTH;
+  return sum % HASHLENGTH;
 }
 
-int AddHashTable(LIST** hash,char** string){
+int AddHashTable(LIST **hash, SECTION *label)
+{
   int index;
-  index=Hash(*string);
+  char *string = (char *)((LEXEME *)(label->data.label.lexemeList)->data)->value;
+  index = Hash(string);
   LIST nodeI;
   for (nodeI = (*hash)[index]; !IsEmpty(nodeI); nodeI = nodeI->next)
   {
-      if (!strcmp(*(char**)nodeI->data,*string)){
-        return 0;
-      }
+    if (!strcmp((char *)((LEXEME *)(((SECTION *)nodeI->data)->data.label.lexemeList)->data)->value, string))
+      return 0;
   }
-  AddInFront(&((*hash)[index]),string,DisplayString, NULL, sizeof(*string));
+  AddInFront(&((*hash)[index]), label, DisplaySection, NULL, sizeof(*label));
   return 1;
 }
 
-void DisplayHashTable(LIST* hashTable){
-  for (int index=0;index<HASHLENGTH;index++){
-    printf("Index %d :\n",index);
+void DisplayHashTable(LIST *hashTable)
+{
+  for (int index = 0; index < HASHLENGTH; index++)
+  {
+    printf("Index %d :\n", index);
     Display(hashTable[index]);
   }
 }
 
-void ErasedHashTable(LIST** hash)
+void ErasedHashTable(LIST **hash)
 {
-  for (int index=0;index<HASHLENGTH;index++){
+  for (int index = 0; index < HASHLENGTH; index++)
+  {
     ErasedList(&((*hash)[index]));
   }
+  free(*hash);
 }

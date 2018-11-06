@@ -32,7 +32,7 @@ void InitializeCollectionLists(COLLECTION_LISTS* collections)
     }
 }
 
-SECTION* CreateInstructionSection(COLLECTION_STATE state, unsigned long int shift, char* instructionName, int operandNumber)
+SECTION* CreateInstructionSection(COLLECTION_STATE state, unsigned long int shift, char* instructionName, int operandNumber, unsigned long int lineNumber)
 {
     SECTION* section = calloc(1, sizeof(*section));
     section->state = state;
@@ -40,6 +40,7 @@ SECTION* CreateInstructionSection(COLLECTION_STATE state, unsigned long int shif
     section->dataType = INST;
     section->data.instruction.name = instructionName;
     section->data.instruction.operandNumber = operandNumber;
+    section->data.instruction.lineNumber = lineNumber;
 
     int index;
     for(index = 0; index<3; index++)
@@ -61,14 +62,14 @@ SECTION* CreateDirectiveSection(COLLECTION_STATE state, unsigned long int shift,
     return section;
 }
 
-SECTION* CreateLabelSection(COLLECTION_FSM stateMachine, unsigned long int lineNumber)
+SECTION* CreateLabelSection(COLLECTION_FSM stateMachine, LIST* lexemeList)
 {
     SECTION* section = calloc(1, sizeof(*section));
-    section->state = collectionSection[stateMachine.actualCollection];
-    section->shift = stateMachine.nextShift;
+    section->state = stateMachine.currentState;
+    section->shift = stateMachine.nextShift[stateMachine.actualCollection];
     section->dataType = LABEL;
     section->data.label.section = stateMachine.actualCollection;
-    section->data.label.lineNumber = lineNumber;
+    section->data.label.lexemeList = *lexemeList;
 
     return section;
 }
@@ -77,7 +78,7 @@ int NumberLexemeOperand(LIST lexemeList)
 {
     LIST nodeI;
     int index = 0;
-    for (nodeI = lexemeList; !IsEmpty(nodeI) && ((LEXEME *)nodeI->data)->state != COMMA && ((LEXEME *)nodeI->data)->state != RETURN && ((LEXEME *)nodeI->data)->state != COMMENT; nodeI = nodeI->next)
+    for (nodeI = lexemeList; !IsEmpty(nodeI) && ((LEXEME *)nodeI->data)->state != COMMA && ((LEXEME *)nodeI->data)->state != RETURN && ((LEXEME *)nodeI->data)->state != COMMENT && ((LEXEME *)nodeI->data)->state != COLON; nodeI = nodeI->next)
     {
         index++;
     }
@@ -112,6 +113,7 @@ void DisplaySection(void* value)
         case 0:
         {
             printf("\nInstruction: %19s\n", section.data.instruction.name);
+            printf("Line number: %19lu\n", section.data.instruction.lineNumber);
             int index;
             for (index = 0; index < 3; index++)
             {
@@ -129,13 +131,26 @@ void DisplaySection(void* value)
         }
         case 2:
         {
-            printf("\nLine number: %19lu\n", section.data.label.lineNumber);
-            printf("Label section: %17s\n", collectionSection[section.data.label.section]);
+            printf("\nLabel section: %17s\n", collectionSection[section.data.label.section]);
+            Display(section.data.label.lexemeList);
             break;
         }
     }
     printf("%s\n", separator);
     printf("\n");
+}
+
+void DisplayCollectionLists(COLLECTION_LISTS collections)
+{
+    char* separator = "\n-------------------------------\n";
+    printf("%sTEXT's Collection%s",separator,separator);
+    Display(collections.collection[0]);
+    printf("%sDATA's Collection%s",separator,separator);
+    Display(collections.collection[1]);
+    printf("%sBSS's Collection%s",separator,separator);
+    Display(collections.collection[2]);
+    printf("%sLABELS' Collection%s",separator,separator);
+    DisplayHashTable(collections.labelTable);
 }
 
 void ErasedSection(void* value)
@@ -157,6 +172,11 @@ void ErasedSection(void* value)
             ErasedList(&(*(SECTION*)value).data.directiveValue);
             break;
         }
+        case 2:
+        {
+            ErasedList(&(*(SECTION*)value).data.label.lexemeList);
+            break;
+        }
     }
 }
 
@@ -170,8 +190,5 @@ void ErasedCollectionLists(void* value)
         ErasedList(&(collectionLists->collection[index]));
     }
 
-    for(index = 0; index<HASHLENGTH; index++)
-    {
-        ErasedList(&(collectionLists->labelTable[index]));
-    }
+    ErasedHashTable(&(collectionLists->labelTable));
 }

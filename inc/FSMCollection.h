@@ -50,6 +50,8 @@ typedef struct
 
 #include "Section.h"
 
+int InitializationCollection(COLLECTION_LISTS* collectionLists);
+
 /**
  * @param stateMachine Pointeur on the stateMachine to initialize.
  * @brief Initialize the stateMachine.

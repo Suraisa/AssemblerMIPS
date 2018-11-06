@@ -51,6 +51,7 @@ void InitLexemeFsm(char readingChar, LEXEME_FSM *stateMachine, unsigned long int
         {
             stateMachine->currentState = COLON;
         }
+        break;
         case '-':
         case '+':
         {
@@ -307,7 +308,6 @@ void LexemeFsm(char *readingChar, QUEUE *lexemeQueue, LIST *readingValue, LEXEME
                 LexemeTreatment(lexemeQueue, stateMachine->currentState, readingValue, *lineNumber);
                 stateMachine->currentState = INIT;
                 LexemeFsm(readingChar, lexemeQueue, readingValue, stateMachine, lineNumber, 0);
-
             }
             else
             {
