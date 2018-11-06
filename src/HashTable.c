@@ -7,7 +7,8 @@ LIST *CreateHashTable()
   LIST *hashTable = calloc(HASHLENGTH, sizeof(*hashTable));
   if (!hashTable)
   {
-    for (int index = 0; index < HASHCHAR; index++)
+    int index;
+    for (index = 0; index < HASHCHAR; index++)
     {
       hashTable[index] = CreateList();
     }
@@ -18,7 +19,8 @@ LIST *CreateHashTable()
 int Hash(char *string)
 {
   int sum = 0;
-  for (int index = 0; index < HASHCHAR; index++)
+  int index;
+  for (index = 0; index < HASHCHAR; index++)
   {
     sum += string[index] * pow(HASHVALUE, index);
   }
@@ -42,7 +44,8 @@ int AddHashTable(LIST **hash, SECTION *label)
 
 void DisplayHashTable(LIST *hashTable)
 {
-  for (int index = 0; index < HASHLENGTH; index++)
+  int index;
+  for (index = 0; index < HASHLENGTH; index++)
   {
     printf("Index %d :\n", index);
     Display(hashTable[index]);
@@ -51,7 +54,8 @@ void DisplayHashTable(LIST *hashTable)
 
 void ErasedHashTable(LIST **hash)
 {
-  for (int index = 0; index < HASHLENGTH; index++)
+  int index;
+  for (index = 0; index < HASHLENGTH; index++)
   {
     ErasedList(&((*hash)[index]));
   }

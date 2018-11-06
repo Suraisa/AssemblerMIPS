@@ -9,14 +9,16 @@ int main()
 
     char* stringTable[5] = {"test", "secondtest", "thirdtest", "truc", "truc"};
 
-    for (int indexString=0; indexString<5;indexString++){
+    int indexString;
+    for (indexString=0; indexString<5;indexString++){
       int i;
       i=Hash(stringTable[indexString]);
       printf("Index of %s : %d \n",stringTable[indexString],i);
     }
 
     LIST** ptr_hash=&hashTable;
-    for (int indexString=0; indexString<5;indexString++){
+    int indexString;
+    for (indexString=0; indexString<5;indexString++){
       char** ptrString=&stringTable[indexString];
       if(!AddHashTable(ptr_hash,ptrString))
       {
