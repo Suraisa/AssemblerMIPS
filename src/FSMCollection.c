@@ -231,10 +231,10 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE *lexemeQueue, COLLECTION_
                     unsigned long int concatenatedStringSize = ((stateMachine->nextShift)[stateMachine->actualCollection]-(stateMachine->shift)[stateMachine->actualCollection]);
                     if(concatenatedStringSize > 18)
                     {
+                        stateMachine->error = 1;
                         printf("\nERROR: The size of the concatenated string is too big : %lu (line %lu)\n",concatenatedStringSize,((LEXEME*)(popedLexeme->data))->lineNumber);                        
                     }
                     ErasedList(&popedLexeme);
-                    (stateMachine->nextShift)[stateMachine->actualCollection] += 1;
                     stateMachine->previousState = stateMachine->currentState;
                     stateMachine->currentState = INIT_COLLECTION;
                     break;
@@ -411,6 +411,8 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE *lexemeQueue, COLLECTION_
                         printf("\nERROR: You can't use : '%s' now (line %lu)\n",((LEXEME*)(popedLexeme->data))->type,((LEXEME*)(popedLexeme->data))->lineNumber);
                     }
                     ErasedList(&popedLexeme);
+                    (stateMachine->shift)[stateMachine->actualCollection] = (stateMachine->nextShift)[stateMachine->actualCollection];
+                    (stateMachine->nextShift)[stateMachine->actualCollection] += 1;
                     stateMachine->previousState = stateMachine->currentState;
                     stateMachine->currentState = INIT_COLLECTION;
                     break;
