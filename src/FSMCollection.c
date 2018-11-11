@@ -146,7 +146,7 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE *lexemeQueue, COLLECTION_
                 stateMachine->previousState = stateMachine->currentState;
                 stateMachine->currentState = BYTE;
             }
-            else if(!strcmp(lexemeValue, ".ascizz"))
+            else if(!strcmp(lexemeValue, ".asciiz"))
             {
                 if(stateMachine->actualCollection != DATA)
                 {
@@ -176,7 +176,7 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE *lexemeQueue, COLLECTION_
                     printf("\nERROR: You can't use : '%s' in %s (line %lu)\n",((LEXEME*)(popedLexeme->data))->type, collectionType[stateMachine->actualCollection], ((LEXEME*)(popedLexeme->data))->lineNumber);
                     break;
                 case OPERATOR:
-                    if((char)((LEXEME*)(popedLexeme->data))->value == '-')
+                    if(*(char*)((LEXEME*)(popedLexeme->data))->value == '-')
                     {
                         stateMachine->error = 1;
                         printf("\nERROR: You can't use : '%s' in %s (line %lu)\n",((LEXEME*)(popedLexeme->data))->type, collectionType[stateMachine->actualCollection], ((LEXEME*)(popedLexeme->data))->lineNumber);
@@ -499,13 +499,20 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE *lexemeQueue, COLLECTION_
         }
         case SET_NOREORDER:
         {
-            if((((LEXEME *)(*lexemeQueue)->data)->state))
+            if(IsEmpty(*lexemeQueue) || (((LEXEME *)(*lexemeQueue)->data)->state) != SYMBOL)
+            {
                 stateMachine->error = 1;
-            
-            char* lexemeValue = (char*)(((LEXEME *)(*lexemeQueue)->data)->value);
+                printf("ERROR: In directive .set\n");
+            }
+            else
+            {
+                char* lexemeValue = (char*)(((LEXEME *)(*lexemeQueue)->data)->value);
 
-            if(!strcmp(lexemeValue, "noreorder"))
-                stateMachine->error = 1;
+                if(strcmp(lexemeValue, "noreorder"))
+                    stateMachine->error = 1;
+
+                ErasedInFront(lexemeQueue);
+            }
 
             stateMachine->previousState = stateMachine->currentState;
             stateMachine->currentState = INIT_COLLECTION;
@@ -578,7 +585,7 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE *lexemeQueue, COLLECTION_
                 }
                 else
                 {
-                    printf("\nERROR: Instruction are available in: '%s'\n",collectionSection[TEXT]);
+                    printf("\nERROR: Instruction are available in: '%s' (line %lu)\n",collectionSection[TEXT], lineNumber);
                     ErasedList(&popedLexeme);
                     stateMachine->error = 1;
                     stateMachine->previousState = stateMachine->currentState;

@@ -3,7 +3,7 @@
 .set noreorder
 .text
     Lw $t0 , lunchtime
-    LW $6, -200($7)
+    LW $6, --200($7)
     ADDI $t1,$zero,8
 boucle:
     BEQ $t0 , $t1 , byebye
@@ -18,7 +18,7 @@ byebye:
 lunchtime: 
     .word 12
     .word menu
-    .asciiz "ils disent : \"au ru!\""
+    .asciiz "nt : \"au ru!\""
 .bss 
 menu:
     .space 24

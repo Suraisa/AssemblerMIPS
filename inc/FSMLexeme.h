@@ -90,7 +90,7 @@ void LexemeTreatment(QUEUE* lexemeQueue, LEXEME_STATE state, LIST* readingValue,
  * @brief Print an the error of the stateMachine in color.
  *
  */
-void PrintError(unsigned long int lineNumber, char* problem, char wrongValue, char* state);
+void PrintError(LEXEME_FSM *stateMachine, unsigned long int lineNumber, char* problem, char wrongValue, char* state);
 
 #include "Lexeme.h"
 

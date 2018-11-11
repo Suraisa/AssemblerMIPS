@@ -39,11 +39,11 @@ $(objdir)/%.o : $(test)/%.c
 debug: $(obj)
 	$(CC) -o $(DEBUG) $^ $(lib)
 
-$(objdir)/%.o : $(src)/%.c
-	$(CC) -c -I$(inc) -o $@ $<
+# $(objdir)/%.o : $(src)/%.c
+# 	$(CC) -c -I$(inc) -o $@ $<
 
-$(objdir)/%.o : $(test)/%.c
-	$(CC) -c -I$(inc) -o $@ $<
+# $(objdir)/%.o : $(test)/%.c
+# 	$(CC) -c -I$(inc) -o $@ $<
 
 release: $(obj)
 	$(CC) -o $(RELEASE) $^ $(lib)
