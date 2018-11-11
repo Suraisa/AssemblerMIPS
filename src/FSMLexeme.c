@@ -80,9 +80,7 @@ void InitLexemeFsm(char readingChar, LEXEME_FSM *stateMachine, unsigned long int
             }
             else
             {
-                stateMachine->error = 1;
-                
-                PrintError(lineNumber, "Invalid symbol", readingChar, "");
+                PrintError(stateMachine, lineNumber, "Invalid symbol", readingChar, "");
                 break;
             }
         }
@@ -117,9 +115,8 @@ void LexemeFsm(char *readingChar, QUEUE *lexemeQueue, LIST *readingValue, LEXEME
     {
         if (*readingChar == '\n')
         {
-            PrintError(*lineNumber, "Return in", '\0', definedType[stateMachine->currentState]);
+            PrintError(stateMachine, *lineNumber, "Return in", '\0', definedType[stateMachine->currentState]);
             (*lineNumber)++;
-            stateMachine->error = 1;
         }
         else if (*readingChar == '"' && !stateMachine->inState)
         {
@@ -166,8 +163,15 @@ void LexemeFsm(char *readingChar, QUEUE *lexemeQueue, LIST *readingValue, LEXEME
     case COLON:
     case PARENTHESISRIGHT:
     {
-        AddInFront(readingValue, readingChar, &DisplayChar, NULL, sizeof(char));
-        LexemeTreatment(lexemeQueue, stateMachine->currentState, readingValue, *lineNumber);
+        if(!IsEmpty(*lexemeQueue) && (((LEXEME*)(*lexemeQueue)->data)->state) == stateMachine->currentState)
+        {
+            PrintError(stateMachine, *lineNumber, "Tow times same punctuation", '\0', definedType[stateMachine->currentState]);
+        }
+        else
+        {
+            AddInFront(readingValue, readingChar, &DisplayChar, NULL, sizeof(char));
+            LexemeTreatment(lexemeQueue, stateMachine->currentState, readingValue, *lineNumber);
+        }
         stateMachine->currentState = INIT;
         break;
     }
@@ -193,8 +197,7 @@ void LexemeFsm(char *readingChar, QUEUE *lexemeQueue, LIST *readingValue, LEXEME
             }
             else
             {
-                stateMachine->error = 1;
-                PrintError(*lineNumber, "Invalid symbol", *readingChar, definedType[stateMachine->currentState]);
+                PrintError(stateMachine, *lineNumber, "Invalid symbol", *readingChar, definedType[stateMachine->currentState]);
                 break;
             }
         }
@@ -222,8 +225,7 @@ void LexemeFsm(char *readingChar, QUEUE *lexemeQueue, LIST *readingValue, LEXEME
             }
             else
             {
-                stateMachine->error = 1;
-                PrintError(*lineNumber, "Invalid symbol", *readingChar, definedType[stateMachine->currentState]);
+                PrintError(stateMachine, *lineNumber, "Invalid symbol", *readingChar, definedType[stateMachine->currentState]);
                 break;
             }
         }
@@ -270,8 +272,7 @@ void LexemeFsm(char *readingChar, QUEUE *lexemeQueue, LIST *readingValue, LEXEME
         }
         else
         {
-            stateMachine->error = 1;
-            PrintError(*lineNumber, "Invalid symbol", *readingChar, definedType[stateMachine->currentState]);
+            PrintError(stateMachine, *lineNumber, "Invalid symbol", *readingChar, definedType[stateMachine->currentState]);
         }
         break;
     }
@@ -290,8 +291,7 @@ void LexemeFsm(char *readingChar, QUEUE *lexemeQueue, LIST *readingValue, LEXEME
         }
         else
         {
-            stateMachine->error = 1;
-            PrintError(*lineNumber, "Invalid symbol", *readingChar, definedType[stateMachine->currentState]);
+            PrintError(stateMachine, *lineNumber, "Invalid symbol", *readingChar, definedType[stateMachine->currentState]);
         }
         break;
     }
@@ -311,8 +311,7 @@ void LexemeFsm(char *readingChar, QUEUE *lexemeQueue, LIST *readingValue, LEXEME
             }
             else
             {
-                stateMachine->error = 1;
-                PrintError(*lineNumber, "Invalid symbol", *readingChar, "\0");
+                PrintError(stateMachine, *lineNumber, "Invalid symbol", *readingChar, "\0");
                 break;
             }
         }
@@ -328,7 +327,7 @@ void LexemeTreatment(QUEUE* lexemeQueue, LEXEME_STATE state, LIST* readingValue,
     ErasedList(readingValue);
 }
 
-void PrintError(unsigned long int lineNumber, char* problem, char wrongValue, char* state)
+void PrintError(LEXEME_FSM *stateMachine, unsigned long int lineNumber, char* problem, char wrongValue, char* state)
 {
     if (wrongValue != '\0')
     {
@@ -338,6 +337,7 @@ void PrintError(unsigned long int lineNumber, char* problem, char wrongValue, ch
     {
         printf("\x1b[31m" "\nERROR" "\x1b[0m" " in line" "\x1b[36m" " %lu " "\x1b[0m" ":\n""%s" "\x1b[35m" " %s" "\x1b[0m" "\n", lineNumber, problem, state);
     }
+    stateMachine->error = 1;
 }
 
 void InitializationLexemeFsm(LEXEME_FSM* stateMachine)
