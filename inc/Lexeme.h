@@ -8,7 +8,7 @@
 #ifndef LEXEME_H
 #define LEXEME_H
 
-#include "ListGeneric.h"
+#include "DoubleListGeneric.h"
 #include "Utils.h"
 #include "FSMLexeme.h"
 
@@ -38,7 +38,7 @@ char *CreateType(LEXEME_STATE state);
  * @brief This function concatenate the list to send a (void*) pointer of the value.
  *
  */
-void *CreateValue(LIST list);
+void *CreateValue(LIST_DOUBLE list);
 
 /**
  * @param list of char, integer or one string.
@@ -47,7 +47,7 @@ void *CreateValue(LIST list);
  * @brief This function sends a Lexeme with the information sent.
  *
  */
-LEXEME CreateLexeme(LEXEME_STATE state, LIST list, unsigned long int line);
+LEXEME CreateLexeme(LEXEME_STATE state, LIST_DOUBLE list, unsigned long int line);
 
 /**
  * @param lexeme pointeur of the lexeme where you want to delete the value.

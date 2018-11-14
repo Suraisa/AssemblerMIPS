@@ -88,13 +88,17 @@ void InitLexemeFsm(char readingChar, LEXEME_FSM *stateMachine, unsigned long int
     }
 }
 
-void LexemeFsm(char *readingChar, QUEUE *lexemeQueue, LIST *readingValue, LEXEME_FSM *stateMachine, unsigned long int *lineNumber, int finishedFile)
+void LexemeFsm(char *readingChar, QUEUE_DOUBLE *lexemeQueue, LIST_DOUBLE *readingValue, LEXEME_FSM *stateMachine, unsigned long int *lineNumber, int finishedFile)
 {
-    if (finishedFile && IsEmpty(*readingValue))
+    if (finishedFile && IsEmptyDouble(*readingValue))
         return;
 
     if (finishedFile)
     {
+        if(stateMachine->currentState == HEXADECIMAL)
+        {
+            HexadecimalTreatment(lexemeQueue, stateMachine, readingValue, *lineNumber);            
+        }
         LexemeTreatment(lexemeQueue, stateMachine->currentState, readingValue, *lineNumber);
         return;
     }
@@ -130,13 +134,13 @@ void LexemeFsm(char *readingChar, QUEUE *lexemeQueue, LIST *readingValue, LEXEME
             }
             else
             {
-                ErasedInFront(readingValue);
-                AddInFront(readingValue, readingChar, &DisplayChar, NULL, sizeof(char));
+                ErasedInFrontDouble(readingValue);
+                AddInFrontDouble(readingValue, readingChar, &DisplayChar, NULL, sizeof(char));
             }
         }
         else
         {
-            AddInFront(readingValue, readingChar, &DisplayChar, NULL, sizeof(char));
+            AddInFrontDouble(readingValue, readingChar, &DisplayChar, NULL, sizeof(char));
         }
         if (!stateMachine->inState)
         {
@@ -148,7 +152,7 @@ void LexemeFsm(char *readingChar, QUEUE *lexemeQueue, LIST *readingValue, LEXEME
     case COMMENT:
     {
         if (*readingChar != '\n')
-            AddInFront(readingValue, readingChar, &DisplayChar, NULL, sizeof(char));
+            AddInFrontDouble(readingValue, readingChar, &DisplayChar, NULL, sizeof(char));
         else
         {
             LexemeTreatment(lexemeQueue, stateMachine->currentState, readingValue, *lineNumber);
@@ -163,13 +167,13 @@ void LexemeFsm(char *readingChar, QUEUE *lexemeQueue, LIST *readingValue, LEXEME
     case COLON:
     case PARENTHESISRIGHT:
     {
-        if(!IsEmpty(*lexemeQueue) && (((LEXEME*)(*lexemeQueue)->data)->state) == stateMachine->currentState)
+        if(!IsEmptyDouble(*lexemeQueue) && (((LEXEME*)((*lexemeQueue)->prev)->data)->state) == stateMachine->currentState)
         {
             PrintError(stateMachine, *lineNumber, "Tow times same punctuation", '\0', definedType[stateMachine->currentState]);
         }
         else
         {
-            AddInFront(readingValue, readingChar, &DisplayChar, NULL, sizeof(char));
+            AddInFrontDouble(readingValue, readingChar, &DisplayChar, NULL, sizeof(char));
             LexemeTreatment(lexemeQueue, stateMachine->currentState, readingValue, *lineNumber);
         }
         stateMachine->currentState = INIT;
@@ -180,11 +184,11 @@ void LexemeFsm(char *readingChar, QUEUE *lexemeQueue, LIST *readingValue, LEXEME
         if (*readingChar == '$' && !stateMachine->inState)
         {
             stateMachine->inState = !stateMachine->inState;
-            AddInFront(readingValue, readingChar, &DisplayChar, NULL, sizeof(char));
+            AddInFrontDouble(readingValue, readingChar, &DisplayChar, NULL, sizeof(char));
         }
         else if (CharIsLowerLetter(*readingChar) || CharIsNumber(*readingChar))
         {
-            AddInFront(readingValue, readingChar, &DisplayChar, NULL, sizeof(char));
+            AddInFrontDouble(readingValue, readingChar, &DisplayChar, NULL, sizeof(char));
         }
         else
         {
@@ -208,11 +212,11 @@ void LexemeFsm(char *readingChar, QUEUE *lexemeQueue, LIST *readingValue, LEXEME
         if (*readingChar == '.' && !stateMachine->inState)
         {
             stateMachine->inState = !stateMachine->inState;
-            AddInFront(readingValue, readingChar, &DisplayChar, NULL, sizeof(char));
+            AddInFrontDouble(readingValue, readingChar, &DisplayChar, NULL, sizeof(char));
         }
         else if (CharIsLetter(*readingChar))
         {
-            AddInFront(readingValue, readingChar, &DisplayChar, NULL, sizeof(char));
+            AddInFrontDouble(readingValue, readingChar, &DisplayChar, NULL, sizeof(char));
         }
         else
         {
@@ -235,7 +239,7 @@ void LexemeFsm(char *readingChar, QUEUE *lexemeQueue, LIST *readingValue, LEXEME
     case RETURN:
     {
         char *value = "New Line";
-        AddInFront(readingValue, &value, &DisplayString, NULL, sizeof(char *));
+        AddInFrontDouble(readingValue, &value, &DisplayString, NULL, sizeof(char *));
         LexemeTreatment(lexemeQueue, stateMachine->currentState, readingValue, *lineNumber);
         (*lineNumber)++;
         stateMachine->currentState = INIT;
@@ -243,18 +247,18 @@ void LexemeFsm(char *readingChar, QUEUE *lexemeQueue, LIST *readingValue, LEXEME
     }
     case DECIMAL:
     {
-        if(!IsEmpty(*readingValue) && (*readingChar == ' ' || *readingChar == '\t' || *readingChar == '\n' || *readingChar == ',' || *readingChar == '('))
+        if(!IsEmptyDouble(*readingValue) && (*readingChar == ' ' || *readingChar == '\t' || *readingChar == '\n' || *readingChar == ',' || *readingChar == '('))
         {
             LexemeTreatment(lexemeQueue, stateMachine->currentState, readingValue, *lineNumber);
             stateMachine->currentState = INIT;
             LexemeFsm(readingChar, lexemeQueue, readingValue, stateMachine, lineNumber, 0);
             break;
         }   
-        if (SizeList(*readingValue) == 1)
+        if (SizeListDouble(*readingValue) == 1)
         {
             if (*(int *)((*readingValue)->data) == 0 && (*readingChar == 0x58 || *readingChar == 0x78))
             {
-                ErasedList(readingValue);
+                ErasedListDouble(readingValue);
                 stateMachine->currentState = HEXADECIMAL;
                 break;
             }
@@ -267,7 +271,7 @@ void LexemeFsm(char *readingChar, QUEUE *lexemeQueue, LIST *readingValue, LEXEME
                 return;
 
             *readingInt = (int)strtol(readingChar, NULL, 10);
-            AddInFront(readingValue, readingInt, &DisplayInt, NULL, sizeof(int));
+            AddInFrontDouble(readingValue, readingInt, &DisplayInt, NULL, sizeof(int));
             free(readingInt);
         }
         else
@@ -278,16 +282,16 @@ void LexemeFsm(char *readingChar, QUEUE *lexemeQueue, LIST *readingValue, LEXEME
     }
     case HEXADECIMAL:
     {
-        if(!IsEmpty(*readingValue) && (*readingChar == ' ' || *readingChar == '\t' || *readingChar == '\n' || *readingChar == ',' || *readingChar == '('))
+        if(!IsEmptyDouble(*readingValue) && (*readingChar == ' ' || *readingChar == '\t' || *readingChar == '\n' || *readingChar == ',' || *readingChar == '('))
         {
-            LexemeTreatment(lexemeQueue, stateMachine->currentState, readingValue, *lineNumber);
+            HexadecimalTreatment(lexemeQueue, stateMachine, readingValue, *lineNumber);
             stateMachine->currentState = INIT;
             LexemeFsm(readingChar, lexemeQueue, readingValue, stateMachine, lineNumber, 0);
             break;
         }
         if (CharIsHexadecimal(*readingChar))
         {
-            AddInFront(readingValue, readingChar, &DisplayChar, NULL, sizeof(char));
+            AddInFrontDouble(readingValue, readingChar, &DisplayChar, NULL, sizeof(char));
         }
         else
         {
@@ -299,7 +303,7 @@ void LexemeFsm(char *readingChar, QUEUE *lexemeQueue, LIST *readingValue, LEXEME
     {
         if (CharIsNumberLetter(*readingChar))
         {
-            AddInFront(readingValue, readingChar, &DisplayChar, NULL, sizeof(char));
+            AddInFrontDouble(readingValue, readingChar, &DisplayChar, NULL, sizeof(char));
         }
         else
         {
@@ -320,11 +324,22 @@ void LexemeFsm(char *readingChar, QUEUE *lexemeQueue, LIST *readingValue, LEXEME
     }
 }
 
-void LexemeTreatment(QUEUE* lexemeQueue, LEXEME_STATE state, LIST* readingValue, unsigned long int lineNumber)
+void HexadecimalTreatment(QUEUE_DOUBLE* lexemeQueue, LEXEME_FSM *stateMachine, LIST_DOUBLE* readingValue, unsigned long int lineNumber)
+{
+    char *stringValue = ConcatenateCharListDouble(*readingValue);
+    ErasedListDouble(readingValue);
+    long int* value = malloc(sizeof(*value));
+    *value = StringHexToDecimal(stringValue);
+    free (stringValue);
+    AddInFrontDouble(readingValue, value, &DisplayInt, NULL, sizeof(long int));
+    LexemeTreatment(lexemeQueue, stateMachine->currentState, readingValue, lineNumber);
+    free(value);
+}
+void LexemeTreatment(QUEUE_DOUBLE* lexemeQueue, LEXEME_STATE state, LIST_DOUBLE* readingValue, unsigned long int lineNumber)
 {
     LEXEME lexemeToAdd = CreateLexeme(state, *readingValue, lineNumber);
-    PushQueue(lexemeQueue, &lexemeToAdd, DisplayLexeme, ErasedValueLexeme, sizeof(LEXEME));
-    ErasedList(readingValue);
+    PushQueueDouble(lexemeQueue, &lexemeToAdd, DisplayLexeme, ErasedValueLexeme, sizeof(LEXEME));
+    ErasedListDouble(readingValue);
 }
 
 void PrintError(LEXEME_FSM *stateMachine, unsigned long int lineNumber, char* problem, char wrongValue, char* state)

@@ -1,6 +1,6 @@
 #include "Section.h"
 
-char* collectionType[11] = {
+char* collectionType[8] = {
     "DIR0",
     "ASCIZZ",
     "SPACE",
@@ -8,10 +8,7 @@ char* collectionType[11] = {
     "BYTE",
     "SET_NOREORDER",
     "INSTRUCTION0",
-    "INSTRUCTION1",
-    "INSTRUCTION2",
-    "INSTRUCTION3",
-    "INSTRUCTION4"};
+    "INSTRUCTION1"};
 
 char* collectionSection[3] = {
     "TEXT",
@@ -23,7 +20,7 @@ void InitializeCollectionLists(COLLECTION_LISTS* collections)
     int index;
     for(index = 0; index<3; index++)
     {
-        collections->collection[index] = CreateQueue();
+        collections->collection[index] = CreateQueueDouble();
     }
     
     for(index = 0; index<3; index++)
@@ -35,6 +32,11 @@ void InitializeCollectionLists(COLLECTION_LISTS* collections)
 SECTION* CreateInstructionSection(COLLECTION_STATE state, unsigned long int shift, char* instructionName, int operandNumber, unsigned long int lineNumber)
 {
     SECTION* section = calloc(1, sizeof(*section));
+    if(section == NULL)
+    {
+        printf("\nERROR: Not enought memory for instructions\n");
+        return NULL;
+    }
     section->state = state;
     section->shift = shift;
     section->dataType = INST;
@@ -51,9 +53,15 @@ SECTION* CreateInstructionSection(COLLECTION_STATE state, unsigned long int shif
     return section;
 }
 
-SECTION* CreateDirectiveSection(COLLECTION_STATE state, unsigned long int shift, LIST* lexemeList)
+SECTION* CreateDirectiveSection(COLLECTION_STATE state, unsigned long int shift, LIST_DOUBLE* lexemeList)
 {
     SECTION* section = calloc(1, sizeof(*section));
+    if(section == NULL)
+    {
+        printf("\nERROR: Not enought memory for directive\n");
+        return NULL;
+    }
+
     section->state = state;
     section->shift = shift;
     section->dataType = DIR;
@@ -62,9 +70,14 @@ SECTION* CreateDirectiveSection(COLLECTION_STATE state, unsigned long int shift,
     return section;
 }
 
-SECTION* CreateLabelSection(COLLECTION_FSM stateMachine, LIST* lexemeList)
+SECTION* CreateLabelSection(COLLECTION_FSM stateMachine, LIST_DOUBLE* lexemeList)
 {
     SECTION* section = calloc(1, sizeof(*section));
+    if(section == NULL)
+    {
+        printf("\nERROR: Not enought memory for label\n");
+        return NULL;
+    }
     section->state = stateMachine.currentState;
     section->shift = stateMachine.nextShift[stateMachine.actualCollection];
     section->dataType = LABEL;
@@ -74,21 +87,26 @@ SECTION* CreateLabelSection(COLLECTION_FSM stateMachine, LIST* lexemeList)
     return section;
 }
 
-int NumberLexemeOperand(LIST lexemeList)
+int NumberLexemeOperand(LIST_DOUBLE lexemeList)
 {
-    LIST nodeI;
+    if(IsEmptyDouble(lexemeList))
+        return 0;
+
+    LIST_DOUBLE nodeI = lexemeList;
+    LIST_DOUBLE firstNode = lexemeList;
     int index = 0;
-    for (nodeI = lexemeList; !IsEmpty(nodeI) && ((LEXEME *)nodeI->data)->state != COMMA && ((LEXEME *)nodeI->data)->state != RETURN && ((LEXEME *)nodeI->data)->state != COMMENT && ((LEXEME *)nodeI->data)->state != COLON; nodeI = nodeI->next)
+    do
     {
         index++;
-    }
+        nodeI = nodeI->next;
+    }while(nodeI != firstNode && ((LEXEME *)nodeI->data)->state != COMMA && ((LEXEME *)nodeI->data)->state != RETURN && ((LEXEME *)nodeI->data)->state != COMMENT && ((LEXEME *)nodeI->data)->state != COLON);
     return index;
 }
 
-int AddOperand(COLLECTION_FSM* stateMachine, SECTION* section, LIST* lexemeList)
+int AddOperand(COLLECTION_FSM* stateMachine, SECTION* section, LIST_DOUBLE* lexemeList)
 {
     int index='0';
-    while (index<'3' && !IsEmpty(section->data.instruction.lexemeList[index-'0']))
+    while (index<'3' && !IsEmptyDouble(section->data.instruction.lexemeList[index-'0']))
     {
         index++;
     }
@@ -117,22 +135,22 @@ void DisplaySection(void* value)
             int index;
             for (index = 0; index < 3; index++)
             {
-                if(!IsEmpty(section.data.instruction.lexemeList[index]))
+                if(!IsEmptyDouble(section.data.instruction.lexemeList[index]))
                 {
-                    Display(section.data.instruction.lexemeList[index]);
+                    DisplayDoubleList(section.data.instruction.lexemeList[index]);
                 }
             }
             break;
         }
         case 1:
         {
-            Display(section.data.directiveValue);
+            DisplayDoubleList(section.data.directiveValue);
             break;
         }
         case 2:
         {
             printf("\nLabel section: %17s\n", collectionSection[section.data.label.section]);
-            Display(section.data.label.lexemeList);
+            DisplayDoubleList(section.data.label.lexemeList);
             break;
         }
     }
@@ -144,11 +162,11 @@ void DisplayCollectionLists(COLLECTION_LISTS collections)
 {
     char* separator = "\n-------------------------------\n";
     printf("%sTEXT's Collection%s",separator,separator);
-    Display(collections.collection[0]);
+    DisplayDoubleList(collections.collection[0]);
     printf("%sDATA's Collection%s",separator,separator);
-    Display(collections.collection[1]);
+    DisplayDoubleList(collections.collection[1]);
     printf("%sBSS's Collection%s",separator,separator);
-    Display(collections.collection[2]);
+    DisplayDoubleList(collections.collection[2]);
     printf("%sLABELS' Collection%s",separator,separator);
     DisplayHashTable(collections.labelTable);
 }
@@ -158,23 +176,23 @@ void ErasedSection(void* value)
     SECTION section = *(SECTION*)value;
     switch(section.dataType)
     {
-        case 0:
+        case INST:
         {
-            int index;
-            for (index = 0; index < 3; index++)
+            int index = 0;
+            for (index; index < 3; index++)
             {
-                ErasedList(&(*(SECTION*)value).data.instruction.lexemeList[index]);
+                ErasedListDouble(&(*(SECTION*)value).data.instruction.lexemeList[index]);
             }
             break;
         }
-        case 1:
+        case DATA:
         {
-            ErasedList(&(*(SECTION*)value).data.directiveValue);
+            ErasedListDouble(&(*(SECTION*)value).data.directiveValue);
             break;
         }
-        case 2:
+        case BSS:
         {
-            ErasedList(&(*(SECTION*)value).data.label.lexemeList);
+            ErasedListDouble(&(*(SECTION*)value).data.label.lexemeList);
             break;
         }
     }
@@ -187,7 +205,7 @@ void ErasedCollectionLists(void* value)
     int index;
     for(index = 0; index<3; index++)
     {
-        ErasedList(&(collectionLists->collection[index]));
+        ErasedListDouble(&(collectionLists->collection[index]));
     }
 
     ErasedHashTable(&(collectionLists->labelTable));

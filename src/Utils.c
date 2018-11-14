@@ -15,6 +15,44 @@ unsigned int StringSize(char *string)
     return index + 1;
 }
 
+char* ConcatenateCharListDouble(LIST_DOUBLE list)
+{
+    if (IsEmptyDouble(list) || list->display != &DisplayChar)
+    {
+        char *empty = (char *)malloc(sizeof(char));
+
+        if (empty == NULL)
+                return "";
+
+        *empty = '\0';
+        return empty;
+    }
+
+    unsigned long int listSize = SizeListDouble(list);
+    char *concatenate = (char *)malloc((listSize+1) * sizeof(char));
+
+    if (concatenate == NULL)
+                return "";
+
+    int counter = listSize;
+    concatenate[counter] = '\0';
+    counter--;
+    LIST_DOUBLE slider = list;
+    LIST_DOUBLE firstNode = list;
+
+    do
+    {
+        if(list->display != &DisplayChar)
+            return concatenate;
+        
+        concatenate[counter] = *((char *)slider->data);
+        counter--;
+        slider = slider->next;
+    }while(slider != firstNode);
+    
+    return concatenate;
+}
+
 char* ConcatenateCharList(LIST list)
 {
     if (IsEmpty(list) || list->display != &DisplayChar)
@@ -48,6 +86,30 @@ char* ConcatenateCharList(LIST list)
         counter--;
     }
     return concatenate;
+}
+
+long int ConcatenateIntListDouble(LIST_DOUBLE list)
+{
+    if (IsEmptyDouble(list) || list->display != &DisplayInt)
+        return 0;
+
+    long int value = 0;
+    unsigned long int listSize = SizeListDouble(list);
+    unsigned long int counter = 0;
+    LIST_DOUBLE slider = list;
+    LIST_DOUBLE firstNode = list;
+
+    do
+    {
+        if (list->display != &DisplayInt)
+            return value;
+
+        value += (*(int *)slider->data) * pow(10, counter);
+        counter++;
+        slider = slider->next;
+    }while(slider != firstNode);
+
+    return value;
 }
 
 long int ConcatenateIntList(LIST list)
@@ -123,4 +185,9 @@ unsigned long int StringHexToDecimal(char* value)
     char *next;
     unsigned long int decimal = strtol(value, &next, 16);
     return decimal;
+}
+
+int IsAvailableRegister(char* registerToTest)
+{
+    
 }

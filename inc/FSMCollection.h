@@ -3,8 +3,8 @@
 
 #include "Lexeme.h"
 #include "DicoInstruct.h"
-#include "ListGeneric.h"
-#include "QueueGeneric.h"
+#include "DoubleListGeneric.h"
+#include "DoubleQueueGeneric.h"
 #include "Utils.h"
 #include "limits.h"
 
@@ -28,9 +28,6 @@ typedef enum
     SET_NOREORDER,
     INSTRUCTION0,
     INSTRUCTION1,
-    INSTRUCTION2,
-    INSTRUCTION3,
-    INSTRUCTION4,
     INIT_COLLECTION
 } COLLECTION_STATE;
 
@@ -59,8 +56,10 @@ int InitializationCollection(COLLECTION_LISTS* collectionLists);
  */
 void InitializationCollectionFsm(COLLECTION_FSM* stateMachine);
 
-void InitCollectionFsm(COLLECTION_FSM *stateMachine, QUEUE *lexemeQueue);
+void InitCollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue);
 
-void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE *lexemeQueue, COLLECTION_LISTS* collections, INSTRUCTION* instructionDictionary);
+void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLLECTION_LISTS* collections, INSTRUCTION* instructionDictionary);
+
+void PrintErrorCollection(COLLECTION_FSM* stateMachine, unsigned long int lineNumber, char *problem, char* why, char* type);
 
 #endif

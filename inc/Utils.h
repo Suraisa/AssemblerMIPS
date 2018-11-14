@@ -13,6 +13,7 @@
 #include <ctype.h>
 #include <string.h>
 #include "ListGeneric.h"
+#include "DoubleListGeneric.h"
 #include "QueueGeneric.h"
 #include "DisplayType.h"
 
@@ -33,12 +34,28 @@ unsigned int StringSize(char* string);
 char* ConcatenateCharList(LIST list);
 
 /**
+ * @param list LIST_DOUBLE of char to concatenate.
+ * @return a string of concatenate char. 
+ * @brief Concatenate a list of char to make a string.\nIt'll construct the string from the end of the list to the front.
+ *
+ */
+char* ConcatenateCharListDouble(LIST_DOUBLE list);
+
+/**
  * @param list List of int to concatenate.
  * @return a long int of concatenate int. 
  * @brief Concatenate a list of int to make a long int.\nIt'll construct the string from the end of the list to the front.
  *
  */
 long int ConcatenateIntList(LIST);
+
+/**
+ * @param list LIST_DOUBLE of int to concatenate.
+ * @return a long int of concatenate int. 
+ * @brief Concatenate a list of int to make a long int.\nIt'll construct the string from the end of the list to the front.
+ *
+ */
+long int ConcatenateIntListDouble(LIST_DOUBLE);
 
 /**
  * @param value Char to test.

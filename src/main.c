@@ -1,34 +1,47 @@
 #include <stdio.h>
 
-#include "QueueGeneric.h"
+#include "DoubleQueueGeneric.h"
 #include "Global.h"
 #include "Utils.h"
 #include "FSMLexeme.h"
-#include "ListGeneric.h"
+#include "DoubleListGeneric.h"
 #include <string.h>
 #include "DicoInstruct.h"
 #include "FSMCollection.h"
 
-int main()
+int main(int argc, char *argv[])
 {
+  FILE* readingFile;
 
-  FILE *readingFile;
+  if (argc != 2)
+  {
+    char fileToRead[fileNameSize];
+
+    printf("\n\nLaunch the 1 file as an argument or now you can:\nWrite a file's name inside the 'file' folder to use the MISP assembler on this file:\n\n");
+    scanf("%s",fileToRead);
+
+    char filePath[fileNameSize] = "files/";
+    strcat(filePath, fileToRead);
+    readingFile = fopen(filePath, "r");
+  }
+  else
+  {
+    char *readingFileName;
+    readingFileName = argv[argc-1];
+    if (NULL == readingFileName)
+    {
+      fprintf( stderr, "Missing ASM source file, aborting.\n" );
+      return 0;
+    }
+    readingFile = fopen(readingFileName, "r");
+  }
+
   char readingChar;
   LEXEME_FSM lexemeStateMachine;
   InitializationLexemeFsm(&lexemeStateMachine);
   unsigned long int lineNumber = 1;
-  LIST ReadingValue = CreateList();
-  QUEUE lexemeQueue = CreateQueue();
-
-  char fileToRead[fileNameSize];
-
-  printf("\n\nWrite a file's name inside the 'file' folder to use the MISP assembler on this file:\n\n");
-  scanf("%s",fileToRead);
-
-  char filePath[fileNameSize] = "files/";
-  strcat(filePath, fileToRead);
-  readingFile = fopen(filePath, "r");
-  
+  LIST_DOUBLE ReadingValue = CreateListDouble();
+  QUEUE_DOUBLE lexemeQueue = CreateQueueDouble();
 
 /*
 ------------------
@@ -47,7 +60,7 @@ Lexemes' treatment
 
     if(!lexemeStateMachine.error)
     {
-      Display(lexemeQueue);
+      DisplayDoubleList(lexemeQueue);
     }
 
     fclose(readingFile);
@@ -87,7 +100,7 @@ Collections' treatment
 
   InitializationCollectionFsm(&collectionStateMachine);
 
-  while(!IsEmpty(lexemeQueue))
+  while(!IsEmptyDouble(lexemeQueue))
   {
     CollectionFsm(&collectionStateMachine, &lexemeQueue, &collections, dictionary);
   }
@@ -96,9 +109,8 @@ Collections' treatment
   {
     DisplayCollectionLists(collections);  
   }
-
   free(dictionary);
-  ErasedQueue(&lexemeQueue);
+  ErasedQueueDouble(&lexemeQueue);
   ErasedCollectionLists(&collections);
 
   if(collectionStateMachine.error)

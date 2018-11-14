@@ -31,7 +31,7 @@ int main()
     AddInFrontDouble(&list, &a, &DisplayInt, NULL, sizeof(long int));
     a = 3;
     AddInFrontDouble(&list, &a, &DisplayInt, NULL, sizeof(long int));
-    a = 2;
+    a = 1;
     AddInFrontDouble(&list, &a, &DisplayInt, NULL, sizeof(long int));
 
     DisplayDoubleList(list);
@@ -41,6 +41,24 @@ int main()
     printf("\nPoped list :\n");
 
     DisplayDoubleList(popedList);
+
+    ErasedListDouble(&popedList);
+
+    popedList = PopInFrontDouble(&list, 1);
+
+    printf("\nPoped list :\n");
+
+    DisplayDoubleList(popedList);
+
+    ErasedListDouble(&popedList);
+
+    popedList = PopInFrontDouble(&list, 1);
+
+    printf("\nPoped list :\n");
+
+    DisplayDoubleList(popedList);
+
+    ErasedListDouble(&popedList);
 
     printf("\nList :\n");
 
@@ -57,15 +75,17 @@ int main()
     a = 2;
     AddInFrontDouble(&list, &a, &DisplayInt, NULL, sizeof(long int));
 
+    ErasedListDouble(&list);
+
     printf("\nList :\n");
 
     DisplayDoubleList(list);
 
     printf("\nList :\n");
+
+    DisplayDoubleList(list);
 
     ErasedInFrontDouble(&list);
-
-    DisplayDoubleList(list);
 
     printf("\nList :\n");
 
