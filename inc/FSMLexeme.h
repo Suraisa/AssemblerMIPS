@@ -73,6 +73,8 @@ void LexemeFsm(char *readingChar, QUEUE_DOUBLE *lexemeQueue, LIST_DOUBLE *readin
 
 void HexadecimalTreatment(QUEUE_DOUBLE* lexemeQueue, LEXEME_FSM *stateMachine, LIST_DOUBLE* readingValue, unsigned long int lineNumber);
 
+void RegisterTreatment(QUEUE_DOUBLE* lexemeQueue, LEXEME_FSM *stateMachine, LIST_DOUBLE* readingValue, unsigned long int* lineNumber, char* readingChar, int finishedFile);
+
 /**
  * @param lexemeQueue Pointeur on a QUEUE_DOUBLE of Lexemes that you want to update.
  * @param readingValue Pointeur on a LIST_DOUBLE of the lexeme value's information.

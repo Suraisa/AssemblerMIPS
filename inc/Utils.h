@@ -16,6 +16,7 @@
 #include "DoubleListGeneric.h"
 #include "QueueGeneric.h"
 #include "DisplayType.h"
+#include <stdlib.h>
 
 /**
  * @param string Char* to analyse.
@@ -108,5 +109,9 @@ int CharIsNumberLetter(char value);
 void StringUpper(char* string);
 
 unsigned long int StringHexToDecimal(char* value);
+
+int IsAvailableRegister(char* registerToTest, int** newName);
+
+void ChangeRegisterName(int** newName, int number);
 
 #endif

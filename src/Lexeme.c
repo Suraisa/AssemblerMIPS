@@ -77,7 +77,7 @@ void DisplayLexeme(void *value)
     printf("Type: %26s\n", ((LEXEME *)value)->type);
     printf("Line number: %19lu\n", (unsigned long int)((LEXEME *)value)->lineNumber);
 
-    if (((LEXEME *)value)->state == DECIMAL || ((LEXEME *)value)->state == HEXADECIMAL)
+    if (((LEXEME *)value)->state == DECIMAL || ((LEXEME *)value)->state == HEXADECIMAL || ((LEXEME *)value)->state == REGISTER)
     {
         printf("Value: %25ld", *(long int *)((LEXEME *)value)->value);
     }

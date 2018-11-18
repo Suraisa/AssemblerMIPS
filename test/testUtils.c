@@ -35,5 +35,16 @@ int main()
 
     ErasedList(&list);
 
+    char* value = malloc(3*sizeof(*value));
+    int* intValue;
+    strcpy(value, "33");
+    printf("\n%s\n", value);
+    a = IsAvailableRegister(&value, &intValue);
+    printf("\n%d\n", *intValue);
+
+    free(value);
+    free(intValue);
+
+
     return 0;
 }

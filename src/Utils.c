@@ -187,7 +187,93 @@ unsigned long int StringHexToDecimal(char* value)
     return decimal;
 }
 
-int IsAvailableRegister(char* registerToTest)
+int IsAvailableRegister(char* registerToTest, int** newName)
 {
-    
+    if (StringSize(registerToTest)<=3 && CharIsNumber((registerToTest)[0]))
+    {
+        if ((registerToTest)[0] > '3' && StringSize(registerToTest) == 3)
+            return 0;
+
+        if((registerToTest)[0] == '3' && StringSize(registerToTest) == 3 && (registerToTest)[1] >= '2' && (registerToTest)[1] < '0')
+            return 0;
+        
+        ChangeRegisterName(newName, atoi(registerToTest));
+        return 1;
+    }
+    else if (!strcmp(registerToTest, "zero"))
+    {
+        ChangeRegisterName(newName, 0);
+        return 1;
+    }
+    else if ((registerToTest)[0] == 'a' && StringSize(registerToTest) == 3)
+    {
+        if((registerToTest)[1] >= '0' && (registerToTest)[1] <= '3')
+        {
+            ChangeRegisterName(newName, (registerToTest)[1] + 4 - '0');
+            return 1;
+        }
+        else if((registerToTest)[1] == 't')
+        {
+            ChangeRegisterName(newName, 1);
+            return 1;
+        }
+        return 0;
+    }
+    else if ((registerToTest)[0] == 'v' && StringSize(registerToTest) == 3)
+    {
+        if((registerToTest)[1] >= '0' && (registerToTest)[1] <= '1')
+        {
+            ChangeRegisterName(newName, (registerToTest)[1] + 2 - '0');
+            return 1;
+        }
+        return 0;
+    }
+    else if ((registerToTest)[0] == 't' && StringSize(registerToTest) == 3)
+    {
+        if((registerToTest)[1] >= '0' && (registerToTest)[1] <= '9')
+        {
+            if((registerToTest)[1] <= '7')
+            {
+                ChangeRegisterName(newName, (registerToTest)[1] + 8 - '0');
+            }
+            else
+            {
+                ChangeRegisterName(newName, (registerToTest)[1] + 16 - '0');
+            }
+            return 1;
+        }
+        return 0;
+    }
+    else if ((registerToTest)[0] == 'k' && StringSize(registerToTest) == 3 && (registerToTest)[1] >= '0' && (registerToTest)[1] <= '1')
+    {
+        ChangeRegisterName(newName, (registerToTest)[1] + 26 - '0');
+        return 1;
+    }
+    else if (!strcmp(registerToTest, "gp"))
+    {
+        ChangeRegisterName(newName, 28);
+        return 1;
+    }
+    else if (!strcmp(registerToTest, "sp"))
+    {
+        ChangeRegisterName(newName, 29);
+        return 1;
+    }
+    else if (!strcmp(registerToTest, "fp"))
+    {
+        ChangeRegisterName(newName, 30);
+        return 1;
+    }
+    else if (!strcmp(registerToTest, "ra"))
+    {
+        ChangeRegisterName(newName, 31);
+        return 1;
+    }
+    return 0;
+}
+
+void ChangeRegisterName(int** newName, int number)
+{
+    *newName = malloc(sizeof(**newName));
+    **newName = number;
 }

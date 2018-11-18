@@ -97,7 +97,13 @@ void LexemeFsm(char *readingChar, QUEUE_DOUBLE *lexemeQueue, LIST_DOUBLE *readin
     {
         if(stateMachine->currentState == HEXADECIMAL)
         {
-            HexadecimalTreatment(lexemeQueue, stateMachine, readingValue, *lineNumber);            
+            HexadecimalTreatment(lexemeQueue, stateMachine, readingValue, *lineNumber);
+            return;            
+        }
+        if(stateMachine->currentState == REGISTER)
+        {
+            RegisterTreatment(lexemeQueue, stateMachine, readingValue, lineNumber, readingChar, finishedFile);         
+            return;   
         }
         LexemeTreatment(lexemeQueue, stateMachine->currentState, readingValue, *lineNumber);
         return;
@@ -184,7 +190,6 @@ void LexemeFsm(char *readingChar, QUEUE_DOUBLE *lexemeQueue, LIST_DOUBLE *readin
         if (*readingChar == '$' && !stateMachine->inState)
         {
             stateMachine->inState = !stateMachine->inState;
-            AddInFrontDouble(readingValue, readingChar, &DisplayChar, NULL, sizeof(char));
         }
         else if (CharIsLowerLetter(*readingChar) || CharIsNumber(*readingChar))
         {
@@ -194,10 +199,7 @@ void LexemeFsm(char *readingChar, QUEUE_DOUBLE *lexemeQueue, LIST_DOUBLE *readin
         {
             if (*readingChar == '\n' || *readingChar == '\t' || *readingChar == ' ' || *readingChar == ',' || *readingChar == ')')
             {
-                LexemeTreatment(lexemeQueue, stateMachine->currentState, readingValue, *lineNumber);
-                stateMachine->currentState = INIT;
-                stateMachine->inState = !stateMachine->inState;
-                LexemeFsm(readingChar, lexemeQueue, readingValue, stateMachine, lineNumber, 0);
+                RegisterTreatment(lexemeQueue, stateMachine, readingValue, lineNumber, readingChar, finishedFile);
             }
             else
             {
@@ -334,6 +336,33 @@ void HexadecimalTreatment(QUEUE_DOUBLE* lexemeQueue, LEXEME_FSM *stateMachine, L
     AddInFrontDouble(readingValue, value, &DisplayInt, NULL, sizeof(long int));
     LexemeTreatment(lexemeQueue, stateMachine->currentState, readingValue, lineNumber);
     free(value);
+}
+
+void RegisterTreatment(QUEUE_DOUBLE* lexemeQueue, LEXEME_FSM *stateMachine, LIST_DOUBLE* readingValue, unsigned long int* lineNumber, char* readingChar, int finishedFile)
+{
+    int sizeList = SizeListDouble(*readingValue);
+    if(sizeList>=1 && sizeList<=4)
+    {
+        char *stringValue = ConcatenateCharListDouble(*readingValue);
+        ErasedListDouble(readingValue);
+        int* registerName;
+        if(!IsAvailableRegister(stringValue, &registerName))
+        {
+            PrintError(stateMachine, *lineNumber, "Invalid Register", '\0', definedType[stateMachine->currentState]);
+        }
+        else
+        {
+            AddInFrontDouble(readingValue, registerName, &DisplayInt, NULL, sizeof(int));
+            LexemeTreatment(lexemeQueue, stateMachine->currentState, readingValue, *lineNumber);
+        }
+        free(stringValue);
+        stateMachine->currentState = INIT;
+        stateMachine->inState = !stateMachine->inState;
+    }
+    else
+    {
+        PrintError(stateMachine, *lineNumber, "Invalid Register", '\0', definedType[stateMachine->currentState]);
+    }
 }
 void LexemeTreatment(QUEUE_DOUBLE* lexemeQueue, LEXEME_STATE state, LIST_DOUBLE* readingValue, unsigned long int lineNumber)
 {
