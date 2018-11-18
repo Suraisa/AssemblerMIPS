@@ -10,7 +10,7 @@ typedef struct
 {
     char id[5];
     char type;
-    char typeNumber;
+    int typeNumber;
 } INSTRUCTION;
 
 extern int sizeDico;

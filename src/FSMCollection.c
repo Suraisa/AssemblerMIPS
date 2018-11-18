@@ -238,12 +238,12 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
                 {
                     int stringSize = StringSize((char*)((LEXEME*)(popedLexeme->data))->value)-1;
                     (stateMachine->nextShift)[stateMachine->actualCollection] += stringSize;
-                    if(IsEmptyDouble(*lexemeQueue))
-                    {
-                        if(stringSize >= 18)
+                    if(stringSize >= 18)
                         {
                             PrintErrorCollection(stateMachine, ((LEXEME*)(popedLexeme->data))->lineNumber, "The size of the string is too big","" ,((LEXEME*)(popedLexeme->data))->type);
                         }
+                    if(IsEmptyDouble(*lexemeQueue))
+                    {
                         (stateMachine->nextShift)[stateMachine->actualCollection] += 1;
                     }
                     SECTION* section = CreateDirectiveSection(stateMachine->currentState, (stateMachine->shift)[stateMachine->actualCollection], &popedLexeme);
@@ -349,10 +349,22 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
                 {
                     if(stateMachine->inState != 2)
                     {
+                        if(*(long int*)((LEXEME*)(popedLexeme->data))->value > 2147483647)
+                        {
+                            PrintErrorCollection(stateMachine, ((LEXEME*)(popedLexeme->data))->lineNumber, "Value out of range","-2147483648 min, 2147483647 max" ,((LEXEME*)(popedLexeme->data))->type);                            
+                        }
                         (stateMachine->nextShift)[stateMachine->actualCollection] += (stateMachine->nextShift)[stateMachine->actualCollection]%4 == 0 ? 0:4-(stateMachine->nextShift)[stateMachine->actualCollection]%4;
                         (stateMachine->shift)[stateMachine->actualCollection] = (stateMachine->nextShift)[stateMachine->actualCollection];
                         (stateMachine->nextShift)[stateMachine->actualCollection] += 4;
                     }
+                    else
+                    {
+                        if(*(long int*)((LEXEME*)(popedLexeme->data))->value > 2147483648)
+                        {
+                            PrintErrorCollection(stateMachine, ((LEXEME*)(popedLexeme->data))->lineNumber, "Value out of range","-2147483648 min, 2147483647 max" ,((LEXEME*)(popedLexeme->data))->type);                            
+                        }
+                    }
+                    
                     SECTION* section = CreateDirectiveSection(stateMachine->currentState, (stateMachine->shift)[stateMachine->actualCollection], &popedLexeme);
                     PushQueueDouble(&(collections->collection[stateMachine->actualCollection]), section, DisplaySection, ErasedSection, sizeof(*section));
                     free(section);
@@ -453,6 +465,34 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
                         if(stateMachine->inState != 2)
                         {
                             (stateMachine->shift)[stateMachine->actualCollection] = (stateMachine->nextShift)[stateMachine->actualCollection];
+                            if(((LEXEME*)(popedLexeme->data))->state == DECIMAL)
+                            {
+                                if (*(long int*)((LEXEME*)(popedLexeme->data))->value > 127)
+                                {
+                                    PrintErrorCollection(stateMachine, ((LEXEME*)(popedLexeme->data))->lineNumber, "Value out of range","-128 min, 127 max" ,((LEXEME*)(popedLexeme->data))->type);
+                                }
+                            }
+                            else
+                            {
+                                if(*(long int*)((LEXEME*)(popedLexeme->data))->value > 0xff)
+                                {
+                                    PrintErrorCollection(stateMachine, ((LEXEME*)(popedLexeme->data))->lineNumber, "Value out of range","0x00 min, 0xFF max" ,((LEXEME*)(popedLexeme->data))->type);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if(((LEXEME*)(popedLexeme->data))->state == DECIMAL)
+                            {
+                                if (*(long int*)((LEXEME*)(popedLexeme->data))->value > 128)
+                                {
+                                    PrintErrorCollection(stateMachine, ((LEXEME*)(popedLexeme->data))->lineNumber, "Value out of range","-128 min, 127 max" ,((LEXEME*)(popedLexeme->data))->type);
+                                }
+                            }
+                            else
+                            {
+                                PrintErrorCollection(stateMachine, ((LEXEME*)(popedLexeme->data))->lineNumber, "Value out of range","0x00 min, 0xFF max" ,((LEXEME*)(popedLexeme->data))->type);
+                            }
                         }
                         (stateMachine->nextShift)[stateMachine->actualCollection] += 1;
                         SECTION* section = CreateDirectiveSection(stateMachine->currentState, (stateMachine->shift)[stateMachine->actualCollection], &popedLexeme);
@@ -502,6 +542,7 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
                     if(!AddHashTable(&(collections->labelTable), section))
                     {
                         PrintErrorCollection(stateMachine, lineNumber, "Two label with the same name","" , (char*)((LEXEME*)popedLexeme->data)->value);
+                        free(section);
                     }
                     else
                     {
@@ -559,7 +600,7 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
         }
         case INSTRUCTION1:
         {
-            int nbOperand = '0';
+            int nbOperand = 0;
             unsigned long int lineNumber = 0;
             do
             {

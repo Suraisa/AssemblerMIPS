@@ -356,8 +356,14 @@ void RegisterTreatment(QUEUE_DOUBLE* lexemeQueue, LEXEME_FSM *stateMachine, LIST
             LexemeTreatment(lexemeQueue, stateMachine->currentState, readingValue, *lineNumber);
         }
         free(stringValue);
+        free(registerName);
         stateMachine->currentState = INIT;
         stateMachine->inState = !stateMachine->inState;
+        
+        if(finishedFile)
+            return;
+
+        LexemeFsm(readingChar, lexemeQueue, readingValue, stateMachine, lineNumber, 0);        
     }
     else
     {

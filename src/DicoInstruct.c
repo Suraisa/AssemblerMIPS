@@ -31,7 +31,7 @@ INSTRUCTION*InitializeDicoInstruct(char *nameDicoFile)
 
     while(index<sizeDico && !feof(file))
     {
-        fscanf(file, "%s %c %c", (dictionary[index].id), &(dictionary[index].type), &(dictionary[index].typeNumber));
+        fscanf(file, "%s %c %d", (dictionary[index].id), &(dictionary[index].type), &(dictionary[index].typeNumber));
         index++;
     }
 

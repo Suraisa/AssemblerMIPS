@@ -99,21 +99,23 @@ int NumberLexemeOperand(LIST_DOUBLE lexemeList)
     {
         index++;
         nodeI = nodeI->next;
+        printf("%s\n",((LEXEME *)nodeI->data)->type);
     }while(nodeI != firstNode && ((LEXEME *)nodeI->data)->state != COMMA && ((LEXEME *)nodeI->data)->state != RETURN && ((LEXEME *)nodeI->data)->state != COMMENT && ((LEXEME *)nodeI->data)->state != COLON);
     return index;
 }
 
 int AddOperand(COLLECTION_FSM* stateMachine, SECTION* section, LIST_DOUBLE* lexemeList)
 {
-    int index='0';
-    while (index<'3' && !IsEmptyDouble(section->data.instruction.lexemeList[index-'0']))
+    int index=0;
+
+    while (index<3 && !IsEmptyDouble(section->data.instruction.lexemeList[index]))
     {
         index++;
     }
     if (index>=section->data.instruction.operandNumber)
         return 0;
 
-    section->data.instruction.lexemeList[index-'0'] = *lexemeList;
+    section->data.instruction.lexemeList[index] = *lexemeList;
     return 1;
 }
 
