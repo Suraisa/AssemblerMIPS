@@ -23,6 +23,22 @@ void OperandFSM(FSM_STATE_OPERAND* fsm, LIST_DOUBLE* listOperand)
         case IMMEDIAT:
         {
             fsm->error = !IsImmediat(listOperand);
+            break;
+        }
+        case BASE_OFFSET:
+        {
+            fsm->error = !IsBaseOffset(listOperand);
+            break;
+        }
+        case ABSOLUTE:
+        {
+            fsm->error = !IsRelativeAbsolute(listOperand, ABSOLUTE_MAX, ABSOLUTE_MIN);
+            break;
+        }
+        case RELATIVE:
+        {
+            fsm->error = !IsRelativeAbsolute(listOperand, RELATIVE_MAX, RELATIVE_MIN);
+            break;
         }
     }
 }
@@ -144,7 +160,7 @@ int IsRelativeAbsolute(LIST_DOUBLE* listLexeme, int valueMax, int valueMin)
     return IsImmediat;
 }
 
-int IsRelativeAbsolute(LIST_DOUBLE* listLexeme, int valueMax, int valueMin)
+int IsBaseOffset(LIST_DOUBLE* listLexeme)
 {
     LIST_DOUBLE firstNode = *listLexeme;
     LIST_DOUBLE listOperand = *listLexeme;
