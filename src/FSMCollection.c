@@ -324,18 +324,10 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
                     {
                         if(*(char*)((LEXEME*)(popedLexeme->data))->value == '-')
                         {
-                            (stateMachine->nextShift)[stateMachine->actualCollection] += (4-(stateMachine->nextShift)[stateMachine->actualCollection]%4)%4;
-                            (stateMachine->shift)[stateMachine->actualCollection] = (stateMachine->nextShift)[stateMachine->actualCollection];
-                            (stateMachine->nextShift)[stateMachine->actualCollection] += 4;
                             stateMachine->inState = 2;
-                            SECTION* section = CreateDirectiveSection(stateMachine->currentState, (stateMachine->shift)[stateMachine->actualCollection], &popedLexeme);
-                            PushQueueDouble(&(collections->collection[stateMachine->actualCollection]), section, DisplaySection, ErasedSection, sizeof(*section));
-                            free(section);
                         }
-                        else
-                        {
-                            ErasedListDouble(&popedLexeme);
-                        }
+                        ErasedListDouble(&popedLexeme);
+
                     }
                     else
                     {
@@ -349,21 +341,25 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
                 {
                     if(stateMachine->inState != 2)
                     {
-                        if(*(long int*)((LEXEME*)(popedLexeme->data))->value > 2147483647)
+                        if(*(long int*)((LEXEME*)(popedLexeme->data))->value > INT_MAX)
                         {
                             PrintErrorCollection(stateMachine, ((LEXEME*)(popedLexeme->data))->lineNumber, "Value out of range","-2147483648 min, 2147483647 max" ,((LEXEME*)(popedLexeme->data))->type);                            
                         }
-                        (stateMachine->nextShift)[stateMachine->actualCollection] += (stateMachine->nextShift)[stateMachine->actualCollection]%4 == 0 ? 0:4-(stateMachine->nextShift)[stateMachine->actualCollection]%4;
-                        (stateMachine->shift)[stateMachine->actualCollection] = (stateMachine->nextShift)[stateMachine->actualCollection];
-                        (stateMachine->nextShift)[stateMachine->actualCollection] += 4;
                     }
                     else
                     {
-                        if(*(long int*)((LEXEME*)(popedLexeme->data))->value > 2147483648)
+                        if(*(long int*)((LEXEME*)(popedLexeme->data))->value > (unsigned int)-INT_MAX)
                         {
                             PrintErrorCollection(stateMachine, ((LEXEME*)(popedLexeme->data))->lineNumber, "Value out of range","-2147483648 min, 2147483647 max" ,((LEXEME*)(popedLexeme->data))->type);                            
                         }
+                        else
+                        {
+                            *(long int*)((LEXEME*)(popedLexeme->data))->value *= -1;
+                        }
                     }
+                    (stateMachine->nextShift)[stateMachine->actualCollection] += (stateMachine->nextShift)[stateMachine->actualCollection]%4 == 0 ? 0:4-(stateMachine->nextShift)[stateMachine->actualCollection]%4;
+                    (stateMachine->shift)[stateMachine->actualCollection] = (stateMachine->nextShift)[stateMachine->actualCollection];
+                    (stateMachine->nextShift)[stateMachine->actualCollection] += 4;
                     
                     SECTION* section = CreateDirectiveSection(stateMachine->currentState, (stateMachine->shift)[stateMachine->actualCollection], &popedLexeme);
                     PushQueueDouble(&(collections->collection[stateMachine->actualCollection]), section, DisplaySection, ErasedSection, sizeof(*section));
@@ -441,16 +437,9 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
                 {
                     if(*(char*)((LEXEME*)(popedLexeme->data))->value == '-')
                     {
-                        (stateMachine->shift)[stateMachine->actualCollection] = (stateMachine->nextShift)[stateMachine->actualCollection];
                         stateMachine->inState = 2;
-                        SECTION* section = CreateDirectiveSection(stateMachine->currentState, (stateMachine->shift)[stateMachine->actualCollection], &popedLexeme);
-                        PushQueueDouble(&(collections->collection[stateMachine->actualCollection]), section, DisplaySection, ErasedSection, sizeof(*section));
-                        free(section);
                     }
-                    else
-                    {
-                        ErasedListDouble(&popedLexeme);
-                    }
+                    ErasedListDouble(&popedLexeme);
                     break;
                 }
                 case HEXADECIMAL:
@@ -464,7 +453,6 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
                     {
                         if(stateMachine->inState != 2)
                         {
-                            (stateMachine->shift)[stateMachine->actualCollection] = (stateMachine->nextShift)[stateMachine->actualCollection];
                             if(((LEXEME*)(popedLexeme->data))->state == DECIMAL)
                             {
                                 if (*(long int*)((LEXEME*)(popedLexeme->data))->value > 127)
@@ -488,12 +476,17 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
                                 {
                                     PrintErrorCollection(stateMachine, ((LEXEME*)(popedLexeme->data))->lineNumber, "Value out of range","-128 min, 127 max" ,((LEXEME*)(popedLexeme->data))->type);
                                 }
+                                else
+                                {
+                                    *(long int*)((LEXEME*)(popedLexeme->data))->value *= -1;
+                                }
                             }
                             else
                             {
                                 PrintErrorCollection(stateMachine, ((LEXEME*)(popedLexeme->data))->lineNumber, "Value out of range","0x00 min, 0xFF max" ,((LEXEME*)(popedLexeme->data))->type);
                             }
                         }
+                        (stateMachine->shift)[stateMachine->actualCollection] = (stateMachine->nextShift)[stateMachine->actualCollection];
                         (stateMachine->nextShift)[stateMachine->actualCollection] += 1;
                         SECTION* section = CreateDirectiveSection(stateMachine->currentState, (stateMachine->shift)[stateMachine->actualCollection], &popedLexeme);
                         PushQueueDouble(&(collections->collection[stateMachine->actualCollection]), section, DisplaySection, ErasedSection, sizeof(*section));
