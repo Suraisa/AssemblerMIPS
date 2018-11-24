@@ -33,7 +33,9 @@ void InitializationOperandFsm(FSM_STATE_OPERAND* fsm, OPERAND_TYPE operandType);
 
 int IsImmediat(LIST_DOUBLE* listLexeme);
 
-int IsRelativeAbsolute(LIST_DOUBLE* listLexeme, int valueMax, int valueMin);
+int IsAbsolute(LIST_DOUBLE* listLexeme);
+
+int IsRelative(LIST_DOUBLE* listLexeme);
 
 int IsBaseOffset(LIST_DOUBLE* listLexeme);
 

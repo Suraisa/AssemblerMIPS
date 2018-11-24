@@ -31,12 +31,22 @@ void OperandFSM(FSM_STATE_OPERAND* fsm, LIST_DOUBLE* listOperand)
         }
         case ABSOLUTE:
         {
-            fsm->error = !IsRelativeAbsolute(listOperand, ABSOLUTE_MAX, ABSOLUTE_MIN);
+            fsm->error = !IsAbsolute(listOperand);
             break;
         }
         case RELATIVE:
         {
-            fsm->error = !IsRelativeAbsolute(listOperand, RELATIVE_MAX, RELATIVE_MIN);
+            fsm->error = !IsRelative(listOperand);
+            break;
+        }
+        case SHIFT_AMOUNT:
+        {
+            fsm->error = !IsShiftAmount(listOperand);
+            break;
+        }
+        default:
+        {
+            fsm->error = 1;
             break;
         }
     }
@@ -47,12 +57,17 @@ int IsImmediat(LIST_DOUBLE* listLexeme)
     LIST_DOUBLE firstNode = *listLexeme;
     LIST_DOUBLE listOperand = *listLexeme;
     int sign = 1;
-    int IsImmediat = 0;
+    int isCorrect = 0;
     if(SizeListDouble(listOperand) > 2)
         return 0;
 
     do
     {
+        if(((LEXEME *)listOperand->prev->data)->state == OPERATOR)
+        {
+            firstNode = listOperand;
+            ErasedInFrontDouble(listLexeme);
+        }
         LEXEME lexeme = *((LEXEME *)listOperand->data);
         switch (lexeme.state)
         {
@@ -80,23 +95,17 @@ int IsImmediat(LIST_DOUBLE* listLexeme)
                 }
                 else if(sign == -1)
                 {
-                    if(*(int*)lexeme.value > SCHAR_MIN)
+                    if(*(int*)lexeme.value > -SHRT_MIN)
                         return 0;
                 }
-                *(int*)((LEXEME *)listOperand->prev->data)->value *= sign;
-                IsImmediat = 1;
+                isCorrect = 1;
                 break;
             }
         }
         listOperand = listOperand->next;
-        if(lexeme.state == OPERATOR)
-        {
-            firstNode = listOperand;
-            ErasedAtLastDouble(listOperand);
-        }
     }while (firstNode != listOperand);
-    
-    return IsImmediat;
+    *(long int*)((LEXEME *)(*listLexeme)->data)->value *= sign;
+    return isCorrect;
 }
 
 int IsShiftAmount(LIST_DOUBLE* listLexeme)
@@ -114,17 +123,96 @@ int IsShiftAmount(LIST_DOUBLE* listLexeme)
     return 1;
 }
 
-int IsRelativeAbsolute(LIST_DOUBLE* listLexeme, int valueMax, int valueMin)
+int IsAbsolute(LIST_DOUBLE* listLexeme)
 {
     LIST_DOUBLE firstNode = *listLexeme;
     LIST_DOUBLE listOperand = *listLexeme;
+    LEXEME lexeme;
     int sign = 1;
-    int IsImmediat = 0;
+    int isCorrect = 0;
+    int findSign = 0;
     if(SizeListDouble(listOperand) > 2)
         return 0;
 
     do
     {
+        if(((LEXEME *)listOperand->prev->data)->state == OPERATOR)
+        {
+            firstNode = listOperand;
+            ErasedInFrontDouble(listLexeme);
+        }
+        lexeme = *((LEXEME *)listOperand->data);
+        switch (lexeme.state)
+        {
+            default:
+                return 0;
+
+            case SYMBOL:
+            {
+                if (SizeListDouble(listOperand)>1)
+                    return 0;
+
+                if(findSign)
+                    return 0;
+
+                isCorrect = 1;
+                break;
+            }
+            case OPERATOR:
+            {
+                if(lexeme.state == ((LEXEME *)listOperand->next->data)->state)
+                    return 0;
+
+                if(*(char*)lexeme.value == '-')
+                {
+                    sign = -1;
+                }
+                findSign = 1;
+                break;
+            }
+            case HEXADECIMAL:
+            case DECIMAL:
+            {
+                if(sign == 1)
+                {
+                    if(*(int*)lexeme.value > RELATIVE_MAX)
+                        return 0;
+                }
+                else if(sign == -1)
+                {
+                    if(*(int*)lexeme.value > -RELATIVE_MIN)
+                        return 0;
+                }
+                isCorrect = (*(int*)lexeme.value)%4 == 0 ? 1 : 0;
+                break;
+            }
+        }
+        listOperand = listOperand->next;
+    }while (firstNode != listOperand);
+    if(lexeme.state != SYMBOL)
+    {
+        *(long int*)((LEXEME *)(*listLexeme)->data)->value *= sign;
+        *(long int*)((LEXEME *)(*listLexeme)->data)->value >>= 2;
+    }
+    return isCorrect;
+}
+
+int IsRelative(LIST_DOUBLE* listLexeme)
+{
+    LIST_DOUBLE firstNode = *listLexeme;
+    LIST_DOUBLE listOperand = *listLexeme;
+    int sign = 1;
+    int isCorrect = 0;
+    if(SizeListDouble(listOperand) > 2)
+        return 0;
+
+    do
+    {
+        if(((LEXEME *)listOperand->prev->data)->state == OPERATOR)
+        {
+            firstNode = listOperand;
+            ErasedInFrontDouble(listLexeme);
+        }
         LEXEME lexeme = *((LEXEME *)listOperand->data);
         switch (lexeme.state)
         {
@@ -147,28 +235,23 @@ int IsRelativeAbsolute(LIST_DOUBLE* listLexeme, int valueMax, int valueMin)
             {
                 if(sign == 1)
                 {
-                    if(*(int*)lexeme.value > valueMax)
+                    if(*(int*)lexeme.value > RELATIVE_MAX)
                         return 0;
                 }
                 else if(sign == -1)
                 {
-                    if(*(int*)lexeme.value > -valueMin)
+                    if(*(int*)lexeme.value > -RELATIVE_MIN)
                         return 0;
                 }
-                IsImmediat = (*(int*)lexeme.value)%4 == 0 ? 1 : 0;
+                isCorrect = (*(int*)lexeme.value)%4 == 0 ? 1 : 0;
                 break;
             }
         }
         listOperand = listOperand->next;
-        if(lexeme.state == OPERATOR)
-        {
-            firstNode = listOperand;
-            ErasedAtLastDouble(listOperand);
-        }
     }while (firstNode != listOperand);
-    *(int*)((LEXEME *)listOperand->prev->data)->value *= sign;
-    *(int*)((LEXEME *)listOperand->prev->data)->value %= 4;
-    return IsImmediat;
+    *(long int*)((LEXEME *)(*listLexeme)->data)->value *= sign;
+    *(long int*)((LEXEME *)(*listLexeme)->data)->value >>= 2;
+    return isCorrect;
 }
 
 int IsBaseOffset(LIST_DOUBLE* listLexeme)
@@ -177,12 +260,17 @@ int IsBaseOffset(LIST_DOUBLE* listLexeme)
     LIST_DOUBLE listOperand = *listLexeme;
     int findSign = 0;
     int sign = 1;
-    int IsImmediat = 0;
-    if(SizeListDouble(listOperand) > 2)
+    int isCorrect = 0;
+    if(SizeListDouble(listOperand) > 5)
         return 0;
 
     do
     {
+        if(findSign && ((LEXEME *)listOperand->prev->data)->state == OPERATOR)
+        {
+            firstNode = listOperand;
+            ErasedInFrontDouble(listLexeme);
+        }
         LEXEME lexeme = *((LEXEME *)listOperand->data);
         switch (lexeme.state)
         {
@@ -191,6 +279,9 @@ int IsBaseOffset(LIST_DOUBLE* listLexeme)
 
             case OPERATOR:
             {
+                if(findSign)
+                    return 0;
+
                 if(((LEXEME *)listOperand->prev->data)->state != PARENTHESISRIGHT)
                     return 0;
 
@@ -204,7 +295,7 @@ int IsBaseOffset(LIST_DOUBLE* listLexeme)
             case HEXADECIMAL:
             case DECIMAL:
             {
-                if(((LEXEME *)listOperand->prev->data)->state != PARENTHESISRIGHT || findSign)
+                if(((LEXEME *)listOperand->prev->data)->state != PARENTHESISRIGHT && !findSign)
                     return 0;
                 
                 if(sign == 1)
@@ -217,12 +308,11 @@ int IsBaseOffset(LIST_DOUBLE* listLexeme)
                     if(*(int*)lexeme.value > -SHRT_MIN)
                         return 0;
                 }
-                IsImmediat = (*(int*)lexeme.value)%4 == 0 ? 1 : 0;
                 break;
             }
             case PARENTHESISLEFT:
             {
-                if (((LEXEME *)listOperand->prev->data)->state != HEXADECIMAL || ((LEXEME *)listOperand->prev->data)->state != DECIMAL)
+                if (((LEXEME *)listOperand->prev->data)->state != HEXADECIMAL && ((LEXEME *)listOperand->prev->data)->state != DECIMAL)
                     return 0;
                 break;
             }
@@ -236,16 +326,13 @@ int IsBaseOffset(LIST_DOUBLE* listLexeme)
             {
                 if(((LEXEME *)listOperand->prev->data)->state != REGISTER)
                     return 0;
+                
+                isCorrect = 1;
                 break;
             }
         }
         listOperand = listOperand->next;
-        if(lexeme.state == OPERATOR)
-        {
-            firstNode = listOperand;
-            ErasedAtLastDouble(listOperand);
-        }
     }while (firstNode != listOperand);
-    *(int*)((LEXEME *)listOperand->prev->data)->value *= sign;
-    return IsImmediat;
+    *(long int*)((LEXEME *)(*listLexeme)->data)->value *= sign;
+    return isCorrect;
 }
