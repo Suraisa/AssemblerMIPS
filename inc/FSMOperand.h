@@ -20,7 +20,7 @@ typedef enum
     BASE_OFFSET,
     IMMEDIAT,
     SHIFT_AMOUNT,
-    RELATIVE,
+    RELATIVE
 }OPERAND_TYPE;
 
 typedef struct
