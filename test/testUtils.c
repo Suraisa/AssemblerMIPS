@@ -1,50 +1,57 @@
 #include <stdio.h>
 
-#include "ListGeneric.h"
+#include "DoubleListGeneric.h"
 #include "DisplayType.h"
 #include "Utils.h"
 
 int main()
 {
-    LIST list = CreateList();
+    LIST_DOUBLE list = CreateListDouble();
 
     int a = 7;
 
-    AddInFront(&list, &a, &DisplayInt, NULL, sizeof(long int));
+    AddInFrontDouble(&list, &a, &DisplayInt, NULL, sizeof(long int));
     a = 6;
-    AddInFront(&list, &a, &DisplayInt, NULL, sizeof(long int));
+    AddInFrontDouble(&list, &a, &DisplayInt, NULL, sizeof(long int));
     a = 3;
-    AddInFront(&list, &a, &DisplayInt, NULL, sizeof(long int));
+    AddInFrontDouble(&list, &a, &DisplayInt, NULL, sizeof(long int));
     a = 2;
-    AddInFront(&list, &a, &DisplayInt, NULL, sizeof(long int));
+    AddInFrontDouble(&list, &a, &DisplayInt, NULL, sizeof(long int));
 
-    printf("\nConcatenation of int: %ld\n",ConcatenateIntList(list));
+    printf("\nConcatenation of int: %ld\n",ConcatenateIntListDouble(list));
 
-    ErasedList(&list);
+    ErasedListDouble(&list);
 
 
     char b = 'a';
 
-    AddInFront(&list, &b, &DisplayChar, NULL, sizeof(char));
+    AddInFrontDouble(&list, &b, &DisplayChar, NULL, sizeof(char));
     b = 'b';
-    AddInFront(&list, &b, &DisplayChar, NULL, sizeof(char));
+    AddInFrontDouble(&list, &b, &DisplayChar, NULL, sizeof(char));
     b = 'c';
-    AddInFront(&list, &b, &DisplayChar, NULL, sizeof(char));
+    AddInFrontDouble(&list, &b, &DisplayChar, NULL, sizeof(char));
 
-    printf("\nConcatanation of char: %s\nSize of the string: %d",ConcatenateCharList(list), StringSize(ConcatenateCharList(list)));
+    printf("\nConcatenation of char: %s\nSize of the string: %d",ConcatenateCharListDouble(list), StringSize(ConcatenateCharListDouble(list)));
 
-    ErasedList(&list);
+    ErasedListDouble(&list);
 
     char* value = malloc(3*sizeof(*value));
     int* intValue;
     strcpy(value, "33");
     printf("\n%s\n", value);
-    a = IsAvailableRegister(&value, &intValue);
+    a = IsAvailableRegister(value, &intValue);
     printf("\n%d\n", *intValue);
 
     free(value);
     free(intValue);
 
+    char* string = malloc(10);
+    strcpy(string,"TheString");
+
+    ReplaceString(&string, "test", 3,5);
+    printf("\n%s\n", string);
+
+    free(string);
 
     return 0;
 }

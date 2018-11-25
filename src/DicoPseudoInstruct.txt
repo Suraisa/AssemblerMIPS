@@ -1,12 +1,23 @@
 LW
-LUI ^1 ^2U
-LW ^1 ^2L
+LUI ^1, ^2U
+LW ^1, ^2L(^1)
 
-LW $0
-LUI $at ^2U
-LW ^1 ^2L
+SW
+LUI $at, ^2U
+SW ^1, ^2L($at)
 
 NOP
 SLL $0, $0, 0
 
-MOVE 
+MOVE
+ADD ^1, ^2, $0
+
+NEG
+SUB ^1, $0, ^2
+
+LI
+ADDI ^1, $0, ^2
+
+BLT
+SLT $1, ^1, ^2
+BNE $1, $0, ^3

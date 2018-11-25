@@ -277,3 +277,39 @@ void ChangeRegisterName(int** newName, int number)
     *newName = malloc(sizeof(**newName));
     **newName = number;
 }
+
+void ReplaceString(char** fullString, char* replaceString, int start, int end)
+{
+    char* newString = malloc(strlen(*fullString)-(end-start) + strlen(replaceString));
+
+    char* firstPart = CutString(*fullString, 0, start);
+    char* secondPart = CutString(*fullString, end+1, strlen(*fullString)-end-1);
+    strcpy(newString, "");
+    strcat(newString, firstPart);
+    free(firstPart);
+    strcat(newString, replaceString);
+    strcat(newString, secondPart);
+    free(secondPart);
+    free(*fullString);
+    
+    *fullString = newString;
+}
+
+char* CutString(char* fullString, int start, int length)
+{
+    char* newString = malloc(length+1);
+
+    if(!newString)
+        return NULL;
+    
+    int index; 
+    for(index = start; index<start+ length; index++)
+    {
+        printf("%d\n", index);
+        newString[index-start] = fullString[index];
+    }
+
+    newString[index-start] = '\0';
+
+    return newString;
+}

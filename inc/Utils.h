@@ -114,4 +114,8 @@ int IsAvailableRegister(char* registerToTest, int** newName);
 
 void ChangeRegisterName(int** newName, int number);
 
+void ReplaceString(char** fullString, char* replaceString, int start, int end);
+
+char* CutString(char* fullString, int start, int length);
+
 #endif
