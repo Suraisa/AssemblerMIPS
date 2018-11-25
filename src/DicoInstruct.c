@@ -31,7 +31,8 @@ INSTRUCTION*InitializeDicoInstruct(char *nameDicoFile)
 
     while(index<sizeDico && !feof(file))
     {
-        fscanf(file, "%s %c %d", (dictionary[index].id), &(dictionary[index].type), &(dictionary[index].typeNumber));
+        fscanf(file, "%s %s %d", (dictionary[index].id), &(dictionary[index].operands), &(dictionary[index].hasPseudoInstruction));
+        dictionary[index].typeNumber = strlen(dictionary[index].operands);
         index++;
     }
 
@@ -51,7 +52,6 @@ int IndexInstruction(INSTRUCTION* dictionary, char *instructionName)
     int isNotEqual = 0;
 
     StringUpper(instructionName);
-
     while (index < sizeDico && (isNotEqual = strcmp(dictionary[index].id, instructionName) != 0))
     {
         index++;

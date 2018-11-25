@@ -12,10 +12,10 @@ void OperandFSM(FSM_STATE_OPERAND* fsm, LIST_DOUBLE* listOperand)
     {
         case REG:
         {
-            if ((*listOperand)->next != (*listOperand) && ((LEXEME *)(*listOperand)->data)->state == REGISTER)
+            if ((*listOperand)->next != (*listOperand) || ((LEXEME *)(*listOperand)->data)->state != REGISTER)
             {
                 fsm->error = 1;
-                return;
+                break;
             }
             break;
         }
@@ -261,6 +261,7 @@ int IsBaseOffset(LIST_DOUBLE* listLexeme)
     int findSign = 0;
     int sign = 1;
     int isCorrect = 0;
+
     if(SizeListDouble(listOperand) > 5)
         return 0;
 

@@ -577,7 +577,7 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
                     }         
 
                     stateMachine->currentState = INSTRUCTION1;
-                    SECTION* section = CreateInstructionSection(stateMachine->currentState, (stateMachine->shift)[stateMachine->actualCollection], instructionDictionary[dictionaryIndex].id, instructionDictionary[dictionaryIndex].typeNumber,lineNumber);
+                    SECTION* section = CreateInstructionSection(stateMachine->currentState, (stateMachine->shift)[stateMachine->actualCollection], instructionDictionary[dictionaryIndex].id, dictionaryIndex,lineNumber);
                     AddInFrontDouble(&(collections->collection[stateMachine->actualCollection]), section, DisplaySection, ErasedSection, sizeof(*section));
                     free(section);
                     break;
@@ -605,22 +605,21 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
                 {
                     if(IsEmptyDouble(*lexemeQueue))
                     {
-                        if(!AddOperand(stateMachine, (SECTION*)(collections->collection[stateMachine->actualCollection]->data), &lexemeList))
+                        if(!AddOperand(stateMachine, (SECTION*)(collections->collection[stateMachine->actualCollection]->data), &lexemeList, instructionDictionary))
                         {
-                            PrintErrorCollection(stateMachine, ((LEXEME *)lexemeList->data)->lineNumber, "Too many operand in instruction:", "", ((SECTION*)(collections->collection[stateMachine->actualCollection]->data))->data.instruction.name);
+                            PrintErrorCollection(stateMachine, ((LEXEME *)lexemeList->data)->lineNumber, "Error in the instruction:", "", ((SECTION*)(collections->collection[stateMachine->actualCollection]->data))->data.instruction.name);
                             ErasedInFrontDouble(&(collections->collection[stateMachine->actualCollection]));                            
                             ErasedListDouble(&lexemeList);
                             break;
                         }
                         stateMachine->inState = 0;
                         nbOperand++;
-                        ((SECTION*)(collections->collection[stateMachine->actualCollection]->data))->data.instruction.operandNumber = nbOperand;
                     }
                     else if(((LEXEME *)(*lexemeQueue)->data)->state == COMMA || ((LEXEME *)(*lexemeQueue)->data)->state == COMMENT || ((LEXEME *)(*lexemeQueue)->data)->state == RETURN)
                     {
-                        if (!AddOperand(stateMachine, (SECTION*)(collections->collection[stateMachine->actualCollection]->data), &lexemeList))
+                        if (!AddOperand(stateMachine, (SECTION*)(collections->collection[stateMachine->actualCollection]->data), &lexemeList, instructionDictionary))
                         {
-                            PrintErrorCollection(stateMachine, ((LEXEME *)lexemeList->data)->lineNumber, "Too many operand in instruction:", "", ((SECTION*)(collections->collection[stateMachine->actualCollection]->data))->data.instruction.name);
+                            PrintErrorCollection(stateMachine, ((LEXEME *)lexemeList->data)->lineNumber, "Error in the instruction:", "", ((SECTION*)(collections->collection[stateMachine->actualCollection]->data))->data.instruction.name);
                             ErasedInFrontDouble(&(collections->collection[stateMachine->actualCollection]));                            
                             ErasedListDouble(&lexemeList);
                             break;
@@ -641,7 +640,6 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
                                 (stateMachine->shift)[stateMachine->actualCollection] = (stateMachine->nextShift)[stateMachine->actualCollection];
                                 (stateMachine->nextShift)[stateMachine->actualCollection] += 4;
                                 stateMachine->currentState = INIT_COLLECTION;
-                                ((SECTION*)(collections->collection[stateMachine->actualCollection]->data))->data.instruction.operandNumber = nbOperand;
                                 break;
                             }
                         }
@@ -662,11 +660,10 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
                     (stateMachine->nextShift)[stateMachine->actualCollection] += 4;
                     stateMachine->currentState = INIT_COLLECTION;
                     nbOperand++;
-                    ((SECTION*)(collections->collection[stateMachine->actualCollection]->data))->data.instruction.operandNumber = nbOperand;
                     break;
                 }
             }
-            while(stateMachine->inState != 2 || nbOperand != ((SECTION*)(collections->collection[stateMachine->actualCollection]->data))->data.instruction.operandNumber);            
+            while(stateMachine->inState != 2 || nbOperand != instructionDictionary[((SECTION*)(collections->collection[stateMachine->actualCollection]->data))->data.instruction.dicoIndex].typeNumber);            
             break;
         }
         default:

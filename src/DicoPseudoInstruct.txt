@@ -1,0 +1,12 @@
+LW
+LUI ^1 ^2U
+LW ^1 ^2L
+
+LW $0
+LUI $at ^2U
+LW ^1 ^2L
+
+NOP
+SLL $0, $0, 0
+
+MOVE 

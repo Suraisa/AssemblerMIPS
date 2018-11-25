@@ -15,12 +15,12 @@
 
 typedef enum
 {
-    ABSOLUTE,
-    REG,
-    BASE_OFFSET,
-    IMMEDIAT,
-    SHIFT_AMOUNT,
-    RELATIVE
+    ABSOLUTE = 'A',
+    REG = '$',
+    BASE_OFFSET = 'B',
+    IMMEDIAT = 'I',
+    SHIFT_AMOUNT = 'S',
+    RELATIVE = 'R'
 }OPERAND_TYPE;
 
 typedef struct

@@ -29,7 +29,7 @@ void InitializeCollectionLists(COLLECTION_LISTS* collections)
     }
 }
 
-SECTION* CreateInstructionSection(COLLECTION_STATE state, unsigned long int shift, char* instructionName, int operandNumber, unsigned long int lineNumber)
+SECTION* CreateInstructionSection(COLLECTION_STATE state, unsigned long int shift, char* instructionName, int dicoIndex, unsigned long int lineNumber)
 {
     SECTION* section = calloc(1, sizeof(*section));
     if(section == NULL)
@@ -41,7 +41,7 @@ SECTION* CreateInstructionSection(COLLECTION_STATE state, unsigned long int shif
     section->shift = shift;
     section->dataType = INST;
     section->data.instruction.name = instructionName;
-    section->data.instruction.operandNumber = operandNumber;
+    section->data.instruction.dicoIndex = dicoIndex;
     section->data.instruction.lineNumber = lineNumber;
 
     int index;
@@ -99,20 +99,25 @@ int NumberLexemeOperand(LIST_DOUBLE lexemeList)
     {
         index++;
         nodeI = nodeI->next;
-        printf("%s\n",((LEXEME *)nodeI->data)->type);
     }while(nodeI != firstNode && ((LEXEME *)nodeI->data)->state != COMMA && ((LEXEME *)nodeI->data)->state != RETURN && ((LEXEME *)nodeI->data)->state != COMMENT && ((LEXEME *)nodeI->data)->state != COLON);
     return index;
 }
 
-int AddOperand(COLLECTION_FSM* stateMachine, SECTION* section, LIST_DOUBLE* lexemeList)
+int AddOperand(COLLECTION_FSM* stateMachine, SECTION* section, LIST_DOUBLE* lexemeList, INSTRUCTION* instructionDictionary)
 {
     int index=0;
-
     while (index<3 && !IsEmptyDouble(section->data.instruction.lexemeList[index]))
     {
         index++;
     }
-    if (index>=section->data.instruction.operandNumber)
+
+    if(index>=instructionDictionary[section->data.instruction.dicoIndex].typeNumber)
+        return 0;
+
+    FSM_STATE_OPERAND fsmOperand;
+    InitializationOperandFsm(&fsmOperand, instructionDictionary[section->data.instruction.dicoIndex].operands[index]);
+    OperandFSM(&fsmOperand, lexemeList);
+    if (fsmOperand.error)
         return 0;
 
     section->data.instruction.lexemeList[index] = *lexemeList;

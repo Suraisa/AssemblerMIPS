@@ -3,6 +3,8 @@
 
 #include "DoubleListGeneric.h"
 #include "DoubleQueueGeneric.h"
+#include "FSMOperand.h"
+#include "DicoInstruct.h"
 
 #ifndef ENUM_COLLECTION
 #define ENUM_COLLECTION
@@ -24,7 +26,7 @@ typedef enum
 typedef struct
 {
     char* name;
-    int operandNumber;
+    int dicoIndex;
     unsigned long int lineNumber;
     QUEUE_DOUBLE lexemeList[3];
 } INSTRUCTION_DATA;
@@ -66,7 +68,7 @@ extern char* collectionSection[3];
 
 void InitializeCollectionLists(COLLECTION_LISTS* collections);
 
-SECTION* CreateInstructionSection(COLLECTION_STATE state, unsigned long int shift, char* instructionName, int operandNumber, unsigned long int lineNumber);
+SECTION* CreateInstructionSection(COLLECTION_STATE state, unsigned long int shift, char* instructionName, int dicoIndex, unsigned long int lineNumber);
 
 SECTION* CreateDirectiveSection(COLLECTION_STATE state, unsigned long int shift, LIST_DOUBLE* lexemeList);
 
@@ -74,7 +76,7 @@ SECTION* CreateLabelSection(COLLECTION_FSM stateMachine, LIST_DOUBLE* lexemeList
 
 int NumberLexemeOperand(LIST_DOUBLE lexemeList);
 
-int AddOperand(COLLECTION_FSM* stateMachine, SECTION* section, LIST_DOUBLE* lexemeList);
+int AddOperand(COLLECTION_FSM* stateMachine, SECTION* section, LIST_DOUBLE* lexemeList, INSTRUCTION* instructionDictionary);
 
 void DisplaySection(void* value);
 

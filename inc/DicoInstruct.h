@@ -8,8 +8,9 @@
 
 typedef struct
 {
-    char id[5];
-    char type;
+    char id[30];
+    char operands[3];
+    int hasPseudoInstruction;
     int typeNumber;
 } INSTRUCTION;
 
