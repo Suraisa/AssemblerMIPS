@@ -56,11 +56,11 @@ void InitCollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue)
             if(stateMachine->previousState == INSTRUCTION0)
                 break;
 
-            PrintErrorCollection(stateMachine, ((LEXEME*)((*lexemeQueue)->data))->lineNumber, "You can't use:","now" ,((LEXEME*)((*lexemeQueue)->data))->type);                    
+            PrintErrorCollection(stateMachine, ((LEXEME*)((*lexemeQueue)->data))->lineNumber, "You can't use:","now" ,((LEXEME*)((*lexemeQueue)->data))->type);
         }
         default:
         {
-            PrintErrorCollection(stateMachine, ((LEXEME*)((*lexemeQueue)->data))->lineNumber, "You can't use:","now" ,((LEXEME*)((*lexemeQueue)->data))->type);                    
+            PrintErrorCollection(stateMachine, ((LEXEME*)((*lexemeQueue)->data))->lineNumber, "You can't use:","now" ,((LEXEME*)((*lexemeQueue)->data))->type);
             break;
         }
     }
@@ -137,7 +137,7 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
             {
                 if(stateMachine->actualCollection != DATA)
                 {
-                    PrintErrorCollection(stateMachine, ((LEXEME*)((*lexemeQueue)->data))->lineNumber, "You're not in the correct section for:","" ,((LEXEME*)((*lexemeQueue)->data))->type);                    
+                    PrintErrorCollection(stateMachine, ((LEXEME*)((*lexemeQueue)->data))->lineNumber, "You're not in the correct section for:","" ,((LEXEME*)((*lexemeQueue)->data))->type);
                 }
                 else
                 {
@@ -175,7 +175,7 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
                 case OPERATOR:
                     if(*(char*)((LEXEME*)(popedLexeme->data))->value == '-')
                     {
-                        PrintErrorCollection(stateMachine, ((LEXEME*)(popedLexeme->data))->lineNumber, "You can't use:","now" ,((LEXEME*)(popedLexeme->data))->type);                        
+                        PrintErrorCollection(stateMachine, ((LEXEME*)(popedLexeme->data))->lineNumber, "You can't use:","now" ,((LEXEME*)(popedLexeme->data))->type);
                     }
                     ErasedListDouble(&popedLexeme);
                     popedLexeme = PopInFrontDouble(lexemeQueue, 1);
@@ -186,7 +186,7 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
                     (stateMachine->nextShift)[stateMachine->actualCollection] += *(long int*)((LEXEME*)(popedLexeme->data))->value;
                     SECTION* section = CreateDirectiveSection(stateMachine->currentState, (stateMachine->shift)[stateMachine->actualCollection], &popedLexeme);
                     PushQueueDouble(&(collections->collection[stateMachine->actualCollection]), section, DisplaySection, ErasedSection, sizeof(*section));
-                    free(section);  
+                    free(section);
                     break;
                 }
             }
@@ -201,7 +201,7 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
             {
                 default:
                 {
-                    PrintErrorCollection(stateMachine, ((LEXEME*)(popedLexeme->data))->lineNumber, "You can't use:","now" ,((LEXEME*)(popedLexeme->data))->type);                    
+                    PrintErrorCollection(stateMachine, ((LEXEME*)(popedLexeme->data))->lineNumber, "You can't use:","now" ,((LEXEME*)(popedLexeme->data))->type);
                     ErasedListDouble(&popedLexeme);
                     break;
                 }
@@ -210,7 +210,7 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
                 {
                     if(stateMachine->inState != 2)
                     {
-                        PrintErrorCollection(stateMachine, ((LEXEME*)(popedLexeme->data))->lineNumber, "You can't use:","now" ,((LEXEME*)(popedLexeme->data))->type);                        
+                        PrintErrorCollection(stateMachine, ((LEXEME*)(popedLexeme->data))->lineNumber, "You can't use:","now" ,((LEXEME*)(popedLexeme->data))->type);
                     }
                     else
                     {
@@ -274,7 +274,7 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
                 {
                     if(stateMachine->currentState != 3)
                     {
-                        PrintErrorCollection(stateMachine, ((LEXEME*)(popedLexeme->data))->lineNumber, "You can't use:","now" ,((LEXEME*)(popedLexeme->data))->type);                        
+                        PrintErrorCollection(stateMachine, ((LEXEME*)(popedLexeme->data))->lineNumber, "You can't use:","now" ,((LEXEME*)(popedLexeme->data))->type);
                     }
                     else
                     {
@@ -343,14 +343,14 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
                     {
                         if(*(long int*)((LEXEME*)(popedLexeme->data))->value > INT_MAX)
                         {
-                            PrintErrorCollection(stateMachine, ((LEXEME*)(popedLexeme->data))->lineNumber, "Value out of range","-2147483648 min, 2147483647 max" ,((LEXEME*)(popedLexeme->data))->type);                            
+                            PrintErrorCollection(stateMachine, ((LEXEME*)(popedLexeme->data))->lineNumber, "Value out of range","-2147483648 min, 2147483647 max" ,((LEXEME*)(popedLexeme->data))->type);
                         }
                     }
                     else
                     {
                         if(*(long int*)((LEXEME*)(popedLexeme->data))->value > (unsigned int)-INT_MAX)
                         {
-                            PrintErrorCollection(stateMachine, ((LEXEME*)(popedLexeme->data))->lineNumber, "Value out of range","-2147483648 min, 2147483647 max" ,((LEXEME*)(popedLexeme->data))->type);                            
+                            PrintErrorCollection(stateMachine, ((LEXEME*)(popedLexeme->data))->lineNumber, "Value out of range","-2147483648 min, 2147483647 max" ,((LEXEME*)(popedLexeme->data))->type);
                         }
                         else
                         {
@@ -360,7 +360,7 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
                     (stateMachine->nextShift)[stateMachine->actualCollection] += (stateMachine->nextShift)[stateMachine->actualCollection]%4 == 0 ? 0:4-(stateMachine->nextShift)[stateMachine->actualCollection]%4;
                     (stateMachine->shift)[stateMachine->actualCollection] = (stateMachine->nextShift)[stateMachine->actualCollection];
                     (stateMachine->nextShift)[stateMachine->actualCollection] += 4;
-                    
+
                     SECTION* section = CreateDirectiveSection(stateMachine->currentState, (stateMachine->shift)[stateMachine->actualCollection], &popedLexeme);
                     PushQueueDouble(&(collections->collection[stateMachine->actualCollection]), section, DisplaySection, ErasedSection, sizeof(*section));
                     free(section);
@@ -447,7 +447,7 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
                 {
                     if(stateMachine->inState == 1)
                     {
-                        PrintErrorCollection(stateMachine, ((LEXEME*)(popedLexeme->data))->lineNumber, "You can't use:","now" ,((LEXEME*)(popedLexeme->data))->type);                
+                        PrintErrorCollection(stateMachine, ((LEXEME*)(popedLexeme->data))->lineNumber, "You can't use:","now" ,((LEXEME*)(popedLexeme->data))->type);
                     }
                     else
                     {
@@ -502,7 +502,7 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
         {
             if(IsEmptyDouble(*lexemeQueue) || (((LEXEME *)(*lexemeQueue)->data)->state) != SYMBOL)
             {
-                PrintErrorCollection(stateMachine, 0, "In directive .set","" ,"");                
+                PrintErrorCollection(stateMachine, 0, "In directive .set","" ,"");
             }
             else
             {
@@ -523,7 +523,7 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
             unsigned long int lineNumber = ((LEXEME*)popedLexeme->data)->lineNumber;
             if(!IsEmptyDouble(*lexemeQueue) && (((LEXEME *)(*lexemeQueue)->data)->state == STRING || ((LEXEME *)(*lexemeQueue)->data)->state == DIRECTIVE || ((LEXEME *)(*lexemeQueue)->data)->state == COMMA))
             {
-                PrintErrorCollection(stateMachine, lineNumber, "You can't use:","now" ,((LEXEME*)(popedLexeme->data))->type);                
+                PrintErrorCollection(stateMachine, lineNumber, "You can't use:","now" ,((LEXEME*)(popedLexeme->data))->type);
                 ErasedListDouble(&popedLexeme);
                 break;
             }
@@ -532,7 +532,7 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
                 if(!IsEmptyDouble(*lexemeQueue) && ((LEXEME *)(*lexemeQueue)->data)->state == COLON)
                 {
                     SECTION* section = CreateLabelSection(*stateMachine, &popedLexeme);
-                    if(!AddHashTable(&(collections->labelTable), section))
+                    if(AddHashTable(&(collections->labelTable), section))
                     {
                         PrintErrorCollection(stateMachine, lineNumber, "Two label with the same name","" , (char*)((LEXEME*)popedLexeme->data)->value);
                         free(section);
@@ -548,7 +548,7 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
                 {
                     (stateMachine->shift)[stateMachine->actualCollection] = (stateMachine->nextShift)[stateMachine->actualCollection];
                     int dictionaryIndex = IndexInstruction(instructionDictionary, (char*)((LEXEME*)popedLexeme->data)->value);
-                    
+
                     if(dictionaryIndex == -1)
                     {
                         PrintErrorCollection(stateMachine, lineNumber, "The instruction","doesn't exist" , (char*)((LEXEME*)popedLexeme->data)->value);
@@ -556,7 +556,7 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
                         break;
                     }
                     stateMachine->previousState = stateMachine->currentState;
-                    
+
                     if(instructionDictionary[dictionaryIndex].typeNumber == '0' || IsEmptyDouble(*lexemeQueue) || ((LEXEME *)(*lexemeQueue)->data)->state == RETURN || ((LEXEME *)(*lexemeQueue)->data)->state == COMMENT)
                     {
                         if(!IsEmptyDouble(collections->collection[stateMachine->actualCollection]) && ((SECTION*)(collections->collection[stateMachine->actualCollection]->data))->data.instruction.lineNumber == lineNumber)
@@ -567,14 +567,14 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
                         }
 
                         SECTION* section = CreateInstructionSection(stateMachine->currentState, (stateMachine->shift)[stateMachine->actualCollection], instructionDictionary[dictionaryIndex].id, instructionDictionary[dictionaryIndex].typeNumber,lineNumber);
-                        (stateMachine->shift)[stateMachine->actualCollection] = (stateMachine->nextShift)[stateMachine->actualCollection];                    
+                        (stateMachine->shift)[stateMachine->actualCollection] = (stateMachine->nextShift)[stateMachine->actualCollection];
                         (stateMachine->nextShift)[stateMachine->actualCollection] += 4;
                         stateMachine->currentState = INIT_COLLECTION;
                         AddInFrontDouble(&(collections->collection[stateMachine->actualCollection]), section, DisplaySection, ErasedSection, sizeof(*section));
                         ErasedListDouble(&popedLexeme);
                         free(section);
                         break;
-                    }         
+                    }
 
                     stateMachine->currentState = INSTRUCTION1;
                     SECTION* section = CreateInstructionSection(stateMachine->currentState, (stateMachine->shift)[stateMachine->actualCollection], instructionDictionary[dictionaryIndex].id, dictionaryIndex,lineNumber);
@@ -600,7 +600,7 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
                 int numberLexemes = NumberLexemeOperand(*lexemeQueue);
 
                 LIST_DOUBLE lexemeList = PopInFrontDouble(lexemeQueue, numberLexemes);
-                
+
                 if(!IsEmptyDouble(lexemeList))
                 {
                     if(IsEmptyDouble(*lexemeQueue))
@@ -608,7 +608,7 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
                         if(!AddOperand(stateMachine, (SECTION*)(collections->collection[stateMachine->actualCollection]->data), &lexemeList, instructionDictionary))
                         {
                             PrintErrorCollection(stateMachine, ((LEXEME *)lexemeList->data)->lineNumber, "Error in the instruction:", "", ((SECTION*)(collections->collection[stateMachine->actualCollection]->data))->data.instruction.name);
-                            ErasedInFrontDouble(&(collections->collection[stateMachine->actualCollection]));                            
+                            ErasedInFrontDouble(&(collections->collection[stateMachine->actualCollection]));
                             ErasedListDouble(&lexemeList);
                             break;
                         }
@@ -620,7 +620,7 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
                         if (!AddOperand(stateMachine, (SECTION*)(collections->collection[stateMachine->actualCollection]->data), &lexemeList, instructionDictionary))
                         {
                             PrintErrorCollection(stateMachine, ((LEXEME *)lexemeList->data)->lineNumber, "Error in the instruction:", "", ((SECTION*)(collections->collection[stateMachine->actualCollection]->data))->data.instruction.name);
-                            ErasedInFrontDouble(&(collections->collection[stateMachine->actualCollection]));                            
+                            ErasedInFrontDouble(&(collections->collection[stateMachine->actualCollection]));
                             ErasedListDouble(&lexemeList);
                             break;
                         }
@@ -663,7 +663,7 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
                     break;
                 }
             }
-            while(stateMachine->inState != 2 || nbOperand != instructionDictionary[((SECTION*)(collections->collection[stateMachine->actualCollection]->data))->data.instruction.dicoIndex].typeNumber);            
+            while(stateMachine->inState != 2 || nbOperand != instructionDictionary[((SECTION*)(collections->collection[stateMachine->actualCollection]->data))->data.instruction.dicoIndex].typeNumber);
             break;
         }
         default:
