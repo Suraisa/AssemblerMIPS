@@ -28,7 +28,7 @@ void FillRelocationList(LIST_DOUBLE* relocationList, COLLECTIONS symbolSection, 
   relocation->relativeAddress=relativeAddress;
   relocation->typeRMIPS=typeRMIPS;
   relocation->symbolAddress=*symbolAddress;
-  AddAtLastDouble(relocationList, relocation, DisplayRelocation, NULL, sizeof(*relocation))
+  AddAtLastDouble(relocationList, relocation, DisplayRelocation, NULL, sizeof(*relocation));
 }
 
 void DisplayRelocation(void* value){
@@ -61,7 +61,7 @@ void DisplayRelocationTable(RELOCATIONTABLE relocationTable)
     DisplayDoubleList(relocationTable.relocationData);
 }
 
-void UpdateRelocationText(LIST_DOUBLE* relocationList, SECTION** section){
+void UpdateRelocationText(LIST_DOUBLE* relocationList, SECTION** section, LIST_DOUBLE **hash){
   int index;
   for (index=0 ; index<3 ; index++){
     if ((**section).data.instruction.lexemeList[index]->data){
@@ -78,7 +78,7 @@ void UpdateRelocationText(LIST_DOUBLE* relocationList, SECTION** section){
   }
 }
 
-void UpdateRelocationData(LIST_DOUBLE* relocationList, SECTION** section){
+void UpdateRelocationData(LIST_DOUBLE* relocationList, SECTION** section, LIST_DOUBLE **hash){
   if ((**section).data.directiveValue->data){
     if (((LEXEME*)((**section).data.directiveValue->data)->state)==SYMBOL){
       SECTION* dataSection = IsInHashTable(LIST_DOUBLE **hash,*(char**)((LEXEME*)(**section).data.directiveValue->data)->value);
@@ -96,9 +96,9 @@ void UpdateRelocationTable(RELOCATIONTABLE relocationTable, LIST_DOUBLE **hash, 
   switch((**section).dataType)
   {
     case TEXT :
-      UpdateRelocationText(relocationTable->relocationText, section);
+      UpdateRelocationText(relocationTable->relocationText, section, **hash);
     case DATA :
-      UpdateRelocationText(relocationTable->relocationData, section);
+      UpdateRelocationText(relocationTable->relocationData, section, **hash);
     default :
       printf("\nError, not BSS for relocation's table\n");
   }

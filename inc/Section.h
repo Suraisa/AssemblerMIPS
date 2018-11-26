@@ -75,12 +75,17 @@ extern char* collectionSection[3];
 #include "HashTable.h"
 
 /**
- * @param collections COLLECTION_LISTS* initialize
+ * @param collections COLLECTION_LISTS* which is the collection list to initialize.
  * @brief Table of collection's section equivalent to the COLLECTIONS.
  *
  */
 void InitializeCollectionLists(COLLECTION_LISTS* collections);
 
+/**
+ * @param collections COLLECTION_LISTS* which is the collection list to initialize.
+ * @brief Table of collection's section equivalent to the COLLECTIONS.
+ * @return an instruction SECTION*
+ */
 SECTION* CreateInstructionSection(COLLECTION_STATE state, unsigned long int shift, char* instructionName, int dicoIndex, unsigned long int lineNumber);
 
 SECTION* CreateDirectiveSection(COLLECTION_STATE state, unsigned long int shift, LIST_DOUBLE* lexemeList);

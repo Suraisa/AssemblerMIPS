@@ -3,6 +3,7 @@
 
 #include "DoubleListGeneric.h"
 #include "Section.h"
+#include "Lexeme.h"
 
 typedef enum
 {
@@ -51,7 +52,7 @@ void FillRelocationList(LIST_DOUBLE* relocationList, COLLECTIONS symbolSection, 
  * @brief Display the relocation list.
  *
  */
-void DisplayRelocationList(void* value);
+void DisplayRelocation(void* value);
 
 /**
  * @param relocationTable Table of relocation which contain the text' table and the data's table.
@@ -66,7 +67,7 @@ void DisplayRelocationTable(RELOCATIONTABLE relocationTable);
  * @brief Update of the relocation's table of text.
  *
  */
-void UpdateRelocationText(LIST_DOUBLE* relocationList, SECTION** section);
+void UpdateRelocationText(LIST_DOUBLE* relocationList, SECTION** section, LIST_DOUBLE **hash);
 
 /**
  * @param relocationList Pointer on a list of relocation to update it.
@@ -74,7 +75,7 @@ void UpdateRelocationText(LIST_DOUBLE* relocationList, SECTION** section);
  * @brief Update of the relocation's table of data.
  *
  */
-void UpdateRelocationData(LIST_DOUBLE* relocationList, SECTION** section);
+void UpdateRelocationData(LIST_DOUBLE* relocationList, SECTION** section, LIST_DOUBLE **hash);
 
 /**
  * @param relocationTable Table of relocation which contain the text' table and the data's table.
