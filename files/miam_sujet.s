@@ -5,6 +5,4 @@
     .asciiz "trnkjerng","test"
     .word 2, -128, 0xff
 .text
-    lw $28, -30($4)
-    XOR $8, $8, $8
-test : lw $2, 3($4)
+test:    lw $28, test
