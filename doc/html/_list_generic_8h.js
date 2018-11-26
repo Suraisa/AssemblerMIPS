@@ -10,5 +10,6 @@ var _list_generic_8h =
     [ "ErasedInFront", "_list_generic_8h.html#a978eaf2bf8013749d2623c801c663bcb", null ],
     [ "ErasedList", "_list_generic_8h.html#a54ff8cbf2a3e93ad6e293b124e8b0a4f", null ],
     [ "IsEmpty", "_list_generic_8h.html#a0a61ed111cff720a304ddbc43fcbc28d", null ],
+    [ "PopInFront", "_list_generic_8h.html#a00763d12b32a75f7a35dc9e1e4d2f36a", null ],
     [ "SizeList", "_list_generic_8h.html#aaa9aa4fb93f0959283ed7cfd9b9fd135", null ]
 ];

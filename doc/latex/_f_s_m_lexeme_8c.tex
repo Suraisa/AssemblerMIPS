@@ -1,0 +1,166 @@
+\hypertarget{_f_s_m_lexeme_8c}{}\section{/home/raphael/\+Project/\+Assembler\+M\+I\+P\+S/src/\+F\+S\+M\+Lexeme.c File Reference}
+\label{_f_s_m_lexeme_8c}\index{/home/raphael/\+Project/\+Assembler\+M\+I\+P\+S/src/\+F\+S\+M\+Lexeme.\+c@{/home/raphael/\+Project/\+Assembler\+M\+I\+P\+S/src/\+F\+S\+M\+Lexeme.\+c}}
+{\ttfamily \#include \char`\"{}F\+S\+M\+Lexeme.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_f_s_m_lexeme_8c_a5999b4a4b051df9dcf02bf02aedc278e}{Init\+Lexeme\+Fsm}} (char reading\+Char, \mbox{\hyperlink{struct_l_e_x_e_m_e___f_s_m}{L\+E\+X\+E\+M\+E\+\_\+\+F\+SM}} $\ast$state\+Machine, unsigned long int line\+Number)
+\begin{DoxyCompactList}\small\item\em It\textquotesingle{}s the Init state\+Machine which change the state\+Machine\textquotesingle{}s state to the right one. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_f_s_m_lexeme_8c_a92ad38ce4f3131118583808fb6b37ab5}{Lexeme\+Fsm}} (char $\ast$reading\+Char, \mbox{\hyperlink{_double_queue_generic_8h_ac9780889f9bbabed708ecbeaadfb040e}{Q\+U\+E\+U\+E\+\_\+\+D\+O\+U\+B\+LE}} $\ast$lexeme\+Queue, \mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$reading\+Value, \mbox{\hyperlink{struct_l_e_x_e_m_e___f_s_m}{L\+E\+X\+E\+M\+E\+\_\+\+F\+SM}} $\ast$state\+Machine, unsigned long int $\ast$line\+Number, int finished\+File)
+\begin{DoxyCompactList}\small\item\em It\textquotesingle{}s the brain of the state\+Machine which sends the state\+Machine to the right state and do a process according of this state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_f_s_m_lexeme_8c_a1cebbe6ba8e04f0adbec86905f2fa8af}{Hexadecimal\+Treatment}} (\mbox{\hyperlink{_double_queue_generic_8h_ac9780889f9bbabed708ecbeaadfb040e}{Q\+U\+E\+U\+E\+\_\+\+D\+O\+U\+B\+LE}} $\ast$lexeme\+Queue, \mbox{\hyperlink{struct_l_e_x_e_m_e___f_s_m}{L\+E\+X\+E\+M\+E\+\_\+\+F\+SM}} $\ast$state\+Machine, \mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$reading\+Value, unsigned long int line\+Number)
+\item 
+void \mbox{\hyperlink{_f_s_m_lexeme_8c_a3bc5f8966dfd94a61bacee7eccef2814}{Register\+Treatment}} (\mbox{\hyperlink{_double_queue_generic_8h_ac9780889f9bbabed708ecbeaadfb040e}{Q\+U\+E\+U\+E\+\_\+\+D\+O\+U\+B\+LE}} $\ast$lexeme\+Queue, \mbox{\hyperlink{struct_l_e_x_e_m_e___f_s_m}{L\+E\+X\+E\+M\+E\+\_\+\+F\+SM}} $\ast$state\+Machine, \mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$reading\+Value, unsigned long int $\ast$line\+Number, char $\ast$reading\+Char, int finished\+File)
+\item 
+void \mbox{\hyperlink{_f_s_m_lexeme_8c_ab0567864dff1dade522e95f33eec29a9}{Lexeme\+Treatment}} (\mbox{\hyperlink{_double_queue_generic_8h_ac9780889f9bbabed708ecbeaadfb040e}{Q\+U\+E\+U\+E\+\_\+\+D\+O\+U\+B\+LE}} $\ast$lexeme\+Queue, \mbox{\hyperlink{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67ad}{L\+E\+X\+E\+M\+E\+\_\+\+S\+T\+A\+TE}} state, \mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$reading\+Value, unsigned long int line\+Number)
+\begin{DoxyCompactList}\small\item\em Add a Lexeme in the lexeme\+Queue according of the state, the list of value read and the number of line. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_f_s_m_lexeme_8c_a72490d09bec8da86306ec2029a4e2eb3}{Print\+Error}} (\mbox{\hyperlink{struct_l_e_x_e_m_e___f_s_m}{L\+E\+X\+E\+M\+E\+\_\+\+F\+SM}} $\ast$state\+Machine, unsigned long int line\+Number, char $\ast$problem, char wrong\+Value, char $\ast$state)
+\begin{DoxyCompactList}\small\item\em Print an the error of the state\+Machine in color. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_f_s_m_lexeme_8c_a6fe50c29dec95fd36701d278e7648b17}{Initialization\+Lexeme\+Fsm}} (\mbox{\hyperlink{struct_l_e_x_e_m_e___f_s_m}{L\+E\+X\+E\+M\+E\+\_\+\+F\+SM}} $\ast$state\+Machine)
+\begin{DoxyCompactList}\small\item\em Initialize the state\+Machine. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{_f_s_m_lexeme_8c_a1cebbe6ba8e04f0adbec86905f2fa8af}\label{_f_s_m_lexeme_8c_a1cebbe6ba8e04f0adbec86905f2fa8af}} 
+\index{F\+S\+M\+Lexeme.\+c@{F\+S\+M\+Lexeme.\+c}!Hexadecimal\+Treatment@{Hexadecimal\+Treatment}}
+\index{Hexadecimal\+Treatment@{Hexadecimal\+Treatment}!F\+S\+M\+Lexeme.\+c@{F\+S\+M\+Lexeme.\+c}}
+\subsubsection{\texorpdfstring{Hexadecimal\+Treatment()}{HexadecimalTreatment()}}
+{\footnotesize\ttfamily void Hexadecimal\+Treatment (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_double_queue_generic_8h_ac9780889f9bbabed708ecbeaadfb040e}{Q\+U\+E\+U\+E\+\_\+\+D\+O\+U\+B\+LE}} $\ast$}]{lexeme\+Queue,  }\item[{\mbox{\hyperlink{struct_l_e_x_e_m_e___f_s_m}{L\+E\+X\+E\+M\+E\+\_\+\+F\+SM}} $\ast$}]{state\+Machine,  }\item[{\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$}]{reading\+Value,  }\item[{unsigned long int}]{line\+Number }\end{DoxyParamCaption})}
+
+
+
+Definition at line 329 of file F\+S\+M\+Lexeme.\+c.
+
+\mbox{\Hypertarget{_f_s_m_lexeme_8c_a6fe50c29dec95fd36701d278e7648b17}\label{_f_s_m_lexeme_8c_a6fe50c29dec95fd36701d278e7648b17}} 
+\index{F\+S\+M\+Lexeme.\+c@{F\+S\+M\+Lexeme.\+c}!Initialization\+Lexeme\+Fsm@{Initialization\+Lexeme\+Fsm}}
+\index{Initialization\+Lexeme\+Fsm@{Initialization\+Lexeme\+Fsm}!F\+S\+M\+Lexeme.\+c@{F\+S\+M\+Lexeme.\+c}}
+\subsubsection{\texorpdfstring{Initialization\+Lexeme\+Fsm()}{InitializationLexemeFsm()}}
+{\footnotesize\ttfamily void Initialization\+Lexeme\+Fsm (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_l_e_x_e_m_e___f_s_m}{L\+E\+X\+E\+M\+E\+\_\+\+F\+SM}} $\ast$}]{state\+Machine }\end{DoxyParamCaption})}
+
+
+
+Initialize the state\+Machine. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state\+Machine} & Pointeur on the state\+Machine to initialize. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 393 of file F\+S\+M\+Lexeme.\+c.
+
+\mbox{\Hypertarget{_f_s_m_lexeme_8c_a5999b4a4b051df9dcf02bf02aedc278e}\label{_f_s_m_lexeme_8c_a5999b4a4b051df9dcf02bf02aedc278e}} 
+\index{F\+S\+M\+Lexeme.\+c@{F\+S\+M\+Lexeme.\+c}!Init\+Lexeme\+Fsm@{Init\+Lexeme\+Fsm}}
+\index{Init\+Lexeme\+Fsm@{Init\+Lexeme\+Fsm}!F\+S\+M\+Lexeme.\+c@{F\+S\+M\+Lexeme.\+c}}
+\subsubsection{\texorpdfstring{Init\+Lexeme\+Fsm()}{InitLexemeFsm()}}
+{\footnotesize\ttfamily void Init\+Lexeme\+Fsm (\begin{DoxyParamCaption}\item[{char}]{reading\+Char,  }\item[{\mbox{\hyperlink{struct_l_e_x_e_m_e___f_s_m}{L\+E\+X\+E\+M\+E\+\_\+\+F\+SM}} $\ast$}]{state\+Machine,  }\item[{unsigned long int}]{line\+Number }\end{DoxyParamCaption})}
+
+
+
+It\textquotesingle{}s the Init state\+Machine which change the state\+Machine\textquotesingle{}s state to the right one. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reading\+Char} & Char which send you to the correct state. \\
+\hline
+{\em state\+Machine} & Pointeur on the state\+Machine to change the state or add an error. \\
+\hline
+{\em line\+Number} & Unsigned long int represent the line position in the file to decrypt. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 3 of file F\+S\+M\+Lexeme.\+c.
+
+\mbox{\Hypertarget{_f_s_m_lexeme_8c_a92ad38ce4f3131118583808fb6b37ab5}\label{_f_s_m_lexeme_8c_a92ad38ce4f3131118583808fb6b37ab5}} 
+\index{F\+S\+M\+Lexeme.\+c@{F\+S\+M\+Lexeme.\+c}!Lexeme\+Fsm@{Lexeme\+Fsm}}
+\index{Lexeme\+Fsm@{Lexeme\+Fsm}!F\+S\+M\+Lexeme.\+c@{F\+S\+M\+Lexeme.\+c}}
+\subsubsection{\texorpdfstring{Lexeme\+Fsm()}{LexemeFsm()}}
+{\footnotesize\ttfamily void Lexeme\+Fsm (\begin{DoxyParamCaption}\item[{char $\ast$}]{reading\+Char,  }\item[{\mbox{\hyperlink{_double_queue_generic_8h_ac9780889f9bbabed708ecbeaadfb040e}{Q\+U\+E\+U\+E\+\_\+\+D\+O\+U\+B\+LE}} $\ast$}]{lexeme\+Queue,  }\item[{\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$}]{reading\+Value,  }\item[{\mbox{\hyperlink{struct_l_e_x_e_m_e___f_s_m}{L\+E\+X\+E\+M\+E\+\_\+\+F\+SM}} $\ast$}]{state\+Machine,  }\item[{unsigned long int $\ast$}]{line\+Number,  }\item[{int}]{finished\+File }\end{DoxyParamCaption})}
+
+
+
+It\textquotesingle{}s the brain of the state\+Machine which sends the state\+Machine to the right state and do a process according of this state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reading\+Char} & Pointer on the char currently read in the file to decrypt. \\
+\hline
+{\em lexeme\+Queue} & Pointeur on a Q\+U\+E\+U\+E\+\_\+\+D\+O\+U\+B\+LE of Lexemes it updates it during the process of lexeme decrypting. \\
+\hline
+{\em reading\+Value} & Pointeur on a L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE, to stock values which don\textquotesingle{}t have lexeme for now (this function will use it, use just an empty list). \\
+\hline
+{\em state\+Machine} & Pointeur on the state\+Machine. To know in which L\+E\+X\+E\+M\+E\+\_\+\+S\+T\+A\+TE are the treatment or to add an error. \\
+\hline
+{\em line\+Number} & Pointer on an unsigned long int represent the line position in the file to decrypt. It will be incrementated during the process. \\
+\hline
+{\em finished\+File} & Integer to know if the file is ended or not. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 91 of file F\+S\+M\+Lexeme.\+c.
+
+\mbox{\Hypertarget{_f_s_m_lexeme_8c_ab0567864dff1dade522e95f33eec29a9}\label{_f_s_m_lexeme_8c_ab0567864dff1dade522e95f33eec29a9}} 
+\index{F\+S\+M\+Lexeme.\+c@{F\+S\+M\+Lexeme.\+c}!Lexeme\+Treatment@{Lexeme\+Treatment}}
+\index{Lexeme\+Treatment@{Lexeme\+Treatment}!F\+S\+M\+Lexeme.\+c@{F\+S\+M\+Lexeme.\+c}}
+\subsubsection{\texorpdfstring{Lexeme\+Treatment()}{LexemeTreatment()}}
+{\footnotesize\ttfamily void Lexeme\+Treatment (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_double_queue_generic_8h_ac9780889f9bbabed708ecbeaadfb040e}{Q\+U\+E\+U\+E\+\_\+\+D\+O\+U\+B\+LE}} $\ast$}]{lexeme\+Queue,  }\item[{\mbox{\hyperlink{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67ad}{L\+E\+X\+E\+M\+E\+\_\+\+S\+T\+A\+TE}}}]{state,  }\item[{\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$}]{reading\+Value,  }\item[{unsigned long int}]{line\+Number }\end{DoxyParamCaption})}
+
+
+
+Add a Lexeme in the lexeme\+Queue according of the state, the list of value read and the number of line. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lexeme\+Queue} & Pointeur on a Q\+U\+E\+U\+E\+\_\+\+D\+O\+U\+B\+LE of Lexemes that you want to update. \\
+\hline
+{\em reading\+Value} & Pointeur on a L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE of the lexeme value\textquotesingle{}s information. \\
+\hline
+{\em state} & L\+E\+X\+E\+M\+E\+\_\+\+S\+T\+A\+TE represent the state of the lexeme to add. \\
+\hline
+{\em line\+Number} & Unsigned long int represent the line position of this lexeme. \\
+\hline
+{\em finished\+File} & Integer to know if the file is ended or not. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 373 of file F\+S\+M\+Lexeme.\+c.
+
+\mbox{\Hypertarget{_f_s_m_lexeme_8c_a72490d09bec8da86306ec2029a4e2eb3}\label{_f_s_m_lexeme_8c_a72490d09bec8da86306ec2029a4e2eb3}} 
+\index{F\+S\+M\+Lexeme.\+c@{F\+S\+M\+Lexeme.\+c}!Print\+Error@{Print\+Error}}
+\index{Print\+Error@{Print\+Error}!F\+S\+M\+Lexeme.\+c@{F\+S\+M\+Lexeme.\+c}}
+\subsubsection{\texorpdfstring{Print\+Error()}{PrintError()}}
+{\footnotesize\ttfamily void Print\+Error (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_l_e_x_e_m_e___f_s_m}{L\+E\+X\+E\+M\+E\+\_\+\+F\+SM}} $\ast$}]{state\+Machine,  }\item[{unsigned long int}]{line\+Number,  }\item[{char $\ast$}]{problem,  }\item[{char}]{wrong\+Value,  }\item[{char $\ast$}]{state }\end{DoxyParamCaption})}
+
+
+
+Print an the error of the state\+Machine in color. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em line\+Number} & Unsigned long int represent the line position of the error. \\
+\hline
+{\em problem} & String to represent the problem. \\
+\hline
+{\em wrong\+Value} & Char which create an error. \\
+\hline
+{\em state} & String to represent in which state we have an error. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 380 of file F\+S\+M\+Lexeme.\+c.
+
+\mbox{\Hypertarget{_f_s_m_lexeme_8c_a3bc5f8966dfd94a61bacee7eccef2814}\label{_f_s_m_lexeme_8c_a3bc5f8966dfd94a61bacee7eccef2814}} 
+\index{F\+S\+M\+Lexeme.\+c@{F\+S\+M\+Lexeme.\+c}!Register\+Treatment@{Register\+Treatment}}
+\index{Register\+Treatment@{Register\+Treatment}!F\+S\+M\+Lexeme.\+c@{F\+S\+M\+Lexeme.\+c}}
+\subsubsection{\texorpdfstring{Register\+Treatment()}{RegisterTreatment()}}
+{\footnotesize\ttfamily void Register\+Treatment (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_double_queue_generic_8h_ac9780889f9bbabed708ecbeaadfb040e}{Q\+U\+E\+U\+E\+\_\+\+D\+O\+U\+B\+LE}} $\ast$}]{lexeme\+Queue,  }\item[{\mbox{\hyperlink{struct_l_e_x_e_m_e___f_s_m}{L\+E\+X\+E\+M\+E\+\_\+\+F\+SM}} $\ast$}]{state\+Machine,  }\item[{\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$}]{reading\+Value,  }\item[{unsigned long int $\ast$}]{line\+Number,  }\item[{char $\ast$}]{reading\+Char,  }\item[{int}]{finished\+File }\end{DoxyParamCaption})}
+
+
+
+Definition at line 341 of file F\+S\+M\+Lexeme.\+c.
+

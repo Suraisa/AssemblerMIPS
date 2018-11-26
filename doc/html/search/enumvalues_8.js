@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['string',['STRING',['../_state_machine_8h.html#a275a67132f10277ada3a0ee3d616b647aee847e634a4297b274316de8a8ca9921',1,'FSMLexeme.h']]],
-  ['symbol',['SYMBOL',['../_state_machine_8h.html#a275a67132f10277ada3a0ee3d616b647ae3d30ffaffa3c06ed917e565dda1fbc5',1,'FSMLexeme.h']]]
+  ['operator',['OPERATOR',['../_f_s_m_lexeme_8h.html#a5d966dc44e04ff2eef3b33046a1e67ada6411d9d6073252e4d316493506bbb979',1,'FSMLexeme.h']]]
 ];

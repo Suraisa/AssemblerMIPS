@@ -1,0 +1,119 @@
+\hypertarget{_f_s_m_collection_8c}{}\section{/home/raphael/\+Project/\+Assembler\+M\+I\+P\+S/src/\+F\+S\+M\+Collection.c File Reference}
+\label{_f_s_m_collection_8c}\index{/home/raphael/\+Project/\+Assembler\+M\+I\+P\+S/src/\+F\+S\+M\+Collection.\+c@{/home/raphael/\+Project/\+Assembler\+M\+I\+P\+S/src/\+F\+S\+M\+Collection.\+c}}
+{\ttfamily \#include \char`\"{}F\+S\+M\+Collection.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{_f_s_m_collection_8c_ac013db86e81b7d8e97b812dea8e06ab6}{Initialization\+Collection}} (\mbox{\hyperlink{struct_c_o_l_l_e_c_t_i_o_n___l_i_s_t_s}{C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+L\+I\+S\+TS}} $\ast$collection\+Lists)
+\item 
+void \mbox{\hyperlink{_f_s_m_collection_8c_a5fb73df0417da21a18604d38d233d40b}{Initialization\+Collection\+Fsm}} (\mbox{\hyperlink{struct_c_o_l_l_e_c_t_i_o_n___f_s_m}{C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+F\+SM}} $\ast$state\+Machine)
+\begin{DoxyCompactList}\small\item\em Initialize the state\+Machine. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_f_s_m_collection_8c_ab0f5010a0b27808e76d0263d5ca313d6}{Init\+Collection\+Fsm}} (\mbox{\hyperlink{struct_c_o_l_l_e_c_t_i_o_n___f_s_m}{C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+F\+SM}} $\ast$state\+Machine, \mbox{\hyperlink{_double_queue_generic_8h_ac9780889f9bbabed708ecbeaadfb040e}{Q\+U\+E\+U\+E\+\_\+\+D\+O\+U\+B\+LE}} $\ast$lexeme\+Queue)
+\begin{DoxyCompactList}\small\item\em It\textquotesingle{}s the Init state\+Machine which change the state\+Machine\textquotesingle{}s state to the right one. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_f_s_m_collection_8c_a647d36097774eb72a4f73deb7532d32e}{Collection\+Fsm}} (\mbox{\hyperlink{struct_c_o_l_l_e_c_t_i_o_n___f_s_m}{C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+F\+SM}} $\ast$state\+Machine, \mbox{\hyperlink{_double_queue_generic_8h_ac9780889f9bbabed708ecbeaadfb040e}{Q\+U\+E\+U\+E\+\_\+\+D\+O\+U\+B\+LE}} $\ast$lexeme\+Queue, \mbox{\hyperlink{struct_c_o_l_l_e_c_t_i_o_n___l_i_s_t_s}{C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+L\+I\+S\+TS}} $\ast$collections, \mbox{\hyperlink{struct_i_n_s_t_r_u_c_t_i_o_n}{I\+N\+S\+T\+R\+U\+C\+T\+I\+ON}} $\ast$instruction\+Dictionary)
+\begin{DoxyCompactList}\small\item\em It\textquotesingle{}s the Init state\+Machine which change the state\+Machine\textquotesingle{}s state to the right one. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_f_s_m_collection_8c_a81212c90eebec3062952bc007a28fd06}{Print\+Error\+Collection}} (\mbox{\hyperlink{struct_c_o_l_l_e_c_t_i_o_n___f_s_m}{C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+F\+SM}} $\ast$state\+Machine, unsigned long int line\+Number, char $\ast$problem, char $\ast$why, char $\ast$type)
+\begin{DoxyCompactList}\small\item\em Print an the error of the state\+Machine in color. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{_f_s_m_collection_8c_a647d36097774eb72a4f73deb7532d32e}\label{_f_s_m_collection_8c_a647d36097774eb72a4f73deb7532d32e}} 
+\index{F\+S\+M\+Collection.\+c@{F\+S\+M\+Collection.\+c}!Collection\+Fsm@{Collection\+Fsm}}
+\index{Collection\+Fsm@{Collection\+Fsm}!F\+S\+M\+Collection.\+c@{F\+S\+M\+Collection.\+c}}
+\subsubsection{\texorpdfstring{Collection\+Fsm()}{CollectionFsm()}}
+{\footnotesize\ttfamily void Collection\+Fsm (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_c_o_l_l_e_c_t_i_o_n___f_s_m}{C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+F\+SM}} $\ast$}]{state\+Machine,  }\item[{\mbox{\hyperlink{_double_queue_generic_8h_ac9780889f9bbabed708ecbeaadfb040e}{Q\+U\+E\+U\+E\+\_\+\+D\+O\+U\+B\+LE}} $\ast$}]{lexeme\+Queue,  }\item[{\mbox{\hyperlink{struct_c_o_l_l_e_c_t_i_o_n___l_i_s_t_s}{C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+L\+I\+S\+TS}} $\ast$}]{collections,  }\item[{\mbox{\hyperlink{struct_i_n_s_t_r_u_c_t_i_o_n}{I\+N\+S\+T\+R\+U\+C\+T\+I\+ON}} $\ast$}]{instruction\+Dictionary }\end{DoxyParamCaption})}
+
+
+
+It\textquotesingle{}s the Init state\+Machine which change the state\+Machine\textquotesingle{}s state to the right one. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state\+Machine} & collection\+\_\+list$\ast$ to fill the error part or other value inside. \\
+\hline
+{\em lexeme\+Queue} & Q\+U\+E\+U\+E\+\_\+\+D\+O\+U\+B\+L\+E$\ast$ the queue of lexeme to treat grammatically. \\
+\hline
+{\em collections} & C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+L\+I\+S\+T\+S$\ast$ to fill in. \\
+\hline
+{\em instruction\+Dictionary} & I\+N\+S\+T\+R\+U\+C\+T\+I\+O\+N$\ast$ the instructions\textquotesingle{} dictionary to test the instruction in label. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 69 of file F\+S\+M\+Collection.\+c.
+
+\mbox{\Hypertarget{_f_s_m_collection_8c_ab0f5010a0b27808e76d0263d5ca313d6}\label{_f_s_m_collection_8c_ab0f5010a0b27808e76d0263d5ca313d6}} 
+\index{F\+S\+M\+Collection.\+c@{F\+S\+M\+Collection.\+c}!Init\+Collection\+Fsm@{Init\+Collection\+Fsm}}
+\index{Init\+Collection\+Fsm@{Init\+Collection\+Fsm}!F\+S\+M\+Collection.\+c@{F\+S\+M\+Collection.\+c}}
+\subsubsection{\texorpdfstring{Init\+Collection\+Fsm()}{InitCollectionFsm()}}
+{\footnotesize\ttfamily void Init\+Collection\+Fsm (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_c_o_l_l_e_c_t_i_o_n___f_s_m}{C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+F\+SM}} $\ast$}]{state\+Machine,  }\item[{\mbox{\hyperlink{_double_queue_generic_8h_ac9780889f9bbabed708ecbeaadfb040e}{Q\+U\+E\+U\+E\+\_\+\+D\+O\+U\+B\+LE}} $\ast$}]{lexeme\+Queue }\end{DoxyParamCaption})}
+
+
+
+It\textquotesingle{}s the Init state\+Machine which change the state\+Machine\textquotesingle{}s state to the right one. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state\+Machine} & collection\+\_\+list$\ast$ to fill the error part or other value inside. \\
+\hline
+{\em lexeme\+Queue} & Q\+U\+E\+U\+E\+\_\+\+D\+O\+U\+B\+L\+E$\ast$ the queue of lexeme to treat grammatically. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 31 of file F\+S\+M\+Collection.\+c.
+
+\mbox{\Hypertarget{_f_s_m_collection_8c_ac013db86e81b7d8e97b812dea8e06ab6}\label{_f_s_m_collection_8c_ac013db86e81b7d8e97b812dea8e06ab6}} 
+\index{F\+S\+M\+Collection.\+c@{F\+S\+M\+Collection.\+c}!Initialization\+Collection@{Initialization\+Collection}}
+\index{Initialization\+Collection@{Initialization\+Collection}!F\+S\+M\+Collection.\+c@{F\+S\+M\+Collection.\+c}}
+\subsubsection{\texorpdfstring{Initialization\+Collection()}{InitializationCollection()}}
+{\footnotesize\ttfamily int Initialization\+Collection (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_c_o_l_l_e_c_t_i_o_n___l_i_s_t_s}{C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+L\+I\+S\+TS}} $\ast$}]{collection\+Lists }\end{DoxyParamCaption})}
+
+
+
+Definition at line 3 of file F\+S\+M\+Collection.\+c.
+
+\mbox{\Hypertarget{_f_s_m_collection_8c_a5fb73df0417da21a18604d38d233d40b}\label{_f_s_m_collection_8c_a5fb73df0417da21a18604d38d233d40b}} 
+\index{F\+S\+M\+Collection.\+c@{F\+S\+M\+Collection.\+c}!Initialization\+Collection\+Fsm@{Initialization\+Collection\+Fsm}}
+\index{Initialization\+Collection\+Fsm@{Initialization\+Collection\+Fsm}!F\+S\+M\+Collection.\+c@{F\+S\+M\+Collection.\+c}}
+\subsubsection{\texorpdfstring{Initialization\+Collection\+Fsm()}{InitializationCollectionFsm()}}
+{\footnotesize\ttfamily void Initialization\+Collection\+Fsm (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_c_o_l_l_e_c_t_i_o_n___f_s_m}{C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+F\+SM}} $\ast$}]{state\+Machine }\end{DoxyParamCaption})}
+
+
+
+Initialize the state\+Machine. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state\+Machine} & Pointeur on the state\+Machine to initialize. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 17 of file F\+S\+M\+Collection.\+c.
+
+\mbox{\Hypertarget{_f_s_m_collection_8c_a81212c90eebec3062952bc007a28fd06}\label{_f_s_m_collection_8c_a81212c90eebec3062952bc007a28fd06}} 
+\index{F\+S\+M\+Collection.\+c@{F\+S\+M\+Collection.\+c}!Print\+Error\+Collection@{Print\+Error\+Collection}}
+\index{Print\+Error\+Collection@{Print\+Error\+Collection}!F\+S\+M\+Collection.\+c@{F\+S\+M\+Collection.\+c}}
+\subsubsection{\texorpdfstring{Print\+Error\+Collection()}{PrintErrorCollection()}}
+{\footnotesize\ttfamily void Print\+Error\+Collection (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_c_o_l_l_e_c_t_i_o_n___f_s_m}{C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+F\+SM}} $\ast$}]{state\+Machine,  }\item[{unsigned long int}]{line\+Number,  }\item[{char $\ast$}]{problem,  }\item[{char $\ast$}]{why,  }\item[{char $\ast$}]{type }\end{DoxyParamCaption})}
+
+
+
+Print an the error of the state\+Machine in color. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state\+Machine} & C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+F\+S\+M$\ast$ to change the error state and the in\+State state. \\
+\hline
+{\em line\+Number} & unsigned long int to show the line number. \\
+\hline
+{\em problem} & char$\ast$ to explain the problem. \\
+\hline
+{\em type} & char$\ast$ to show where do we have the problem. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 679 of file F\+S\+M\+Collection.\+c.
+

@@ -1,0 +1,71 @@
+\hypertarget{_double_queue_generic_8c}{}\section{/home/raphael/\+Project/\+Assembler\+M\+I\+P\+S/src/\+Double\+Queue\+Generic.c File Reference}
+\label{_double_queue_generic_8c}\index{/home/raphael/\+Project/\+Assembler\+M\+I\+P\+S/src/\+Double\+Queue\+Generic.\+c@{/home/raphael/\+Project/\+Assembler\+M\+I\+P\+S/src/\+Double\+Queue\+Generic.\+c}}
+{\ttfamily \#include \char`\"{}Double\+Queue\+Generic.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_double_queue_generic_8h_ac9780889f9bbabed708ecbeaadfb040e}{Q\+U\+E\+U\+E\+\_\+\+D\+O\+U\+B\+LE}} \mbox{\hyperlink{_double_queue_generic_8c_afad41cfbaaacdf21498799a362bebdc5}{Create\+Queue\+Double}} ()
+\item 
+void \mbox{\hyperlink{_double_queue_generic_8c_a2c2bc17ffd20f090e2862c64ba997a01}{Push\+Queue\+Double}} (\mbox{\hyperlink{_double_queue_generic_8h_ac9780889f9bbabed708ecbeaadfb040e}{Q\+U\+E\+U\+E\+\_\+\+D\+O\+U\+B\+LE}} $\ast$queue, void $\ast$data\+To\+Add, void($\ast$display)(void $\ast$), void($\ast$erased\+Data\+Value)(void $\ast$), size\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Add a value on the last position of the list. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_double_queue_generic_8c_a5c08de6950afa11ec1297eb88bbb6ae2}{Erased\+Queue\+Double}} (\mbox{\hyperlink{_double_queue_generic_8h_ac9780889f9bbabed708ecbeaadfb040e}{Q\+U\+E\+U\+E\+\_\+\+D\+O\+U\+B\+LE}} $\ast$queue)
+\begin{DoxyCompactList}\small\item\em Desallocate all elements of the list. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{_double_queue_generic_8c_afad41cfbaaacdf21498799a362bebdc5}\label{_double_queue_generic_8c_afad41cfbaaacdf21498799a362bebdc5}} 
+\index{Double\+Queue\+Generic.\+c@{Double\+Queue\+Generic.\+c}!Create\+Queue\+Double@{Create\+Queue\+Double}}
+\index{Create\+Queue\+Double@{Create\+Queue\+Double}!Double\+Queue\+Generic.\+c@{Double\+Queue\+Generic.\+c}}
+\subsubsection{\texorpdfstring{Create\+Queue\+Double()}{CreateQueueDouble()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_double_queue_generic_8h_ac9780889f9bbabed708ecbeaadfb040e}{Q\+U\+E\+U\+E\+\_\+\+D\+O\+U\+B\+LE}} Create\+Queue\+Double (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 3 of file Double\+Queue\+Generic.\+c.
+
+\mbox{\Hypertarget{_double_queue_generic_8c_a5c08de6950afa11ec1297eb88bbb6ae2}\label{_double_queue_generic_8c_a5c08de6950afa11ec1297eb88bbb6ae2}} 
+\index{Double\+Queue\+Generic.\+c@{Double\+Queue\+Generic.\+c}!Erased\+Queue\+Double@{Erased\+Queue\+Double}}
+\index{Erased\+Queue\+Double@{Erased\+Queue\+Double}!Double\+Queue\+Generic.\+c@{Double\+Queue\+Generic.\+c}}
+\subsubsection{\texorpdfstring{Erased\+Queue\+Double()}{ErasedQueueDouble()}}
+{\footnotesize\ttfamily void Erased\+Queue\+Double (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_double_queue_generic_8h_ac9780889f9bbabed708ecbeaadfb040e}{Q\+U\+E\+U\+E\+\_\+\+D\+O\+U\+B\+LE}} $\ast$}]{ }\end{DoxyParamCaption})}
+
+
+
+Desallocate all elements of the list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & Pointer on the list. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 13 of file Double\+Queue\+Generic.\+c.
+
+\mbox{\Hypertarget{_double_queue_generic_8c_a2c2bc17ffd20f090e2862c64ba997a01}\label{_double_queue_generic_8c_a2c2bc17ffd20f090e2862c64ba997a01}} 
+\index{Double\+Queue\+Generic.\+c@{Double\+Queue\+Generic.\+c}!Push\+Queue\+Double@{Push\+Queue\+Double}}
+\index{Push\+Queue\+Double@{Push\+Queue\+Double}!Double\+Queue\+Generic.\+c@{Double\+Queue\+Generic.\+c}}
+\subsubsection{\texorpdfstring{Push\+Queue\+Double()}{PushQueueDouble()}}
+{\footnotesize\ttfamily void Push\+Queue\+Double (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_double_queue_generic_8h_ac9780889f9bbabed708ecbeaadfb040e}{Q\+U\+E\+U\+E\+\_\+\+D\+O\+U\+B\+LE}} $\ast$}]{,  }\item[{void $\ast$}]{,  }\item[{void($\ast$)(void $\ast$)}]{display,  }\item[{void($\ast$)(void $\ast$)}]{erased\+Data\+Value,  }\item[{size\+\_\+t}]{ }\end{DoxyParamCaption})}
+
+
+
+Add a value on the last position of the list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & Pointer on a list to add an element on it. \\
+\hline
+{\em data\+To\+Add} & Pointer of the value to add. \\
+\hline
+{\em display} & Pointer of a function which take a void$\ast$ on parameter.\textquotesingle{}s use to recognize the value type (generally use a display for the value added). \\
+\hline
+{\em erased\+Data\+Value} & Pointer of a function which take a void$\ast$ on parameter.\textquotesingle{}s use to desallocate the data inside the value. \\
+\hline
+{\em size} & size\+\_\+t represente the size of the data\+To\+Add. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 8 of file Double\+Queue\+Generic.\+c.
+

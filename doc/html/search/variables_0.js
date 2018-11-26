@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['currentstate',['currentState',['../struct_s_t_a_t_e_m_a_c_h_i_n_e.html#a175d1d31145856e5ca293a3a7c2795ee',1,'LEXEME_FSM']]]
+  ['actualcollection',['actualCollection',['../struct_c_o_l_l_e_c_t_i_o_n___f_s_m.html#af0b5fddc2780f2bf9cfc3273f168c136',1,'COLLECTION_FSM']]]
 ];

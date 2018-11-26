@@ -1,0 +1,312 @@
+\hypertarget{_section_8c}{}\section{/home/raphael/\+Project/\+Assembler\+M\+I\+P\+S/src/\+Section.c File Reference}
+\label{_section_8c}\index{/home/raphael/\+Project/\+Assembler\+M\+I\+P\+S/src/\+Section.\+c@{/home/raphael/\+Project/\+Assembler\+M\+I\+P\+S/src/\+Section.\+c}}
+{\ttfamily \#include \char`\"{}Section.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_section_8c_a849df0fe29723162d3fa7e85f326ffa0}{Initialize\+Collection\+Lists}} (\mbox{\hyperlink{struct_c_o_l_l_e_c_t_i_o_n___l_i_s_t_s}{C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+L\+I\+S\+TS}} $\ast$collections)
+\begin{DoxyCompactList}\small\item\em Table of collection\textquotesingle{}s section equivalent to the C\+O\+L\+L\+E\+C\+T\+I\+O\+NS. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_s_e_c_t_i_o_n}{S\+E\+C\+T\+I\+ON}} $\ast$ \mbox{\hyperlink{_section_8c_ac84ca35a635c21ee5959cbb24ce05f6a}{Create\+Instruction\+Section}} (\mbox{\hyperlink{_f_s_m_collection_8h_a1ffa02d402e882e4716ee5d2884de8a8}{C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+S\+T\+A\+TE}} state, unsigned long int shift, char $\ast$instruction\+Name, int dico\+Index, unsigned long int line\+Number)
+\begin{DoxyCompactList}\small\item\em Create an instruction Section with the setup. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_s_e_c_t_i_o_n}{S\+E\+C\+T\+I\+ON}} $\ast$ \mbox{\hyperlink{_section_8c_a0cc27384f453cf22b0efa5192c9dcb53}{Create\+Directive\+Section}} (\mbox{\hyperlink{_f_s_m_collection_8h_a1ffa02d402e882e4716ee5d2884de8a8}{C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+S\+T\+A\+TE}} state, unsigned long int shift, \mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$lexeme\+List)
+\begin{DoxyCompactList}\small\item\em Create an instruction Section with the setup. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_s_e_c_t_i_o_n}{S\+E\+C\+T\+I\+ON}} $\ast$ \mbox{\hyperlink{_section_8c_aef45c456e32b3ab32296bb45f49cebf8}{Create\+Label\+Section}} (\mbox{\hyperlink{struct_c_o_l_l_e_c_t_i_o_n___f_s_m}{C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+F\+SM}} state\+Machine, \mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$lexeme\+List)
+\begin{DoxyCompactList}\small\item\em Create an instruction Section with the setup. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_section_8c_a5279f13aac44b189ed6f26bc2e008782}{Number\+Lexeme\+Operand}} (\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} lexeme\+List)
+\begin{DoxyCompactList}\small\item\em Count the nomber of lexeme in the operand. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_section_8c_acb1c9d407a56f96870ccb09396b61bf9}{Add\+Operand}} (\mbox{\hyperlink{struct_c_o_l_l_e_c_t_i_o_n___f_s_m}{C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+F\+SM}} $\ast$state\+Machine, \mbox{\hyperlink{struct_s_e_c_t_i_o_n}{S\+E\+C\+T\+I\+ON}} $\ast$section, \mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$lexeme\+List, \mbox{\hyperlink{struct_i_n_s_t_r_u_c_t_i_o_n}{I\+N\+S\+T\+R\+U\+C\+T\+I\+ON}} $\ast$instruction\+Dictionary)
+\begin{DoxyCompactList}\small\item\em Add an operand in the instruction. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_section_8c_af516d56768f1322abecf33bcf4c9a006}{Display\+Section}} (void $\ast$value)
+\begin{DoxyCompactList}\small\item\em Display a section. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_section_8c_a858495a819f57a208ba42a55fabc7901}{Display\+Collection\+Lists}} (\mbox{\hyperlink{struct_c_o_l_l_e_c_t_i_o_n___l_i_s_t_s}{C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+L\+I\+S\+TS}} collections)
+\begin{DoxyCompactList}\small\item\em Display a \mbox{\hyperlink{struct_c_o_l_l_e_c_t_i_o_n___l_i_s_t_s}{C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+L\+I\+S\+TS}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_section_8c_ab8194a8659b11af2bb627fb2a12b21bb}{Erased\+Section}} (void $\ast$value)
+\begin{DoxyCompactList}\small\item\em Deallocate the section. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_section_8c_a9942b8d580cd896138b1fa7e7e2bf4ed}{Erased\+Collection\+Lists}} (void $\ast$value)
+\begin{DoxyCompactList}\small\item\em Deallocate the collection\+List. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \mbox{\hyperlink{_section_8c_ad663cec7beb319e49f74a8a39cc5e96b}{collection\+Type}} \mbox{[}8\mbox{]}
+\begin{DoxyCompactList}\small\item\em Table of collection\textquotesingle{}s Type equivalent to the C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+S\+T\+A\+TE. \end{DoxyCompactList}\item 
+char $\ast$ \mbox{\hyperlink{_section_8c_a0bd2ef28e075f60979dc9fc6fdfd4ef4}{collection\+Section}} \mbox{[}3\mbox{]}
+\begin{DoxyCompactList}\small\item\em Table of collection\textquotesingle{}s section equivalent to the C\+O\+L\+L\+E\+C\+T\+I\+O\+NS. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{_section_8c_acb1c9d407a56f96870ccb09396b61bf9}\label{_section_8c_acb1c9d407a56f96870ccb09396b61bf9}} 
+\index{Section.\+c@{Section.\+c}!Add\+Operand@{Add\+Operand}}
+\index{Add\+Operand@{Add\+Operand}!Section.\+c@{Section.\+c}}
+\subsubsection{\texorpdfstring{Add\+Operand()}{AddOperand()}}
+{\footnotesize\ttfamily int Add\+Operand (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_c_o_l_l_e_c_t_i_o_n___f_s_m}{C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+F\+SM}} $\ast$}]{state\+Machine,  }\item[{\mbox{\hyperlink{struct_s_e_c_t_i_o_n}{S\+E\+C\+T\+I\+ON}} $\ast$}]{section,  }\item[{\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$}]{lexeme\+List,  }\item[{\mbox{\hyperlink{struct_i_n_s_t_r_u_c_t_i_o_n}{I\+N\+S\+T\+R\+U\+C\+T\+I\+ON}} $\ast$}]{instruction\+Dictionary }\end{DoxyParamCaption})}
+
+
+
+Add an operand in the instruction. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state\+Machine} & C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+F\+S\+M$\ast$ which is the fsm of the Collection. \\
+\hline
+{\em section} & S\+E\+C\+T\+I\+O\+N$\ast$ which is the section where we want to add the operand. \\
+\hline
+{\em lexeme\+List} & L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+L\+E$\ast$ which is a list of lexeme where we want to pop some of them for the operand. \\
+\hline
+{\em instruction\+Dictionary} & I\+N\+S\+T\+R\+U\+C\+T\+I\+O\+N$\ast$ which is a the instructions\textquotesingle{} dictionary.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/\#1 If it worked.~\newline
+-\/\#0 If it didn\textquotesingle{}t 
+\end{DoxyReturn}
+
+
+Definition at line 106 of file Section.\+c.
+
+\mbox{\Hypertarget{_section_8c_a0cc27384f453cf22b0efa5192c9dcb53}\label{_section_8c_a0cc27384f453cf22b0efa5192c9dcb53}} 
+\index{Section.\+c@{Section.\+c}!Create\+Directive\+Section@{Create\+Directive\+Section}}
+\index{Create\+Directive\+Section@{Create\+Directive\+Section}!Section.\+c@{Section.\+c}}
+\subsubsection{\texorpdfstring{Create\+Directive\+Section()}{CreateDirectiveSection()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_s_e_c_t_i_o_n}{S\+E\+C\+T\+I\+ON}}$\ast$ Create\+Directive\+Section (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_f_s_m_collection_8h_a1ffa02d402e882e4716ee5d2884de8a8}{C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+S\+T\+A\+TE}}}]{state,  }\item[{unsigned long int}]{shift,  }\item[{\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$}]{lexeme\+List }\end{DoxyParamCaption})}
+
+
+
+Create an instruction Section with the setup. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+S\+T\+A\+TE which is the state of the instruction. \\
+\hline
+{\em shif} & unsigned long int which is the shift of the instruction. \\
+\hline
+{\em lexeme\+List} & L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+L\+E$\ast$ which is a list of lexeme corresponding to the lexeme of this directive.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+an directive S\+E\+C\+T\+I\+O\+N$\ast$ 
+\end{DoxyReturn}
+
+
+Definition at line 56 of file Section.\+c.
+
+\mbox{\Hypertarget{_section_8c_ac84ca35a635c21ee5959cbb24ce05f6a}\label{_section_8c_ac84ca35a635c21ee5959cbb24ce05f6a}} 
+\index{Section.\+c@{Section.\+c}!Create\+Instruction\+Section@{Create\+Instruction\+Section}}
+\index{Create\+Instruction\+Section@{Create\+Instruction\+Section}!Section.\+c@{Section.\+c}}
+\subsubsection{\texorpdfstring{Create\+Instruction\+Section()}{CreateInstructionSection()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_s_e_c_t_i_o_n}{S\+E\+C\+T\+I\+ON}}$\ast$ Create\+Instruction\+Section (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_f_s_m_collection_8h_a1ffa02d402e882e4716ee5d2884de8a8}{C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+S\+T\+A\+TE}}}]{state,  }\item[{unsigned long int}]{shift,  }\item[{char $\ast$}]{instruction\+Name,  }\item[{int}]{dico\+Index,  }\item[{unsigned long int}]{line\+Number }\end{DoxyParamCaption})}
+
+
+
+Create an instruction Section with the setup. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+S\+T\+A\+TE which is the state of the instruction. \\
+\hline
+{\em shif} & unsigned long int which is the shift of the instruction. \\
+\hline
+{\em instruction\+Name} & char$\ast$ which is the name of the instruction. \\
+\hline
+{\em dico\+Index} & int which is the index of the instruction in the dictionary. \\
+\hline
+{\em line\+Number} & unsigned long int which is the line number of the instructio.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+an instruction S\+E\+C\+T\+I\+O\+N$\ast$ 
+\end{DoxyReturn}
+
+
+Definition at line 32 of file Section.\+c.
+
+\mbox{\Hypertarget{_section_8c_aef45c456e32b3ab32296bb45f49cebf8}\label{_section_8c_aef45c456e32b3ab32296bb45f49cebf8}} 
+\index{Section.\+c@{Section.\+c}!Create\+Label\+Section@{Create\+Label\+Section}}
+\index{Create\+Label\+Section@{Create\+Label\+Section}!Section.\+c@{Section.\+c}}
+\subsubsection{\texorpdfstring{Create\+Label\+Section()}{CreateLabelSection()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_s_e_c_t_i_o_n}{S\+E\+C\+T\+I\+ON}}$\ast$ Create\+Label\+Section (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_c_o_l_l_e_c_t_i_o_n___f_s_m}{C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+F\+SM}}}]{state\+Machine,  }\item[{\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$}]{lexeme\+List }\end{DoxyParamCaption})}
+
+
+
+Create an instruction Section with the setup. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state\+Machine} & \mbox{\hyperlink{struct_c_o_l_l_e_c_t_i_o_n___f_s_m}{C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+F\+SM}} which is the fsm of the Collection. \\
+\hline
+{\em lexeme\+List} & L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+L\+E$\ast$ which is a list of lexeme corresponding to the lexeme of this label.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+an label S\+E\+C\+T\+I\+O\+N$\ast$ 
+\end{DoxyReturn}
+
+
+Definition at line 73 of file Section.\+c.
+
+\mbox{\Hypertarget{_section_8c_a858495a819f57a208ba42a55fabc7901}\label{_section_8c_a858495a819f57a208ba42a55fabc7901}} 
+\index{Section.\+c@{Section.\+c}!Display\+Collection\+Lists@{Display\+Collection\+Lists}}
+\index{Display\+Collection\+Lists@{Display\+Collection\+Lists}!Section.\+c@{Section.\+c}}
+\subsubsection{\texorpdfstring{Display\+Collection\+Lists()}{DisplayCollectionLists()}}
+{\footnotesize\ttfamily void Display\+Collection\+Lists (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_c_o_l_l_e_c_t_i_o_n___l_i_s_t_s}{C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+L\+I\+S\+TS}}}]{collections }\end{DoxyParamCaption})}
+
+
+
+Display a \mbox{\hyperlink{struct_c_o_l_l_e_c_t_i_o_n___l_i_s_t_s}{C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+L\+I\+S\+TS}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em collections} & \mbox{\hyperlink{struct_c_o_l_l_e_c_t_i_o_n___l_i_s_t_s}{C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+L\+I\+S\+TS}} which is the collection to display. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 168 of file Section.\+c.
+
+\mbox{\Hypertarget{_section_8c_af516d56768f1322abecf33bcf4c9a006}\label{_section_8c_af516d56768f1322abecf33bcf4c9a006}} 
+\index{Section.\+c@{Section.\+c}!Display\+Section@{Display\+Section}}
+\index{Display\+Section@{Display\+Section}!Section.\+c@{Section.\+c}}
+\subsubsection{\texorpdfstring{Display\+Section()}{DisplaySection()}}
+{\footnotesize\ttfamily void Display\+Section (\begin{DoxyParamCaption}\item[{void $\ast$}]{value }\end{DoxyParamCaption})}
+
+
+
+Display a section. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & void$\ast$ is a S\+E\+C\+T\+I\+O\+N$\ast$. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 127 of file Section.\+c.
+
+\mbox{\Hypertarget{_section_8c_a9942b8d580cd896138b1fa7e7e2bf4ed}\label{_section_8c_a9942b8d580cd896138b1fa7e7e2bf4ed}} 
+\index{Section.\+c@{Section.\+c}!Erased\+Collection\+Lists@{Erased\+Collection\+Lists}}
+\index{Erased\+Collection\+Lists@{Erased\+Collection\+Lists}!Section.\+c@{Section.\+c}}
+\subsubsection{\texorpdfstring{Erased\+Collection\+Lists()}{ErasedCollectionLists()}}
+{\footnotesize\ttfamily void Erased\+Collection\+Lists (\begin{DoxyParamCaption}\item[{void $\ast$}]{value }\end{DoxyParamCaption})}
+
+
+
+Deallocate the collection\+List. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & void$\ast$ is a S\+E\+C\+T\+I\+O\+N$\ast$. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 208 of file Section.\+c.
+
+\mbox{\Hypertarget{_section_8c_ab8194a8659b11af2bb627fb2a12b21bb}\label{_section_8c_ab8194a8659b11af2bb627fb2a12b21bb}} 
+\index{Section.\+c@{Section.\+c}!Erased\+Section@{Erased\+Section}}
+\index{Erased\+Section@{Erased\+Section}!Section.\+c@{Section.\+c}}
+\subsubsection{\texorpdfstring{Erased\+Section()}{ErasedSection()}}
+{\footnotesize\ttfamily void Erased\+Section (\begin{DoxyParamCaption}\item[{void $\ast$}]{value }\end{DoxyParamCaption})}
+
+
+
+Deallocate the section. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & void$\ast$ is a S\+E\+C\+T\+I\+O\+N$\ast$. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 181 of file Section.\+c.
+
+\mbox{\Hypertarget{_section_8c_a849df0fe29723162d3fa7e85f326ffa0}\label{_section_8c_a849df0fe29723162d3fa7e85f326ffa0}} 
+\index{Section.\+c@{Section.\+c}!Initialize\+Collection\+Lists@{Initialize\+Collection\+Lists}}
+\index{Initialize\+Collection\+Lists@{Initialize\+Collection\+Lists}!Section.\+c@{Section.\+c}}
+\subsubsection{\texorpdfstring{Initialize\+Collection\+Lists()}{InitializeCollectionLists()}}
+{\footnotesize\ttfamily void Initialize\+Collection\+Lists (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_c_o_l_l_e_c_t_i_o_n___l_i_s_t_s}{C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+L\+I\+S\+TS}} $\ast$}]{collections }\end{DoxyParamCaption})}
+
+
+
+Table of collection\textquotesingle{}s section equivalent to the C\+O\+L\+L\+E\+C\+T\+I\+O\+NS. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em collections} & C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+L\+I\+S\+T\+S$\ast$ which is the collection list to initialize. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 18 of file Section.\+c.
+
+\mbox{\Hypertarget{_section_8c_a5279f13aac44b189ed6f26bc2e008782}\label{_section_8c_a5279f13aac44b189ed6f26bc2e008782}} 
+\index{Section.\+c@{Section.\+c}!Number\+Lexeme\+Operand@{Number\+Lexeme\+Operand}}
+\index{Number\+Lexeme\+Operand@{Number\+Lexeme\+Operand}!Section.\+c@{Section.\+c}}
+\subsubsection{\texorpdfstring{Number\+Lexeme\+Operand()}{NumberLexemeOperand()}}
+{\footnotesize\ttfamily int Number\+Lexeme\+Operand (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}}}]{lexeme\+List }\end{DoxyParamCaption})}
+
+
+
+Count the nomber of lexeme in the operand. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lexeme\+List} & L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+L\+E$\ast$ which is a list of lexeme where we want to count.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Integer which is the number of lexeme in the operand. 
+\end{DoxyReturn}
+
+
+Definition at line 90 of file Section.\+c.
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{_section_8c_a0bd2ef28e075f60979dc9fc6fdfd4ef4}\label{_section_8c_a0bd2ef28e075f60979dc9fc6fdfd4ef4}} 
+\index{Section.\+c@{Section.\+c}!collection\+Section@{collection\+Section}}
+\index{collection\+Section@{collection\+Section}!Section.\+c@{Section.\+c}}
+\subsubsection{\texorpdfstring{collection\+Section}{collectionSection}}
+{\footnotesize\ttfamily char$\ast$ collection\+Section\mbox{[}3\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= \{
+    \textcolor{stringliteral}{"TEXT"},
+    \textcolor{stringliteral}{"DATA"},
+    \textcolor{stringliteral}{"BSS"}\}
+\end{DoxyCode}
+
+
+Table of collection\textquotesingle{}s section equivalent to the C\+O\+L\+L\+E\+C\+T\+I\+O\+NS. 
+
+
+
+Definition at line 13 of file Section.\+c.
+
+\mbox{\Hypertarget{_section_8c_ad663cec7beb319e49f74a8a39cc5e96b}\label{_section_8c_ad663cec7beb319e49f74a8a39cc5e96b}} 
+\index{Section.\+c@{Section.\+c}!collection\+Type@{collection\+Type}}
+\index{collection\+Type@{collection\+Type}!Section.\+c@{Section.\+c}}
+\subsubsection{\texorpdfstring{collection\+Type}{collectionType}}
+{\footnotesize\ttfamily char$\ast$ collection\+Type\mbox{[}8\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= \{
+    \textcolor{stringliteral}{"DIR0"},
+    \textcolor{stringliteral}{"ASCIZZ"},
+    \textcolor{stringliteral}{"SPACE"},
+    \textcolor{stringliteral}{"WORD"},
+    \textcolor{stringliteral}{"BYTE"},
+    \textcolor{stringliteral}{"SET\_NOREORDER"},
+    \textcolor{stringliteral}{"INSTRUCTION0"},
+    \textcolor{stringliteral}{"INSTRUCTION1"}\}
+\end{DoxyCode}
+
+
+Table of collection\textquotesingle{}s Type equivalent to the C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+S\+T\+A\+TE. 
+
+
+
+Definition at line 3 of file Section.\+c.
+

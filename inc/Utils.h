@@ -106,16 +106,56 @@ int CharIsHexadecimal(char value);
  */
 int CharIsNumberLetter(char value);
 
+/**
+ * @param string Char* to up.
+ * @brief Up the char*.
+ *
+ */
 void StringUpper(char* string);
 
+/**
+ * @param string Char* of hexadecimal value.
+ * @brief Take an Hexadecimal string to return the decimal value.
+ * @return The decimal value.
+ *
+ */
 unsigned long int StringHexToDecimal(char* value);
 
+/**
+ * @param registerToTest char* the string to test.
+ * @param newName to send as a decimal value.
+ * @brief Test if the register exist and send the decimal value.
+ * @return -#1 if it exist.\n-#0 if it's not.
+ *
+ */
 int IsAvailableRegister(char* registerToTest, int** newName);
 
+/**
+ * @param newName int** value to change.
+ * @param number int value to put.
+ * @brief Change the name of the register.
+ *
+ */
 void ChangeRegisterName(int** newName, int number);
 
+/**
+ * @param fullString char** global string.
+ * @param replaceString char* string to put inside the fullString.
+ * @param start int first position of the replacement.
+ * @param end int last position of the replacement.
+ * @brief Replace a part of the string of an another one between to positions with an other string.
+ *
+ */
 void ReplaceString(char** fullString, char* replaceString, int start, int end);
 
+/**
+ * @param fullString char* global string.
+ * @param start int first position of the replacement.
+ * @param length int in proportion to start value.
+ * @brief Send the part of the string delimited by the start value and the length.
+ * @return A part of the fullString.
+ *
+ */
 char* CutString(char* fullString, int start, int length);
 
 #endif

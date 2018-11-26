@@ -1,0 +1,245 @@
+\hypertarget{_f_s_m_collection_8h}{}\section{/home/raphael/\+Project/\+Assembler\+M\+I\+P\+S/inc/\+F\+S\+M\+Collection.h File Reference}
+\label{_f_s_m_collection_8h}\index{/home/raphael/\+Project/\+Assembler\+M\+I\+P\+S/inc/\+F\+S\+M\+Collection.\+h@{/home/raphael/\+Project/\+Assembler\+M\+I\+P\+S/inc/\+F\+S\+M\+Collection.\+h}}
+{\ttfamily \#include \char`\"{}Lexeme.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Dico\+Instruct.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Double\+List\+Generic.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Double\+Queue\+Generic.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Utils.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}limits.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Section.\+h\char`\"{}}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_c_o_l_l_e_c_t_i_o_n___f_s_m}{C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+F\+SM}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_f_s_m_collection_8h_a4808251c64dfb32f328043b6acf678e8}{E\+N\+U\+M\+\_\+\+C\+O\+L\+L\+E\+C\+T\+I\+ON}}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{_f_s_m_collection_8h_a25f9142504106abec10ec63d2a9be4cd}{C\+O\+L\+L\+E\+C\+T\+I\+O\+NS}} \{ \mbox{\hyperlink{_f_s_m_collection_8h_a25f9142504106abec10ec63d2a9be4cda9a4a47c1606e295076055a9cc4373197}{T\+E\+XT}}, 
+\mbox{\hyperlink{_f_s_m_collection_8h_a25f9142504106abec10ec63d2a9be4cda9d7d6f31868d66330397c967c4afd2d2}{D\+A\+TA}}, 
+\mbox{\hyperlink{_f_s_m_collection_8h_a25f9142504106abec10ec63d2a9be4cdab08fab2e7c3164fa190a84e3562ef935}{B\+SS}}
+ \}
+\item 
+enum \mbox{\hyperlink{_f_s_m_collection_8h_a1ffa02d402e882e4716ee5d2884de8a8}{C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+S\+T\+A\+TE}} \{ \newline
+\mbox{\hyperlink{_f_s_m_collection_8h_a1ffa02d402e882e4716ee5d2884de8a8acd5878523a4efbaa4616283d1c9c6239}{D\+I\+R0}}, 
+\mbox{\hyperlink{_f_s_m_collection_8h_a1ffa02d402e882e4716ee5d2884de8a8aaeea3e8a890174ca5e37f14b2bd07b84}{A\+S\+C\+I\+ZZ}}, 
+\mbox{\hyperlink{_f_s_m_collection_8h_a1ffa02d402e882e4716ee5d2884de8a8ac08dae7edcb5c5bb959fee5971fbad95}{S\+P\+A\+CE}}, 
+\mbox{\hyperlink{_f_s_m_collection_8h_a1ffa02d402e882e4716ee5d2884de8a8a4ad40322037d6d371dca3e5cf993f5dc}{W\+O\+RD}}, 
+\newline
+\mbox{\hyperlink{_f_s_m_collection_8h_a1ffa02d402e882e4716ee5d2884de8a8aa7f492d725033c06576ac4ba21007297}{B\+Y\+TE}}, 
+\mbox{\hyperlink{_f_s_m_collection_8h_a1ffa02d402e882e4716ee5d2884de8a8aaf012771ddbda153e9d0a21095d3de69}{S\+E\+T\+\_\+\+N\+O\+R\+E\+O\+R\+D\+ER}}, 
+\mbox{\hyperlink{_f_s_m_collection_8h_a1ffa02d402e882e4716ee5d2884de8a8a5017d1a32837afa159d60b4bf780fcf3}{I\+N\+S\+T\+R\+U\+C\+T\+I\+O\+N0}}, 
+\mbox{\hyperlink{_f_s_m_collection_8h_a1ffa02d402e882e4716ee5d2884de8a8a9ef938242b2fce419d7e27c6bbae0206}{I\+N\+S\+T\+R\+U\+C\+T\+I\+O\+N1}}, 
+\newline
+\mbox{\hyperlink{_f_s_m_collection_8h_a1ffa02d402e882e4716ee5d2884de8a8aaf6385546f214117d2a822aa1e8790a2}{I\+N\+I\+T\+\_\+\+C\+O\+L\+L\+E\+C\+T\+I\+ON}}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{_f_s_m_collection_8h_ac013db86e81b7d8e97b812dea8e06ab6}{Initialization\+Collection}} (\mbox{\hyperlink{struct_c_o_l_l_e_c_t_i_o_n___l_i_s_t_s}{C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+L\+I\+S\+TS}} $\ast$collection\+Lists)
+\item 
+void \mbox{\hyperlink{_f_s_m_collection_8h_a5fb73df0417da21a18604d38d233d40b}{Initialization\+Collection\+Fsm}} (\mbox{\hyperlink{struct_c_o_l_l_e_c_t_i_o_n___f_s_m}{C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+F\+SM}} $\ast$state\+Machine)
+\begin{DoxyCompactList}\small\item\em Initialize the state\+Machine. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_f_s_m_collection_8h_ab0f5010a0b27808e76d0263d5ca313d6}{Init\+Collection\+Fsm}} (\mbox{\hyperlink{struct_c_o_l_l_e_c_t_i_o_n___f_s_m}{C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+F\+SM}} $\ast$state\+Machine, \mbox{\hyperlink{_double_queue_generic_8h_ac9780889f9bbabed708ecbeaadfb040e}{Q\+U\+E\+U\+E\+\_\+\+D\+O\+U\+B\+LE}} $\ast$lexeme\+Queue)
+\begin{DoxyCompactList}\small\item\em It\textquotesingle{}s the Init state\+Machine which change the state\+Machine\textquotesingle{}s state to the right one. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_f_s_m_collection_8h_a647d36097774eb72a4f73deb7532d32e}{Collection\+Fsm}} (\mbox{\hyperlink{struct_c_o_l_l_e_c_t_i_o_n___f_s_m}{C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+F\+SM}} $\ast$state\+Machine, \mbox{\hyperlink{_double_queue_generic_8h_ac9780889f9bbabed708ecbeaadfb040e}{Q\+U\+E\+U\+E\+\_\+\+D\+O\+U\+B\+LE}} $\ast$lexeme\+Queue, \mbox{\hyperlink{struct_c_o_l_l_e_c_t_i_o_n___l_i_s_t_s}{C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+L\+I\+S\+TS}} $\ast$collections, \mbox{\hyperlink{struct_i_n_s_t_r_u_c_t_i_o_n}{I\+N\+S\+T\+R\+U\+C\+T\+I\+ON}} $\ast$instruction\+Dictionary)
+\begin{DoxyCompactList}\small\item\em It\textquotesingle{}s the Init state\+Machine which change the state\+Machine\textquotesingle{}s state to the right one. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_f_s_m_collection_8h_a81212c90eebec3062952bc007a28fd06}{Print\+Error\+Collection}} (\mbox{\hyperlink{struct_c_o_l_l_e_c_t_i_o_n___f_s_m}{C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+F\+SM}} $\ast$state\+Machine, unsigned long int line\+Number, char $\ast$problem, char $\ast$why, char $\ast$type)
+\begin{DoxyCompactList}\small\item\em Print an the error of the state\+Machine in color. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{_f_s_m_collection_8h_a4808251c64dfb32f328043b6acf678e8}\label{_f_s_m_collection_8h_a4808251c64dfb32f328043b6acf678e8}} 
+\index{F\+S\+M\+Collection.\+h@{F\+S\+M\+Collection.\+h}!E\+N\+U\+M\+\_\+\+C\+O\+L\+L\+E\+C\+T\+I\+ON@{E\+N\+U\+M\+\_\+\+C\+O\+L\+L\+E\+C\+T\+I\+ON}}
+\index{E\+N\+U\+M\+\_\+\+C\+O\+L\+L\+E\+C\+T\+I\+ON@{E\+N\+U\+M\+\_\+\+C\+O\+L\+L\+E\+C\+T\+I\+ON}!F\+S\+M\+Collection.\+h@{F\+S\+M\+Collection.\+h}}
+\subsubsection{\texorpdfstring{E\+N\+U\+M\+\_\+\+C\+O\+L\+L\+E\+C\+T\+I\+ON}{ENUM\_COLLECTION}}
+{\footnotesize\ttfamily \#define E\+N\+U\+M\+\_\+\+C\+O\+L\+L\+E\+C\+T\+I\+ON}
+
+
+
+Definition at line 12 of file F\+S\+M\+Collection.\+h.
+
+
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{_f_s_m_collection_8h_a1ffa02d402e882e4716ee5d2884de8a8}\label{_f_s_m_collection_8h_a1ffa02d402e882e4716ee5d2884de8a8}} 
+\index{F\+S\+M\+Collection.\+h@{F\+S\+M\+Collection.\+h}!C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+S\+T\+A\+TE@{C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+S\+T\+A\+TE}}
+\index{C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+S\+T\+A\+TE@{C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+S\+T\+A\+TE}!F\+S\+M\+Collection.\+h@{F\+S\+M\+Collection.\+h}}
+\subsubsection{\texorpdfstring{C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+S\+T\+A\+TE}{COLLECTION\_STATE}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{_f_s_m_collection_8h_a1ffa02d402e882e4716ee5d2884de8a8}{C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+S\+T\+A\+TE}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{D\+I\+R0@{D\+I\+R0}!F\+S\+M\+Collection.\+h@{F\+S\+M\+Collection.\+h}}\index{F\+S\+M\+Collection.\+h@{F\+S\+M\+Collection.\+h}!D\+I\+R0@{D\+I\+R0}}}\mbox{\Hypertarget{_f_s_m_collection_8h_a1ffa02d402e882e4716ee5d2884de8a8acd5878523a4efbaa4616283d1c9c6239}\label{_f_s_m_collection_8h_a1ffa02d402e882e4716ee5d2884de8a8acd5878523a4efbaa4616283d1c9c6239}} 
+D\+I\+R0&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{A\+S\+C\+I\+ZZ@{A\+S\+C\+I\+ZZ}!F\+S\+M\+Collection.\+h@{F\+S\+M\+Collection.\+h}}\index{F\+S\+M\+Collection.\+h@{F\+S\+M\+Collection.\+h}!A\+S\+C\+I\+ZZ@{A\+S\+C\+I\+ZZ}}}\mbox{\Hypertarget{_f_s_m_collection_8h_a1ffa02d402e882e4716ee5d2884de8a8aaeea3e8a890174ca5e37f14b2bd07b84}\label{_f_s_m_collection_8h_a1ffa02d402e882e4716ee5d2884de8a8aaeea3e8a890174ca5e37f14b2bd07b84}} 
+A\+S\+C\+I\+ZZ&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S\+P\+A\+CE@{S\+P\+A\+CE}!F\+S\+M\+Collection.\+h@{F\+S\+M\+Collection.\+h}}\index{F\+S\+M\+Collection.\+h@{F\+S\+M\+Collection.\+h}!S\+P\+A\+CE@{S\+P\+A\+CE}}}\mbox{\Hypertarget{_f_s_m_collection_8h_a1ffa02d402e882e4716ee5d2884de8a8ac08dae7edcb5c5bb959fee5971fbad95}\label{_f_s_m_collection_8h_a1ffa02d402e882e4716ee5d2884de8a8ac08dae7edcb5c5bb959fee5971fbad95}} 
+S\+P\+A\+CE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{W\+O\+RD@{W\+O\+RD}!F\+S\+M\+Collection.\+h@{F\+S\+M\+Collection.\+h}}\index{F\+S\+M\+Collection.\+h@{F\+S\+M\+Collection.\+h}!W\+O\+RD@{W\+O\+RD}}}\mbox{\Hypertarget{_f_s_m_collection_8h_a1ffa02d402e882e4716ee5d2884de8a8a4ad40322037d6d371dca3e5cf993f5dc}\label{_f_s_m_collection_8h_a1ffa02d402e882e4716ee5d2884de8a8a4ad40322037d6d371dca3e5cf993f5dc}} 
+W\+O\+RD&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{B\+Y\+TE@{B\+Y\+TE}!F\+S\+M\+Collection.\+h@{F\+S\+M\+Collection.\+h}}\index{F\+S\+M\+Collection.\+h@{F\+S\+M\+Collection.\+h}!B\+Y\+TE@{B\+Y\+TE}}}\mbox{\Hypertarget{_f_s_m_collection_8h_a1ffa02d402e882e4716ee5d2884de8a8aa7f492d725033c06576ac4ba21007297}\label{_f_s_m_collection_8h_a1ffa02d402e882e4716ee5d2884de8a8aa7f492d725033c06576ac4ba21007297}} 
+B\+Y\+TE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S\+E\+T\+\_\+\+N\+O\+R\+E\+O\+R\+D\+ER@{S\+E\+T\+\_\+\+N\+O\+R\+E\+O\+R\+D\+ER}!F\+S\+M\+Collection.\+h@{F\+S\+M\+Collection.\+h}}\index{F\+S\+M\+Collection.\+h@{F\+S\+M\+Collection.\+h}!S\+E\+T\+\_\+\+N\+O\+R\+E\+O\+R\+D\+ER@{S\+E\+T\+\_\+\+N\+O\+R\+E\+O\+R\+D\+ER}}}\mbox{\Hypertarget{_f_s_m_collection_8h_a1ffa02d402e882e4716ee5d2884de8a8aaf012771ddbda153e9d0a21095d3de69}\label{_f_s_m_collection_8h_a1ffa02d402e882e4716ee5d2884de8a8aaf012771ddbda153e9d0a21095d3de69}} 
+S\+E\+T\+\_\+\+N\+O\+R\+E\+O\+R\+D\+ER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{I\+N\+S\+T\+R\+U\+C\+T\+I\+O\+N0@{I\+N\+S\+T\+R\+U\+C\+T\+I\+O\+N0}!F\+S\+M\+Collection.\+h@{F\+S\+M\+Collection.\+h}}\index{F\+S\+M\+Collection.\+h@{F\+S\+M\+Collection.\+h}!I\+N\+S\+T\+R\+U\+C\+T\+I\+O\+N0@{I\+N\+S\+T\+R\+U\+C\+T\+I\+O\+N0}}}\mbox{\Hypertarget{_f_s_m_collection_8h_a1ffa02d402e882e4716ee5d2884de8a8a5017d1a32837afa159d60b4bf780fcf3}\label{_f_s_m_collection_8h_a1ffa02d402e882e4716ee5d2884de8a8a5017d1a32837afa159d60b4bf780fcf3}} 
+I\+N\+S\+T\+R\+U\+C\+T\+I\+O\+N0&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{I\+N\+S\+T\+R\+U\+C\+T\+I\+O\+N1@{I\+N\+S\+T\+R\+U\+C\+T\+I\+O\+N1}!F\+S\+M\+Collection.\+h@{F\+S\+M\+Collection.\+h}}\index{F\+S\+M\+Collection.\+h@{F\+S\+M\+Collection.\+h}!I\+N\+S\+T\+R\+U\+C\+T\+I\+O\+N1@{I\+N\+S\+T\+R\+U\+C\+T\+I\+O\+N1}}}\mbox{\Hypertarget{_f_s_m_collection_8h_a1ffa02d402e882e4716ee5d2884de8a8a9ef938242b2fce419d7e27c6bbae0206}\label{_f_s_m_collection_8h_a1ffa02d402e882e4716ee5d2884de8a8a9ef938242b2fce419d7e27c6bbae0206}} 
+I\+N\+S\+T\+R\+U\+C\+T\+I\+O\+N1&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{I\+N\+I\+T\+\_\+\+C\+O\+L\+L\+E\+C\+T\+I\+ON@{I\+N\+I\+T\+\_\+\+C\+O\+L\+L\+E\+C\+T\+I\+ON}!F\+S\+M\+Collection.\+h@{F\+S\+M\+Collection.\+h}}\index{F\+S\+M\+Collection.\+h@{F\+S\+M\+Collection.\+h}!I\+N\+I\+T\+\_\+\+C\+O\+L\+L\+E\+C\+T\+I\+ON@{I\+N\+I\+T\+\_\+\+C\+O\+L\+L\+E\+C\+T\+I\+ON}}}\mbox{\Hypertarget{_f_s_m_collection_8h_a1ffa02d402e882e4716ee5d2884de8a8aaf6385546f214117d2a822aa1e8790a2}\label{_f_s_m_collection_8h_a1ffa02d402e882e4716ee5d2884de8a8aaf6385546f214117d2a822aa1e8790a2}} 
+I\+N\+I\+T\+\_\+\+C\+O\+L\+L\+E\+C\+T\+I\+ON&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 21 of file F\+S\+M\+Collection.\+h.
+
+\mbox{\Hypertarget{_f_s_m_collection_8h_a25f9142504106abec10ec63d2a9be4cd}\label{_f_s_m_collection_8h_a25f9142504106abec10ec63d2a9be4cd}} 
+\index{F\+S\+M\+Collection.\+h@{F\+S\+M\+Collection.\+h}!C\+O\+L\+L\+E\+C\+T\+I\+O\+NS@{C\+O\+L\+L\+E\+C\+T\+I\+O\+NS}}
+\index{C\+O\+L\+L\+E\+C\+T\+I\+O\+NS@{C\+O\+L\+L\+E\+C\+T\+I\+O\+NS}!F\+S\+M\+Collection.\+h@{F\+S\+M\+Collection.\+h}}
+\subsubsection{\texorpdfstring{C\+O\+L\+L\+E\+C\+T\+I\+O\+NS}{COLLECTIONS}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{_f_s_m_collection_8h_a25f9142504106abec10ec63d2a9be4cd}{C\+O\+L\+L\+E\+C\+T\+I\+O\+NS}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+E\+XT@{T\+E\+XT}!F\+S\+M\+Collection.\+h@{F\+S\+M\+Collection.\+h}}\index{F\+S\+M\+Collection.\+h@{F\+S\+M\+Collection.\+h}!T\+E\+XT@{T\+E\+XT}}}\mbox{\Hypertarget{_f_s_m_collection_8h_a25f9142504106abec10ec63d2a9be4cda9a4a47c1606e295076055a9cc4373197}\label{_f_s_m_collection_8h_a25f9142504106abec10ec63d2a9be4cda9a4a47c1606e295076055a9cc4373197}} 
+T\+E\+XT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{D\+A\+TA@{D\+A\+TA}!F\+S\+M\+Collection.\+h@{F\+S\+M\+Collection.\+h}}\index{F\+S\+M\+Collection.\+h@{F\+S\+M\+Collection.\+h}!D\+A\+TA@{D\+A\+TA}}}\mbox{\Hypertarget{_f_s_m_collection_8h_a25f9142504106abec10ec63d2a9be4cda9d7d6f31868d66330397c967c4afd2d2}\label{_f_s_m_collection_8h_a25f9142504106abec10ec63d2a9be4cda9d7d6f31868d66330397c967c4afd2d2}} 
+D\+A\+TA&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{B\+SS@{B\+SS}!F\+S\+M\+Collection.\+h@{F\+S\+M\+Collection.\+h}}\index{F\+S\+M\+Collection.\+h@{F\+S\+M\+Collection.\+h}!B\+SS@{B\+SS}}}\mbox{\Hypertarget{_f_s_m_collection_8h_a25f9142504106abec10ec63d2a9be4cdab08fab2e7c3164fa190a84e3562ef935}\label{_f_s_m_collection_8h_a25f9142504106abec10ec63d2a9be4cdab08fab2e7c3164fa190a84e3562ef935}} 
+B\+SS&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 13 of file F\+S\+M\+Collection.\+h.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{_f_s_m_collection_8h_a647d36097774eb72a4f73deb7532d32e}\label{_f_s_m_collection_8h_a647d36097774eb72a4f73deb7532d32e}} 
+\index{F\+S\+M\+Collection.\+h@{F\+S\+M\+Collection.\+h}!Collection\+Fsm@{Collection\+Fsm}}
+\index{Collection\+Fsm@{Collection\+Fsm}!F\+S\+M\+Collection.\+h@{F\+S\+M\+Collection.\+h}}
+\subsubsection{\texorpdfstring{Collection\+Fsm()}{CollectionFsm()}}
+{\footnotesize\ttfamily void Collection\+Fsm (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_c_o_l_l_e_c_t_i_o_n___f_s_m}{C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+F\+SM}} $\ast$}]{state\+Machine,  }\item[{\mbox{\hyperlink{_double_queue_generic_8h_ac9780889f9bbabed708ecbeaadfb040e}{Q\+U\+E\+U\+E\+\_\+\+D\+O\+U\+B\+LE}} $\ast$}]{lexeme\+Queue,  }\item[{\mbox{\hyperlink{struct_c_o_l_l_e_c_t_i_o_n___l_i_s_t_s}{C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+L\+I\+S\+TS}} $\ast$}]{collections,  }\item[{\mbox{\hyperlink{struct_i_n_s_t_r_u_c_t_i_o_n}{I\+N\+S\+T\+R\+U\+C\+T\+I\+ON}} $\ast$}]{instruction\+Dictionary }\end{DoxyParamCaption})}
+
+
+
+It\textquotesingle{}s the Init state\+Machine which change the state\+Machine\textquotesingle{}s state to the right one. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state\+Machine} & collection\+\_\+list$\ast$ to fill the error part or other value inside. \\
+\hline
+{\em lexeme\+Queue} & Q\+U\+E\+U\+E\+\_\+\+D\+O\+U\+B\+L\+E$\ast$ the queue of lexeme to treat grammatically. \\
+\hline
+{\em collections} & C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+L\+I\+S\+T\+S$\ast$ to fill in. \\
+\hline
+{\em instruction\+Dictionary} & I\+N\+S\+T\+R\+U\+C\+T\+I\+O\+N$\ast$ the instructions\textquotesingle{} dictionary to test the instruction in label. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 69 of file F\+S\+M\+Collection.\+c.
+
+\mbox{\Hypertarget{_f_s_m_collection_8h_ab0f5010a0b27808e76d0263d5ca313d6}\label{_f_s_m_collection_8h_ab0f5010a0b27808e76d0263d5ca313d6}} 
+\index{F\+S\+M\+Collection.\+h@{F\+S\+M\+Collection.\+h}!Init\+Collection\+Fsm@{Init\+Collection\+Fsm}}
+\index{Init\+Collection\+Fsm@{Init\+Collection\+Fsm}!F\+S\+M\+Collection.\+h@{F\+S\+M\+Collection.\+h}}
+\subsubsection{\texorpdfstring{Init\+Collection\+Fsm()}{InitCollectionFsm()}}
+{\footnotesize\ttfamily void Init\+Collection\+Fsm (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_c_o_l_l_e_c_t_i_o_n___f_s_m}{C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+F\+SM}} $\ast$}]{state\+Machine,  }\item[{\mbox{\hyperlink{_double_queue_generic_8h_ac9780889f9bbabed708ecbeaadfb040e}{Q\+U\+E\+U\+E\+\_\+\+D\+O\+U\+B\+LE}} $\ast$}]{lexeme\+Queue }\end{DoxyParamCaption})}
+
+
+
+It\textquotesingle{}s the Init state\+Machine which change the state\+Machine\textquotesingle{}s state to the right one. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state\+Machine} & collection\+\_\+list$\ast$ to fill the error part or other value inside. \\
+\hline
+{\em lexeme\+Queue} & Q\+U\+E\+U\+E\+\_\+\+D\+O\+U\+B\+L\+E$\ast$ the queue of lexeme to treat grammatically. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 31 of file F\+S\+M\+Collection.\+c.
+
+\mbox{\Hypertarget{_f_s_m_collection_8h_ac013db86e81b7d8e97b812dea8e06ab6}\label{_f_s_m_collection_8h_ac013db86e81b7d8e97b812dea8e06ab6}} 
+\index{F\+S\+M\+Collection.\+h@{F\+S\+M\+Collection.\+h}!Initialization\+Collection@{Initialization\+Collection}}
+\index{Initialization\+Collection@{Initialization\+Collection}!F\+S\+M\+Collection.\+h@{F\+S\+M\+Collection.\+h}}
+\subsubsection{\texorpdfstring{Initialization\+Collection()}{InitializationCollection()}}
+{\footnotesize\ttfamily int Initialization\+Collection (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_c_o_l_l_e_c_t_i_o_n___l_i_s_t_s}{C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+L\+I\+S\+TS}} $\ast$}]{collection\+Lists }\end{DoxyParamCaption})}
+
+
+
+Definition at line 3 of file F\+S\+M\+Collection.\+c.
+
+\mbox{\Hypertarget{_f_s_m_collection_8h_a5fb73df0417da21a18604d38d233d40b}\label{_f_s_m_collection_8h_a5fb73df0417da21a18604d38d233d40b}} 
+\index{F\+S\+M\+Collection.\+h@{F\+S\+M\+Collection.\+h}!Initialization\+Collection\+Fsm@{Initialization\+Collection\+Fsm}}
+\index{Initialization\+Collection\+Fsm@{Initialization\+Collection\+Fsm}!F\+S\+M\+Collection.\+h@{F\+S\+M\+Collection.\+h}}
+\subsubsection{\texorpdfstring{Initialization\+Collection\+Fsm()}{InitializationCollectionFsm()}}
+{\footnotesize\ttfamily void Initialization\+Collection\+Fsm (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_c_o_l_l_e_c_t_i_o_n___f_s_m}{C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+F\+SM}} $\ast$}]{state\+Machine }\end{DoxyParamCaption})}
+
+
+
+Initialize the state\+Machine. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state\+Machine} & Pointeur on the state\+Machine to initialize. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 17 of file F\+S\+M\+Collection.\+c.
+
+\mbox{\Hypertarget{_f_s_m_collection_8h_a81212c90eebec3062952bc007a28fd06}\label{_f_s_m_collection_8h_a81212c90eebec3062952bc007a28fd06}} 
+\index{F\+S\+M\+Collection.\+h@{F\+S\+M\+Collection.\+h}!Print\+Error\+Collection@{Print\+Error\+Collection}}
+\index{Print\+Error\+Collection@{Print\+Error\+Collection}!F\+S\+M\+Collection.\+h@{F\+S\+M\+Collection.\+h}}
+\subsubsection{\texorpdfstring{Print\+Error\+Collection()}{PrintErrorCollection()}}
+{\footnotesize\ttfamily void Print\+Error\+Collection (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_c_o_l_l_e_c_t_i_o_n___f_s_m}{C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+F\+SM}} $\ast$}]{state\+Machine,  }\item[{unsigned long int}]{line\+Number,  }\item[{char $\ast$}]{problem,  }\item[{char $\ast$}]{why,  }\item[{char $\ast$}]{type }\end{DoxyParamCaption})}
+
+
+
+Print an the error of the state\+Machine in color. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state\+Machine} & C\+O\+L\+L\+E\+C\+T\+I\+O\+N\+\_\+\+F\+S\+M$\ast$ to change the error state and the in\+State state. \\
+\hline
+{\em line\+Number} & unsigned long int to show the line number. \\
+\hline
+{\em problem} & char$\ast$ to explain the problem. \\
+\hline
+{\em type} & char$\ast$ to show where do we have the problem. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 679 of file F\+S\+M\+Collection.\+c.
+

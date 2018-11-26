@@ -1,0 +1,275 @@
+\hypertarget{_f_s_m_operand_8h}{}\section{/home/raphael/\+Project/\+Assembler\+M\+I\+P\+S/inc/\+F\+S\+M\+Operand.h File Reference}
+\label{_f_s_m_operand_8h}\index{/home/raphael/\+Project/\+Assembler\+M\+I\+P\+S/inc/\+F\+S\+M\+Operand.\+h@{/home/raphael/\+Project/\+Assembler\+M\+I\+P\+S/inc/\+F\+S\+M\+Operand.\+h}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$limits.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}Double\+List\+Generic.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Section.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Lexeme.\+h\char`\"{}}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_f_s_m___s_t_a_t_e___o_p_e_r_a_n_d}{F\+S\+M\+\_\+\+S\+T\+A\+T\+E\+\_\+\+O\+P\+E\+R\+A\+ND}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_f_s_m_operand_8h_a9d4413c28465a8c0d108e797428a793c}{R\+E\+L\+A\+T\+I\+V\+E\+\_\+\+M\+AX}}~131072
+\item 
+\#define \mbox{\hyperlink{_f_s_m_operand_8h_ac8e3fe88fca8ac4cb9b166dc67d5cb4b}{R\+E\+L\+A\+T\+I\+V\+E\+\_\+\+M\+IN}}~(-\/\mbox{\hyperlink{_f_s_m_operand_8h_a9d4413c28465a8c0d108e797428a793c}{R\+E\+L\+A\+T\+I\+V\+E\+\_\+\+M\+AX}}-\/1)
+\item 
+\#define \mbox{\hyperlink{_f_s_m_operand_8h_ac9463873637eeb0f6da7150ef27fce34}{A\+B\+S\+O\+L\+U\+T\+E\+\_\+\+M\+AX}}~134217728
+\item 
+\#define \mbox{\hyperlink{_f_s_m_operand_8h_af007c17d03f7178cff3c681d3dbaecc7}{A\+B\+S\+O\+L\+U\+T\+E\+\_\+\+M\+IN}}~(-\/\mbox{\hyperlink{_f_s_m_operand_8h_ac9463873637eeb0f6da7150ef27fce34}{A\+B\+S\+O\+L\+U\+T\+E\+\_\+\+M\+AX}}-\/1)
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{_f_s_m_operand_8h_aa2d7050d955e23a8f1a28c1ccf21111f}{O\+P\+E\+R\+A\+N\+D\+\_\+\+T\+Y\+PE}} \{ \newline
+\mbox{\hyperlink{_f_s_m_operand_8h_aa2d7050d955e23a8f1a28c1ccf21111fac45fae60f994b1b3d5dd2556265f3415}{A\+B\+S\+O\+L\+U\+TE}} = \textquotesingle{}A\textquotesingle{}, 
+\mbox{\hyperlink{_f_s_m_operand_8h_aa2d7050d955e23a8f1a28c1ccf21111fab3c94666c9c848f5b5454fe0eff53503}{R\+EG}} = \textquotesingle{}\$\textquotesingle{}, 
+\mbox{\hyperlink{_f_s_m_operand_8h_aa2d7050d955e23a8f1a28c1ccf21111fa6767aafa855974d10e8e68a3e66a97e0}{B\+A\+S\+E\+\_\+\+O\+F\+F\+S\+ET}} = \textquotesingle{}B\textquotesingle{}, 
+\mbox{\hyperlink{_f_s_m_operand_8h_aa2d7050d955e23a8f1a28c1ccf21111fa72994bc651ddc02113986a2e574b3338}{I\+M\+M\+E\+D\+I\+AT}} = \textquotesingle{}I\textquotesingle{}, 
+\newline
+\mbox{\hyperlink{_f_s_m_operand_8h_aa2d7050d955e23a8f1a28c1ccf21111fa5c3c851f7c28ae6c318fabdc1d4498c9}{S\+H\+I\+F\+T\+\_\+\+A\+M\+O\+U\+NT}} = \textquotesingle{}S\textquotesingle{}, 
+\mbox{\hyperlink{_f_s_m_operand_8h_aa2d7050d955e23a8f1a28c1ccf21111fac8ee683c19bb6a988eccfbaf0f584c66}{R\+E\+L\+A\+T\+I\+VE}} = \textquotesingle{}R\textquotesingle{}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_f_s_m_operand_8h_a467c1586a6ff487ac7139391a971c782}{Initialization\+Operand\+Fsm}} (\mbox{\hyperlink{struct_f_s_m___s_t_a_t_e___o_p_e_r_a_n_d}{F\+S\+M\+\_\+\+S\+T\+A\+T\+E\+\_\+\+O\+P\+E\+R\+A\+ND}} $\ast$fsm, \mbox{\hyperlink{_f_s_m_operand_8h_aa2d7050d955e23a8f1a28c1ccf21111f}{O\+P\+E\+R\+A\+N\+D\+\_\+\+T\+Y\+PE}} operand\+Type)
+\begin{DoxyCompactList}\small\item\em Initialize the operand fsm. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_f_s_m_operand_8h_a27b68535e5b84b0311ce0bd90fcd1e34}{Is\+Immediat}} (\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$list\+Lexeme)
+\begin{DoxyCompactList}\small\item\em Test if the lexemes\textquotesingle{} list is an immediat operand. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_f_s_m_operand_8h_a81e37365d24e6c1bb9991d01a3201925}{Is\+Absolute}} (\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$list\+Lexeme)
+\begin{DoxyCompactList}\small\item\em Test if the lexemes\textquotesingle{} list is an absolute operand. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_f_s_m_operand_8h_a2a38da0ef4e06c50cae323539100bdfc}{Is\+Relative}} (\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$list\+Lexeme)
+\begin{DoxyCompactList}\small\item\em Test if the lexemes\textquotesingle{} list is a relative operand. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_f_s_m_operand_8h_a132d5cbc5ec2790e9ca93acb6d2a4c71}{Is\+Base\+Offset}} (\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$list\+Lexeme)
+\begin{DoxyCompactList}\small\item\em Test if the lexemes\textquotesingle{} list is a base\+Offset operand. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_f_s_m_operand_8h_a1fa4e2d5bdbe53fcbb379537cfc2ab15}{Is\+Shift\+Amount}} (\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$list\+Lexeme)
+\begin{DoxyCompactList}\small\item\em Test if the lexemes\textquotesingle{} list is a shift\+Amount operand. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_f_s_m_operand_8h_ac321d3af94f222453624acf7167a5cdd}{Operand\+F\+SM}} (\mbox{\hyperlink{struct_f_s_m___s_t_a_t_e___o_p_e_r_a_n_d}{F\+S\+M\+\_\+\+S\+T\+A\+T\+E\+\_\+\+O\+P\+E\+R\+A\+ND}} $\ast$fsm, \mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$list\+Operand)
+\begin{DoxyCompactList}\small\item\em Test if the operand is the one defined in the fsm. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{_f_s_m_operand_8h_ac9463873637eeb0f6da7150ef27fce34}\label{_f_s_m_operand_8h_ac9463873637eeb0f6da7150ef27fce34}} 
+\index{F\+S\+M\+Operand.\+h@{F\+S\+M\+Operand.\+h}!A\+B\+S\+O\+L\+U\+T\+E\+\_\+\+M\+AX@{A\+B\+S\+O\+L\+U\+T\+E\+\_\+\+M\+AX}}
+\index{A\+B\+S\+O\+L\+U\+T\+E\+\_\+\+M\+AX@{A\+B\+S\+O\+L\+U\+T\+E\+\_\+\+M\+AX}!F\+S\+M\+Operand.\+h@{F\+S\+M\+Operand.\+h}}
+\subsubsection{\texorpdfstring{A\+B\+S\+O\+L\+U\+T\+E\+\_\+\+M\+AX}{ABSOLUTE\_MAX}}
+{\footnotesize\ttfamily \#define A\+B\+S\+O\+L\+U\+T\+E\+\_\+\+M\+AX~134217728}
+
+
+
+Definition at line 13 of file F\+S\+M\+Operand.\+h.
+
+\mbox{\Hypertarget{_f_s_m_operand_8h_af007c17d03f7178cff3c681d3dbaecc7}\label{_f_s_m_operand_8h_af007c17d03f7178cff3c681d3dbaecc7}} 
+\index{F\+S\+M\+Operand.\+h@{F\+S\+M\+Operand.\+h}!A\+B\+S\+O\+L\+U\+T\+E\+\_\+\+M\+IN@{A\+B\+S\+O\+L\+U\+T\+E\+\_\+\+M\+IN}}
+\index{A\+B\+S\+O\+L\+U\+T\+E\+\_\+\+M\+IN@{A\+B\+S\+O\+L\+U\+T\+E\+\_\+\+M\+IN}!F\+S\+M\+Operand.\+h@{F\+S\+M\+Operand.\+h}}
+\subsubsection{\texorpdfstring{A\+B\+S\+O\+L\+U\+T\+E\+\_\+\+M\+IN}{ABSOLUTE\_MIN}}
+{\footnotesize\ttfamily \#define A\+B\+S\+O\+L\+U\+T\+E\+\_\+\+M\+IN~(-\/\mbox{\hyperlink{_f_s_m_operand_8h_ac9463873637eeb0f6da7150ef27fce34}{A\+B\+S\+O\+L\+U\+T\+E\+\_\+\+M\+AX}}-\/1)}
+
+
+
+Definition at line 14 of file F\+S\+M\+Operand.\+h.
+
+\mbox{\Hypertarget{_f_s_m_operand_8h_a9d4413c28465a8c0d108e797428a793c}\label{_f_s_m_operand_8h_a9d4413c28465a8c0d108e797428a793c}} 
+\index{F\+S\+M\+Operand.\+h@{F\+S\+M\+Operand.\+h}!R\+E\+L\+A\+T\+I\+V\+E\+\_\+\+M\+AX@{R\+E\+L\+A\+T\+I\+V\+E\+\_\+\+M\+AX}}
+\index{R\+E\+L\+A\+T\+I\+V\+E\+\_\+\+M\+AX@{R\+E\+L\+A\+T\+I\+V\+E\+\_\+\+M\+AX}!F\+S\+M\+Operand.\+h@{F\+S\+M\+Operand.\+h}}
+\subsubsection{\texorpdfstring{R\+E\+L\+A\+T\+I\+V\+E\+\_\+\+M\+AX}{RELATIVE\_MAX}}
+{\footnotesize\ttfamily \#define R\+E\+L\+A\+T\+I\+V\+E\+\_\+\+M\+AX~131072}
+
+
+
+Definition at line 10 of file F\+S\+M\+Operand.\+h.
+
+\mbox{\Hypertarget{_f_s_m_operand_8h_ac8e3fe88fca8ac4cb9b166dc67d5cb4b}\label{_f_s_m_operand_8h_ac8e3fe88fca8ac4cb9b166dc67d5cb4b}} 
+\index{F\+S\+M\+Operand.\+h@{F\+S\+M\+Operand.\+h}!R\+E\+L\+A\+T\+I\+V\+E\+\_\+\+M\+IN@{R\+E\+L\+A\+T\+I\+V\+E\+\_\+\+M\+IN}}
+\index{R\+E\+L\+A\+T\+I\+V\+E\+\_\+\+M\+IN@{R\+E\+L\+A\+T\+I\+V\+E\+\_\+\+M\+IN}!F\+S\+M\+Operand.\+h@{F\+S\+M\+Operand.\+h}}
+\subsubsection{\texorpdfstring{R\+E\+L\+A\+T\+I\+V\+E\+\_\+\+M\+IN}{RELATIVE\_MIN}}
+{\footnotesize\ttfamily \#define R\+E\+L\+A\+T\+I\+V\+E\+\_\+\+M\+IN~(-\/\mbox{\hyperlink{_f_s_m_operand_8h_a9d4413c28465a8c0d108e797428a793c}{R\+E\+L\+A\+T\+I\+V\+E\+\_\+\+M\+AX}}-\/1)}
+
+
+
+Definition at line 11 of file F\+S\+M\+Operand.\+h.
+
+
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{_f_s_m_operand_8h_aa2d7050d955e23a8f1a28c1ccf21111f}\label{_f_s_m_operand_8h_aa2d7050d955e23a8f1a28c1ccf21111f}} 
+\index{F\+S\+M\+Operand.\+h@{F\+S\+M\+Operand.\+h}!O\+P\+E\+R\+A\+N\+D\+\_\+\+T\+Y\+PE@{O\+P\+E\+R\+A\+N\+D\+\_\+\+T\+Y\+PE}}
+\index{O\+P\+E\+R\+A\+N\+D\+\_\+\+T\+Y\+PE@{O\+P\+E\+R\+A\+N\+D\+\_\+\+T\+Y\+PE}!F\+S\+M\+Operand.\+h@{F\+S\+M\+Operand.\+h}}
+\subsubsection{\texorpdfstring{O\+P\+E\+R\+A\+N\+D\+\_\+\+T\+Y\+PE}{OPERAND\_TYPE}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{_f_s_m_operand_8h_aa2d7050d955e23a8f1a28c1ccf21111f}{O\+P\+E\+R\+A\+N\+D\+\_\+\+T\+Y\+PE}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{A\+B\+S\+O\+L\+U\+TE@{A\+B\+S\+O\+L\+U\+TE}!F\+S\+M\+Operand.\+h@{F\+S\+M\+Operand.\+h}}\index{F\+S\+M\+Operand.\+h@{F\+S\+M\+Operand.\+h}!A\+B\+S\+O\+L\+U\+TE@{A\+B\+S\+O\+L\+U\+TE}}}\mbox{\Hypertarget{_f_s_m_operand_8h_aa2d7050d955e23a8f1a28c1ccf21111fac45fae60f994b1b3d5dd2556265f3415}\label{_f_s_m_operand_8h_aa2d7050d955e23a8f1a28c1ccf21111fac45fae60f994b1b3d5dd2556265f3415}} 
+A\+B\+S\+O\+L\+U\+TE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{R\+EG@{R\+EG}!F\+S\+M\+Operand.\+h@{F\+S\+M\+Operand.\+h}}\index{F\+S\+M\+Operand.\+h@{F\+S\+M\+Operand.\+h}!R\+EG@{R\+EG}}}\mbox{\Hypertarget{_f_s_m_operand_8h_aa2d7050d955e23a8f1a28c1ccf21111fab3c94666c9c848f5b5454fe0eff53503}\label{_f_s_m_operand_8h_aa2d7050d955e23a8f1a28c1ccf21111fab3c94666c9c848f5b5454fe0eff53503}} 
+R\+EG&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{B\+A\+S\+E\+\_\+\+O\+F\+F\+S\+ET@{B\+A\+S\+E\+\_\+\+O\+F\+F\+S\+ET}!F\+S\+M\+Operand.\+h@{F\+S\+M\+Operand.\+h}}\index{F\+S\+M\+Operand.\+h@{F\+S\+M\+Operand.\+h}!B\+A\+S\+E\+\_\+\+O\+F\+F\+S\+ET@{B\+A\+S\+E\+\_\+\+O\+F\+F\+S\+ET}}}\mbox{\Hypertarget{_f_s_m_operand_8h_aa2d7050d955e23a8f1a28c1ccf21111fa6767aafa855974d10e8e68a3e66a97e0}\label{_f_s_m_operand_8h_aa2d7050d955e23a8f1a28c1ccf21111fa6767aafa855974d10e8e68a3e66a97e0}} 
+B\+A\+S\+E\+\_\+\+O\+F\+F\+S\+ET&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{I\+M\+M\+E\+D\+I\+AT@{I\+M\+M\+E\+D\+I\+AT}!F\+S\+M\+Operand.\+h@{F\+S\+M\+Operand.\+h}}\index{F\+S\+M\+Operand.\+h@{F\+S\+M\+Operand.\+h}!I\+M\+M\+E\+D\+I\+AT@{I\+M\+M\+E\+D\+I\+AT}}}\mbox{\Hypertarget{_f_s_m_operand_8h_aa2d7050d955e23a8f1a28c1ccf21111fa72994bc651ddc02113986a2e574b3338}\label{_f_s_m_operand_8h_aa2d7050d955e23a8f1a28c1ccf21111fa72994bc651ddc02113986a2e574b3338}} 
+I\+M\+M\+E\+D\+I\+AT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S\+H\+I\+F\+T\+\_\+\+A\+M\+O\+U\+NT@{S\+H\+I\+F\+T\+\_\+\+A\+M\+O\+U\+NT}!F\+S\+M\+Operand.\+h@{F\+S\+M\+Operand.\+h}}\index{F\+S\+M\+Operand.\+h@{F\+S\+M\+Operand.\+h}!S\+H\+I\+F\+T\+\_\+\+A\+M\+O\+U\+NT@{S\+H\+I\+F\+T\+\_\+\+A\+M\+O\+U\+NT}}}\mbox{\Hypertarget{_f_s_m_operand_8h_aa2d7050d955e23a8f1a28c1ccf21111fa5c3c851f7c28ae6c318fabdc1d4498c9}\label{_f_s_m_operand_8h_aa2d7050d955e23a8f1a28c1ccf21111fa5c3c851f7c28ae6c318fabdc1d4498c9}} 
+S\+H\+I\+F\+T\+\_\+\+A\+M\+O\+U\+NT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{R\+E\+L\+A\+T\+I\+VE@{R\+E\+L\+A\+T\+I\+VE}!F\+S\+M\+Operand.\+h@{F\+S\+M\+Operand.\+h}}\index{F\+S\+M\+Operand.\+h@{F\+S\+M\+Operand.\+h}!R\+E\+L\+A\+T\+I\+VE@{R\+E\+L\+A\+T\+I\+VE}}}\mbox{\Hypertarget{_f_s_m_operand_8h_aa2d7050d955e23a8f1a28c1ccf21111fac8ee683c19bb6a988eccfbaf0f584c66}\label{_f_s_m_operand_8h_aa2d7050d955e23a8f1a28c1ccf21111fac8ee683c19bb6a988eccfbaf0f584c66}} 
+R\+E\+L\+A\+T\+I\+VE&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 16 of file F\+S\+M\+Operand.\+h.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{_f_s_m_operand_8h_a467c1586a6ff487ac7139391a971c782}\label{_f_s_m_operand_8h_a467c1586a6ff487ac7139391a971c782}} 
+\index{F\+S\+M\+Operand.\+h@{F\+S\+M\+Operand.\+h}!Initialization\+Operand\+Fsm@{Initialization\+Operand\+Fsm}}
+\index{Initialization\+Operand\+Fsm@{Initialization\+Operand\+Fsm}!F\+S\+M\+Operand.\+h@{F\+S\+M\+Operand.\+h}}
+\subsubsection{\texorpdfstring{Initialization\+Operand\+Fsm()}{InitializationOperandFsm()}}
+{\footnotesize\ttfamily void Initialization\+Operand\+Fsm (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_f_s_m___s_t_a_t_e___o_p_e_r_a_n_d}{F\+S\+M\+\_\+\+S\+T\+A\+T\+E\+\_\+\+O\+P\+E\+R\+A\+ND}} $\ast$}]{fsm,  }\item[{\mbox{\hyperlink{_f_s_m_operand_8h_aa2d7050d955e23a8f1a28c1ccf21111f}{O\+P\+E\+R\+A\+N\+D\+\_\+\+T\+Y\+PE}}}]{operand\+Type }\end{DoxyParamCaption})}
+
+
+
+Initialize the operand fsm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fsm} & F\+S\+M\+\_\+\+S\+T\+A\+T\+E\+\_\+\+O\+P\+E\+R\+A\+N\+D$\ast$ which is the fsm to initialize. \\
+\hline
+{\em operand\+Type} & O\+P\+E\+R\+A\+N\+D\+\_\+\+T\+Y\+PE which is the type that we expected for the fsm. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 3 of file F\+S\+M\+Operand.\+c.
+
+\mbox{\Hypertarget{_f_s_m_operand_8h_a81e37365d24e6c1bb9991d01a3201925}\label{_f_s_m_operand_8h_a81e37365d24e6c1bb9991d01a3201925}} 
+\index{F\+S\+M\+Operand.\+h@{F\+S\+M\+Operand.\+h}!Is\+Absolute@{Is\+Absolute}}
+\index{Is\+Absolute@{Is\+Absolute}!F\+S\+M\+Operand.\+h@{F\+S\+M\+Operand.\+h}}
+\subsubsection{\texorpdfstring{Is\+Absolute()}{IsAbsolute()}}
+{\footnotesize\ttfamily int Is\+Absolute (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$}]{list\+Lexeme }\end{DoxyParamCaption})}
+
+
+
+Test if the lexemes\textquotesingle{} list is an absolute operand. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+Lexeme} & L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+L\+E$\ast$ which is the list to test. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 126 of file F\+S\+M\+Operand.\+c.
+
+\mbox{\Hypertarget{_f_s_m_operand_8h_a132d5cbc5ec2790e9ca93acb6d2a4c71}\label{_f_s_m_operand_8h_a132d5cbc5ec2790e9ca93acb6d2a4c71}} 
+\index{F\+S\+M\+Operand.\+h@{F\+S\+M\+Operand.\+h}!Is\+Base\+Offset@{Is\+Base\+Offset}}
+\index{Is\+Base\+Offset@{Is\+Base\+Offset}!F\+S\+M\+Operand.\+h@{F\+S\+M\+Operand.\+h}}
+\subsubsection{\texorpdfstring{Is\+Base\+Offset()}{IsBaseOffset()}}
+{\footnotesize\ttfamily int Is\+Base\+Offset (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$}]{list\+Lexeme }\end{DoxyParamCaption})}
+
+
+
+Test if the lexemes\textquotesingle{} list is a base\+Offset operand. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+Lexeme} & L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+L\+E$\ast$ which is the list to test. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 257 of file F\+S\+M\+Operand.\+c.
+
+\mbox{\Hypertarget{_f_s_m_operand_8h_a27b68535e5b84b0311ce0bd90fcd1e34}\label{_f_s_m_operand_8h_a27b68535e5b84b0311ce0bd90fcd1e34}} 
+\index{F\+S\+M\+Operand.\+h@{F\+S\+M\+Operand.\+h}!Is\+Immediat@{Is\+Immediat}}
+\index{Is\+Immediat@{Is\+Immediat}!F\+S\+M\+Operand.\+h@{F\+S\+M\+Operand.\+h}}
+\subsubsection{\texorpdfstring{Is\+Immediat()}{IsImmediat()}}
+{\footnotesize\ttfamily int Is\+Immediat (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$}]{list\+Lexeme }\end{DoxyParamCaption})}
+
+
+
+Test if the lexemes\textquotesingle{} list is an immediat operand. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+Lexeme} & L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+L\+E$\ast$ which is the list to test. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 55 of file F\+S\+M\+Operand.\+c.
+
+\mbox{\Hypertarget{_f_s_m_operand_8h_a2a38da0ef4e06c50cae323539100bdfc}\label{_f_s_m_operand_8h_a2a38da0ef4e06c50cae323539100bdfc}} 
+\index{F\+S\+M\+Operand.\+h@{F\+S\+M\+Operand.\+h}!Is\+Relative@{Is\+Relative}}
+\index{Is\+Relative@{Is\+Relative}!F\+S\+M\+Operand.\+h@{F\+S\+M\+Operand.\+h}}
+\subsubsection{\texorpdfstring{Is\+Relative()}{IsRelative()}}
+{\footnotesize\ttfamily int Is\+Relative (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$}]{list\+Lexeme }\end{DoxyParamCaption})}
+
+
+
+Test if the lexemes\textquotesingle{} list is a relative operand. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+Lexeme} & L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+L\+E$\ast$ which is the list to test. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 200 of file F\+S\+M\+Operand.\+c.
+
+\mbox{\Hypertarget{_f_s_m_operand_8h_a1fa4e2d5bdbe53fcbb379537cfc2ab15}\label{_f_s_m_operand_8h_a1fa4e2d5bdbe53fcbb379537cfc2ab15}} 
+\index{F\+S\+M\+Operand.\+h@{F\+S\+M\+Operand.\+h}!Is\+Shift\+Amount@{Is\+Shift\+Amount}}
+\index{Is\+Shift\+Amount@{Is\+Shift\+Amount}!F\+S\+M\+Operand.\+h@{F\+S\+M\+Operand.\+h}}
+\subsubsection{\texorpdfstring{Is\+Shift\+Amount()}{IsShiftAmount()}}
+{\footnotesize\ttfamily int Is\+Shift\+Amount (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$}]{list\+Lexeme }\end{DoxyParamCaption})}
+
+
+
+Test if the lexemes\textquotesingle{} list is a shift\+Amount operand. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+Lexeme} & L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+L\+E$\ast$ which is the list to test. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 111 of file F\+S\+M\+Operand.\+c.
+
+\mbox{\Hypertarget{_f_s_m_operand_8h_ac321d3af94f222453624acf7167a5cdd}\label{_f_s_m_operand_8h_ac321d3af94f222453624acf7167a5cdd}} 
+\index{F\+S\+M\+Operand.\+h@{F\+S\+M\+Operand.\+h}!Operand\+F\+SM@{Operand\+F\+SM}}
+\index{Operand\+F\+SM@{Operand\+F\+SM}!F\+S\+M\+Operand.\+h@{F\+S\+M\+Operand.\+h}}
+\subsubsection{\texorpdfstring{Operand\+F\+S\+M()}{OperandFSM()}}
+{\footnotesize\ttfamily void Operand\+F\+SM (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_f_s_m___s_t_a_t_e___o_p_e_r_a_n_d}{F\+S\+M\+\_\+\+S\+T\+A\+T\+E\+\_\+\+O\+P\+E\+R\+A\+ND}} $\ast$}]{fsm,  }\item[{\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$}]{list\+Operand }\end{DoxyParamCaption})}
+
+
+
+Test if the operand is the one defined in the fsm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fsm} & F\+S\+M\+\_\+\+S\+T\+A\+T\+E\+\_\+\+O\+P\+E\+R\+A\+N\+D$\ast$ fsm operand to use. \\
+\hline
+{\em list\+Lexeme} & L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+L\+E$\ast$ which is the list to test. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 9 of file F\+S\+M\+Operand.\+c.
+

@@ -1,0 +1,262 @@
+\hypertarget{_relocation_table_8h}{}\section{/home/raphael/\+Project/\+Assembler\+M\+I\+P\+S/inc/\+Relocation\+Table.h File Reference}
+\label{_relocation_table_8h}\index{/home/raphael/\+Project/\+Assembler\+M\+I\+P\+S/inc/\+Relocation\+Table.\+h@{/home/raphael/\+Project/\+Assembler\+M\+I\+P\+S/inc/\+Relocation\+Table.\+h}}
+{\ttfamily \#include \char`\"{}Double\+List\+Generic.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Section.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Lexeme.\+h\char`\"{}}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_l_i_n_k_r_e_l_o_c_a_t_i_o_n}{L\+I\+N\+K\+R\+E\+L\+O\+C\+A\+T\+I\+ON}}
+\item 
+struct \mbox{\hyperlink{struct_r_e_l_o_c_a_t_i_o_n_t_a_b_l_e}{R\+E\+L\+O\+C\+A\+T\+I\+O\+N\+T\+A\+B\+LE}}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{_relocation_table_8h_a0bc6723d5d4776ab7cdc646728b775f7}{T\+Y\+PE}} \{ \newline
+\mbox{\hyperlink{_relocation_table_8h_a0bc6723d5d4776ab7cdc646728b775f7a8c35ba0a7f136d36a1addb66f46983a2}{R\+\_\+\+M\+I\+P\+S\+\_\+\+E\+R\+R\+OR}} =0, 
+\mbox{\hyperlink{_relocation_table_8h_a0bc6723d5d4776ab7cdc646728b775f7a82a219d7de82957d523941ec95cbf0b1}{R\+\_\+\+M\+I\+P\+S\+\_\+32}} =2, 
+\mbox{\hyperlink{_relocation_table_8h_a0bc6723d5d4776ab7cdc646728b775f7a59c459e1c984f8e4ece52dbe6869fcbc}{R\+\_\+\+M\+I\+P\+S\+\_\+26}} =4, 
+\mbox{\hyperlink{_relocation_table_8h_a0bc6723d5d4776ab7cdc646728b775f7a31429a85d2dfa5637990957e5d36208c}{R\+\_\+\+M\+I\+P\+S\+\_\+\+H\+I16}} =5, 
+\newline
+\mbox{\hyperlink{_relocation_table_8h_a0bc6723d5d4776ab7cdc646728b775f7a4d352182db8c759a5b6b0021ea2e653f}{R\+\_\+\+M\+I\+P\+S\+\_\+\+L\+O16}} =6
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_r_e_l_o_c_a_t_i_o_n_t_a_b_l_e}{R\+E\+L\+O\+C\+A\+T\+I\+O\+N\+T\+A\+B\+LE}} \mbox{\hyperlink{_relocation_table_8h_ae687d1f2a2cb626492daac60f152beb0}{Create\+Relocation\+Table}} ()
+\begin{DoxyCompactList}\small\item\em return a table of relocation of two empty lists of relocation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_relocation_table_8h_ab28015aad81786bc91faea809ce559d9}{Fill\+Relocation\+List}} (\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$relocation\+List, \mbox{\hyperlink{_f_s_m_collection_8h_a25f9142504106abec10ec63d2a9be4cd}{C\+O\+L\+L\+E\+C\+T\+I\+O\+NS}} symbol\+Section, unsigned long int relative\+Address, \mbox{\hyperlink{_relocation_table_8h_a0bc6723d5d4776ab7cdc646728b775f7}{T\+Y\+PE}} type\+R\+M\+I\+PS, \mbox{\hyperlink{struct_l_e_x_e_m_e}{L\+E\+X\+E\+ME}} $\ast$$\ast$symbol\+Address)
+\begin{DoxyCompactList}\small\item\em Fill a list of relocation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_relocation_table_8h_a8ef747cb40de3f0a4e34d6ffe58429f0}{Display\+Relocation}} (void $\ast$value)
+\begin{DoxyCompactList}\small\item\em Display the relocation list. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_relocation_table_8h_abe6689c1617590404c4b097f3acca335}{Display\+Relocation\+Table}} (\mbox{\hyperlink{struct_r_e_l_o_c_a_t_i_o_n_t_a_b_l_e}{R\+E\+L\+O\+C\+A\+T\+I\+O\+N\+T\+A\+B\+LE}} relocation\+Table)
+\begin{DoxyCompactList}\small\item\em Display the relocation table entire. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_relocation_table_8h_a8e977c37aa98cae04248a94b0986e08b}{Update\+Relocation\+Text}} (\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$relocation\+List, \mbox{\hyperlink{struct_s_e_c_t_i_o_n}{S\+E\+C\+T\+I\+ON}} $\ast$$\ast$section, \mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$$\ast$hash)
+\begin{DoxyCompactList}\small\item\em Update of the relocation\textquotesingle{}s table of text. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_relocation_table_8h_a55761b1f7ca25daef80d733f33951434}{Update\+Relocation\+Data}} (\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$relocation\+List, \mbox{\hyperlink{struct_s_e_c_t_i_o_n}{S\+E\+C\+T\+I\+ON}} $\ast$$\ast$section, \mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$$\ast$hash)
+\begin{DoxyCompactList}\small\item\em Update of the relocation\textquotesingle{}s table of data. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_relocation_table_8h_a073672353b0229747aee5c5cf1480af2}{Update\+Relocation\+Table}} (\mbox{\hyperlink{struct_r_e_l_o_c_a_t_i_o_n_t_a_b_l_e}{R\+E\+L\+O\+C\+A\+T\+I\+O\+N\+T\+A\+B\+LE}} relocation\+Table, \mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$$\ast$hash, \mbox{\hyperlink{struct_s_e_c_t_i_o_n}{S\+E\+C\+T\+I\+ON}} $\ast$$\ast$section)
+\begin{DoxyCompactList}\small\item\em Update of the relocation\textquotesingle{}s table. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_relocation_table_8h_adfe80b46ea482d6807b020557786da16}{Erased\+Relocation\+Table}} (\mbox{\hyperlink{struct_r_e_l_o_c_a_t_i_o_n_t_a_b_l_e}{R\+E\+L\+O\+C\+A\+T\+I\+O\+N\+T\+A\+B\+LE}} $\ast$relocation\+Table)
+\begin{DoxyCompactList}\small\item\em Desallocate all elements of the list. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \mbox{\hyperlink{_relocation_table_8h_a344cbee06f845f044dee6694bd18fb50}{defined\+R\+\_\+\+M\+I\+PS}} \mbox{[}7\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{_relocation_table_8h_a0bc6723d5d4776ab7cdc646728b775f7}\label{_relocation_table_8h_a0bc6723d5d4776ab7cdc646728b775f7}} 
+\index{Relocation\+Table.\+h@{Relocation\+Table.\+h}!T\+Y\+PE@{T\+Y\+PE}}
+\index{T\+Y\+PE@{T\+Y\+PE}!Relocation\+Table.\+h@{Relocation\+Table.\+h}}
+\subsubsection{\texorpdfstring{T\+Y\+PE}{TYPE}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{_relocation_table_8h_a0bc6723d5d4776ab7cdc646728b775f7}{T\+Y\+PE}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{R\+\_\+\+M\+I\+P\+S\+\_\+\+E\+R\+R\+OR@{R\+\_\+\+M\+I\+P\+S\+\_\+\+E\+R\+R\+OR}!Relocation\+Table.\+h@{Relocation\+Table.\+h}}\index{Relocation\+Table.\+h@{Relocation\+Table.\+h}!R\+\_\+\+M\+I\+P\+S\+\_\+\+E\+R\+R\+OR@{R\+\_\+\+M\+I\+P\+S\+\_\+\+E\+R\+R\+OR}}}\mbox{\Hypertarget{_relocation_table_8h_a0bc6723d5d4776ab7cdc646728b775f7a8c35ba0a7f136d36a1addb66f46983a2}\label{_relocation_table_8h_a0bc6723d5d4776ab7cdc646728b775f7a8c35ba0a7f136d36a1addb66f46983a2}} 
+R\+\_\+\+M\+I\+P\+S\+\_\+\+E\+R\+R\+OR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{R\+\_\+\+M\+I\+P\+S\+\_\+32@{R\+\_\+\+M\+I\+P\+S\+\_\+32}!Relocation\+Table.\+h@{Relocation\+Table.\+h}}\index{Relocation\+Table.\+h@{Relocation\+Table.\+h}!R\+\_\+\+M\+I\+P\+S\+\_\+32@{R\+\_\+\+M\+I\+P\+S\+\_\+32}}}\mbox{\Hypertarget{_relocation_table_8h_a0bc6723d5d4776ab7cdc646728b775f7a82a219d7de82957d523941ec95cbf0b1}\label{_relocation_table_8h_a0bc6723d5d4776ab7cdc646728b775f7a82a219d7de82957d523941ec95cbf0b1}} 
+R\+\_\+\+M\+I\+P\+S\+\_\+32&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{R\+\_\+\+M\+I\+P\+S\+\_\+26@{R\+\_\+\+M\+I\+P\+S\+\_\+26}!Relocation\+Table.\+h@{Relocation\+Table.\+h}}\index{Relocation\+Table.\+h@{Relocation\+Table.\+h}!R\+\_\+\+M\+I\+P\+S\+\_\+26@{R\+\_\+\+M\+I\+P\+S\+\_\+26}}}\mbox{\Hypertarget{_relocation_table_8h_a0bc6723d5d4776ab7cdc646728b775f7a59c459e1c984f8e4ece52dbe6869fcbc}\label{_relocation_table_8h_a0bc6723d5d4776ab7cdc646728b775f7a59c459e1c984f8e4ece52dbe6869fcbc}} 
+R\+\_\+\+M\+I\+P\+S\+\_\+26&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{R\+\_\+\+M\+I\+P\+S\+\_\+\+H\+I16@{R\+\_\+\+M\+I\+P\+S\+\_\+\+H\+I16}!Relocation\+Table.\+h@{Relocation\+Table.\+h}}\index{Relocation\+Table.\+h@{Relocation\+Table.\+h}!R\+\_\+\+M\+I\+P\+S\+\_\+\+H\+I16@{R\+\_\+\+M\+I\+P\+S\+\_\+\+H\+I16}}}\mbox{\Hypertarget{_relocation_table_8h_a0bc6723d5d4776ab7cdc646728b775f7a31429a85d2dfa5637990957e5d36208c}\label{_relocation_table_8h_a0bc6723d5d4776ab7cdc646728b775f7a31429a85d2dfa5637990957e5d36208c}} 
+R\+\_\+\+M\+I\+P\+S\+\_\+\+H\+I16&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{R\+\_\+\+M\+I\+P\+S\+\_\+\+L\+O16@{R\+\_\+\+M\+I\+P\+S\+\_\+\+L\+O16}!Relocation\+Table.\+h@{Relocation\+Table.\+h}}\index{Relocation\+Table.\+h@{Relocation\+Table.\+h}!R\+\_\+\+M\+I\+P\+S\+\_\+\+L\+O16@{R\+\_\+\+M\+I\+P\+S\+\_\+\+L\+O16}}}\mbox{\Hypertarget{_relocation_table_8h_a0bc6723d5d4776ab7cdc646728b775f7a4d352182db8c759a5b6b0021ea2e653f}\label{_relocation_table_8h_a0bc6723d5d4776ab7cdc646728b775f7a4d352182db8c759a5b6b0021ea2e653f}} 
+R\+\_\+\+M\+I\+P\+S\+\_\+\+L\+O16&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 8 of file Relocation\+Table.\+h.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{_relocation_table_8h_ae687d1f2a2cb626492daac60f152beb0}\label{_relocation_table_8h_ae687d1f2a2cb626492daac60f152beb0}} 
+\index{Relocation\+Table.\+h@{Relocation\+Table.\+h}!Create\+Relocation\+Table@{Create\+Relocation\+Table}}
+\index{Create\+Relocation\+Table@{Create\+Relocation\+Table}!Relocation\+Table.\+h@{Relocation\+Table.\+h}}
+\subsubsection{\texorpdfstring{Create\+Relocation\+Table()}{CreateRelocationTable()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_r_e_l_o_c_a_t_i_o_n_t_a_b_l_e}{R\+E\+L\+O\+C\+A\+T\+I\+O\+N\+T\+A\+B\+LE}} Create\+Relocation\+Table (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+return a table of relocation of two empty lists of relocation. 
+
+
+
+Definition at line 12 of file Relocation\+Table.\+c.
+
+\mbox{\Hypertarget{_relocation_table_8h_a8ef747cb40de3f0a4e34d6ffe58429f0}\label{_relocation_table_8h_a8ef747cb40de3f0a4e34d6ffe58429f0}} 
+\index{Relocation\+Table.\+h@{Relocation\+Table.\+h}!Display\+Relocation@{Display\+Relocation}}
+\index{Display\+Relocation@{Display\+Relocation}!Relocation\+Table.\+h@{Relocation\+Table.\+h}}
+\subsubsection{\texorpdfstring{Display\+Relocation()}{DisplayRelocation()}}
+{\footnotesize\ttfamily void Display\+Relocation (\begin{DoxyParamCaption}\item[{void $\ast$}]{value }\end{DoxyParamCaption})}
+
+
+
+Display the relocation list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & Display value, ie a node of a list. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 34 of file Relocation\+Table.\+c.
+
+\mbox{\Hypertarget{_relocation_table_8h_abe6689c1617590404c4b097f3acca335}\label{_relocation_table_8h_abe6689c1617590404c4b097f3acca335}} 
+\index{Relocation\+Table.\+h@{Relocation\+Table.\+h}!Display\+Relocation\+Table@{Display\+Relocation\+Table}}
+\index{Display\+Relocation\+Table@{Display\+Relocation\+Table}!Relocation\+Table.\+h@{Relocation\+Table.\+h}}
+\subsubsection{\texorpdfstring{Display\+Relocation\+Table()}{DisplayRelocationTable()}}
+{\footnotesize\ttfamily void Display\+Relocation\+Table (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_r_e_l_o_c_a_t_i_o_n_t_a_b_l_e}{R\+E\+L\+O\+C\+A\+T\+I\+O\+N\+T\+A\+B\+LE}}}]{relocation\+Table }\end{DoxyParamCaption})}
+
+
+
+Display the relocation table entire. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em relocation\+Table} & Table of relocation which contain the text\textquotesingle{} table and the data\textquotesingle{}s table. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 49 of file Relocation\+Table.\+c.
+
+\mbox{\Hypertarget{_relocation_table_8h_adfe80b46ea482d6807b020557786da16}\label{_relocation_table_8h_adfe80b46ea482d6807b020557786da16}} 
+\index{Relocation\+Table.\+h@{Relocation\+Table.\+h}!Erased\+Relocation\+Table@{Erased\+Relocation\+Table}}
+\index{Erased\+Relocation\+Table@{Erased\+Relocation\+Table}!Relocation\+Table.\+h@{Relocation\+Table.\+h}}
+\subsubsection{\texorpdfstring{Erased\+Relocation\+Table()}{ErasedRelocationTable()}}
+{\footnotesize\ttfamily void Erased\+Relocation\+Table (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_r_e_l_o_c_a_t_i_o_n_t_a_b_l_e}{R\+E\+L\+O\+C\+A\+T\+I\+O\+N\+T\+A\+B\+LE}} $\ast$}]{relocation\+Table }\end{DoxyParamCaption})}
+
+
+
+Desallocate all elements of the list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em relocation\+Table} & Pointer on the table of relocation. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 107 of file Relocation\+Table.\+c.
+
+\mbox{\Hypertarget{_relocation_table_8h_ab28015aad81786bc91faea809ce559d9}\label{_relocation_table_8h_ab28015aad81786bc91faea809ce559d9}} 
+\index{Relocation\+Table.\+h@{Relocation\+Table.\+h}!Fill\+Relocation\+List@{Fill\+Relocation\+List}}
+\index{Fill\+Relocation\+List@{Fill\+Relocation\+List}!Relocation\+Table.\+h@{Relocation\+Table.\+h}}
+\subsubsection{\texorpdfstring{Fill\+Relocation\+List()}{FillRelocationList()}}
+{\footnotesize\ttfamily void Fill\+Relocation\+List (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$}]{relocation\+List,  }\item[{\mbox{\hyperlink{_f_s_m_collection_8h_a25f9142504106abec10ec63d2a9be4cd}{C\+O\+L\+L\+E\+C\+T\+I\+O\+NS}}}]{symbol\+Section,  }\item[{unsigned long int}]{relative\+Address,  }\item[{\mbox{\hyperlink{_relocation_table_8h_a0bc6723d5d4776ab7cdc646728b775f7}{T\+Y\+PE}}}]{type\+R\+M\+I\+PS,  }\item[{\mbox{\hyperlink{struct_l_e_x_e_m_e}{L\+E\+X\+E\+ME}} $\ast$$\ast$}]{symbol\+Address }\end{DoxyParamCaption})}
+
+
+
+Fill a list of relocation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em relocation\+List} & Pointer on a list of relocation to fill it. \\
+\hline
+{\em symbol\+Section} & Integer embodying the section of the table of relocation, 0 for \char`\"{}.\+text\char`\"{}, 1 for \char`\"{}.\+data\char`\"{} and 2 for \char`\"{}.\+bss\char`\"{}. \\
+\hline
+{\em relative\+Address} & Relative adress of the symbol in relation to the section. \\
+\hline
+{\em type\+R\+M\+I\+PS} & Number of bits we must relocate. \\
+\hline
+{\em symbol\+Address} & Address of return at the symbol we relocated. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 25 of file Relocation\+Table.\+c.
+
+\mbox{\Hypertarget{_relocation_table_8h_a55761b1f7ca25daef80d733f33951434}\label{_relocation_table_8h_a55761b1f7ca25daef80d733f33951434}} 
+\index{Relocation\+Table.\+h@{Relocation\+Table.\+h}!Update\+Relocation\+Data@{Update\+Relocation\+Data}}
+\index{Update\+Relocation\+Data@{Update\+Relocation\+Data}!Relocation\+Table.\+h@{Relocation\+Table.\+h}}
+\subsubsection{\texorpdfstring{Update\+Relocation\+Data()}{UpdateRelocationData()}}
+{\footnotesize\ttfamily void Update\+Relocation\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$}]{relocation\+List,  }\item[{\mbox{\hyperlink{struct_s_e_c_t_i_o_n}{S\+E\+C\+T\+I\+ON}} $\ast$$\ast$}]{section,  }\item[{\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$$\ast$}]{hash }\end{DoxyParamCaption})}
+
+
+
+Update of the relocation\textquotesingle{}s table of data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em relocation\+List} & Pointer on a list of relocation to update it. \\
+\hline
+{\em section} & Section containing the lexemes. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 81 of file Relocation\+Table.\+c.
+
+\mbox{\Hypertarget{_relocation_table_8h_a073672353b0229747aee5c5cf1480af2}\label{_relocation_table_8h_a073672353b0229747aee5c5cf1480af2}} 
+\index{Relocation\+Table.\+h@{Relocation\+Table.\+h}!Update\+Relocation\+Table@{Update\+Relocation\+Table}}
+\index{Update\+Relocation\+Table@{Update\+Relocation\+Table}!Relocation\+Table.\+h@{Relocation\+Table.\+h}}
+\subsubsection{\texorpdfstring{Update\+Relocation\+Table()}{UpdateRelocationTable()}}
+{\footnotesize\ttfamily void Update\+Relocation\+Table (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_r_e_l_o_c_a_t_i_o_n_t_a_b_l_e}{R\+E\+L\+O\+C\+A\+T\+I\+O\+N\+T\+A\+B\+LE}}}]{relocation\+Table,  }\item[{\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$$\ast$}]{hash,  }\item[{\mbox{\hyperlink{struct_s_e_c_t_i_o_n}{S\+E\+C\+T\+I\+ON}} $\ast$$\ast$}]{section }\end{DoxyParamCaption})}
+
+
+
+Update of the relocation\textquotesingle{}s table. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em relocation\+Table} & Table of relocation which contain the text\textquotesingle{} table and the data\textquotesingle{}s table. \\
+\hline
+{\em hash} & Hash table. \\
+\hline
+{\em section} & Section containing the lexemes. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 95 of file Relocation\+Table.\+c.
+
+\mbox{\Hypertarget{_relocation_table_8h_a8e977c37aa98cae04248a94b0986e08b}\label{_relocation_table_8h_a8e977c37aa98cae04248a94b0986e08b}} 
+\index{Relocation\+Table.\+h@{Relocation\+Table.\+h}!Update\+Relocation\+Text@{Update\+Relocation\+Text}}
+\index{Update\+Relocation\+Text@{Update\+Relocation\+Text}!Relocation\+Table.\+h@{Relocation\+Table.\+h}}
+\subsubsection{\texorpdfstring{Update\+Relocation\+Text()}{UpdateRelocationText()}}
+{\footnotesize\ttfamily void Update\+Relocation\+Text (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$}]{relocation\+List,  }\item[{\mbox{\hyperlink{struct_s_e_c_t_i_o_n}{S\+E\+C\+T\+I\+ON}} $\ast$$\ast$}]{section,  }\item[{\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$$\ast$}]{hash }\end{DoxyParamCaption})}
+
+
+
+Update of the relocation\textquotesingle{}s table of text. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em relocation\+List} & Pointer on a list of relocation to update it. \\
+\hline
+{\em section} & Section containing the lexemes. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 64 of file Relocation\+Table.\+c.
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{_relocation_table_8h_a344cbee06f845f044dee6694bd18fb50}\label{_relocation_table_8h_a344cbee06f845f044dee6694bd18fb50}} 
+\index{Relocation\+Table.\+h@{Relocation\+Table.\+h}!defined\+R\+\_\+\+M\+I\+PS@{defined\+R\+\_\+\+M\+I\+PS}}
+\index{defined\+R\+\_\+\+M\+I\+PS@{defined\+R\+\_\+\+M\+I\+PS}!Relocation\+Table.\+h@{Relocation\+Table.\+h}}
+\subsubsection{\texorpdfstring{defined\+R\+\_\+\+M\+I\+PS}{definedR\_MIPS}}
+{\footnotesize\ttfamily char$\ast$ defined\+R\+\_\+\+M\+I\+PS\mbox{[}7\mbox{]}}
+
+
+
+Definition at line 3 of file Relocation\+Table.\+c.
+

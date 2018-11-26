@@ -1,0 +1,284 @@
+\hypertarget{_f_s_m_lexeme_8h}{}\section{/home/raphael/\+Project/\+Assembler\+M\+I\+P\+S/inc/\+F\+S\+M\+Lexeme.h File Reference}
+\label{_f_s_m_lexeme_8h}\index{/home/raphael/\+Project/\+Assembler\+M\+I\+P\+S/inc/\+F\+S\+M\+Lexeme.\+h@{/home/raphael/\+Project/\+Assembler\+M\+I\+P\+S/inc/\+F\+S\+M\+Lexeme.\+h}}
+
+
+Lexeme\+Fsm-\/related stuff.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}Double\+List\+Generic.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Double\+Queue\+Generic.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Display\+Type.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Lexeme.\+h\char`\"{}}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_l_e_x_e_m_e___f_s_m}{L\+E\+X\+E\+M\+E\+\_\+\+F\+SM}}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67ad}{L\+E\+X\+E\+M\+E\+\_\+\+S\+T\+A\+TE}} \{ \newline
+\mbox{\hyperlink{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67ada423e7f42ac796f5b41b670cdf6e4a34a}{P\+A\+R\+E\+N\+T\+H\+E\+S\+I\+S\+L\+E\+FT}}, 
+\mbox{\hyperlink{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67ada2f6f4944af48fe40968fb6dcb1f04218}{P\+A\+R\+E\+N\+T\+H\+E\+S\+I\+S\+R\+I\+G\+HT}}, 
+\mbox{\hyperlink{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67adaf81277bcd86412fe04bb68718ea09392}{C\+O\+M\+MA}}, 
+\mbox{\hyperlink{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67adaceb7c305772dab23a260960771180df3}{R\+E\+G\+I\+S\+T\+ER}}, 
+\newline
+\mbox{\hyperlink{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67adae3852cb010d5e422026faf83b3c16f0e}{D\+I\+R\+E\+C\+T\+I\+VE}}, 
+\mbox{\hyperlink{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67adaae696377c19e507b64e16be78ce3bbdb}{C\+O\+M\+M\+E\+NT}}, 
+\mbox{\hyperlink{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67ada12a90dfe20486bbe3e075afcd19ef2d0}{N\+U\+M\+B\+ER}}, 
+\mbox{\hyperlink{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67adad291187b973c32b575bbb9e59e497710}{H\+E\+X\+A\+D\+E\+C\+I\+M\+AL}}, 
+\newline
+\mbox{\hyperlink{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67adaf08a543d5a1549321682e12569d0fbd6}{D\+E\+C\+I\+M\+AL}}, 
+\mbox{\hyperlink{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67adaee847e634a4297b274316de8a8ca9921}{S\+T\+R\+I\+NG}}, 
+\mbox{\hyperlink{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67adae3d30ffaffa3c06ed917e565dda1fbc5}{S\+Y\+M\+B\+OL}}, 
+\mbox{\hyperlink{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67ada520e09ffec033636dba711f3441cc600}{R\+E\+T\+U\+RN}}, 
+\newline
+\mbox{\hyperlink{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67ada29cf94637337909c3813bb50d6e9b3ee}{C\+O\+L\+ON}}, 
+\mbox{\hyperlink{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67ada6411d9d6073252e4d316493506bbb979}{O\+P\+E\+R\+A\+T\+OR}}, 
+\mbox{\hyperlink{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67ada0cb1b2c6a7db1f1084886c98909a3f36}{I\+N\+IT}}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_f_s_m_lexeme_8h_a6fe50c29dec95fd36701d278e7648b17}{Initialization\+Lexeme\+Fsm}} (\mbox{\hyperlink{struct_l_e_x_e_m_e___f_s_m}{L\+E\+X\+E\+M\+E\+\_\+\+F\+SM}} $\ast$state\+Machine)
+\begin{DoxyCompactList}\small\item\em Initialize the state\+Machine. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_f_s_m_lexeme_8h_a5999b4a4b051df9dcf02bf02aedc278e}{Init\+Lexeme\+Fsm}} (char reading\+Char, \mbox{\hyperlink{struct_l_e_x_e_m_e___f_s_m}{L\+E\+X\+E\+M\+E\+\_\+\+F\+SM}} $\ast$state\+Machine, unsigned long int line\+Number)
+\begin{DoxyCompactList}\small\item\em It\textquotesingle{}s the Init state\+Machine which change the state\+Machine\textquotesingle{}s state to the right one. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_f_s_m_lexeme_8h_a92ad38ce4f3131118583808fb6b37ab5}{Lexeme\+Fsm}} (char $\ast$reading\+Char, \mbox{\hyperlink{_double_queue_generic_8h_ac9780889f9bbabed708ecbeaadfb040e}{Q\+U\+E\+U\+E\+\_\+\+D\+O\+U\+B\+LE}} $\ast$lexeme\+Queue, \mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$reading\+Value, \mbox{\hyperlink{struct_l_e_x_e_m_e___f_s_m}{L\+E\+X\+E\+M\+E\+\_\+\+F\+SM}} $\ast$state\+Machine, unsigned long int $\ast$line\+Number, int finished\+File)
+\begin{DoxyCompactList}\small\item\em It\textquotesingle{}s the brain of the state\+Machine which sends the state\+Machine to the right state and do a process according of this state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_f_s_m_lexeme_8h_a1cebbe6ba8e04f0adbec86905f2fa8af}{Hexadecimal\+Treatment}} (\mbox{\hyperlink{_double_queue_generic_8h_ac9780889f9bbabed708ecbeaadfb040e}{Q\+U\+E\+U\+E\+\_\+\+D\+O\+U\+B\+LE}} $\ast$lexeme\+Queue, \mbox{\hyperlink{struct_l_e_x_e_m_e___f_s_m}{L\+E\+X\+E\+M\+E\+\_\+\+F\+SM}} $\ast$state\+Machine, \mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$reading\+Value, unsigned long int line\+Number)
+\item 
+void \mbox{\hyperlink{_f_s_m_lexeme_8h_a3bc5f8966dfd94a61bacee7eccef2814}{Register\+Treatment}} (\mbox{\hyperlink{_double_queue_generic_8h_ac9780889f9bbabed708ecbeaadfb040e}{Q\+U\+E\+U\+E\+\_\+\+D\+O\+U\+B\+LE}} $\ast$lexeme\+Queue, \mbox{\hyperlink{struct_l_e_x_e_m_e___f_s_m}{L\+E\+X\+E\+M\+E\+\_\+\+F\+SM}} $\ast$state\+Machine, \mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$reading\+Value, unsigned long int $\ast$line\+Number, char $\ast$reading\+Char, int finished\+File)
+\item 
+void \mbox{\hyperlink{_f_s_m_lexeme_8h_ab0567864dff1dade522e95f33eec29a9}{Lexeme\+Treatment}} (\mbox{\hyperlink{_double_queue_generic_8h_ac9780889f9bbabed708ecbeaadfb040e}{Q\+U\+E\+U\+E\+\_\+\+D\+O\+U\+B\+LE}} $\ast$lexeme\+Queue, \mbox{\hyperlink{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67ad}{L\+E\+X\+E\+M\+E\+\_\+\+S\+T\+A\+TE}} state, \mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$reading\+Value, unsigned long int line\+Number)
+\begin{DoxyCompactList}\small\item\em Add a Lexeme in the lexeme\+Queue according of the state, the list of value read and the number of line. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_f_s_m_lexeme_8h_a72490d09bec8da86306ec2029a4e2eb3}{Print\+Error}} (\mbox{\hyperlink{struct_l_e_x_e_m_e___f_s_m}{L\+E\+X\+E\+M\+E\+\_\+\+F\+SM}} $\ast$state\+Machine, unsigned long int line\+Number, char $\ast$problem, char wrong\+Value, char $\ast$state)
+\begin{DoxyCompactList}\small\item\em Print an the error of the state\+Machine in color. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Lexeme\+Fsm-\/related stuff. 
+
+Contains the state\+Machine structure definition and the associated prototypes. 
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67ad}\label{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67ad}} 
+\index{F\+S\+M\+Lexeme.\+h@{F\+S\+M\+Lexeme.\+h}!L\+E\+X\+E\+M\+E\+\_\+\+S\+T\+A\+TE@{L\+E\+X\+E\+M\+E\+\_\+\+S\+T\+A\+TE}}
+\index{L\+E\+X\+E\+M\+E\+\_\+\+S\+T\+A\+TE@{L\+E\+X\+E\+M\+E\+\_\+\+S\+T\+A\+TE}!F\+S\+M\+Lexeme.\+h@{F\+S\+M\+Lexeme.\+h}}
+\subsubsection{\texorpdfstring{L\+E\+X\+E\+M\+E\+\_\+\+S\+T\+A\+TE}{LEXEME\_STATE}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67ad}{L\+E\+X\+E\+M\+E\+\_\+\+S\+T\+A\+TE}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{P\+A\+R\+E\+N\+T\+H\+E\+S\+I\+S\+L\+E\+FT@{P\+A\+R\+E\+N\+T\+H\+E\+S\+I\+S\+L\+E\+FT}!F\+S\+M\+Lexeme.\+h@{F\+S\+M\+Lexeme.\+h}}\index{F\+S\+M\+Lexeme.\+h@{F\+S\+M\+Lexeme.\+h}!P\+A\+R\+E\+N\+T\+H\+E\+S\+I\+S\+L\+E\+FT@{P\+A\+R\+E\+N\+T\+H\+E\+S\+I\+S\+L\+E\+FT}}}\mbox{\Hypertarget{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67ada423e7f42ac796f5b41b670cdf6e4a34a}\label{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67ada423e7f42ac796f5b41b670cdf6e4a34a}} 
+P\+A\+R\+E\+N\+T\+H\+E\+S\+I\+S\+L\+E\+FT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{P\+A\+R\+E\+N\+T\+H\+E\+S\+I\+S\+R\+I\+G\+HT@{P\+A\+R\+E\+N\+T\+H\+E\+S\+I\+S\+R\+I\+G\+HT}!F\+S\+M\+Lexeme.\+h@{F\+S\+M\+Lexeme.\+h}}\index{F\+S\+M\+Lexeme.\+h@{F\+S\+M\+Lexeme.\+h}!P\+A\+R\+E\+N\+T\+H\+E\+S\+I\+S\+R\+I\+G\+HT@{P\+A\+R\+E\+N\+T\+H\+E\+S\+I\+S\+R\+I\+G\+HT}}}\mbox{\Hypertarget{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67ada2f6f4944af48fe40968fb6dcb1f04218}\label{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67ada2f6f4944af48fe40968fb6dcb1f04218}} 
+P\+A\+R\+E\+N\+T\+H\+E\+S\+I\+S\+R\+I\+G\+HT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{C\+O\+M\+MA@{C\+O\+M\+MA}!F\+S\+M\+Lexeme.\+h@{F\+S\+M\+Lexeme.\+h}}\index{F\+S\+M\+Lexeme.\+h@{F\+S\+M\+Lexeme.\+h}!C\+O\+M\+MA@{C\+O\+M\+MA}}}\mbox{\Hypertarget{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67adaf81277bcd86412fe04bb68718ea09392}\label{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67adaf81277bcd86412fe04bb68718ea09392}} 
+C\+O\+M\+MA&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{R\+E\+G\+I\+S\+T\+ER@{R\+E\+G\+I\+S\+T\+ER}!F\+S\+M\+Lexeme.\+h@{F\+S\+M\+Lexeme.\+h}}\index{F\+S\+M\+Lexeme.\+h@{F\+S\+M\+Lexeme.\+h}!R\+E\+G\+I\+S\+T\+ER@{R\+E\+G\+I\+S\+T\+ER}}}\mbox{\Hypertarget{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67adaceb7c305772dab23a260960771180df3}\label{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67adaceb7c305772dab23a260960771180df3}} 
+R\+E\+G\+I\+S\+T\+ER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{D\+I\+R\+E\+C\+T\+I\+VE@{D\+I\+R\+E\+C\+T\+I\+VE}!F\+S\+M\+Lexeme.\+h@{F\+S\+M\+Lexeme.\+h}}\index{F\+S\+M\+Lexeme.\+h@{F\+S\+M\+Lexeme.\+h}!D\+I\+R\+E\+C\+T\+I\+VE@{D\+I\+R\+E\+C\+T\+I\+VE}}}\mbox{\Hypertarget{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67adae3852cb010d5e422026faf83b3c16f0e}\label{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67adae3852cb010d5e422026faf83b3c16f0e}} 
+D\+I\+R\+E\+C\+T\+I\+VE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{C\+O\+M\+M\+E\+NT@{C\+O\+M\+M\+E\+NT}!F\+S\+M\+Lexeme.\+h@{F\+S\+M\+Lexeme.\+h}}\index{F\+S\+M\+Lexeme.\+h@{F\+S\+M\+Lexeme.\+h}!C\+O\+M\+M\+E\+NT@{C\+O\+M\+M\+E\+NT}}}\mbox{\Hypertarget{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67adaae696377c19e507b64e16be78ce3bbdb}\label{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67adaae696377c19e507b64e16be78ce3bbdb}} 
+C\+O\+M\+M\+E\+NT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{N\+U\+M\+B\+ER@{N\+U\+M\+B\+ER}!F\+S\+M\+Lexeme.\+h@{F\+S\+M\+Lexeme.\+h}}\index{F\+S\+M\+Lexeme.\+h@{F\+S\+M\+Lexeme.\+h}!N\+U\+M\+B\+ER@{N\+U\+M\+B\+ER}}}\mbox{\Hypertarget{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67ada12a90dfe20486bbe3e075afcd19ef2d0}\label{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67ada12a90dfe20486bbe3e075afcd19ef2d0}} 
+N\+U\+M\+B\+ER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{H\+E\+X\+A\+D\+E\+C\+I\+M\+AL@{H\+E\+X\+A\+D\+E\+C\+I\+M\+AL}!F\+S\+M\+Lexeme.\+h@{F\+S\+M\+Lexeme.\+h}}\index{F\+S\+M\+Lexeme.\+h@{F\+S\+M\+Lexeme.\+h}!H\+E\+X\+A\+D\+E\+C\+I\+M\+AL@{H\+E\+X\+A\+D\+E\+C\+I\+M\+AL}}}\mbox{\Hypertarget{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67adad291187b973c32b575bbb9e59e497710}\label{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67adad291187b973c32b575bbb9e59e497710}} 
+H\+E\+X\+A\+D\+E\+C\+I\+M\+AL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{D\+E\+C\+I\+M\+AL@{D\+E\+C\+I\+M\+AL}!F\+S\+M\+Lexeme.\+h@{F\+S\+M\+Lexeme.\+h}}\index{F\+S\+M\+Lexeme.\+h@{F\+S\+M\+Lexeme.\+h}!D\+E\+C\+I\+M\+AL@{D\+E\+C\+I\+M\+AL}}}\mbox{\Hypertarget{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67adaf08a543d5a1549321682e12569d0fbd6}\label{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67adaf08a543d5a1549321682e12569d0fbd6}} 
+D\+E\+C\+I\+M\+AL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S\+T\+R\+I\+NG@{S\+T\+R\+I\+NG}!F\+S\+M\+Lexeme.\+h@{F\+S\+M\+Lexeme.\+h}}\index{F\+S\+M\+Lexeme.\+h@{F\+S\+M\+Lexeme.\+h}!S\+T\+R\+I\+NG@{S\+T\+R\+I\+NG}}}\mbox{\Hypertarget{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67adaee847e634a4297b274316de8a8ca9921}\label{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67adaee847e634a4297b274316de8a8ca9921}} 
+S\+T\+R\+I\+NG&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S\+Y\+M\+B\+OL@{S\+Y\+M\+B\+OL}!F\+S\+M\+Lexeme.\+h@{F\+S\+M\+Lexeme.\+h}}\index{F\+S\+M\+Lexeme.\+h@{F\+S\+M\+Lexeme.\+h}!S\+Y\+M\+B\+OL@{S\+Y\+M\+B\+OL}}}\mbox{\Hypertarget{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67adae3d30ffaffa3c06ed917e565dda1fbc5}\label{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67adae3d30ffaffa3c06ed917e565dda1fbc5}} 
+S\+Y\+M\+B\+OL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{R\+E\+T\+U\+RN@{R\+E\+T\+U\+RN}!F\+S\+M\+Lexeme.\+h@{F\+S\+M\+Lexeme.\+h}}\index{F\+S\+M\+Lexeme.\+h@{F\+S\+M\+Lexeme.\+h}!R\+E\+T\+U\+RN@{R\+E\+T\+U\+RN}}}\mbox{\Hypertarget{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67ada520e09ffec033636dba711f3441cc600}\label{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67ada520e09ffec033636dba711f3441cc600}} 
+R\+E\+T\+U\+RN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{C\+O\+L\+ON@{C\+O\+L\+ON}!F\+S\+M\+Lexeme.\+h@{F\+S\+M\+Lexeme.\+h}}\index{F\+S\+M\+Lexeme.\+h@{F\+S\+M\+Lexeme.\+h}!C\+O\+L\+ON@{C\+O\+L\+ON}}}\mbox{\Hypertarget{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67ada29cf94637337909c3813bb50d6e9b3ee}\label{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67ada29cf94637337909c3813bb50d6e9b3ee}} 
+C\+O\+L\+ON&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{O\+P\+E\+R\+A\+T\+OR@{O\+P\+E\+R\+A\+T\+OR}!F\+S\+M\+Lexeme.\+h@{F\+S\+M\+Lexeme.\+h}}\index{F\+S\+M\+Lexeme.\+h@{F\+S\+M\+Lexeme.\+h}!O\+P\+E\+R\+A\+T\+OR@{O\+P\+E\+R\+A\+T\+OR}}}\mbox{\Hypertarget{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67ada6411d9d6073252e4d316493506bbb979}\label{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67ada6411d9d6073252e4d316493506bbb979}} 
+O\+P\+E\+R\+A\+T\+OR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{I\+N\+IT@{I\+N\+IT}!F\+S\+M\+Lexeme.\+h@{F\+S\+M\+Lexeme.\+h}}\index{F\+S\+M\+Lexeme.\+h@{F\+S\+M\+Lexeme.\+h}!I\+N\+IT@{I\+N\+IT}}}\mbox{\Hypertarget{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67ada0cb1b2c6a7db1f1084886c98909a3f36}\label{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67ada0cb1b2c6a7db1f1084886c98909a3f36}} 
+I\+N\+IT&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 17 of file F\+S\+M\+Lexeme.\+h.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{_f_s_m_lexeme_8h_a1cebbe6ba8e04f0adbec86905f2fa8af}\label{_f_s_m_lexeme_8h_a1cebbe6ba8e04f0adbec86905f2fa8af}} 
+\index{F\+S\+M\+Lexeme.\+h@{F\+S\+M\+Lexeme.\+h}!Hexadecimal\+Treatment@{Hexadecimal\+Treatment}}
+\index{Hexadecimal\+Treatment@{Hexadecimal\+Treatment}!F\+S\+M\+Lexeme.\+h@{F\+S\+M\+Lexeme.\+h}}
+\subsubsection{\texorpdfstring{Hexadecimal\+Treatment()}{HexadecimalTreatment()}}
+{\footnotesize\ttfamily void Hexadecimal\+Treatment (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_double_queue_generic_8h_ac9780889f9bbabed708ecbeaadfb040e}{Q\+U\+E\+U\+E\+\_\+\+D\+O\+U\+B\+LE}} $\ast$}]{lexeme\+Queue,  }\item[{\mbox{\hyperlink{struct_l_e_x_e_m_e___f_s_m}{L\+E\+X\+E\+M\+E\+\_\+\+F\+SM}} $\ast$}]{state\+Machine,  }\item[{\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$}]{reading\+Value,  }\item[{unsigned long int}]{line\+Number }\end{DoxyParamCaption})}
+
+
+
+Definition at line 329 of file F\+S\+M\+Lexeme.\+c.
+
+\mbox{\Hypertarget{_f_s_m_lexeme_8h_a6fe50c29dec95fd36701d278e7648b17}\label{_f_s_m_lexeme_8h_a6fe50c29dec95fd36701d278e7648b17}} 
+\index{F\+S\+M\+Lexeme.\+h@{F\+S\+M\+Lexeme.\+h}!Initialization\+Lexeme\+Fsm@{Initialization\+Lexeme\+Fsm}}
+\index{Initialization\+Lexeme\+Fsm@{Initialization\+Lexeme\+Fsm}!F\+S\+M\+Lexeme.\+h@{F\+S\+M\+Lexeme.\+h}}
+\subsubsection{\texorpdfstring{Initialization\+Lexeme\+Fsm()}{InitializationLexemeFsm()}}
+{\footnotesize\ttfamily void Initialization\+Lexeme\+Fsm (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_l_e_x_e_m_e___f_s_m}{L\+E\+X\+E\+M\+E\+\_\+\+F\+SM}} $\ast$}]{state\+Machine }\end{DoxyParamCaption})}
+
+
+
+Initialize the state\+Machine. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state\+Machine} & Pointeur on the state\+Machine to initialize. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 393 of file F\+S\+M\+Lexeme.\+c.
+
+\mbox{\Hypertarget{_f_s_m_lexeme_8h_a5999b4a4b051df9dcf02bf02aedc278e}\label{_f_s_m_lexeme_8h_a5999b4a4b051df9dcf02bf02aedc278e}} 
+\index{F\+S\+M\+Lexeme.\+h@{F\+S\+M\+Lexeme.\+h}!Init\+Lexeme\+Fsm@{Init\+Lexeme\+Fsm}}
+\index{Init\+Lexeme\+Fsm@{Init\+Lexeme\+Fsm}!F\+S\+M\+Lexeme.\+h@{F\+S\+M\+Lexeme.\+h}}
+\subsubsection{\texorpdfstring{Init\+Lexeme\+Fsm()}{InitLexemeFsm()}}
+{\footnotesize\ttfamily void Init\+Lexeme\+Fsm (\begin{DoxyParamCaption}\item[{char}]{reading\+Char,  }\item[{\mbox{\hyperlink{struct_l_e_x_e_m_e___f_s_m}{L\+E\+X\+E\+M\+E\+\_\+\+F\+SM}} $\ast$}]{state\+Machine,  }\item[{unsigned long int}]{line\+Number }\end{DoxyParamCaption})}
+
+
+
+It\textquotesingle{}s the Init state\+Machine which change the state\+Machine\textquotesingle{}s state to the right one. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reading\+Char} & Char which send you to the correct state. \\
+\hline
+{\em state\+Machine} & Pointeur on the state\+Machine to change the state or add an error. \\
+\hline
+{\em line\+Number} & Unsigned long int represent the line position in the file to decrypt. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 3 of file F\+S\+M\+Lexeme.\+c.
+
+\mbox{\Hypertarget{_f_s_m_lexeme_8h_a92ad38ce4f3131118583808fb6b37ab5}\label{_f_s_m_lexeme_8h_a92ad38ce4f3131118583808fb6b37ab5}} 
+\index{F\+S\+M\+Lexeme.\+h@{F\+S\+M\+Lexeme.\+h}!Lexeme\+Fsm@{Lexeme\+Fsm}}
+\index{Lexeme\+Fsm@{Lexeme\+Fsm}!F\+S\+M\+Lexeme.\+h@{F\+S\+M\+Lexeme.\+h}}
+\subsubsection{\texorpdfstring{Lexeme\+Fsm()}{LexemeFsm()}}
+{\footnotesize\ttfamily void Lexeme\+Fsm (\begin{DoxyParamCaption}\item[{char $\ast$}]{reading\+Char,  }\item[{\mbox{\hyperlink{_double_queue_generic_8h_ac9780889f9bbabed708ecbeaadfb040e}{Q\+U\+E\+U\+E\+\_\+\+D\+O\+U\+B\+LE}} $\ast$}]{lexeme\+Queue,  }\item[{\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$}]{reading\+Value,  }\item[{\mbox{\hyperlink{struct_l_e_x_e_m_e___f_s_m}{L\+E\+X\+E\+M\+E\+\_\+\+F\+SM}} $\ast$}]{state\+Machine,  }\item[{unsigned long int $\ast$}]{line\+Number,  }\item[{int}]{finished\+File }\end{DoxyParamCaption})}
+
+
+
+It\textquotesingle{}s the brain of the state\+Machine which sends the state\+Machine to the right state and do a process according of this state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reading\+Char} & Pointer on the char currently read in the file to decrypt. \\
+\hline
+{\em lexeme\+Queue} & Pointeur on a Q\+U\+E\+U\+E\+\_\+\+D\+O\+U\+B\+LE of Lexemes it updates it during the process of lexeme decrypting. \\
+\hline
+{\em reading\+Value} & Pointeur on a L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE, to stock values which don\textquotesingle{}t have lexeme for now (this function will use it, use just an empty list). \\
+\hline
+{\em state\+Machine} & Pointeur on the state\+Machine. To know in which L\+E\+X\+E\+M\+E\+\_\+\+S\+T\+A\+TE are the treatment or to add an error. \\
+\hline
+{\em line\+Number} & Pointer on an unsigned long int represent the line position in the file to decrypt. It will be incrementated during the process. \\
+\hline
+{\em finished\+File} & Integer to know if the file is ended or not. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 91 of file F\+S\+M\+Lexeme.\+c.
+
+\mbox{\Hypertarget{_f_s_m_lexeme_8h_ab0567864dff1dade522e95f33eec29a9}\label{_f_s_m_lexeme_8h_ab0567864dff1dade522e95f33eec29a9}} 
+\index{F\+S\+M\+Lexeme.\+h@{F\+S\+M\+Lexeme.\+h}!Lexeme\+Treatment@{Lexeme\+Treatment}}
+\index{Lexeme\+Treatment@{Lexeme\+Treatment}!F\+S\+M\+Lexeme.\+h@{F\+S\+M\+Lexeme.\+h}}
+\subsubsection{\texorpdfstring{Lexeme\+Treatment()}{LexemeTreatment()}}
+{\footnotesize\ttfamily void Lexeme\+Treatment (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_double_queue_generic_8h_ac9780889f9bbabed708ecbeaadfb040e}{Q\+U\+E\+U\+E\+\_\+\+D\+O\+U\+B\+LE}} $\ast$}]{lexeme\+Queue,  }\item[{\mbox{\hyperlink{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67ad}{L\+E\+X\+E\+M\+E\+\_\+\+S\+T\+A\+TE}}}]{state,  }\item[{\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$}]{reading\+Value,  }\item[{unsigned long int}]{line\+Number }\end{DoxyParamCaption})}
+
+
+
+Add a Lexeme in the lexeme\+Queue according of the state, the list of value read and the number of line. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lexeme\+Queue} & Pointeur on a Q\+U\+E\+U\+E\+\_\+\+D\+O\+U\+B\+LE of Lexemes that you want to update. \\
+\hline
+{\em reading\+Value} & Pointeur on a L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE of the lexeme value\textquotesingle{}s information. \\
+\hline
+{\em state} & L\+E\+X\+E\+M\+E\+\_\+\+S\+T\+A\+TE represent the state of the lexeme to add. \\
+\hline
+{\em line\+Number} & Unsigned long int represent the line position of this lexeme. \\
+\hline
+{\em finished\+File} & Integer to know if the file is ended or not. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 373 of file F\+S\+M\+Lexeme.\+c.
+
+\mbox{\Hypertarget{_f_s_m_lexeme_8h_a72490d09bec8da86306ec2029a4e2eb3}\label{_f_s_m_lexeme_8h_a72490d09bec8da86306ec2029a4e2eb3}} 
+\index{F\+S\+M\+Lexeme.\+h@{F\+S\+M\+Lexeme.\+h}!Print\+Error@{Print\+Error}}
+\index{Print\+Error@{Print\+Error}!F\+S\+M\+Lexeme.\+h@{F\+S\+M\+Lexeme.\+h}}
+\subsubsection{\texorpdfstring{Print\+Error()}{PrintError()}}
+{\footnotesize\ttfamily void Print\+Error (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_l_e_x_e_m_e___f_s_m}{L\+E\+X\+E\+M\+E\+\_\+\+F\+SM}} $\ast$}]{state\+Machine,  }\item[{unsigned long int}]{line\+Number,  }\item[{char $\ast$}]{problem,  }\item[{char}]{wrong\+Value,  }\item[{char $\ast$}]{state }\end{DoxyParamCaption})}
+
+
+
+Print an the error of the state\+Machine in color. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em line\+Number} & Unsigned long int represent the line position of the error. \\
+\hline
+{\em problem} & String to represent the problem. \\
+\hline
+{\em wrong\+Value} & Char which create an error. \\
+\hline
+{\em state} & String to represent in which state we have an error. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 380 of file F\+S\+M\+Lexeme.\+c.
+
+\mbox{\Hypertarget{_f_s_m_lexeme_8h_a3bc5f8966dfd94a61bacee7eccef2814}\label{_f_s_m_lexeme_8h_a3bc5f8966dfd94a61bacee7eccef2814}} 
+\index{F\+S\+M\+Lexeme.\+h@{F\+S\+M\+Lexeme.\+h}!Register\+Treatment@{Register\+Treatment}}
+\index{Register\+Treatment@{Register\+Treatment}!F\+S\+M\+Lexeme.\+h@{F\+S\+M\+Lexeme.\+h}}
+\subsubsection{\texorpdfstring{Register\+Treatment()}{RegisterTreatment()}}
+{\footnotesize\ttfamily void Register\+Treatment (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_double_queue_generic_8h_ac9780889f9bbabed708ecbeaadfb040e}{Q\+U\+E\+U\+E\+\_\+\+D\+O\+U\+B\+LE}} $\ast$}]{lexeme\+Queue,  }\item[{\mbox{\hyperlink{struct_l_e_x_e_m_e___f_s_m}{L\+E\+X\+E\+M\+E\+\_\+\+F\+SM}} $\ast$}]{state\+Machine,  }\item[{\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$}]{reading\+Value,  }\item[{unsigned long int $\ast$}]{line\+Number,  }\item[{char $\ast$}]{reading\+Char,  }\item[{int}]{finished\+File }\end{DoxyParamCaption})}
+
+
+
+Definition at line 341 of file F\+S\+M\+Lexeme.\+c.
+

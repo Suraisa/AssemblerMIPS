@@ -1,35 +1,35 @@
-\hypertarget{_lexeme_8h}{}\section{/home/suraisa/\+Documents/\+Projet\+Info2/inc/\+Lexeme.h File Reference}
-\label{_lexeme_8h}\index{/home/suraisa/\+Documents/\+Projet\+Info2/inc/\+Lexeme.\+h@{/home/suraisa/\+Documents/\+Projet\+Info2/inc/\+Lexeme.\+h}}
+\hypertarget{_lexeme_8h}{}\section{/home/raphael/\+Project/\+Assembler\+M\+I\+P\+S/inc/\+Lexeme.h File Reference}
+\label{_lexeme_8h}\index{/home/raphael/\+Project/\+Assembler\+M\+I\+P\+S/inc/\+Lexeme.\+h@{/home/raphael/\+Project/\+Assembler\+M\+I\+P\+S/inc/\+Lexeme.\+h}}
 
 
 Lexem-\/related stuff.  
 
 
-{\ttfamily \#include \char`\"{}List\+Generic.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Double\+List\+Generic.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}Utils.\+h\char`\"{}}\newline
-{\ttfamily \#include \char`\"{}State\+Machine.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}F\+S\+M\+Lexeme.\+h\char`\"{}}\newline
 \subsection*{Data Structures}
 \begin{DoxyCompactItemize}
 \item 
-struct \hyperlink{struct_l_e_x_e_m_e}{L\+E\+X\+E\+ME}
+struct \mbox{\hyperlink{struct_l_e_x_e_m_e}{L\+E\+X\+E\+ME}}
 \end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-char $\ast$ \hyperlink{_lexeme_8h_a1ca5c5fd60c53f92225c7f56999e27bd}{Create\+Type} (\hyperlink{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647}{S\+T\+A\+TE} state)
+char $\ast$ \mbox{\hyperlink{_lexeme_8h_a3d7972020c684cfcd388814220a141fd}{Create\+Type}} (\mbox{\hyperlink{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67ad}{L\+E\+X\+E\+M\+E\+\_\+\+S\+T\+A\+TE}} state)
 \begin{DoxyCompactList}\small\item\em This function creates the lexeme type thanks to the equivalent state. \end{DoxyCompactList}\item 
-void $\ast$ \hyperlink{_lexeme_8h_ad50eb759b57905ffc7e9feabda3d1177}{Create\+Value} (\hyperlink{_list_generic_8h_aabca0732ef20d0d82f70f05012926226}{L\+I\+ST} list)
+void $\ast$ \mbox{\hyperlink{_lexeme_8h_a96eaad5f23f6efa50bfb80510a997fce}{Create\+Value}} (\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} list)
 \begin{DoxyCompactList}\small\item\em This function concatenate the list to send a (void$\ast$) pointer of the value. \end{DoxyCompactList}\item 
-\hyperlink{struct_l_e_x_e_m_e}{L\+E\+X\+E\+ME} \hyperlink{_lexeme_8h_a986adfec9cc555485af98669cc45f13b}{Create\+Lexeme} (\hyperlink{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647}{S\+T\+A\+TE} state, \hyperlink{_list_generic_8h_aabca0732ef20d0d82f70f05012926226}{L\+I\+ST} list, unsigned long int line)
+\mbox{\hyperlink{struct_l_e_x_e_m_e}{L\+E\+X\+E\+ME}} \mbox{\hyperlink{_lexeme_8h_a3c750dee3d077ae1979327d675c88ad8}{Create\+Lexeme}} (\mbox{\hyperlink{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67ad}{L\+E\+X\+E\+M\+E\+\_\+\+S\+T\+A\+TE}} state, \mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} list, unsigned long int line)
 \begin{DoxyCompactList}\small\item\em This function sends a Lexeme with the information sent. \end{DoxyCompactList}\item 
-void \hyperlink{_lexeme_8h_ae3e0fdda0b3b103fbbc904edab618193}{Erased\+Value\+Lexeme} (void $\ast$lexeme)
+void \mbox{\hyperlink{_lexeme_8h_ae3e0fdda0b3b103fbbc904edab618193}{Erased\+Value\+Lexeme}} (void $\ast$lexeme)
 \begin{DoxyCompactList}\small\item\em This function erases the value of the lexeme. \end{DoxyCompactList}\item 
-void \hyperlink{_lexeme_8h_a876ccee8b7f69b66291cbb8e757c7eb1}{Display\+Lexeme} (void $\ast$value)
+void \mbox{\hyperlink{_lexeme_8h_a876ccee8b7f69b66291cbb8e757c7eb1}{Display\+Lexeme}} (void $\ast$value)
 \begin{DoxyCompactList}\small\item\em This function aim to show the lexeme sent properly. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-char $\ast$ \hyperlink{_lexeme_8h_a726b5b8c47647b2e05aef41a049136d4}{defined\+Type} \mbox{[}15\mbox{]}
+char $\ast$ \mbox{\hyperlink{_lexeme_8h_a726b5b8c47647b2e05aef41a049136d4}{defined\+Type}} \mbox{[}15\mbox{]}
 \begin{DoxyCompactList}\small\item\em String equivalent to state machine\textquotesingle{}s states. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -39,11 +39,11 @@ Lexem-\/related stuff.
 Contains the lexem structure definition and the associated prototypes. 
 
 \subsection{Function Documentation}
-\mbox{\Hypertarget{_lexeme_8h_a986adfec9cc555485af98669cc45f13b}\label{_lexeme_8h_a986adfec9cc555485af98669cc45f13b}} 
+\mbox{\Hypertarget{_lexeme_8h_a3c750dee3d077ae1979327d675c88ad8}\label{_lexeme_8h_a3c750dee3d077ae1979327d675c88ad8}} 
 \index{Lexeme.\+h@{Lexeme.\+h}!Create\+Lexeme@{Create\+Lexeme}}
 \index{Create\+Lexeme@{Create\+Lexeme}!Lexeme.\+h@{Lexeme.\+h}}
 \subsubsection{\texorpdfstring{Create\+Lexeme()}{CreateLexeme()}}
-{\footnotesize\ttfamily \hyperlink{struct_l_e_x_e_m_e}{L\+E\+X\+E\+ME} Create\+Lexeme (\begin{DoxyParamCaption}\item[{\hyperlink{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647}{S\+T\+A\+TE}}]{state,  }\item[{\hyperlink{_list_generic_8h_aabca0732ef20d0d82f70f05012926226}{L\+I\+ST}}]{list,  }\item[{unsigned long int}]{line }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_l_e_x_e_m_e}{L\+E\+X\+E\+ME}} Create\+Lexeme (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67ad}{L\+E\+X\+E\+M\+E\+\_\+\+S\+T\+A\+TE}}}]{state,  }\item[{\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}}}]{list,  }\item[{unsigned long int}]{line }\end{DoxyParamCaption})}
 
 
 
@@ -62,11 +62,11 @@ This function sends a Lexeme with the information sent.
 
 Definition at line 57 of file Lexeme.\+c.
 
-\mbox{\Hypertarget{_lexeme_8h_a1ca5c5fd60c53f92225c7f56999e27bd}\label{_lexeme_8h_a1ca5c5fd60c53f92225c7f56999e27bd}} 
+\mbox{\Hypertarget{_lexeme_8h_a3d7972020c684cfcd388814220a141fd}\label{_lexeme_8h_a3d7972020c684cfcd388814220a141fd}} 
 \index{Lexeme.\+h@{Lexeme.\+h}!Create\+Type@{Create\+Type}}
 \index{Create\+Type@{Create\+Type}!Lexeme.\+h@{Lexeme.\+h}}
 \subsubsection{\texorpdfstring{Create\+Type()}{CreateType()}}
-{\footnotesize\ttfamily char$\ast$ Create\+Type (\begin{DoxyParamCaption}\item[{\hyperlink{_state_machine_8h_a275a67132f10277ada3a0ee3d616b647}{S\+T\+A\+TE}}]{state }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily char$\ast$ Create\+Type (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_f_s_m_lexeme_8h_a5d966dc44e04ff2eef3b33046a1e67ad}{L\+E\+X\+E\+M\+E\+\_\+\+S\+T\+A\+TE}}}]{state }\end{DoxyParamCaption})}
 
 
 
@@ -81,11 +81,11 @@ This function creates the lexeme type thanks to the equivalent state.
 
 Definition at line 20 of file Lexeme.\+c.
 
-\mbox{\Hypertarget{_lexeme_8h_ad50eb759b57905ffc7e9feabda3d1177}\label{_lexeme_8h_ad50eb759b57905ffc7e9feabda3d1177}} 
+\mbox{\Hypertarget{_lexeme_8h_a96eaad5f23f6efa50bfb80510a997fce}\label{_lexeme_8h_a96eaad5f23f6efa50bfb80510a997fce}} 
 \index{Lexeme.\+h@{Lexeme.\+h}!Create\+Value@{Create\+Value}}
 \index{Create\+Value@{Create\+Value}!Lexeme.\+h@{Lexeme.\+h}}
 \subsubsection{\texorpdfstring{Create\+Value()}{CreateValue()}}
-{\footnotesize\ttfamily void$\ast$ Create\+Value (\begin{DoxyParamCaption}\item[{\hyperlink{_list_generic_8h_aabca0732ef20d0d82f70f05012926226}{L\+I\+ST}}]{list }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void$\ast$ Create\+Value (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}}}]{list }\end{DoxyParamCaption})}
 
 
 

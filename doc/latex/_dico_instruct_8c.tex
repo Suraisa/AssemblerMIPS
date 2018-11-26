@@ -1,0 +1,107 @@
+\hypertarget{_dico_instruct_8c}{}\section{/home/raphael/\+Project/\+Assembler\+M\+I\+P\+S/src/\+Dico\+Instruct.c File Reference}
+\label{_dico_instruct_8c}\index{/home/raphael/\+Project/\+Assembler\+M\+I\+P\+S/src/\+Dico\+Instruct.\+c@{/home/raphael/\+Project/\+Assembler\+M\+I\+P\+S/src/\+Dico\+Instruct.\+c}}
+{\ttfamily \#include \char`\"{}Dico\+Instruct.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_i_n_s_t_r_u_c_t_i_o_n}{I\+N\+S\+T\+R\+U\+C\+T\+I\+ON}} $\ast$ \mbox{\hyperlink{_dico_instruct_8c_a9cadc288d180ca692d48f098482ddbe7}{Allocate\+Dico}} (F\+I\+LE $\ast$file, int $\ast$\mbox{\hyperlink{_dico_instruct_8h_a8bb76a4357c87362792496bc0c1cd102}{size\+Dico}})
+\begin{DoxyCompactList}\small\item\em Allocate the instruction\textquotesingle{}s dictionary. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_i_n_s_t_r_u_c_t_i_o_n}{I\+N\+S\+T\+R\+U\+C\+T\+I\+ON}} $\ast$ \mbox{\hyperlink{_dico_instruct_8c_acd15f18c9495b1cbca398aa27ada96a8}{Initialize\+Dico\+Instruct}} (char $\ast$name\+Dico\+File)
+\begin{DoxyCompactList}\small\item\em Initialiaze the instruction\textquotesingle{}s dictionary. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_dico_instruct_8c_a24e93a4a08af01153979d6c7a3bb0068}{Index\+Instruction}} (\mbox{\hyperlink{struct_i_n_s_t_r_u_c_t_i_o_n}{I\+N\+S\+T\+R\+U\+C\+T\+I\+ON}} $\ast$dictionary, char $\ast$instruction\+Name)
+\begin{DoxyCompactList}\small\item\em Find an instruction in the dictionary. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{_dico_instruct_8c_a8bb76a4357c87362792496bc0c1cd102}{size\+Dico}} = 0
+\begin{DoxyCompactList}\small\item\em Contain the size of the instruction dictionary. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{_dico_instruct_8c_a9cadc288d180ca692d48f098482ddbe7}\label{_dico_instruct_8c_a9cadc288d180ca692d48f098482ddbe7}} 
+\index{Dico\+Instruct.\+c@{Dico\+Instruct.\+c}!Allocate\+Dico@{Allocate\+Dico}}
+\index{Allocate\+Dico@{Allocate\+Dico}!Dico\+Instruct.\+c@{Dico\+Instruct.\+c}}
+\subsubsection{\texorpdfstring{Allocate\+Dico()}{AllocateDico()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_i_n_s_t_r_u_c_t_i_o_n}{I\+N\+S\+T\+R\+U\+C\+T\+I\+ON}}$\ast$ Allocate\+Dico (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{file,  }\item[{int $\ast$}]{size\+Dico }\end{DoxyParamCaption})}
+
+
+
+Allocate the instruction\textquotesingle{}s dictionary. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & F\+I\+L\+E$\ast$ who contain the pointeur on the file that you want to us to construction the dictionary \\
+\hline
+{\em size\+Dico} & int$\ast$ to receive the size of the dictionary. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The allocated dictionary. 
+\end{DoxyReturn}
+
+
+Definition at line 5 of file Dico\+Instruct.\+c.
+
+\mbox{\Hypertarget{_dico_instruct_8c_a24e93a4a08af01153979d6c7a3bb0068}\label{_dico_instruct_8c_a24e93a4a08af01153979d6c7a3bb0068}} 
+\index{Dico\+Instruct.\+c@{Dico\+Instruct.\+c}!Index\+Instruction@{Index\+Instruction}}
+\index{Index\+Instruction@{Index\+Instruction}!Dico\+Instruct.\+c@{Dico\+Instruct.\+c}}
+\subsubsection{\texorpdfstring{Index\+Instruction()}{IndexInstruction()}}
+{\footnotesize\ttfamily int Index\+Instruction (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_i_n_s_t_r_u_c_t_i_o_n}{I\+N\+S\+T\+R\+U\+C\+T\+I\+ON}} $\ast$}]{dictionary,  }\item[{char $\ast$}]{instruction\+Name }\end{DoxyParamCaption})}
+
+
+
+Find an instruction in the dictionary. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dictionary} & I\+N\+S\+T\+R\+U\+C\+T\+I\+O\+N$\ast$ which is a instructions\textquotesingle{} dictionary. \\
+\hline
+{\em instruction\+Name} & char$\ast$ which the instruction to find in the dictionary. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The index of the instruction\+Name in the dictionary or -\/1 if is not inside. 
+\end{DoxyReturn}
+
+
+Definition at line 49 of file Dico\+Instruct.\+c.
+
+\mbox{\Hypertarget{_dico_instruct_8c_acd15f18c9495b1cbca398aa27ada96a8}\label{_dico_instruct_8c_acd15f18c9495b1cbca398aa27ada96a8}} 
+\index{Dico\+Instruct.\+c@{Dico\+Instruct.\+c}!Initialize\+Dico\+Instruct@{Initialize\+Dico\+Instruct}}
+\index{Initialize\+Dico\+Instruct@{Initialize\+Dico\+Instruct}!Dico\+Instruct.\+c@{Dico\+Instruct.\+c}}
+\subsubsection{\texorpdfstring{Initialize\+Dico\+Instruct()}{InitializeDicoInstruct()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_i_n_s_t_r_u_c_t_i_o_n}{I\+N\+S\+T\+R\+U\+C\+T\+I\+ON}}$\ast$ Initialize\+Dico\+Instruct (\begin{DoxyParamCaption}\item[{char $\ast$}]{name\+Dico\+File }\end{DoxyParamCaption})}
+
+
+
+Initialiaze the instruction\textquotesingle{}s dictionary. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name\+Dico\+File} & char$\ast$ which correspond to the file you want to open to initialize the dictionary. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The initialized dictionary. 
+\end{DoxyReturn}
+
+
+Definition at line 13 of file Dico\+Instruct.\+c.
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{_dico_instruct_8c_a8bb76a4357c87362792496bc0c1cd102}\label{_dico_instruct_8c_a8bb76a4357c87362792496bc0c1cd102}} 
+\index{Dico\+Instruct.\+c@{Dico\+Instruct.\+c}!size\+Dico@{size\+Dico}}
+\index{size\+Dico@{size\+Dico}!Dico\+Instruct.\+c@{Dico\+Instruct.\+c}}
+\subsubsection{\texorpdfstring{size\+Dico}{sizeDico}}
+{\footnotesize\ttfamily int size\+Dico = 0}
+
+
+
+Contain the size of the instruction dictionary. 
+
+
+
+Definition at line 3 of file Dico\+Instruct.\+c.
+

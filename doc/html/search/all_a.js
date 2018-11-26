@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['next',['next',['../struct_n_o_d_e.html#aab1da0ec3c3507ad0a648c72f34b3267',1,'NODE']]],
-  ['node',['NODE',['../struct_n_o_d_e.html',1,'']]],
-  ['number',['NUMBER',['../_state_machine_8h.html#a275a67132f10277ada3a0ee3d616b647a12a90dfe20486bbe3e075afcd19ef2d0',1,'FSMLexeme.h']]]
+  ['mips_20assembler',['MIPS Assembler',['../index.html',1,'']]],
+  ['main',['main',['../main_8c.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main.c']]],
+  ['main_2ec',['main.c',['../main_8c.html',1,'']]]
 ];

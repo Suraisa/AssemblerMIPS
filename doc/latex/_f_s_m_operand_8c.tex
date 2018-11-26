@@ -1,0 +1,160 @@
+\hypertarget{_f_s_m_operand_8c}{}\section{/home/raphael/\+Project/\+Assembler\+M\+I\+P\+S/src/\+F\+S\+M\+Operand.c File Reference}
+\label{_f_s_m_operand_8c}\index{/home/raphael/\+Project/\+Assembler\+M\+I\+P\+S/src/\+F\+S\+M\+Operand.\+c@{/home/raphael/\+Project/\+Assembler\+M\+I\+P\+S/src/\+F\+S\+M\+Operand.\+c}}
+{\ttfamily \#include \char`\"{}F\+S\+M\+Operand.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_f_s_m_operand_8c_a467c1586a6ff487ac7139391a971c782}{Initialization\+Operand\+Fsm}} (\mbox{\hyperlink{struct_f_s_m___s_t_a_t_e___o_p_e_r_a_n_d}{F\+S\+M\+\_\+\+S\+T\+A\+T\+E\+\_\+\+O\+P\+E\+R\+A\+ND}} $\ast$fsm, \mbox{\hyperlink{_f_s_m_operand_8h_aa2d7050d955e23a8f1a28c1ccf21111f}{O\+P\+E\+R\+A\+N\+D\+\_\+\+T\+Y\+PE}} operand\+Type)
+\begin{DoxyCompactList}\small\item\em Initialize the operand fsm. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_f_s_m_operand_8c_ac321d3af94f222453624acf7167a5cdd}{Operand\+F\+SM}} (\mbox{\hyperlink{struct_f_s_m___s_t_a_t_e___o_p_e_r_a_n_d}{F\+S\+M\+\_\+\+S\+T\+A\+T\+E\+\_\+\+O\+P\+E\+R\+A\+ND}} $\ast$fsm, \mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$list\+Operand)
+\begin{DoxyCompactList}\small\item\em Test if the operand is the one defined in the fsm. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_f_s_m_operand_8c_a27b68535e5b84b0311ce0bd90fcd1e34}{Is\+Immediat}} (\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$list\+Lexeme)
+\begin{DoxyCompactList}\small\item\em Test if the lexemes\textquotesingle{} list is an immediat operand. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_f_s_m_operand_8c_a1fa4e2d5bdbe53fcbb379537cfc2ab15}{Is\+Shift\+Amount}} (\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$list\+Lexeme)
+\begin{DoxyCompactList}\small\item\em Test if the lexemes\textquotesingle{} list is a shift\+Amount operand. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_f_s_m_operand_8c_a81e37365d24e6c1bb9991d01a3201925}{Is\+Absolute}} (\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$list\+Lexeme)
+\begin{DoxyCompactList}\small\item\em Test if the lexemes\textquotesingle{} list is an absolute operand. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_f_s_m_operand_8c_a2a38da0ef4e06c50cae323539100bdfc}{Is\+Relative}} (\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$list\+Lexeme)
+\begin{DoxyCompactList}\small\item\em Test if the lexemes\textquotesingle{} list is a relative operand. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_f_s_m_operand_8c_a132d5cbc5ec2790e9ca93acb6d2a4c71}{Is\+Base\+Offset}} (\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$list\+Lexeme)
+\begin{DoxyCompactList}\small\item\em Test if the lexemes\textquotesingle{} list is a base\+Offset operand. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{_f_s_m_operand_8c_a467c1586a6ff487ac7139391a971c782}\label{_f_s_m_operand_8c_a467c1586a6ff487ac7139391a971c782}} 
+\index{F\+S\+M\+Operand.\+c@{F\+S\+M\+Operand.\+c}!Initialization\+Operand\+Fsm@{Initialization\+Operand\+Fsm}}
+\index{Initialization\+Operand\+Fsm@{Initialization\+Operand\+Fsm}!F\+S\+M\+Operand.\+c@{F\+S\+M\+Operand.\+c}}
+\subsubsection{\texorpdfstring{Initialization\+Operand\+Fsm()}{InitializationOperandFsm()}}
+{\footnotesize\ttfamily void Initialization\+Operand\+Fsm (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_f_s_m___s_t_a_t_e___o_p_e_r_a_n_d}{F\+S\+M\+\_\+\+S\+T\+A\+T\+E\+\_\+\+O\+P\+E\+R\+A\+ND}} $\ast$}]{fsm,  }\item[{\mbox{\hyperlink{_f_s_m_operand_8h_aa2d7050d955e23a8f1a28c1ccf21111f}{O\+P\+E\+R\+A\+N\+D\+\_\+\+T\+Y\+PE}}}]{operand\+Type }\end{DoxyParamCaption})}
+
+
+
+Initialize the operand fsm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fsm} & F\+S\+M\+\_\+\+S\+T\+A\+T\+E\+\_\+\+O\+P\+E\+R\+A\+N\+D$\ast$ which is the fsm to initialize. \\
+\hline
+{\em operand\+Type} & O\+P\+E\+R\+A\+N\+D\+\_\+\+T\+Y\+PE which is the type that we expected for the fsm. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 3 of file F\+S\+M\+Operand.\+c.
+
+\mbox{\Hypertarget{_f_s_m_operand_8c_a81e37365d24e6c1bb9991d01a3201925}\label{_f_s_m_operand_8c_a81e37365d24e6c1bb9991d01a3201925}} 
+\index{F\+S\+M\+Operand.\+c@{F\+S\+M\+Operand.\+c}!Is\+Absolute@{Is\+Absolute}}
+\index{Is\+Absolute@{Is\+Absolute}!F\+S\+M\+Operand.\+c@{F\+S\+M\+Operand.\+c}}
+\subsubsection{\texorpdfstring{Is\+Absolute()}{IsAbsolute()}}
+{\footnotesize\ttfamily int Is\+Absolute (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$}]{list\+Lexeme }\end{DoxyParamCaption})}
+
+
+
+Test if the lexemes\textquotesingle{} list is an absolute operand. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+Lexeme} & L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+L\+E$\ast$ which is the list to test. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 126 of file F\+S\+M\+Operand.\+c.
+
+\mbox{\Hypertarget{_f_s_m_operand_8c_a132d5cbc5ec2790e9ca93acb6d2a4c71}\label{_f_s_m_operand_8c_a132d5cbc5ec2790e9ca93acb6d2a4c71}} 
+\index{F\+S\+M\+Operand.\+c@{F\+S\+M\+Operand.\+c}!Is\+Base\+Offset@{Is\+Base\+Offset}}
+\index{Is\+Base\+Offset@{Is\+Base\+Offset}!F\+S\+M\+Operand.\+c@{F\+S\+M\+Operand.\+c}}
+\subsubsection{\texorpdfstring{Is\+Base\+Offset()}{IsBaseOffset()}}
+{\footnotesize\ttfamily int Is\+Base\+Offset (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$}]{list\+Lexeme }\end{DoxyParamCaption})}
+
+
+
+Test if the lexemes\textquotesingle{} list is a base\+Offset operand. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+Lexeme} & L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+L\+E$\ast$ which is the list to test. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 257 of file F\+S\+M\+Operand.\+c.
+
+\mbox{\Hypertarget{_f_s_m_operand_8c_a27b68535e5b84b0311ce0bd90fcd1e34}\label{_f_s_m_operand_8c_a27b68535e5b84b0311ce0bd90fcd1e34}} 
+\index{F\+S\+M\+Operand.\+c@{F\+S\+M\+Operand.\+c}!Is\+Immediat@{Is\+Immediat}}
+\index{Is\+Immediat@{Is\+Immediat}!F\+S\+M\+Operand.\+c@{F\+S\+M\+Operand.\+c}}
+\subsubsection{\texorpdfstring{Is\+Immediat()}{IsImmediat()}}
+{\footnotesize\ttfamily int Is\+Immediat (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$}]{list\+Lexeme }\end{DoxyParamCaption})}
+
+
+
+Test if the lexemes\textquotesingle{} list is an immediat operand. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+Lexeme} & L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+L\+E$\ast$ which is the list to test. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 55 of file F\+S\+M\+Operand.\+c.
+
+\mbox{\Hypertarget{_f_s_m_operand_8c_a2a38da0ef4e06c50cae323539100bdfc}\label{_f_s_m_operand_8c_a2a38da0ef4e06c50cae323539100bdfc}} 
+\index{F\+S\+M\+Operand.\+c@{F\+S\+M\+Operand.\+c}!Is\+Relative@{Is\+Relative}}
+\index{Is\+Relative@{Is\+Relative}!F\+S\+M\+Operand.\+c@{F\+S\+M\+Operand.\+c}}
+\subsubsection{\texorpdfstring{Is\+Relative()}{IsRelative()}}
+{\footnotesize\ttfamily int Is\+Relative (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$}]{list\+Lexeme }\end{DoxyParamCaption})}
+
+
+
+Test if the lexemes\textquotesingle{} list is a relative operand. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+Lexeme} & L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+L\+E$\ast$ which is the list to test. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 200 of file F\+S\+M\+Operand.\+c.
+
+\mbox{\Hypertarget{_f_s_m_operand_8c_a1fa4e2d5bdbe53fcbb379537cfc2ab15}\label{_f_s_m_operand_8c_a1fa4e2d5bdbe53fcbb379537cfc2ab15}} 
+\index{F\+S\+M\+Operand.\+c@{F\+S\+M\+Operand.\+c}!Is\+Shift\+Amount@{Is\+Shift\+Amount}}
+\index{Is\+Shift\+Amount@{Is\+Shift\+Amount}!F\+S\+M\+Operand.\+c@{F\+S\+M\+Operand.\+c}}
+\subsubsection{\texorpdfstring{Is\+Shift\+Amount()}{IsShiftAmount()}}
+{\footnotesize\ttfamily int Is\+Shift\+Amount (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$}]{list\+Lexeme }\end{DoxyParamCaption})}
+
+
+
+Test if the lexemes\textquotesingle{} list is a shift\+Amount operand. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list\+Lexeme} & L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+L\+E$\ast$ which is the list to test. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 111 of file F\+S\+M\+Operand.\+c.
+
+\mbox{\Hypertarget{_f_s_m_operand_8c_ac321d3af94f222453624acf7167a5cdd}\label{_f_s_m_operand_8c_ac321d3af94f222453624acf7167a5cdd}} 
+\index{F\+S\+M\+Operand.\+c@{F\+S\+M\+Operand.\+c}!Operand\+F\+SM@{Operand\+F\+SM}}
+\index{Operand\+F\+SM@{Operand\+F\+SM}!F\+S\+M\+Operand.\+c@{F\+S\+M\+Operand.\+c}}
+\subsubsection{\texorpdfstring{Operand\+F\+S\+M()}{OperandFSM()}}
+{\footnotesize\ttfamily void Operand\+F\+SM (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_f_s_m___s_t_a_t_e___o_p_e_r_a_n_d}{F\+S\+M\+\_\+\+S\+T\+A\+T\+E\+\_\+\+O\+P\+E\+R\+A\+ND}} $\ast$}]{fsm,  }\item[{\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} $\ast$}]{list\+Operand }\end{DoxyParamCaption})}
+
+
+
+Test if the operand is the one defined in the fsm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fsm} & F\+S\+M\+\_\+\+S\+T\+A\+T\+E\+\_\+\+O\+P\+E\+R\+A\+N\+D$\ast$ fsm operand to use. \\
+\hline
+{\em list\+Lexeme} & L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+L\+E$\ast$ which is the list to test. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 9 of file F\+S\+M\+Operand.\+c.
+

@@ -1,5 +1,5 @@
-\hypertarget{_utils_8h}{}\section{/home/suraisa/\+Documents/\+Projet\+Info2/inc/\+Utils.h File Reference}
-\label{_utils_8h}\index{/home/suraisa/\+Documents/\+Projet\+Info2/inc/\+Utils.\+h@{/home/suraisa/\+Documents/\+Projet\+Info2/inc/\+Utils.\+h}}
+\hypertarget{_utils_8h}{}\section{/home/raphael/\+Project/\+Assembler\+M\+I\+P\+S/inc/\+Utils.h File Reference}
+\label{_utils_8h}\index{/home/raphael/\+Project/\+Assembler\+M\+I\+P\+S/inc/\+Utils.\+h@{/home/raphael/\+Project/\+Assembler\+M\+I\+P\+S/inc/\+Utils.\+h}}
 
 
 Utils stuff.  
@@ -7,30 +7,50 @@ Utils stuff.
 
 {\ttfamily \#include $<$stdio.\+h$>$}\newline
 {\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
 {\ttfamily \#include \char`\"{}List\+Generic.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Double\+List\+Generic.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}Queue\+Generic.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}Display\+Type.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-unsigned int \hyperlink{_utils_8h_a8592209ba3adb4746f53764d85169329}{String\+Size} (char $\ast$string)
+unsigned int \mbox{\hyperlink{_utils_8h_a8592209ba3adb4746f53764d85169329}{String\+Size}} (char $\ast$string)
 \begin{DoxyCompactList}\small\item\em Return string\textquotesingle{}s size. \end{DoxyCompactList}\item 
-char $\ast$ \hyperlink{_utils_8h_aba3c5315d486256d4d397a0447be84ba}{Concatenate\+Char\+List} (\hyperlink{_list_generic_8h_aabca0732ef20d0d82f70f05012926226}{L\+I\+ST} list)
+char $\ast$ \mbox{\hyperlink{_utils_8h_aba3c5315d486256d4d397a0447be84ba}{Concatenate\+Char\+List}} (\mbox{\hyperlink{_list_generic_8h_aabca0732ef20d0d82f70f05012926226}{L\+I\+ST}} list)
 \begin{DoxyCompactList}\small\item\em Concatenate a list of char to make a string.\textquotesingle{}ll construct the string from the end of the list to the front. \end{DoxyCompactList}\item 
-long int \hyperlink{_utils_8h_af50066ebe8d336820cbf55fdbb2670a9}{Concatenate\+Int\+List} (\hyperlink{_list_generic_8h_aabca0732ef20d0d82f70f05012926226}{L\+I\+ST})
+char $\ast$ \mbox{\hyperlink{_utils_8h_ad0e35e83cbdfedad161d1d6d24c84498}{Concatenate\+Char\+List\+Double}} (\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}} list)
+\begin{DoxyCompactList}\small\item\em Concatenate a list of char to make a string.\textquotesingle{}ll construct the string from the end of the list to the front. \end{DoxyCompactList}\item 
+long int \mbox{\hyperlink{_utils_8h_af50066ebe8d336820cbf55fdbb2670a9}{Concatenate\+Int\+List}} (\mbox{\hyperlink{_list_generic_8h_aabca0732ef20d0d82f70f05012926226}{L\+I\+ST}})
 \begin{DoxyCompactList}\small\item\em Concatenate a list of int to make a long int.\textquotesingle{}ll construct the string from the end of the list to the front. \end{DoxyCompactList}\item 
-int \hyperlink{_utils_8h_a3805bd90609cea3384b20541a8ac5184}{Char\+Is\+Number} (char value)
+long int \mbox{\hyperlink{_utils_8h_a88cc7e5e94f498a2dc5e3299db09f2fc}{Concatenate\+Int\+List\+Double}} (\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}})
+\begin{DoxyCompactList}\small\item\em Concatenate a list of int to make a long int.\textquotesingle{}ll construct the string from the end of the list to the front. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_utils_8h_a3805bd90609cea3384b20541a8ac5184}{Char\+Is\+Number}} (char value)
 \begin{DoxyCompactList}\small\item\em test if the value is a number. \end{DoxyCompactList}\item 
-int \hyperlink{_utils_8h_a9b4fef5a6601265e1a9510db9354d567}{Char\+Is\+Lower\+Letter} (char value)
+int \mbox{\hyperlink{_utils_8h_a9b4fef5a6601265e1a9510db9354d567}{Char\+Is\+Lower\+Letter}} (char value)
 \begin{DoxyCompactList}\small\item\em test if the value is lowercase letter. \end{DoxyCompactList}\item 
-int \hyperlink{_utils_8h_a7ae20e27cad0e5de490124b2300c31e0}{Char\+Is\+Upper\+Letter} (char value)
+int \mbox{\hyperlink{_utils_8h_a7ae20e27cad0e5de490124b2300c31e0}{Char\+Is\+Upper\+Letter}} (char value)
 \begin{DoxyCompactList}\small\item\em test if the value is uppercase letter. \end{DoxyCompactList}\item 
-int \hyperlink{_utils_8h_a6773ac0b76c3151ba37b2f82c41ec2a7}{Char\+Is\+Letter} (char value)
+int \mbox{\hyperlink{_utils_8h_a6773ac0b76c3151ba37b2f82c41ec2a7}{Char\+Is\+Letter}} (char value)
 \begin{DoxyCompactList}\small\item\em test if the value is a letter. \end{DoxyCompactList}\item 
-int \hyperlink{_utils_8h_adf1a56f840470b3aa87d6af134f2451f}{Char\+Is\+Hexadecimal} (char value)
+int \mbox{\hyperlink{_utils_8h_adf1a56f840470b3aa87d6af134f2451f}{Char\+Is\+Hexadecimal}} (char value)
 \begin{DoxyCompactList}\small\item\em test if the value is an hexadecimal letter. \end{DoxyCompactList}\item 
-int \hyperlink{_utils_8h_acc607e84ddbf89954d64a039c21a2865}{Char\+Is\+Number\+Letter} (char value)
-\begin{DoxyCompactList}\small\item\em test if the value is a letter or a number. \end{DoxyCompactList}\end{DoxyCompactItemize}
+int \mbox{\hyperlink{_utils_8h_acc607e84ddbf89954d64a039c21a2865}{Char\+Is\+Number\+Letter}} (char value)
+\begin{DoxyCompactList}\small\item\em test if the value is a letter or a number. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_utils_8h_a7d1c6a50a5994f369f2ecd3ac0b969f2}{String\+Upper}} (char $\ast$string)
+\begin{DoxyCompactList}\small\item\em Up the char$\ast$. \end{DoxyCompactList}\item 
+unsigned long int \mbox{\hyperlink{_utils_8h_aa8452a7baca51e5f63e0ae7990f850c9}{String\+Hex\+To\+Decimal}} (char $\ast$value)
+\begin{DoxyCompactList}\small\item\em Take an Hexadecimal string to return the decimal value. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_utils_8h_addc0acd30499023111ce9eb5ecab7483}{Is\+Available\+Register}} (char $\ast$register\+To\+Test, int $\ast$$\ast$new\+Name)
+\begin{DoxyCompactList}\small\item\em Test if the register exist and send the decimal value. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_utils_8h_aaf10062f16fb38be5fb3c9e5122378c4}{Change\+Register\+Name}} (int $\ast$$\ast$new\+Name, int number)
+\begin{DoxyCompactList}\small\item\em Change the name of the register. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_utils_8h_a0c8a61cc2d54e4098a0a6ba1d4ac97cc}{Replace\+String}} (char $\ast$$\ast$full\+String, char $\ast$replace\+String, int start, int end)
+\begin{DoxyCompactList}\small\item\em Replace a part of the string of an another one between to positions with an other string. \end{DoxyCompactList}\item 
+char $\ast$ \mbox{\hyperlink{_utils_8h_a992a568888c7d8449f7a8f26dda2162b}{Cut\+String}} (char $\ast$full\+String, int start, int length)
+\begin{DoxyCompactList}\small\item\em Send the part of the string delimited by the start value and the length. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -39,6 +59,27 @@ Utils stuff.
 Contains some convenient functions. 
 
 \subsection{Function Documentation}
+\mbox{\Hypertarget{_utils_8h_aaf10062f16fb38be5fb3c9e5122378c4}\label{_utils_8h_aaf10062f16fb38be5fb3c9e5122378c4}} 
+\index{Utils.\+h@{Utils.\+h}!Change\+Register\+Name@{Change\+Register\+Name}}
+\index{Change\+Register\+Name@{Change\+Register\+Name}!Utils.\+h@{Utils.\+h}}
+\subsubsection{\texorpdfstring{Change\+Register\+Name()}{ChangeRegisterName()}}
+{\footnotesize\ttfamily void Change\+Register\+Name (\begin{DoxyParamCaption}\item[{int $\ast$$\ast$}]{new\+Name,  }\item[{int}]{number }\end{DoxyParamCaption})}
+
+
+
+Change the name of the register. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Name} & int$\ast$$\ast$ value to change. \\
+\hline
+{\em number} & int value to put. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 275 of file Utils.\+c.
+
 \mbox{\Hypertarget{_utils_8h_adf1a56f840470b3aa87d6af134f2451f}\label{_utils_8h_adf1a56f840470b3aa87d6af134f2451f}} 
 \index{Utils.\+h@{Utils.\+h}!Char\+Is\+Hexadecimal@{Char\+Is\+Hexadecimal}}
 \index{Char\+Is\+Hexadecimal@{Char\+Is\+Hexadecimal}!Utils.\+h@{Utils.\+h}}
@@ -60,7 +101,7 @@ test if the value is an hexadecimal letter.
 \end{DoxyReturn}
 
 
-Definition at line 95 of file Utils.\+c.
+Definition at line 157 of file Utils.\+c.
 
 \mbox{\Hypertarget{_utils_8h_a6773ac0b76c3151ba37b2f82c41ec2a7}\label{_utils_8h_a6773ac0b76c3151ba37b2f82c41ec2a7}} 
 \index{Utils.\+h@{Utils.\+h}!Char\+Is\+Letter@{Char\+Is\+Letter}}
@@ -83,7 +124,7 @@ test if the value is a letter.
 \end{DoxyReturn}
 
 
-Definition at line 90 of file Utils.\+c.
+Definition at line 152 of file Utils.\+c.
 
 \mbox{\Hypertarget{_utils_8h_a9b4fef5a6601265e1a9510db9354d567}\label{_utils_8h_a9b4fef5a6601265e1a9510db9354d567}} 
 \index{Utils.\+h@{Utils.\+h}!Char\+Is\+Lower\+Letter@{Char\+Is\+Lower\+Letter}}
@@ -106,7 +147,7 @@ test if the value is lowercase letter.
 \end{DoxyReturn}
 
 
-Definition at line 85 of file Utils.\+c.
+Definition at line 147 of file Utils.\+c.
 
 \mbox{\Hypertarget{_utils_8h_a3805bd90609cea3384b20541a8ac5184}\label{_utils_8h_a3805bd90609cea3384b20541a8ac5184}} 
 \index{Utils.\+h@{Utils.\+h}!Char\+Is\+Number@{Char\+Is\+Number}}
@@ -129,7 +170,7 @@ test if the value is a number.
 \end{DoxyReturn}
 
 
-Definition at line 75 of file Utils.\+c.
+Definition at line 137 of file Utils.\+c.
 
 \mbox{\Hypertarget{_utils_8h_acc607e84ddbf89954d64a039c21a2865}\label{_utils_8h_acc607e84ddbf89954d64a039c21a2865}} 
 \index{Utils.\+h@{Utils.\+h}!Char\+Is\+Number\+Letter@{Char\+Is\+Number\+Letter}}
@@ -152,7 +193,7 @@ test if the value is a letter or a number.
 \end{DoxyReturn}
 
 
-Definition at line 100 of file Utils.\+c.
+Definition at line 162 of file Utils.\+c.
 
 \mbox{\Hypertarget{_utils_8h_a7ae20e27cad0e5de490124b2300c31e0}\label{_utils_8h_a7ae20e27cad0e5de490124b2300c31e0}} 
 \index{Utils.\+h@{Utils.\+h}!Char\+Is\+Upper\+Letter@{Char\+Is\+Upper\+Letter}}
@@ -175,13 +216,13 @@ test if the value is uppercase letter.
 \end{DoxyReturn}
 
 
-Definition at line 80 of file Utils.\+c.
+Definition at line 142 of file Utils.\+c.
 
 \mbox{\Hypertarget{_utils_8h_aba3c5315d486256d4d397a0447be84ba}\label{_utils_8h_aba3c5315d486256d4d397a0447be84ba}} 
 \index{Utils.\+h@{Utils.\+h}!Concatenate\+Char\+List@{Concatenate\+Char\+List}}
 \index{Concatenate\+Char\+List@{Concatenate\+Char\+List}!Utils.\+h@{Utils.\+h}}
 \subsubsection{\texorpdfstring{Concatenate\+Char\+List()}{ConcatenateCharList()}}
-{\footnotesize\ttfamily char$\ast$ Concatenate\+Char\+List (\begin{DoxyParamCaption}\item[{\hyperlink{_list_generic_8h_aabca0732ef20d0d82f70f05012926226}{L\+I\+ST}}]{list }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily char$\ast$ Concatenate\+Char\+List (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_list_generic_8h_aabca0732ef20d0d82f70f05012926226}{L\+I\+ST}}}]{list }\end{DoxyParamCaption})}
 
 
 
@@ -197,13 +238,35 @@ a string of concatenate char.
 \end{DoxyReturn}
 
 
+Definition at line 56 of file Utils.\+c.
+
+\mbox{\Hypertarget{_utils_8h_ad0e35e83cbdfedad161d1d6d24c84498}\label{_utils_8h_ad0e35e83cbdfedad161d1d6d24c84498}} 
+\index{Utils.\+h@{Utils.\+h}!Concatenate\+Char\+List\+Double@{Concatenate\+Char\+List\+Double}}
+\index{Concatenate\+Char\+List\+Double@{Concatenate\+Char\+List\+Double}!Utils.\+h@{Utils.\+h}}
+\subsubsection{\texorpdfstring{Concatenate\+Char\+List\+Double()}{ConcatenateCharListDouble()}}
+{\footnotesize\ttfamily char$\ast$ Concatenate\+Char\+List\+Double (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}}}]{list }\end{DoxyParamCaption})}
+
+
+
+Concatenate a list of char to make a string.\textquotesingle{}ll construct the string from the end of the list to the front. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE of char to concatenate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a string of concatenate char. 
+\end{DoxyReturn}
+
+
 Definition at line 18 of file Utils.\+c.
 
 \mbox{\Hypertarget{_utils_8h_af50066ebe8d336820cbf55fdbb2670a9}\label{_utils_8h_af50066ebe8d336820cbf55fdbb2670a9}} 
 \index{Utils.\+h@{Utils.\+h}!Concatenate\+Int\+List@{Concatenate\+Int\+List}}
 \index{Concatenate\+Int\+List@{Concatenate\+Int\+List}!Utils.\+h@{Utils.\+h}}
 \subsubsection{\texorpdfstring{Concatenate\+Int\+List()}{ConcatenateIntList()}}
-{\footnotesize\ttfamily long int Concatenate\+Int\+List (\begin{DoxyParamCaption}\item[{\hyperlink{_list_generic_8h_aabca0732ef20d0d82f70f05012926226}{L\+I\+ST}}]{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily long int Concatenate\+Int\+List (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_list_generic_8h_aabca0732ef20d0d82f70f05012926226}{L\+I\+ST}}}]{ }\end{DoxyParamCaption})}
 
 
 
@@ -219,7 +282,127 @@ a long int of concatenate int.
 \end{DoxyReturn}
 
 
-Definition at line 53 of file Utils.\+c.
+Definition at line 115 of file Utils.\+c.
+
+\mbox{\Hypertarget{_utils_8h_a88cc7e5e94f498a2dc5e3299db09f2fc}\label{_utils_8h_a88cc7e5e94f498a2dc5e3299db09f2fc}} 
+\index{Utils.\+h@{Utils.\+h}!Concatenate\+Int\+List\+Double@{Concatenate\+Int\+List\+Double}}
+\index{Concatenate\+Int\+List\+Double@{Concatenate\+Int\+List\+Double}!Utils.\+h@{Utils.\+h}}
+\subsubsection{\texorpdfstring{Concatenate\+Int\+List\+Double()}{ConcatenateIntListDouble()}}
+{\footnotesize\ttfamily long int Concatenate\+Int\+List\+Double (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_double_list_generic_8h_a1e5b384fadfbaaa8da74a3c3212fae13}{L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE}}}]{ }\end{DoxyParamCaption})}
+
+
+
+Concatenate a list of int to make a long int.\textquotesingle{}ll construct the string from the end of the list to the front. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & L\+I\+S\+T\+\_\+\+D\+O\+U\+B\+LE of int to concatenate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a long int of concatenate int. 
+\end{DoxyReturn}
+
+
+Definition at line 91 of file Utils.\+c.
+
+\mbox{\Hypertarget{_utils_8h_a992a568888c7d8449f7a8f26dda2162b}\label{_utils_8h_a992a568888c7d8449f7a8f26dda2162b}} 
+\index{Utils.\+h@{Utils.\+h}!Cut\+String@{Cut\+String}}
+\index{Cut\+String@{Cut\+String}!Utils.\+h@{Utils.\+h}}
+\subsubsection{\texorpdfstring{Cut\+String()}{CutString()}}
+{\footnotesize\ttfamily char$\ast$ Cut\+String (\begin{DoxyParamCaption}\item[{char $\ast$}]{full\+String,  }\item[{int}]{start,  }\item[{int}]{length }\end{DoxyParamCaption})}
+
+
+
+Send the part of the string delimited by the start value and the length. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em full\+String} & char$\ast$ global string. \\
+\hline
+{\em start} & int first position of the replacement. \\
+\hline
+{\em length} & int in proportion to start value. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A part of the full\+String. 
+\end{DoxyReturn}
+
+
+Definition at line 298 of file Utils.\+c.
+
+\mbox{\Hypertarget{_utils_8h_addc0acd30499023111ce9eb5ecab7483}\label{_utils_8h_addc0acd30499023111ce9eb5ecab7483}} 
+\index{Utils.\+h@{Utils.\+h}!Is\+Available\+Register@{Is\+Available\+Register}}
+\index{Is\+Available\+Register@{Is\+Available\+Register}!Utils.\+h@{Utils.\+h}}
+\subsubsection{\texorpdfstring{Is\+Available\+Register()}{IsAvailableRegister()}}
+{\footnotesize\ttfamily int Is\+Available\+Register (\begin{DoxyParamCaption}\item[{char $\ast$}]{register\+To\+Test,  }\item[{int $\ast$$\ast$}]{new\+Name }\end{DoxyParamCaption})}
+
+
+
+Test if the register exist and send the decimal value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em register\+To\+Test} & char$\ast$ the string to test. \\
+\hline
+{\em new\+Name} & to send as a decimal value. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/\#1 if it exist.~\newline
+-\/\#0 if it\textquotesingle{}s not. 
+\end{DoxyReturn}
+
+
+Definition at line 190 of file Utils.\+c.
+
+\mbox{\Hypertarget{_utils_8h_a0c8a61cc2d54e4098a0a6ba1d4ac97cc}\label{_utils_8h_a0c8a61cc2d54e4098a0a6ba1d4ac97cc}} 
+\index{Utils.\+h@{Utils.\+h}!Replace\+String@{Replace\+String}}
+\index{Replace\+String@{Replace\+String}!Utils.\+h@{Utils.\+h}}
+\subsubsection{\texorpdfstring{Replace\+String()}{ReplaceString()}}
+{\footnotesize\ttfamily void Replace\+String (\begin{DoxyParamCaption}\item[{char $\ast$$\ast$}]{full\+String,  }\item[{char $\ast$}]{replace\+String,  }\item[{int}]{start,  }\item[{int}]{end }\end{DoxyParamCaption})}
+
+
+
+Replace a part of the string of an another one between to positions with an other string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em full\+String} & char$\ast$$\ast$ global string. \\
+\hline
+{\em replace\+String} & char$\ast$ string to put inside the full\+String. \\
+\hline
+{\em start} & int first position of the replacement. \\
+\hline
+{\em end} & int last position of the replacement. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 281 of file Utils.\+c.
+
+\mbox{\Hypertarget{_utils_8h_aa8452a7baca51e5f63e0ae7990f850c9}\label{_utils_8h_aa8452a7baca51e5f63e0ae7990f850c9}} 
+\index{Utils.\+h@{Utils.\+h}!String\+Hex\+To\+Decimal@{String\+Hex\+To\+Decimal}}
+\index{String\+Hex\+To\+Decimal@{String\+Hex\+To\+Decimal}!Utils.\+h@{Utils.\+h}}
+\subsubsection{\texorpdfstring{String\+Hex\+To\+Decimal()}{StringHexToDecimal()}}
+{\footnotesize\ttfamily unsigned long int String\+Hex\+To\+Decimal (\begin{DoxyParamCaption}\item[{char $\ast$}]{value }\end{DoxyParamCaption})}
+
+
+
+Take an Hexadecimal string to return the decimal value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em string} & Char$\ast$ of hexadecimal value. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The decimal value. 
+\end{DoxyReturn}
+
+
+Definition at line 183 of file Utils.\+c.
 
 \mbox{\Hypertarget{_utils_8h_a8592209ba3adb4746f53764d85169329}\label{_utils_8h_a8592209ba3adb4746f53764d85169329}} 
 \index{Utils.\+h@{Utils.\+h}!String\+Size@{String\+Size}}
@@ -242,4 +425,23 @@ an unsigned int which represent the string\textquotesingle{}s size.
 
 
 Definition at line 3 of file Utils.\+c.
+
+\mbox{\Hypertarget{_utils_8h_a7d1c6a50a5994f369f2ecd3ac0b969f2}\label{_utils_8h_a7d1c6a50a5994f369f2ecd3ac0b969f2}} 
+\index{Utils.\+h@{Utils.\+h}!String\+Upper@{String\+Upper}}
+\index{String\+Upper@{String\+Upper}!Utils.\+h@{Utils.\+h}}
+\subsubsection{\texorpdfstring{String\+Upper()}{StringUpper()}}
+{\footnotesize\ttfamily void String\+Upper (\begin{DoxyParamCaption}\item[{char $\ast$}]{string }\end{DoxyParamCaption})}
+
+
+
+Up the char$\ast$. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em string} & Char$\ast$ to up. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 167 of file Utils.\+c.
 
