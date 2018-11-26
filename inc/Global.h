@@ -19,7 +19,8 @@
  * @section sec1 What works
  *
  * - The lexical analysis <br/>
- * - The other functions <br/>
+ * - The Grammatical analysis excepted pseudo-instructions <br/>
+ * - Others functions <br/>
  *
  */
 

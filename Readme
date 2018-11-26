@@ -18,10 +18,9 @@ Put the file that you want to interpret inside the "files" folder.
 
 After compilation, use in a terminal on the project's root:
 "./assembler.exe" to run the sofware.
+"./assembler.exe filePath" to run the software with de file at the "filePath".
 
-Follow the instruction of written in the terminal.
-
-
+Follow the instruction written in the terminal.
 
 --- Folder management ---
 # root :

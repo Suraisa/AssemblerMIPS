@@ -532,7 +532,7 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
                 if(!IsEmptyDouble(*lexemeQueue) && ((LEXEME *)(*lexemeQueue)->data)->state == COLON)
                 {
                     SECTION* section = CreateLabelSection(*stateMachine, &popedLexeme);
-                    if(AddHashTable(&(collections->labelTable), section))
+                    if(!AddHashTable(&(collections->labelTable), section))
                     {
                         PrintErrorCollection(stateMachine, lineNumber, "Two label with the same name","" , (char*)((LEXEME*)popedLexeme->data)->value);
                         free(section);

@@ -168,13 +168,13 @@ void DisplaySection(void* value)
 void DisplayCollectionLists(COLLECTION_LISTS collections)
 {
     char* separator = "\n-------------------------------\n";
-    printf("%sTEXT's Collection%s",separator,separator);
+    printf("\x1b[35m" "%sTEXT's Collection%s" "\x1b[0m",separator,separator);
     DisplayDoubleList(collections.collection[0]);
-    printf("%sDATA's Collection%s",separator,separator);
+    printf("\x1b[35m" "%sDATA's Collection%s" "\x1b[0m",separator,separator);
     DisplayDoubleList(collections.collection[1]);
-    printf("%sBSS's Collection%s",separator,separator);
+    printf("\x1b[35m" "%sBSS's Collection%s" "\x1b[0m",separator,separator);
     DisplayDoubleList(collections.collection[2]);
-    printf("%sLABELS' Collection%s",separator,separator);
+    printf("\x1b[35m" "%sLABELS' Collection%s" "\x1b[0m",separator,separator);
     DisplayHashTable(collections.labelTable);
 }
 
