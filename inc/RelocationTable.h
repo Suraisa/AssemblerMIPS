@@ -17,9 +17,9 @@ extern char* definedR_MIPS[7];
 typedef struct
 {
   COLLECTIONS symbolSection; // 0 : text, 1 : data, 2 : bss
-  unsigned int relativeAdress; // Relative adress of the symbol in relation to the section
+  unsigned int relativeAddress; // Relative address of the symbol in relation to the section
   TYPE typeRMIPS;
-  LEXEME* symbolAdress;
+  LEXEME* symbolAddress;
 } LINKRELOCATION;
 
 typedef struct
@@ -37,13 +37,13 @@ RELOCATIONTABLE CreateRelocationList();
 /**
  * @param relocationList Pointer on a list of relocation to fill it.
  * @param symbolSection Integer embodying the section of the table of relocation, 0 for ".text", 1 for ".data" and 2 for ".bss".
- * @param relativeAdress Relative adress of the symbol in relation to the section.
+ * @param relativeAddress Relative address of the symbol in relation to the section.
  * @param typeRMIPS Number of bits we must relocate.
- * @param symbolAdress Adress of return at the symbol we relocated.
+ * @param symbolAddress Address of return at the symbol we relocated.
  * @brief Fill a list of relocation.
  *
  */
-void FillRelocationList(LIST_DOUBLE* relocationList, COLLECTIONS symbolSection, unsigned int relativeAdress, TYPE typeRMIPS, LEXEME* symbolAdress);
+void FillRelocationList(LIST_DOUBLE* relocationList, COLLECTIONS symbolSection, unsigned int relativeAddress, TYPE typeRMIPS, LEXEME* symbolAddress);
 
 /**
  * @param relocationList LIST_DOUBLE to display.

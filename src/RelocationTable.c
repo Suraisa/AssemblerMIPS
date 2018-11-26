@@ -22,12 +22,12 @@ RELOCATIONTABLE CreateRelocationList(){
   return relocationTable;
 };
 
-void FillRelocationList(LIST_DOUBLE* relocationList, COLLECTIONS symbolSection, unsigned int relativeAdress, TYPE typeRMIPS, LEXEME* symbolAdress){
+void FillRelocationList(LIST_DOUBLE* relocationList, COLLECTIONS symbolSection, unsigned int relativeAddress, TYPE typeRMIPS, LEXEME* symbolAddress){
   LINKRELOCATION* relocation = calloc(1, sizeof(*relocation));
   relocation->symbolSection=symbolSection;
-  relocation->relativeAdress=relativeAdress;
+  relocation->relativeAddress=relativeAddress;
   relocation->typeRMIPS=typeRMIPS;
-  relocation->symbolAdress=symbolAdress;
+  relocation->symbolAddress=symbolAddress;
   AddAtLastDouble(relocationList, relocation, void (*display)(void *), NULL, sizeof(*relocation))
 };
 
@@ -40,9 +40,9 @@ void DisplayRelocationList(LIST_DOUBLE relocationList){
     do
     {
       printf("Section where the symbol is defined : %s\n", *collectionSection[relocationList.symbolSection]);
-      printf("Relative adress : %u\n", relocation.relativeAdress);
+      printf("Relative address : %u\n", relocation.relativeAddress);
       printf("Type : %s\n", *definedR_MIPS[relocationList.typeRMIPS]);
-      DisplayCollectionLists(relocation->symbolAdress);
+      DisplayCollectionLists(relocation->symbolAddress);
 
       nodeI = nodeI->next;
     }while(nodeI != firstNode);
