@@ -112,7 +112,12 @@ Collections' treatment
   }
 
   if(collectionStateMachine.error)
+  {
+    free(dictionary);
+    ErasedQueueDouble(&lexemeQueue);
+    ErasedCollectionLists(&collections);
     return -1;
+  }
 
 /*
 -----------------------
