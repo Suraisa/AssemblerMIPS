@@ -117,21 +117,28 @@ Collections' treatment
   Test of relocation's tables
   ----------------------
   */
-  RELOCATIONTABLE relocationTable=CreateRelocationList();
-  if (!relocationList)
-    return -1;
+  RELOCATIONTABLE relocationTable=CreateRelocationTable();
 
-  collections.collection[TEXT];
-  COLLECTIONS symbolSection=TEXT;
+  COLLECTIONS symbolSection = TEXT;
   unsigned long int relativeAddress=12;
-  TYPE typeRMIPS=R_MIPS_HI16;
-  LEXEME** symbolAddress=&((SECTION*)collections.collection[TEXT]->data)->data.instruction.lexemeList[2];
+  MIPS_TYPE typeRMIPS=R_MIPS_HI16;
+  LEXEME** symbolAddress=(LEXEME**)(&((SECTION*)collections.collection[TEXT]->data)->data.instruction.lexemeList[0]);
 
   FillRelocationList(&relocationTable.relocationText, symbolSection, relativeAddress, typeRMIPS, symbolAddress);
-  ErasedListDouble(relocationTable.relocationText);
-  //DisplayRelocationTable(relocationTable);
+  DisplayRelocationTable(relocationTable);
+  ErasedListDouble(&relocationTable.relocationText);
 
-  //UpdateRelocationText(&relocationList, &((SECTION*)collections.collection[TEXT]->data));
+  UpdateRelocationText(&relocationTable.relocationText, (SECTION**)&collections.collection[TEXT]->data, collections.labelTable, dictionary);
+
+  DisplayRelocationTable(relocationTable);
+
+  ErasedListDouble(&relocationTable.relocationText);
+  
+  UpdateRelocationTable(&relocationTable, collections.labelTable, &collections, dictionary);
+
+  DisplayRelocationTable(relocationTable);
+
+  ErasedListDouble(&relocationTable.relocationText);
 
   free(dictionary);
   ErasedQueueDouble(&lexemeQueue);

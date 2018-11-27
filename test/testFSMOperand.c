@@ -74,7 +74,7 @@ int main(int argc, char *argv[])
         return -1;
 
     FSM_STATE_OPERAND fsmOperand;
-    InitializationOperandFsm(&fsmOperand, BASE_OFFSET);
+    InitializationOperandFsm(&fsmOperand, IMMEDIAT);
     OperandFSM(&fsmOperand, &lexemeQueue);
 
     if(!fsmOperand.error)

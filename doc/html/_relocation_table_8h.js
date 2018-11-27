@@ -2,7 +2,7 @@ var _relocation_table_8h =
 [
     [ "LINKRELOCATION", "struct_l_i_n_k_r_e_l_o_c_a_t_i_o_n.html", "struct_l_i_n_k_r_e_l_o_c_a_t_i_o_n" ],
     [ "RELOCATIONTABLE", "struct_r_e_l_o_c_a_t_i_o_n_t_a_b_l_e.html", "struct_r_e_l_o_c_a_t_i_o_n_t_a_b_l_e" ],
-    [ "TYPE", "_relocation_table_8h.html#a0bc6723d5d4776ab7cdc646728b775f7", [
+    [ "MIPS_TYPE", "_relocation_table_8h.html#a0bc6723d5d4776ab7cdc646728b775f7", [
       [ "R_MIPS_ERROR", "_relocation_table_8h.html#a0bc6723d5d4776ab7cdc646728b775f7a8c35ba0a7f136d36a1addb66f46983a2", null ],
       [ "R_MIPS_32", "_relocation_table_8h.html#a0bc6723d5d4776ab7cdc646728b775f7a82a219d7de82957d523941ec95cbf0b1", null ],
       [ "R_MIPS_26", "_relocation_table_8h.html#a0bc6723d5d4776ab7cdc646728b775f7a59c459e1c984f8e4ece52dbe6869fcbc", null ],

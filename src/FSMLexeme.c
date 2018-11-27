@@ -309,7 +309,7 @@ void LexemeFsm(char *readingChar, QUEUE_DOUBLE *lexemeQueue, LIST_DOUBLE *readin
         }
         else
         {
-            if (*readingChar == '\n' || *readingChar == '\t' || *readingChar == ' ' || *readingChar == ':')
+            if (*readingChar == '\n' || *readingChar == '\t' || *readingChar == ' ' || *readingChar == ':' || *readingChar == '(')
             {
                 LexemeTreatment(lexemeQueue, stateMachine->currentState, readingValue, *lineNumber);
                 stateMachine->currentState = INIT;

@@ -50,12 +50,12 @@ int AddHashTable(LIST_DOUBLE **hash, SECTION *label)
     return 1;
 }
 
-SECTION* IsInHashTable(LIST_DOUBLE **hash, char* string)
+SECTION* IsInHashTable(LIST_DOUBLE *hash, char* string)
 {
   int index;
   index = Hash(string);
-  LIST_DOUBLE nodeI = (*hash)[index];
-  LIST_DOUBLE firstNode = (*hash)[index];
+  LIST_DOUBLE nodeI = (hash)[index];
+  LIST_DOUBLE firstNode = (hash)[index];
 
   if(!IsEmptyDouble(nodeI))
   {

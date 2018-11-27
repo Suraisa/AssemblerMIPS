@@ -10,10 +10,11 @@ char* collectionType[8] = {
     "INSTRUCTION0",
     "INSTRUCTION1"};
 
-char* collectionSection[3] = {
+char* collectionSection[4] = {
     "TEXT",
     "DATA",
-    "BSS"};
+    "BSS",
+    "UNDEF"};
 
 void InitializeCollectionLists(COLLECTION_LISTS* collections)
 {

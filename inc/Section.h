@@ -12,7 +12,8 @@ typedef enum
 {
     TEXT,
     DATA,
-    BSS
+    BSS,
+    UNDEF
 } COLLECTIONS;
 #endif
 
@@ -70,7 +71,7 @@ extern char* collectionType[8];
  * @brief Table of collection's section equivalent to the COLLECTIONS.
  *
  */
-extern char* collectionSection[3];
+extern char* collectionSection[4];
 
 #include "HashTable.h"
 

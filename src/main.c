@@ -8,6 +8,7 @@
 #include <string.h>
 #include "DicoInstruct.h"
 #include "FSMCollection.h"
+#include "RelocationTable.h"
 
 int main(int argc, char *argv[])
 {
@@ -109,12 +110,27 @@ Collections' treatment
   {
     DisplayCollectionLists(collections);  
   }
-  free(dictionary);
-  ErasedQueueDouble(&lexemeQueue);
-  ErasedCollectionLists(&collections);
 
   if(collectionStateMachine.error)
     return -1;
+
+/*
+-----------------------
+Rallocations' treatment
+-----------------------
+*/
+
+  RELOCATIONTABLE relocationTable = CreateRelocationTable();
+
+  UpdateRelocationTable(&relocationTable, collections.labelTable, &collections, dictionary);  
+
+  DisplayRelocationTable(relocationTable);
+
+  ErasedListDouble(&relocationTable.relocationText);
+
+  free(dictionary);
+  ErasedQueueDouble(&lexemeQueue);
+  ErasedCollectionLists(&collections);
 
   return 0;
 }

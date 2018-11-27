@@ -299,7 +299,7 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
                 }
                 case SYMBOL:
                 {
-                    if(!stateMachine->inState)
+                    if(stateMachine->inState == 4 || !stateMachine->inState)
                     {
                         (stateMachine->nextShift)[stateMachine->actualCollection] += (4-(stateMachine->nextShift)[stateMachine->actualCollection]%4)%4;
                         (stateMachine->shift)[stateMachine->actualCollection] = (stateMachine->nextShift)[stateMachine->actualCollection];

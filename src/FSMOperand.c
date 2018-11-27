@@ -56,8 +56,10 @@ int IsImmediat(LIST_DOUBLE* listLexeme)
 {
     LIST_DOUBLE firstNode = *listLexeme;
     LIST_DOUBLE listOperand = *listLexeme;
+    LEXEME lexeme;
     int sign = 1;
     int isCorrect = 0;
+    int findSign = 0;
     if(SizeListDouble(listOperand) > 2)
         return 0;
 
@@ -68,12 +70,23 @@ int IsImmediat(LIST_DOUBLE* listLexeme)
             firstNode = listOperand;
             ErasedInFrontDouble(listLexeme);
         }
-        LEXEME lexeme = *((LEXEME *)listOperand->data);
+        lexeme = *((LEXEME *)listOperand->data);
         switch (lexeme.state)
         {
             default:
                 return 0;
 
+            case SYMBOL:
+            {
+                if (findSign)
+                    return 0;
+
+                if((*listLexeme)->next != *listLexeme)    
+                    return 0;
+                
+                isCorrect = 1;
+                break;
+            }
             case OPERATOR:
             {
                 if(lexeme.state == ((LEXEME *)listOperand->next->data)->state)
@@ -83,6 +96,7 @@ int IsImmediat(LIST_DOUBLE* listLexeme)
                 {
                     sign = -1;
                 }
+                findSign = 1;
                 break;
             }
             case HEXADECIMAL:
@@ -104,7 +118,10 @@ int IsImmediat(LIST_DOUBLE* listLexeme)
         }
         listOperand = listOperand->next;
     }while (firstNode != listOperand);
-    *(long int*)((LEXEME *)(*listLexeme)->data)->value *= sign;
+    if(lexeme.state != SYMBOL)
+    {
+        *(long int*)((LEXEME *)(*listLexeme)->data)->value *= sign;
+    }
     return isCorrect;
 }
 
@@ -202,6 +219,7 @@ int IsRelative(LIST_DOUBLE* listLexeme)
     LIST_DOUBLE firstNode = *listLexeme;
     LIST_DOUBLE listOperand = *listLexeme;
     int sign = 1;
+    int findSign = 0;
     int isCorrect = 0;
     if(SizeListDouble(listOperand) > 2)
         return 0;
@@ -219,6 +237,17 @@ int IsRelative(LIST_DOUBLE* listLexeme)
             default:
                 return 0;
 
+            case SYMBOL:
+            {
+                if(firstNode != listOperand)
+                    return 0;
+
+                if(findSign)
+                    return 0;
+                
+                isCorrect = 1;
+                break;
+            }
             case OPERATOR:
             {
                 if(lexeme.state == ((LEXEME *)listOperand->next->data)->state)
@@ -228,6 +257,7 @@ int IsRelative(LIST_DOUBLE* listLexeme)
                 {
                     sign = -1;
                 }
+                findSign = 1;
                 break;
             }
             case HEXADECIMAL:
@@ -278,6 +308,16 @@ int IsBaseOffset(LIST_DOUBLE* listLexeme)
             default:
                 return 0;
 
+            case SYMBOL:
+            {
+                if(firstNode != listOperand)
+                    return 0;
+
+                if(findSign)
+                    return 0;
+
+                break;
+            }
             case OPERATOR:
             {
                 if(findSign)
@@ -313,7 +353,7 @@ int IsBaseOffset(LIST_DOUBLE* listLexeme)
             }
             case PARENTHESISLEFT:
             {
-                if (((LEXEME *)listOperand->prev->data)->state != HEXADECIMAL && ((LEXEME *)listOperand->prev->data)->state != DECIMAL)
+                if (((LEXEME *)listOperand->prev->data)->state != HEXADECIMAL && ((LEXEME *)listOperand->prev->data)->state != DECIMAL && ((LEXEME *)listOperand->prev->data)->state != SYMBOL)
                     return 0;
                 break;
             }

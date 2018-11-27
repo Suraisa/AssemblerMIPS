@@ -32,7 +32,14 @@ INSTRUCTION*InitializeDicoInstruct(char *nameDicoFile)
     while(index<sizeDico && !feof(file))
     {
         fscanf(file, "%s %s %d", (dictionary[index].id), &(dictionary[index].operands), &(dictionary[index].hasPseudoInstruction));
-        dictionary[index].typeNumber = strlen(dictionary[index].operands);
+        if(dictionary[index].operands[0] != '0')
+        {
+            dictionary[index].typeNumber = strlen(dictionary[index].operands);
+        }
+        else
+        {
+            dictionary[index].typeNumber = 0;
+        }
         index++;
     }
 

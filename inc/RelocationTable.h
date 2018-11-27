@@ -3,6 +3,7 @@
 
 #include "DoubleListGeneric.h"
 #include "Section.h"
+#include "FSMOperand.h"
 #include "Lexeme.h"
 
 typedef enum
@@ -12,7 +13,7 @@ typedef enum
   R_MIPS_26=4,
   R_MIPS_HI16=5,
   R_MIPS_LO16=6
-} TYPE;
+} MIPS_TYPE;
 
 extern char* definedR_MIPS[7];
 
@@ -20,7 +21,7 @@ typedef struct
 {
   COLLECTIONS symbolSection; // 0 : text, 1 : data, 2 : bss
   unsigned long int relativeAddress; // Relative adress of the symbol in relation to the section
-  TYPE typeRMIPS;
+  MIPS_TYPE typeRMIPS;
   LEXEME* symbolAddress;
 } LINKRELOCATION;
 
@@ -45,7 +46,7 @@ RELOCATIONTABLE CreateRelocationTable();
  * @brief Fill a list of relocation.
  *
  */
-void FillRelocationList(LIST_DOUBLE* relocationList, COLLECTIONS symbolSection, unsigned long int relativeAddress, TYPE typeRMIPS, LEXEME** symbolAddress);
+void FillRelocationList(LIST_DOUBLE* relocationList, COLLECTIONS symbolSection, unsigned long int relativeAddress, MIPS_TYPE typeRMIPS, LEXEME** symbolAddress);
 
 /**
  * @param value Display value, ie a node of a list.
@@ -67,7 +68,7 @@ void DisplayRelocationTable(RELOCATIONTABLE relocationTable);
  * @brief Update of the relocation's table of text.
  *
  */
-void UpdateRelocationText(LIST_DOUBLE* relocationList, SECTION** section, LIST_DOUBLE **hash);
+void UpdateRelocationText(LIST_DOUBLE* relocationList, SECTION** section, LIST_DOUBLE *hash, INSTRUCTION* dicoInstruct);
 
 /**
  * @param relocationList Pointer on a list of relocation to update it.
@@ -75,7 +76,7 @@ void UpdateRelocationText(LIST_DOUBLE* relocationList, SECTION** section, LIST_D
  * @brief Update of the relocation's table of data.
  *
  */
-void UpdateRelocationData(LIST_DOUBLE* relocationList, SECTION** section, LIST_DOUBLE **hash);
+void UpdateRelocationData(LIST_DOUBLE* relocationList, SECTION** section, LIST_DOUBLE *hash);
 
 /**
  * @param relocationTable Table of relocation which contain the text' table and the data's table.
@@ -84,7 +85,7 @@ void UpdateRelocationData(LIST_DOUBLE* relocationList, SECTION** section, LIST_D
  * @brief Update of the relocation's table.
  *
  */
-void UpdateRelocationTable(RELOCATIONTABLE relocationTable, LIST_DOUBLE **hash, SECTION** section);
+void UpdateRelocationTable(RELOCATIONTABLE* relocationTable, LIST_DOUBLE *hash, COLLECTION_LISTS* collectionsList, INSTRUCTION* dicoInstruct);
 
 /**
  * @param relocationTable Pointer on the table of relocation.
