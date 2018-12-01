@@ -6,10 +6,10 @@
     LW $6, -200($7)
     ADDI $t1,$zero,8
 boucle:
-    #BEQ $t0 , $t1 , byebye
+    BEQ $t0 , $t1 , byebye
     NOP
     addi $t1 , $t1 , 1
-    J boucle 
+    J boucle
     NOP
 byebye:
     JAL viteviteauru

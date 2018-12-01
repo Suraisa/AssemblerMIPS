@@ -30,60 +30,44 @@ void InitializeCollectionLists(COLLECTION_LISTS* collections)
     }
 }
 
-SECTION* CreateInstructionSection(COLLECTION_STATE state, unsigned long int shift, char* instructionName, int dicoIndex, unsigned long int lineNumber)
+SECTION CreateInstructionSection(COLLECTION_STATE state, unsigned long int shift, char* instructionName, int dicoIndex, unsigned long int lineNumber)
 {
-    SECTION* section = calloc(1, sizeof(*section));
-    if(section == NULL)
-    {
-        printf("\nERROR: Not enought memory for instructions\n");
-        return NULL;
-    }
-    section->state = state;
-    section->shift = shift;
-    section->dataType = INST;
-    section->data.instruction.name = instructionName;
-    section->data.instruction.dicoIndex = dicoIndex;
-    section->data.instruction.lineNumber = lineNumber;
+    SECTION section;
+    section.state = state;
+    section.shift = shift;
+    section.dataType = INST;
+    section.data.instruction.name = instructionName;
+    section.data.instruction.dicoIndex = dicoIndex;
+    section.data.instruction.lineNumber = lineNumber;
 
     int index;
     for(index = 0; index<3; index++)
     {
-        section->data.instruction.lexemeList[index] = NULL;
+        section.data.instruction.lexemeList[index] = NULL;
     }
 
     return section;
 }
 
-SECTION* CreateDirectiveSection(COLLECTION_STATE state, unsigned long int shift, LIST_DOUBLE* lexemeList)
+SECTION CreateDirectiveSection(COLLECTION_STATE state, unsigned long int shift, LIST_DOUBLE* lexemeList)
 {
-    SECTION* section = calloc(1, sizeof(*section));
-    if(section == NULL)
-    {
-        printf("\nERROR: Not enought memory for directive\n");
-        return NULL;
-    }
-
-    section->state = state;
-    section->shift = shift;
-    section->dataType = DIR;
-    section->data.directiveValue = *lexemeList;
+    SECTION section;
+    section.state = state;
+    section.shift = shift;
+    section.dataType = DIR;
+    section.data.directiveValue = *lexemeList;
 
     return section;
 }
 
-SECTION* CreateLabelSection(COLLECTION_FSM stateMachine, LIST_DOUBLE* lexemeList)
+SECTION CreateLabelSection(COLLECTION_FSM stateMachine, LIST_DOUBLE* lexemeList)
 {
-    SECTION* section = calloc(1, sizeof(*section));
-    if(section == NULL)
-    {
-        printf("\nERROR: Not enought memory for label\n");
-        return NULL;
-    }
-    section->state = stateMachine.currentState;
-    section->shift = stateMachine.nextShift[stateMachine.actualCollection];
-    section->dataType = LABEL;
-    section->data.label.section = stateMachine.actualCollection;
-    section->data.label.lexemeList = *lexemeList;
+    SECTION section;
+    section.state = stateMachine.currentState;
+    section.shift = stateMachine.nextShift[stateMachine.actualCollection];
+    section.dataType = LABEL;
+    section.data.label.section = stateMachine.actualCollection;
+    section.data.label.lexemeList = *lexemeList;
 
     return section;
 }
@@ -181,8 +165,7 @@ void DisplayCollectionLists(COLLECTION_LISTS collections)
 
 void ErasedSection(void* value)
 {
-    SECTION section = *(SECTION*)value;
-    switch(section.dataType)
+    switch(((SECTION*)value)->dataType)
     {
         case INST:
         {

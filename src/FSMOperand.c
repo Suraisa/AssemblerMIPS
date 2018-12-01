@@ -218,6 +218,7 @@ int IsRelative(LIST_DOUBLE* listLexeme)
 {
     LIST_DOUBLE firstNode = *listLexeme;
     LIST_DOUBLE listOperand = *listLexeme;
+    LEXEME lexeme;
     int sign = 1;
     int findSign = 0;
     int isCorrect = 0;
@@ -231,7 +232,7 @@ int IsRelative(LIST_DOUBLE* listLexeme)
             firstNode = listOperand;
             ErasedInFrontDouble(listLexeme);
         }
-        LEXEME lexeme = *((LEXEME *)listOperand->data);
+        lexeme = *((LEXEME *)listOperand->data);
         switch (lexeme.state)
         {
             default:
@@ -279,8 +280,12 @@ int IsRelative(LIST_DOUBLE* listLexeme)
         }
         listOperand = listOperand->next;
     }while (firstNode != listOperand);
-    *(long int*)((LEXEME *)(*listLexeme)->data)->value *= sign;
-    *(long int*)((LEXEME *)(*listLexeme)->data)->value >>= 2;
+    
+    if(lexeme.state!= SYMBOL)
+    {
+        *(long int*)((LEXEME *)(*listLexeme)->data)->value *= sign;
+        *(long int*)((LEXEME *)(*listLexeme)->data)->value >>= 2;
+    }
     return isCorrect;
 }
 

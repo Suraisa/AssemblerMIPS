@@ -59,11 +59,14 @@ void DisplayRelocationTable(RELOCATIONTABLE relocationTable)
 void UpdateRelocationText(LIST_DOUBLE* relocationList, SECTION** section, LIST_DOUBLE *hash, INSTRUCTION* dicoInstruct){
   int index;
   MIPS_TYPE rMips;
+  SECTION* dataSection;
+  OPERAND_TYPE operandType;
   for (index=0 ; index<3 ; index++){
     if ((**section).data.instruction.lexemeList[index]){
       if (((LEXEME*)(**section).data.instruction.lexemeList[index]->data)->state == SYMBOL){
-        SECTION* dataSection = IsInHashTable(hash,((char*)((LEXEME*)(**section).data.instruction.lexemeList[index]->data)->value));
-        switch (dicoInstruct[(**section).data.instruction.dicoIndex].operands[index])
+        dataSection = IsInHashTable(hash,((char*)((LEXEME*)(**section).data.instruction.lexemeList[index]->data)->value));
+        operandType = dicoInstruct[(**section).data.instruction.dicoIndex].operands[index];
+        switch (operandType)
         {
           case ABSOLUTE:
           {
@@ -71,7 +74,6 @@ void UpdateRelocationText(LIST_DOUBLE* relocationList, SECTION** section, LIST_D
             break;
           }
           case IMMEDIAT:
-          case RELATIVE:
           {
             rMips = R_MIPS_LO16;
             break;
@@ -83,16 +85,17 @@ void UpdateRelocationText(LIST_DOUBLE* relocationList, SECTION** section, LIST_D
           }
           default:
           {
+            if(operandType == RELATIVE)
+              return;
             printf("\nERROR in the relocation table\n");
             return;
           }
         }
         if (!dataSection){
-          FillRelocationList(relocationList, UNDEF, 0, rMips, (LEXEME**)(&((**section).data.instruction.lexemeList[index]->data)));
+          FillRelocationList(relocationList, UNDEF, (**section).shift, rMips, (LEXEME**)(&((**section).data.instruction.lexemeList[index]->data)));
         }
         else{
-
-          FillRelocationList(relocationList, dataSection->data.label.section, dataSection->shift, rMips, (LEXEME**)(&((**section).data.instruction.lexemeList[index]->data)));
+          FillRelocationList(relocationList, dataSection->data.label.section, (**section).shift, rMips, (LEXEME**)(&((**section).data.instruction.lexemeList[index]->data)));
         }
       }
     }

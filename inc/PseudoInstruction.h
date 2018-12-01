@@ -8,6 +8,6 @@
 #include "Section.h"
 
 
-LIST_DOUBLE FindPseudoInstruction(char* nameToFind, FILE* dicoPseudoInstruction);
+int FindPseudoInstruction(char* nameToFind, FILE* dicoPseudoInstruction);
 
 #endif

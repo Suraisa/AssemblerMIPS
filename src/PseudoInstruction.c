@@ -1,21 +1,28 @@
 #include "PseudoInstruction.h"
 
-LIST_DOUBLE FindPseudoInstruction(char* nameToFind, FILE* dicoPseudoInstruction)
+int FindPseudoInstruction(char* nameToFind, FILE* dicoPseudoInstruction)
 {
-    char readingChar;
+    char readingChar[2];
     char* instructionName;
+    int notFinded = 1;
     fscanf(dicoPseudoInstruction, "%s", instructionName);
 
-    while(strcmp(nameToFind, instructionName) && !feof(dicoPseudoInstruction))
+    while(notFinded = strcmp(nameToFind, instructionName) && !feof(dicoPseudoInstruction))
     {
         do
         {   
-            readingChar = fgetc(dicoPseudoInstruction);
-        }while ((!feof(dicoPseudoInstruction)) && readingChar != '\n');
+            readingChar[0] = fgetc(dicoPseudoInstruction);
+            if(!feof(dicoPseudoInstruction))
+            {
+                readingChar[1] = fgetc(dicoPseudoInstruction);
+            }
+        }while ((!feof(dicoPseudoInstruction)) && !(readingChar[0] == '\n' && readingChar[1] == '\n'));
 
         if(feof(dicoPseudoInstruction))
-            return NULL;
+            return 0;
 
         fscanf(dicoPseudoInstruction, "%s", instructionName);
     }
+    return !notFinded;
 }
+

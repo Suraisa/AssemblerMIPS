@@ -93,7 +93,7 @@ void InitializeCollectionLists(COLLECTION_LISTS* collections);
  * @return an instruction SECTION*
  * 
  */
-SECTION* CreateInstructionSection(COLLECTION_STATE state, unsigned long int shift, char* instructionName, int dicoIndex, unsigned long int lineNumber);
+SECTION CreateInstructionSection(COLLECTION_STATE state, unsigned long int shift, char* instructionName, int dicoIndex, unsigned long int lineNumber);
 
 /**
  * @param state COLLECTION_STATE which is the state of the instruction.
@@ -104,7 +104,7 @@ SECTION* CreateInstructionSection(COLLECTION_STATE state, unsigned long int shif
  * @return an directive SECTION*
  * 
  */
-SECTION* CreateDirectiveSection(COLLECTION_STATE state, unsigned long int shift, LIST_DOUBLE* lexemeList);
+SECTION CreateDirectiveSection(COLLECTION_STATE state, unsigned long int shift, LIST_DOUBLE* lexemeList);
 
 /**
  * @param stateMachine COLLECTION_FSM which is the fsm of the Collection.
@@ -114,7 +114,7 @@ SECTION* CreateDirectiveSection(COLLECTION_STATE state, unsigned long int shift,
  * @return an label SECTION*
  * 
  */
-SECTION* CreateLabelSection(COLLECTION_FSM stateMachine, LIST_DOUBLE* lexemeList);
+SECTION CreateLabelSection(COLLECTION_FSM stateMachine, LIST_DOUBLE* lexemeList);
 
 /**
  * @param lexemeList LIST_DOUBLE* which is a list of lexeme where we want to count.
