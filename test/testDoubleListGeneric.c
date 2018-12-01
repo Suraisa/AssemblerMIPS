@@ -6,6 +6,7 @@
 int main()
 {
     LIST_DOUBLE list = CreateListDouble();
+    LIST_DOUBLE list1 = CreateListDouble();
     long int a = 0;
     float b = 5.8;
     double c = 8.2;
@@ -75,9 +76,20 @@ int main()
     a = 2;
     AddInFrontDouble(&list, &a, &DisplayInt, NULL, sizeof(long int));
 
-    ErasedListDouble(&list);
+    ErasedAtLastDouble(&list);
+    ErasedAtLastDouble(&list);
 
-    printf("\nList :\n");
+    printf("\nList with 2 elements:\n");
+
+    DisplayDoubleList(list);
+
+    a = 6;
+    AddInFrontDouble(&list1, &a, &DisplayInt, NULL, sizeof(long int));
+    AddInFrontDouble(&list1, &a, &DisplayInt, NULL, sizeof(long int));
+
+    ConcatenateList(&list, &list1);    
+
+    printf("\nList concatenated:\n");
 
     DisplayDoubleList(list);
 

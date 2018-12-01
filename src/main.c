@@ -10,6 +10,7 @@
 #include "FSMCollection.h"
 #include "RelocationTable.h"
 #include "AssemblerTreatment.h"
+#include "PseudoInstruction.h"
 
 int main(int argc, char *argv[])
 {
@@ -40,10 +41,17 @@ Collections' treatment
   printf("\n\nCollections' treatment:\n\n");
 
   INSTRUCTION* dictionary;
+  PSEUDO_INSTRUCTION* pseudoDictionary;
   COLLECTION_FSM collectionStateMachine;
   COLLECTION_LISTS collections;
 
   if(!(dictionary = InitializeDicoInstruct("src/DicoInstruct.txt")))
+  {
+    printf("\n\nYou don't have enough memory available for the dictionary.\n\n");
+    return -1;
+  }
+
+  if(!(pseudoDictionary = InitializePseudoDicoInstruct("src/DicoPseudoInstruct.txt")))
   {
     printf("\n\nYou don't have enough memory available for the dictionary.\n\n");
     return -1;
@@ -59,7 +67,7 @@ Collections' treatment
 
   while(!IsEmptyDouble(lexemeQueue))
   {
-    CollectionFsm(&collectionStateMachine, &lexemeQueue, &collections, dictionary);
+    CollectionFsm(&collectionStateMachine, &lexemeQueue, &collections, dictionary,pseudoDictionary);
   }
 
   if(!collectionStateMachine.error)

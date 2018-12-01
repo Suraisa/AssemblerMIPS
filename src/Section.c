@@ -30,7 +30,7 @@ void InitializeCollectionLists(COLLECTION_LISTS* collections)
     }
 }
 
-SECTION CreateInstructionSection(COLLECTION_STATE state, unsigned long int shift, char* instructionName, int dicoIndex, unsigned long int lineNumber)
+SECTION CreateInstructionSection(COLLECTION_STATE state, unsigned long int shift, char* instructionName, int dicoIndex, unsigned long int lineNumber, int pseudoInstruction)
 {
     SECTION section;
     section.state = state;
@@ -39,6 +39,8 @@ SECTION CreateInstructionSection(COLLECTION_STATE state, unsigned long int shift
     section.data.instruction.name = instructionName;
     section.data.instruction.dicoIndex = dicoIndex;
     section.data.instruction.lineNumber = lineNumber;
+    section.data.instruction.lowerBits = 1;
+    section.data.instruction.pseudoInstruction = pseudoInstruction;
 
     int index;
     for(index = 0; index<3; index++)
@@ -88,7 +90,7 @@ int NumberLexemeOperand(LIST_DOUBLE lexemeList)
     return index;
 }
 
-int AddOperand(COLLECTION_FSM* stateMachine, SECTION* section, LIST_DOUBLE* lexemeList, INSTRUCTION* instructionDictionary)
+int AddOperand(COLLECTION_FSM* stateMachine, SECTION* section, LIST_DOUBLE* lexemeList, INSTRUCTION* instructionDictionary, PSEUDO_INSTRUCTION* pseudoDictionary)
 {
     int index=0;
     while (index<3 && !IsEmptyDouble(section->data.instruction.lexemeList[index]))
@@ -96,14 +98,42 @@ int AddOperand(COLLECTION_FSM* stateMachine, SECTION* section, LIST_DOUBLE* lexe
         index++;
     }
 
-    if(index>=instructionDictionary[section->data.instruction.dicoIndex].typeNumber)
+    if(!section->data.instruction.pseudoInstruction && index>=instructionDictionary[section->data.instruction.dicoIndex].typeNumber)
+    {
         return 0;
+    }
+
+    if(section->data.instruction.pseudoInstruction && index>=pseudoDictionary[section->data.instruction.dicoIndex].typeNumber)
+    {
+        return 0;
+    }
 
     FSM_STATE_OPERAND fsmOperand;
-    InitializationOperandFsm(&fsmOperand, instructionDictionary[section->data.instruction.dicoIndex].operands[index]);
-    OperandFSM(&fsmOperand, lexemeList);
+
+    if(!section->data.instruction.pseudoInstruction)
+    {
+        InitializationOperandFsm(&fsmOperand, instructionDictionary[section->data.instruction.dicoIndex].operands[index]);
+        OperandFSM(&fsmOperand, lexemeList);
+        if(fsmOperand.error)
+        {
+            section->data.instruction.dicoIndex = IndexPseudoInstruction(pseudoDictionary, section->data.instruction.name);
+
+            if(section->data.instruction.dicoIndex == -1)
+                return 0;
+
+            section->data.instruction.pseudoInstruction = 1;
+            InitializationOperandFsm(&fsmOperand, pseudoDictionary[section->data.instruction.dicoIndex].operands[index]);
+            OperandFSM(&fsmOperand, lexemeList);
+        }
+    }
+    else
+    {
+        InitializationOperandFsm(&fsmOperand, pseudoDictionary[section->data.instruction.dicoIndex].operands[index]);
+        OperandFSM(&fsmOperand, lexemeList);
+    }
+
     if (fsmOperand.error)
-        return 0;
+            return 0;
 
     section->data.instruction.lexemeList[index] = *lexemeList;
     return 1;

@@ -85,7 +85,22 @@ void ErasedAtLastDouble(LIST_DOUBLE *list)
     if(IsEmptyDouble(*list))
         return;
 
-    ErasedInFrontDouble(&((*list)->prev));    
+    LIST_DOUBLE copy = (*list)->prev;
+    if((*list)->next != (*list))
+    {
+        (*list)->prev->prev->next = (*list)->prev->next;
+        (*list)->prev = (*list)->prev->prev;
+    }
+    else
+    {
+        (*list) = NULL;
+    }
+    if (copy->erasedDataValue != NULL)
+    {
+        (copy->erasedDataValue)(copy->data);
+    }
+    free(copy->data);
+    free(copy);
 }
 
 void ErasedListDouble(LIST_DOUBLE *list)
@@ -126,6 +141,21 @@ LIST_DOUBLE PopInFrontDouble(LIST_DOUBLE *list, unsigned long int number)
     copy->prev->next = copy;
     *list = copy;
     return popedList;
+}
+
+void ConcatenateListDouble(LIST_DOUBLE* list1, LIST_DOUBLE* list2)
+{
+    if(IsEmptyDouble(*list1))
+    {
+        *list1 = *list2;
+        return;
+    }
+    LIST_DOUBLE list1End = (*list1)->prev;
+    
+    (*list1)->prev = (*list2)->prev;
+    list1End->next = (*list2);
+    (*list2)->prev->next = (*list1);
+    (*list2)->prev = list1End;
 }
 
 void DisplayDoubleList(LIST_DOUBLE list)

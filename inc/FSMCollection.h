@@ -18,6 +18,8 @@ typedef enum
 } COLLECTIONS;
 #endif
 
+#ifndef ENUM_COLLECTION_STATE
+#define ENUM_COLLECTION_STATE
 typedef enum
 {
     DIR0,
@@ -30,6 +32,7 @@ typedef enum
     INSTRUCTION1,
     INIT_COLLECTION
 } COLLECTION_STATE;
+#endif
 
 /*
 Needed variables for the state machine
@@ -46,6 +49,7 @@ typedef struct
 } COLLECTION_FSM;
 
 #include "Section.h"
+#include "PseudoInstruction.h"
 
 int InitializationCollection(COLLECTION_LISTS* collectionLists);
 
@@ -72,7 +76,7 @@ void InitCollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue);
  * @brief It's the Init stateMachine which change the stateMachine's state to the right one.
  * 
  */
-void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLLECTION_LISTS* collections, INSTRUCTION* instructionDictionary);
+void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLLECTION_LISTS* collections, INSTRUCTION* instructionDictionary, PSEUDO_INSTRUCTION* pseudoDictionary);
 
 /**
  * @param stateMachine COLLECTION_FSM* to change the error state and the inState state.

@@ -1,23 +1,24 @@
-LW 1
+7
+LW $A 1
 LUI ^1 , ^2
 LW ^1 , ^2 ( ^1 )
 
-SW 1
+SW $A 1
 LUI $at , ^2
 SW ^1 , ^2 ( $at )
 
-NOP 0
+NOP 0 0
 SLL $0 , $0 , 0
 
-MOVE 0
+MOVE $$ 0
 ADD ^1 , ^2 , $0
 
-NEG 0
+NEG $$ 0
 SUB ^1 , $0 , ^2
 
-LI 0
+LI $I 0
 ADDI ^1 , $0 , ^2
 
-BLT 0
+BLT $$A 0
 SLT $1 , ^1 , ^2
 BNE $1 , $0 , ^3

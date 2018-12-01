@@ -102,4 +102,6 @@ int SizeListDouble(LIST_DOUBLE list);
  */
 LIST_DOUBLE PopInFrontDouble(LIST_DOUBLE *list, unsigned long int number);
 
+void ConcatenateListDouble(LIST_DOUBLE* list1, LIST_DOUBLE* list2);
+
 #endif

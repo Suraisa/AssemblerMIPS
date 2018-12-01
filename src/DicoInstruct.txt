@@ -1,4 +1,4 @@
-29
+24
 ADD $$$ 0
 ADDI $$I 0
 SUB $$$ 0
@@ -23,8 +23,3 @@ JAL A 0
 JR $ 0
 LW $B 1
 SW $B 1
-NOP 0 1
-MOVE $$ 1
-NEG $$ 1
-LI $I 1
-BLT $$B 1

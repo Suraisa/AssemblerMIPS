@@ -17,6 +17,22 @@ typedef enum
 } COLLECTIONS;
 #endif
 
+#ifndef ENUM_COLLECTION_STATE
+#define ENUM_COLLECTION_STATE
+typedef enum
+{
+    DIR0,
+    ASCIZZ,
+    SPACE,
+    WORD,
+    BYTE,
+    SET_NOREORDER,
+    INSTRUCTION0,
+    INSTRUCTION1,
+    INIT_COLLECTION
+} COLLECTION_STATE;
+#endif
+
 typedef enum
 {
     INST,
@@ -28,7 +44,9 @@ typedef struct
 {
     char* name;
     int dicoIndex;
+    int lowerBits;
     unsigned long int lineNumber;
+    int pseudoInstruction;
     QUEUE_DOUBLE lexemeList[3];
 } INSTRUCTION_DATA;
 
@@ -51,8 +69,6 @@ typedef struct
     LIST_DOUBLE* labelTable;
 } COLLECTION_LISTS;
 
-#include "FSMCollection.h"
-
 typedef struct
 {
     COLLECTION_STATE state;
@@ -74,6 +90,9 @@ extern char* collectionType[8];
 extern char* collectionSection[4];
 
 #include "HashTable.h"
+#include "PseudoInstruction.h"
+#include "FSMCollection.h"
+
 
 /**
  * @param collections COLLECTION_LISTS* which is the collection list to initialize.
@@ -93,7 +112,7 @@ void InitializeCollectionLists(COLLECTION_LISTS* collections);
  * @return an instruction SECTION*
  * 
  */
-SECTION CreateInstructionSection(COLLECTION_STATE state, unsigned long int shift, char* instructionName, int dicoIndex, unsigned long int lineNumber);
+SECTION CreateInstructionSection(COLLECTION_STATE state, unsigned long int shift, char* instructionName, int dicoIndex, unsigned long int lineNumber, int pseudoInstruction);
 
 /**
  * @param state COLLECTION_STATE which is the state of the instruction.
@@ -135,7 +154,7 @@ int NumberLexemeOperand(LIST_DOUBLE lexemeList);
  * @return -#1 If it worked.\n-#0 If it didn't
  * 
  */
-int AddOperand(COLLECTION_FSM* stateMachine, SECTION* section, LIST_DOUBLE* lexemeList, INSTRUCTION* instructionDictionary);
+int AddOperand(COLLECTION_FSM* stateMachine, SECTION* section, LIST_DOUBLE* lexemeList, INSTRUCTION* instructionDictionary, PSEUDO_INSTRUCTION* pseudoDictionary);
 
 /**
  * @param value void* is a SECTION*.
