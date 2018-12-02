@@ -5,24 +5,25 @@ int sizePseudoDico = 0;
 int FindPseudoInstruction(char* nameToFind, FILE** dicoPseudoInstruction, SECTION* section)
 {
     char readingChar[2];
-    char* instructionName;
+    char instructionName[20];
     int notFinded = 1;
+    StringUpper(nameToFind);
+    fscanf(*dicoPseudoInstruction, "%s", instructionName);
     fscanf(*dicoPseudoInstruction, "%s", instructionName);
 
     while(notFinded = strcmp(nameToFind, instructionName) && !feof(*dicoPseudoInstruction))
     {
         do
         {   
-            readingChar[0] = fgetc(*dicoPseudoInstruction);
-            if(!feof(*dicoPseudoInstruction))
-            {
-                readingChar[1] = fgetc(*dicoPseudoInstruction);
-            }
+            readingChar[0] = ' ';
+            readingChar[0] = readingChar[0] ^ readingChar[1];
+            readingChar[1] = readingChar[0] ^ readingChar[1];
+            readingChar[0] = readingChar[0] ^ readingChar[1];
+            readingChar[1] = fgetc(*dicoPseudoInstruction);
         }while ((!feof(*dicoPseudoInstruction)) && !(readingChar[0] == '\n' && readingChar[1] == '\n'));
 
         if(feof(*dicoPseudoInstruction))
             return 0;
-
         fscanf(*dicoPseudoInstruction, "%s", instructionName);
     }
     if(!notFinded)
@@ -104,14 +105,14 @@ PSEUDO_INSTRUCTION* InitializePseudoDicoInstruct(char *nameDicoFile)
     return dictionary;
 }
 
-int CreateNewListLexeme(FILE** readingFile, QUEUE_DOUBLE* lexemeQueue, QUEUE_DOUBLE* operands)
+int CreateNewListLexeme(FILE** readingFile, QUEUE_DOUBLE* lexemeQueue, SECTION* operands)
 {
     char readingChar[2] = "  ";
     LEXEME_FSM lexemeStateMachine;
     InitializationLexemeFsm(&lexemeStateMachine);
     unsigned long int lineNumber = 1;
     LIST_DOUBLE ReadingValue = CreateListDouble();
-    printf("\n\nLexemes' treatment:\n\n");
+    LIST_DOUBLE copy = CreateListDouble();
 
     if(*readingFile != NULL)
     {
@@ -125,7 +126,9 @@ int CreateNewListLexeme(FILE** readingFile, QUEUE_DOUBLE* lexemeQueue, QUEUE_DOU
             if(readingChar[1] == '^')
             {
                 readingChar[1] = fgetc(*readingFile);
-                ConcatenateListDouble(lexemeQueue, &(((SECTION*)(*operands)->data)->data.instruction.lexemeList[readingChar[1]-'1']));
+                copy = CopyListLexeme(&operands->data.instruction.lexemeList[readingChar[1]-'1']);
+                ((LEXEME*)copy->data)->lineNumber = lineNumber;
+                ConcatenateListDouble(lexemeQueue, &copy);
             }
             else
             {

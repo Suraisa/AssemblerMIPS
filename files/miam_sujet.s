@@ -11,6 +11,7 @@ boucle:
     addi $t1 , $t1 , 1
     J boucle
     NOP
+    BLT $1,$2,byebye
 byebye:
     JAL viteviteauru
 

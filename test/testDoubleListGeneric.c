@@ -87,25 +87,27 @@ int main()
     AddInFrontDouble(&list1, &a, &DisplayInt, NULL, sizeof(long int));
     AddInFrontDouble(&list1, &a, &DisplayInt, NULL, sizeof(long int));
 
-    ConcatenateList(&list, &list1);    
+    LIST_DOUBLE list2 = CopyList(list1, sizeof(long int));
+
+    ConcatenateListDouble(&list, &list2);
 
     printf("\nList concatenated:\n");
 
     DisplayDoubleList(list);
 
-    printf("\nList :\n");
-
-    DisplayDoubleList(list);
-
-    ErasedInFrontDouble(&list);
-
-    printf("\nList :\n");
-
-    ErasedAtLastDouble(&list);
-
-    DisplayDoubleList(list);
-
     ErasedListDouble(&list);
+
+    printf("\nList erased:\n");
+
+    DisplayDoubleList(list);
+
+    printf("\nList copied:\n");
+
+    DisplayDoubleList(list1);
+
+    ErasedListDouble(&list1);
+
+    DisplayDoubleList(list1);
 
     return 0;
 }

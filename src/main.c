@@ -93,7 +93,7 @@ Rallocations' treatment
 
   UpdateRelocationTable(&relocationTable, collections.labelTable, &collections, dictionary);  
 
-  DisplayRelocationTable(relocationTable);
+ // DisplayRelocationTable(relocationTable);
 
   ErasedListDouble(&relocationTable.relocationText);
 

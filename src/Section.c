@@ -90,7 +90,7 @@ int NumberLexemeOperand(LIST_DOUBLE lexemeList)
     return index;
 }
 
-int AddOperand(COLLECTION_FSM* stateMachine, SECTION* section, LIST_DOUBLE* lexemeList, INSTRUCTION* instructionDictionary, PSEUDO_INSTRUCTION* pseudoDictionary)
+int AddOperand(COLLECTION_FSM* stateMachine, SECTION* section, LIST_DOUBLE* fullLexemesList, LIST_DOUBLE* lexemeList, INSTRUCTION* instructionDictionary, PSEUDO_INSTRUCTION* pseudoDictionary)
 {
     int index=0;
     while (index<3 && !IsEmptyDouble(section->data.instruction.lexemeList[index]))
@@ -124,6 +124,26 @@ int AddOperand(COLLECTION_FSM* stateMachine, SECTION* section, LIST_DOUBLE* lexe
             section->data.instruction.pseudoInstruction = 1;
             InitializationOperandFsm(&fsmOperand, pseudoDictionary[section->data.instruction.dicoIndex].operands[index]);
             OperandFSM(&fsmOperand, lexemeList);
+
+            if (fsmOperand.error)
+                return 0;
+            
+            section->data.instruction.lexemeList[index] = *lexemeList;
+
+            FILE* file = fopen("src/DicoPseudoInstruct.txt", "r");
+            if(!FindPseudoInstruction(section->data.instruction.name, &file, section))
+                return 0;
+
+            QUEUE_DOUBLE lexemeQueue = CreateListDouble();
+            CreateNewListLexeme(&file, &lexemeQueue, section);
+            if(section->data.instruction.lowerBits)
+            {
+                stateMachine->numberOfInversedLexeme = ((LEXEME*)lexemeQueue->prev->data)->lineNumber;
+            }
+            ConcatenateListDouble(fullLexemesList, &lexemeQueue);
+            *fullLexemesList = lexemeQueue;
+            fclose(file);
+            return 1;
         }
     }
     else
@@ -133,9 +153,29 @@ int AddOperand(COLLECTION_FSM* stateMachine, SECTION* section, LIST_DOUBLE* lexe
     }
 
     if (fsmOperand.error)
-            return 0;
+        return 0;
 
     section->data.instruction.lexemeList[index] = *lexemeList;
+
+    if (section->data.instruction.pseudoInstruction && index+1==pseudoDictionary[section->data.instruction.dicoIndex].typeNumber)
+    {
+        FILE* file = fopen("src/DicoPseudoInstruct.txt", "r");
+        
+        if(!FindPseudoInstruction(section->data.instruction.name, &file, section))
+                return 0;
+
+        QUEUE_DOUBLE lexemeQueue = CreateListDouble();
+        CreateNewListLexeme(&file, &lexemeQueue, section);
+        stateMachine->pseudoInstruction = 1;
+        if(section->data.instruction.lowerBits)
+        {
+            stateMachine->numberOfInversedLexeme = ((LEXEME*)lexemeQueue->prev->data)->lineNumber;
+        }
+        ConcatenateListDouble(fullLexemesList, &lexemeQueue);
+        *fullLexemesList = lexemeQueue;
+        fclose(file);
+    }
+
     return 1;
 }
 

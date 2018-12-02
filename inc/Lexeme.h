@@ -63,4 +63,6 @@ void ErasedValueLexeme(void* lexeme);
  */
 void DisplayLexeme(void *value);
 
+LIST_DOUBLE CopyListLexeme(LIST_DOUBLE* list);
+
 #endif

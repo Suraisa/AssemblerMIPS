@@ -44,6 +44,8 @@ typedef struct
     COLLECTION_STATE currentState;
     char error;
     char inState;
+    int pseudoInstruction;
+    int numberOfInversedLexeme;
     unsigned long int shift[3];
     unsigned long int nextShift[3];
 } COLLECTION_FSM;

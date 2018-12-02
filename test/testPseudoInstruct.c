@@ -19,15 +19,15 @@ int main()
     printf("%d\n", FindPseudoInstruction(string, &file, &section));
 
     LIST_DOUBLE lexemeQueue = CreateListDouble();
-    if(!CreateNewListLexeme(&file, &lexemeQueue))
-    {
-        ErasedQueueDouble(&lexemeQueue);
-        return 0;
-    }
+    // if(!CreateNewListLexeme(&file, &lexemeQueue))
+    // {
+    //     ErasedQueueDouble(&lexemeQueue);
+    //     return 0;
+    // }
 
-    DisplayDoubleList(lexemeQueue);
+    // DisplayDoubleList(lexemeQueue);
 
-    ErasedListDouble(&lexemeQueue);
+    // ErasedListDouble(&lexemeQueue);
     free(dico);
     fclose(file);
 

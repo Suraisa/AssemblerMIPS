@@ -93,3 +93,39 @@ void DisplayLexeme(void *value)
     printf("\n%s", separator);
     printf("\n");
 }
+
+LIST_DOUBLE CopyListLexeme(LIST_DOUBLE* list)
+{
+    if (IsEmptyDouble(*list))
+        return NULL;
+
+    LIST_DOUBLE firstNode = *list;
+    LIST_DOUBLE slider = firstNode;
+    LIST_DOUBLE copy = CreateListDouble();
+    LEXEME value;
+    do
+    {
+        value.lineNumber = ((LEXEME *)slider->data)->lineNumber;
+        value.state = ((LEXEME *)slider->data)->state;
+        value.type = ((LEXEME *)slider->data)->type;
+        if(((LEXEME *)slider->data)->state == DECIMAL || ((LEXEME *)slider->data)->state == HEXADECIMAL || ((LEXEME *)slider->data)->state == REGISTER)
+        {
+            value.value = malloc(sizeof(long int));
+            memmove(value.value, ((LEXEME*)slider->data)->value, sizeof(long int));
+        }
+        else if(((LEXEME *)slider->data)->state != RETURN)
+        {
+            value.value = malloc(strlen(((LEXEME *)slider->data)->value)+1);
+            memmove(value.value, ((LEXEME*)slider->data)->value, strlen(((LEXEME *)slider->data)->value)+1);
+        }
+        else
+        {
+            value.value = malloc(1);
+            memmove(value.value, ((LEXEME*)slider->data)->value, 1);
+        }
+        AddAtLastDouble(&copy, &value, slider->display, slider->erasedDataValue, sizeof(LEXEME));
+
+        slider = slider->next;
+    }while(slider != firstNode);
+    return copy;
+}

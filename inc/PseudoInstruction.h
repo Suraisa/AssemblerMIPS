@@ -28,6 +28,6 @@ LIST_DOUBLE CreateNewInstruction(FILE** dicoPseudoInstruction, SECTION* section)
 
 int IndexPseudoInstruction(PSEUDO_INSTRUCTION* dictionary, char *instructionName);
 
-int CreateNewListLexeme(FILE** readingFile, QUEUE_DOUBLE* lexemeQueue, QUEUE_DOUBLE* operands);
+int CreateNewListLexeme(FILE** readingFile, QUEUE_DOUBLE* lexemeQueue, SECTION* operands);
 
 #endif

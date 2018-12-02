@@ -154,7 +154,7 @@ int NumberLexemeOperand(LIST_DOUBLE lexemeList);
  * @return -#1 If it worked.\n-#0 If it didn't
  * 
  */
-int AddOperand(COLLECTION_FSM* stateMachine, SECTION* section, LIST_DOUBLE* lexemeList, INSTRUCTION* instructionDictionary, PSEUDO_INSTRUCTION* pseudoDictionary);
+int AddOperand(COLLECTION_FSM* stateMachine, SECTION* section, LIST_DOUBLE* fullLexemesList, LIST_DOUBLE* lexemeList, INSTRUCTION* instructionDictionary, PSEUDO_INSTRUCTION* pseudoDictionary);
 
 /**
  * @param value void* is a SECTION*.

@@ -131,10 +131,10 @@ int IsShiftAmount(LIST_DOUBLE* listLexeme)
     if(SizeListDouble(*listLexeme) > 1)
         return 0;
     
-    if(lexeme.state != HEXADECIMAL || lexeme.state != DECIMAL)
+    if(lexeme.state != HEXADECIMAL && lexeme.state != DECIMAL)
         return 0;
 
-    if(*(int*)lexeme.value > 31)
+    if(*(long int*)lexeme.value > 31)
         return 0;
 
     return 1;

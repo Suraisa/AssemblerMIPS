@@ -20,6 +20,8 @@ void InitializationCollectionFsm(COLLECTION_FSM *stateMachine)
     stateMachine->currentState = INIT_COLLECTION;
     stateMachine->error = 0;
     stateMachine->inState = 0;
+    stateMachine->pseudoInstruction = 0;
+    stateMachine->numberOfInversedLexeme = 0;
     int index;
     for (index=0; index<3; index++)
     {
@@ -546,13 +548,31 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
                     {
                         dictionaryIndex = IndexPseudoInstruction(pseudoDictionary, (char*)((LEXEME*)popedLexeme->data)->value);
                         isPseudoInstruction = 1;
-                    }
-
-                    if(dictionaryIndex == -1)
-                    {
-                        PrintErrorCollection(stateMachine, lineNumber, "The instruction","doesn't exist" , (char*)((LEXEME*)popedLexeme->data)->value);
-                        ErasedListDouble(&popedLexeme);
-                        break;
+                        if(dictionaryIndex == -1)
+                        {
+                            PrintErrorCollection(stateMachine, lineNumber, "The instruction","doesn't exist" , (char*)((LEXEME*)popedLexeme->data)->value);
+                            ErasedListDouble(&popedLexeme);
+                            stateMachine->currentState = INIT_COLLECTION;
+                            break;
+                        }
+                        else
+                        {
+                            if(pseudoDictionary[dictionaryIndex].typeNumber == 0)
+                            {
+                                FILE* file = fopen("src/DicoPseudoInstruct.txt", "r");
+                                SECTION section;
+                                printf("%d\n",FindPseudoInstruction((char*)((LEXEME*)popedLexeme->data)->value, &file, &section));
+                                QUEUE_DOUBLE concatenateList = CreateListDouble();
+                                CreateNewListLexeme(&file, &concatenateList, &section);
+                                ConcatenateListDouble(lexemeQueue, &concatenateList);
+                                *lexemeQueue = concatenateList;
+                                fclose(file);
+                                stateMachine->currentState = INIT_COLLECTION;
+                                ErasedListDouble(&popedLexeme);
+                                stateMachine->pseudoInstruction = 0;
+                                break;
+                            }
+                        }
                     }
                     
                     stateMachine->previousState = stateMachine->currentState;
@@ -563,6 +583,7 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
                         {
                             PrintErrorCollection(stateMachine, lineNumber, "You have two instructions on the same line", "", "");
                             ErasedListDouble(&popedLexeme);
+                            stateMachine->currentState = INIT_COLLECTION;
                             break;
                         }
 
@@ -609,6 +630,11 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
         {
             int nbOperand = 0;
             unsigned long int lineNumber = 0;
+            if(stateMachine->numberOfInversedLexeme)
+            {
+                ((SECTION*)(collections->collection[stateMachine->actualCollection]->prev->data))->data.instruction.lowerBits=1;
+                stateMachine->numberOfInversedLexeme--;
+            }
             do
             {
                 int numberLexemes = NumberLexemeOperand(*lexemeQueue);
@@ -619,7 +645,7 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
                 {
                     if(IsEmptyDouble(*lexemeQueue))
                     {
-                        if(!AddOperand(stateMachine, (SECTION*)(collections->collection[stateMachine->actualCollection]->prev->data), &lexemeList, instructionDictionary, pseudoDictionary))
+                        if(!AddOperand(stateMachine, (SECTION*)(collections->collection[stateMachine->actualCollection]->prev->data), lexemeQueue, &lexemeList, instructionDictionary, pseudoDictionary))
                         {
                             PrintErrorCollection(stateMachine, ((LEXEME *)lexemeList->data)->lineNumber, "Error in the instruction:", "", ((SECTION*)(collections->collection[stateMachine->actualCollection]->prev->data))->data.instruction.name);
                             ErasedAtLastDouble(&(collections->collection[stateMachine->actualCollection]));
@@ -627,20 +653,36 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
                             break;
                         }
                         stateMachine->inState = 0;
+                        if(stateMachine->pseudoInstruction)
+                        {
+                            stateMachine->pseudoInstruction = 0;
+                            ErasedAtLastDouble(&(collections->collection[stateMachine->actualCollection]));
+                            ErasedListDouble(&lexemeList);
+                            stateMachine->previousState = stateMachine->currentState;
+                            stateMachine->currentState = INIT_COLLECTION;
+                        }
                         nbOperand++;
                     }
                     else if(((LEXEME *)(*lexemeQueue)->data)->state == COMMA || ((LEXEME *)(*lexemeQueue)->data)->state == COMMENT || ((LEXEME *)(*lexemeQueue)->data)->state == RETURN)
                     {
-                        if (!AddOperand(stateMachine, (SECTION*)(collections->collection[stateMachine->actualCollection]->prev->data), &lexemeList, instructionDictionary, pseudoDictionary))
+                        if (!AddOperand(stateMachine, (SECTION*)(collections->collection[stateMachine->actualCollection]->prev->data), lexemeQueue, &lexemeList, instructionDictionary, pseudoDictionary))
                         {
                             PrintErrorCollection(stateMachine, ((LEXEME *)lexemeList->data)->lineNumber, "Error in the instruction:", "", ((SECTION*)(collections->collection[stateMachine->actualCollection]->prev->data))->data.instruction.name);
                             ErasedAtLastDouble(&(collections->collection[stateMachine->actualCollection]));
-                            ErasedListDouble(&lexemeList);
                             break;
                         }
                         else
                         {
                             nbOperand++;
+                            if(stateMachine->pseudoInstruction)
+                            {
+                                stateMachine->pseudoInstruction = 0;
+                                ErasedAtLastDouble(&(collections->collection[stateMachine->actualCollection]));
+                                DisplayDoubleList(*lexemeQueue);
+                                stateMachine->previousState = stateMachine->currentState;
+                                stateMachine->currentState = INIT_COLLECTION;
+                                break;
+                            }
                             if(((LEXEME *)(*lexemeQueue)->data)->state == COMMA)
                             {
                                 lineNumber = ((LEXEME *)(*lexemeQueue)->data)->lineNumber;
