@@ -63,7 +63,7 @@ int LexemePass(FILE** readingFile, QUEUE_DOUBLE* lexemeQueue)
     return 1;
 }
 
-int LabelTreatment(QUEUE_DOUBLE* lexemeQueue, INSTRUCTION* dicoInstruct, LIST_DOUBLE* hash)
+int InstructLabelTreatment(QUEUE_DOUBLE* lexemeQueue, INSTRUCTION* dicoInstruct, LIST_DOUBLE* hash)
 {
     LIST_DOUBLE firstNode = *lexemeQueue;
     LIST_DOUBLE slider = firstNode;
@@ -72,6 +72,7 @@ int LabelTreatment(QUEUE_DOUBLE* lexemeQueue, INSTRUCTION* dicoInstruct, LIST_DO
     SECTION* section = NULL;
     LEXEME lexeme;
     char operandType = '\0';
+    int error = 0;
 
     do
     {
@@ -80,32 +81,84 @@ int LabelTreatment(QUEUE_DOUBLE* lexemeQueue, INSTRUCTION* dicoInstruct, LIST_DO
             operandType = dicoInstruct[((SECTION*)slider->data)->data.instruction.dicoIndex].operands[index];
             if(operandType == 'R' || operandType == 'A' || operandType == 'B')
             {
-                if(((LEXEME*)((SECTION*)slider->data)->data.instruction.lexemeList[index])->state == SYMBOL)
+                if(!IsEmptyDouble(((SECTION*)slider->data)->data.instruction.lexemeList[index]) && ((LEXEME*)((SECTION*)slider->data)->data.instruction.lexemeList[index]->data)->state == SYMBOL)
                 {
                     section = IsInHashTable(hash, ((char*)((LEXEME*)((SECTION*)slider->data)->data.instruction.lexemeList[index]->data)->value));
-                    //printf("%s %d %c\n",((SECTION*)slider->data)->data.instruction.name,((SECTION*)slider->data)->data.instruction.dicoIndex,dicoInstruct[((SECTION*)slider->data)->data.instruction.dicoIndex].operands[index]);
 
                     if(!section)
-                        return 0;
-
-                    if(operandType == 'R' && section->data.label.section == TEXT)
                     {
-                        value = section->shift - 4 - ((SECTION*)slider->data)->shift;
-                        lexeme = CreateLongIntLexeme(DECIMAL, value, ((LEXEME*)((SECTION*)slider->data)->data.instruction.lexemeList[index]->data)->lineNumber);
-                        ErasedListDouble(&((SECTION*)slider->data)->data.instruction.lexemeList[index]);
-                        AddInFrontDouble(&((SECTION*)slider->data)->data.instruction.lexemeList[index], &lexeme, DisplayInt, ErasedValueLexeme, sizeof(lexeme));
+                            lexeme = CreateLongIntLexeme(DECIMAL, 0, ((LEXEME*)((SECTION*)slider->data)->data.instruction.lexemeList[index]->data)->lineNumber);
+                            ErasedListDouble(&((SECTION*)slider->data)->data.instruction.lexemeList[index]);
+                            AddInFrontDouble(&((SECTION*)slider->data)->data.instruction.lexemeList[index], &lexeme, DisplayLexeme, ErasedValueLexeme, sizeof(lexeme));
                     }
-                    else if(operandType != 'R')
-                    {
-                        value = section->shift;
-                        lexeme = CreateLongIntLexeme(DECIMAL, value, ((LEXEME*)((SECTION*)slider->data)->data.instruction.lexemeList[index]->data)->lineNumber);
-                        ErasedInFrontDouble(&((SECTION*)slider->data)->data.instruction.lexemeList[index]);
-                        AddInFrontDouble(&((SECTION*)slider->data)->data.instruction.lexemeList[index], &lexeme, DisplayInt, ErasedValueLexeme, sizeof(lexeme));
+                    else
+                    {                        
+                        if(operandType == 'R' && operandType == 'A')
+                        {
+                            if(section->data.label.section == TEXT)
+                            {
+                                value = section->shift - 4 - ((SECTION*)slider->data)->shift;
+                                lexeme = CreateLongIntLexeme(DECIMAL, value, ((LEXEME*)((SECTION*)slider->data)->data.instruction.lexemeList[index]->data)->lineNumber);
+                                ErasedListDouble(&((SECTION*)slider->data)->data.instruction.lexemeList[index]);
+                                AddInFrontDouble(&((SECTION*)slider->data)->data.instruction.lexemeList[index], &lexeme, DisplayLexeme, ErasedValueLexeme, sizeof(lexeme));
+                            }
+                            else
+                            {
+                                printf("\nError in Relative value at line %lu\n",((LEXEME*)((SECTION*)slider->data)->data.instruction.lexemeList[index]->data)->lineNumber);
+                                error = 1;
+                            }
+                        }
+                        else if(operandType != 'R')
+                        {
+                            value = section->shift;
+                            lexeme = CreateLongIntLexeme(DECIMAL, value, ((LEXEME*)((SECTION*)slider->data)->data.instruction.lexemeList[index]->data)->lineNumber);
+                            ErasedInFrontDouble(&((SECTION*)slider->data)->data.instruction.lexemeList[index]);
+                            AddInFrontDouble(&((SECTION*)slider->data)->data.instruction.lexemeList[index], &lexeme, DisplayLexeme, ErasedValueLexeme, sizeof(lexeme));
+                        }
                     }
                 }
             }
         }
         slider = slider->next;
     }while(firstNode != slider);
-    return 1;
+    return !error;
+}
+
+void DataLabelTreatment(QUEUE_DOUBLE* lexemeQueue, INSTRUCTION* dicoInstruct, LIST_DOUBLE* hash)
+{
+    LIST_DOUBLE firstNode = *lexemeQueue;
+    LIST_DOUBLE slider = firstNode;
+    int index;
+    long int value = 0;
+    SECTION* section = NULL;
+    LEXEME lexeme;
+
+    do
+    {
+        if(!IsEmptyDouble(((SECTION*)slider->data)->data.directiveValue) && ((LEXEME*)((SECTION*)slider->data)->data.directiveValue->data)->state == SYMBOL)
+        {
+            section = IsInHashTable(hash, (char*)((LEXEME*)((SECTION*)slider->data)->data.directiveValue->data)->value);
+
+            if(!section)
+            {
+                lexeme = CreateLongIntLexeme(DECIMAL, 0, ((LEXEME*)((SECTION*)slider->data)->data.directiveValue->data)->lineNumber);
+                ErasedListDouble(&((SECTION*)slider->data)->data.directiveValue);
+                AddInFrontDouble(&((SECTION*)slider->data)->data.directiveValue, &lexeme, DisplayLexeme, ErasedValueLexeme, sizeof(lexeme));
+            }
+            else
+            {                        
+                value = section->shift;
+                lexeme = CreateLongIntLexeme(DECIMAL, value, ((LEXEME*)((SECTION*)slider->data)->data.directiveValue->data)->lineNumber);
+                ErasedInFrontDouble(&((SECTION*)slider->data)->data.directiveValue);
+                AddInFrontDouble(&((SECTION*)slider->data)->data.directiveValue, &lexeme, DisplayLexeme, ErasedValueLexeme, sizeof(lexeme));
+            }
+        }
+        slider = slider->next;
+    }while(firstNode != slider);
+}
+
+int LabelTreatment(COLLECTION_LISTS* collections, INSTRUCTION* dicoInstruct)
+{
+    DataLabelTreatment(&collections->collection[DATA], dicoInstruct, collections->labelTable);
+    return InstructLabelTreatment(&collections->collection[TEXT], dicoInstruct, collections->labelTable);
 }

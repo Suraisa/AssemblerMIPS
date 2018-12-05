@@ -14,6 +14,10 @@ void OpenAssembleeFile(int argc, char *argv[], FILE** readingFile);
 
 int LexemePass(FILE** readingFile, QUEUE_DOUBLE* lexemeQueue);
 
-int LabelTreatment(QUEUE_DOUBLE* lexemeQueue, INSTRUCTION* dicoInstruct, LIST_DOUBLE* hash);
+int InstructLabelTreatment(QUEUE_DOUBLE* lexemeQueue, INSTRUCTION* dicoInstruct, LIST_DOUBLE* hash);
+
+void DataLabelTreatment(QUEUE_DOUBLE* lexemeQueue, INSTRUCTION* dicoInstruct, LIST_DOUBLE* hash);
+
+int LabelTreatment(COLLECTION_LISTS* lexemeQueue, INSTRUCTION* dicoInstruct);
 
 #endif
