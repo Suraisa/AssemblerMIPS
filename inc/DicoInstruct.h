@@ -28,13 +28,13 @@ opcode:6;
 } J;
 
 typedef union {
-  struct R r_inst ;
-  struct I i_inst ;
-  struct J j_inst ;
+  R r_inst ;
+  I i_inst ;
+  J j_inst ;
 } BIT_FIELD;
 
 typedef struct{
-  char[4] order;
+  char order[4];
   char modificable;
   char type;
 } DETAILS_INSTRUCT;

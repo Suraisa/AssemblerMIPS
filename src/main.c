@@ -30,7 +30,7 @@ Lexemes' treatment
 */
 
   if(!LexemePass(&readingFile, &lexemeQueue))
-    return -1;
+    return 1;
 
 /*
 ----------------------
@@ -48,19 +48,19 @@ Collections' treatment
   if(!(dictionary = InitializeDicoInstruct("src/DicoInstruct.txt")))
   {
     printf("\n\nYou don't have enough memory available for the dictionary.\n\n");
-    return -1;
+    return 1;
   }
 
   if(!(pseudoDictionary = InitializePseudoDicoInstruct("src/DicoPseudoInstruct.txt")))
   {
     printf("\n\nYou don't have enough memory available for the dictionary.\n\n");
-    return -1;
+    return 1;
   }
 
   if(!(InitializationCollection(&collections)))
   {
     printf("\n\nYou don't have enough memory available for the hashTable.\n\n");
-    return -1;
+    return 1;
   }
 
   InitializationCollectionFsm(&collectionStateMachine);
@@ -80,7 +80,7 @@ Collections' treatment
     free(dictionary);
     ErasedQueueDouble(&lexemeQueue);
     ErasedCollectionLists(&collections);
-    return -1;
+    return 1;
   }
 
 /*
@@ -94,15 +94,15 @@ Rallocations' treatment
 
   UpdateRelocationTable(&relocationTable, collections.labelTable, &collections, dictionary);  
 
-  DisplayRelocationTable(relocationTable);
+  // DisplayRelocationTable(relocationTable);
 
-  ErasedRelocationTable(&relocationTable);
+  //LabelTreatment(&collections.collection[0], dictionary, collections.labelTable);
 
   free(dictionary);
   ErasedQueueDouble(&lexemeQueue);
   ErasedCollectionLists(&collections);
 
-// int LabelTreatment(QUEUE_DOUBLE* lexemeQueue, INSTRUCTION* dicoInstruct, LIST_DOUBLE* hash)
+  ErasedRelocationTable(&relocationTable);
 
   return 0;
 }
