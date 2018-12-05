@@ -87,7 +87,7 @@ void UpdateRelocationText(LIST_DOUBLE* relocationList, SECTION** section, LIST_D
           }
           case BASE_OFFSET:
           {
-            rMips = R_MIPS_HI16;
+            rMips = R_MIPS_LO16;
             break;
           }
           default:

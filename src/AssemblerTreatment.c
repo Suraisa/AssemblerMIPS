@@ -65,6 +65,9 @@ int LexemePass(FILE** readingFile, QUEUE_DOUBLE* lexemeQueue)
 
 int InstructLabelTreatment(QUEUE_DOUBLE* lexemeQueue, INSTRUCTION* dicoInstruct, LIST_DOUBLE* hash)
 {
+    if (IsEmptyDouble(*lexemeQueue))
+        return 1;
+
     LIST_DOUBLE firstNode = *lexemeQueue;
     LIST_DOUBLE slider = firstNode;
     int index;
@@ -78,7 +81,7 @@ int InstructLabelTreatment(QUEUE_DOUBLE* lexemeQueue, INSTRUCTION* dicoInstruct,
     {
         for(index = 0; index<3; index++)
         {
-            operandType = dicoInstruct[((SECTION*)slider->data)->data.instruction.dicoIndex].operands[index];
+            operandType = dicoInstruct[((SECTION*)slider->data)->data.instruction.dicoIndex].typeNumber>index ? dicoInstruct[((SECTION*)slider->data)->data.instruction.dicoIndex].operands[index] : '\0';
             if(operandType == 'R' || operandType == 'A' || operandType == 'B')
             {
                 if(!IsEmptyDouble(((SECTION*)slider->data)->data.instruction.lexemeList[index]) && ((LEXEME*)((SECTION*)slider->data)->data.instruction.lexemeList[index]->data)->state == SYMBOL)
@@ -126,6 +129,9 @@ int InstructLabelTreatment(QUEUE_DOUBLE* lexemeQueue, INSTRUCTION* dicoInstruct,
 
 void DataLabelTreatment(QUEUE_DOUBLE* lexemeQueue, INSTRUCTION* dicoInstruct, LIST_DOUBLE* hash)
 {
+    if (IsEmptyDouble(*lexemeQueue))
+        return;
+
     LIST_DOUBLE firstNode = *lexemeQueue;
     LIST_DOUBLE slider = firstNode;
     int index;

@@ -95,16 +95,17 @@ Rallocations' treatment
 
   UpdateRelocationTable(&relocationTable, collections.labelTable, &collections, dictionary);
 
-  DisplayRelocationTable(relocationTable);
+  // DisplayRelocationTable(relocationTable);
   
   LabelTreatment(&collections, dictionary);
-  DisplayCollectionLists(collections);
+  // DisplayCollectionLists(collections);
 
   free(dictionary);
-  ErasedQueueDouble(&lexemeQueue);
   ErasedCollectionLists(&collections);
 
   ErasedRelocationTable(&relocationTable);
+
+  ErasedQueueDouble(&lexemeQueue);
 
   return 0;
 }

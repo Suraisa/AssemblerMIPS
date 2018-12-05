@@ -46,7 +46,7 @@ int AddHashTable(LIST_DOUBLE **hash, SECTION *label)
       nodeI = nodeI->next;
     }while(nodeI != firstNode);
   }
-    AddInFrontDouble(&((*hash)[index]), label, DisplaySection, NULL, sizeof(*label));
+    AddInFrontDouble(&((*hash)[index]), label, DisplaySection, ErasedSection, sizeof(*label));
     return 1;
 }
 

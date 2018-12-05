@@ -1,4 +1,5 @@
 #include "FSMCollection.h"
+#include <valgrind/memcheck.h>
 
 int InitializationCollection(COLLECTION_LISTS* collectionLists)
 {
@@ -533,6 +534,7 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
                     if(!AddHashTable(&(collections->labelTable), &section))
                     {
                         PrintErrorCollection(stateMachine, lineNumber, "Two label with the same name","" , (char*)((LEXEME*)popedLexeme->data)->value);
+                    
                     }
                     else
                     {
@@ -578,7 +580,7 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
                     
                     stateMachine->previousState = stateMachine->currentState;
 
-                    if((!isPseudoInstruction && instructionDictionary[dictionaryIndex].typeNumber == '0') || (isPseudoInstruction && pseudoDictionary[dictionaryIndex].typeNumber == '0') || IsEmptyDouble(*lexemeQueue) || ((LEXEME *)(*lexemeQueue)->data)->state == RETURN || ((LEXEME *)(*lexemeQueue)->data)->state == COMMENT)
+                    if(IsEmptyDouble(*lexemeQueue) || ((LEXEME *)(*lexemeQueue)->data)->state == RETURN || ((LEXEME *)(*lexemeQueue)->data)->state == COMMENT)
                     {
                         if(!IsEmptyDouble(collections->collection[stateMachine->actualCollection]->prev) && ((SECTION*)(collections->collection[stateMachine->actualCollection]->prev->data))->data.instruction.lineNumber == lineNumber)
                         {
@@ -642,6 +644,7 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
             {
                 numberLexemes = NumberLexemeOperand(*lexemeQueue);
                 lexemeList = PopInFrontDouble(lexemeQueue, numberLexemes);
+
 
                 if(!IsEmptyDouble(lexemeList))
                 {

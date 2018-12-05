@@ -152,10 +152,9 @@ int AddOperand(COLLECTION_FSM* stateMachine, SECTION* section, LIST_DOUBLE* full
     {
         InitializationOperandFsm(&fsmOperand, pseudoDictionary[section->data.instruction.dicoIndex].operands[index]);
         OperandFSM(&fsmOperand, lexemeList);
+        if (fsmOperand.error)
+            return 0;
     }
-
-    if (fsmOperand.error)
-        return 0;
 
     section->data.instruction.lexemeList[index] = *lexemeList;
 
