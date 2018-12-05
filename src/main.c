@@ -82,6 +82,7 @@ Collections' treatment
     ErasedCollectionLists(&collections);
     return 1;
   }
+  int index = 0;
 
 /*
 -----------------------
@@ -92,11 +93,12 @@ Rallocations' treatment
 
   RELOCATIONTABLE relocationTable = CreateRelocationTable();
 
-  UpdateRelocationTable(&relocationTable, collections.labelTable, &collections, dictionary);  
+  UpdateRelocationTable(&relocationTable, collections.labelTable, &collections, dictionary);
 
   // DisplayRelocationTable(relocationTable);
-
-  //LabelTreatment(&collections.collection[0], dictionary, collections.labelTable);
+  
+  LabelTreatment(&collections.collection[0], dictionary, collections.labelTable);
+  // DisplayCollectionLists(collections);
 
   free(dictionary);
   ErasedQueueDouble(&lexemeQueue);

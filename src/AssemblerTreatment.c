@@ -80,9 +80,10 @@ int LabelTreatment(QUEUE_DOUBLE* lexemeQueue, INSTRUCTION* dicoInstruct, LIST_DO
             operandType = dicoInstruct[((SECTION*)slider->data)->data.instruction.dicoIndex].operands[index];
             if(operandType == 'R' || operandType == 'A' || operandType == 'B')
             {
-                if(!IsEmptyDouble(((SECTION*)slider->data)->data.instruction.lexemeList[index]) && ((LEXEME*)((SECTION*)slider->data)->data.instruction.lexemeList[index])->state == SYMBOL)
+                if(((LEXEME*)((SECTION*)slider->data)->data.instruction.lexemeList[index])->state == SYMBOL)
                 {
                     section = IsInHashTable(hash, ((char*)((LEXEME*)((SECTION*)slider->data)->data.instruction.lexemeList[index]->data)->value));
+                    //printf("%s %d %c\n",((SECTION*)slider->data)->data.instruction.name,((SECTION*)slider->data)->data.instruction.dicoIndex,dicoInstruct[((SECTION*)slider->data)->data.instruction.dicoIndex].operands[index]);
 
                     if(!section)
                         return 0;

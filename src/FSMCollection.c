@@ -680,7 +680,6 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
                             {
                                 stateMachine->pseudoInstruction = 0;
                                 ErasedAtLastDouble(&(collections->collection[stateMachine->actualCollection]));
-                                DisplayDoubleList(*lexemeQueue);
                                 stateMachine->previousState = stateMachine->currentState;
                                 stateMachine->currentState = INIT_COLLECTION;
                                 break;

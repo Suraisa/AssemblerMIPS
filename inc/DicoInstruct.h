@@ -45,8 +45,8 @@ typedef struct
     char operands[3];
     int hasPseudoInstruction;
     int typeNumber;
-    BIT_FIELD bitField;
-    DETAILS_INSTRUCT details;
+    // BIT_FIELD bitField;
+    // DETAILS_INSTRUCT details;
 } INSTRUCTION;
 
 /**
