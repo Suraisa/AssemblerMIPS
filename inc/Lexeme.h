@@ -49,6 +49,8 @@ void *CreateValue(LIST_DOUBLE list);
  */
 LEXEME CreateLexeme(LEXEME_STATE state, LIST_DOUBLE list, unsigned long int line);
 
+LEXEME CreateLongIntLexeme(LEXEME_STATE state, long int value, unsigned long int lineNumber);
+
 /**
  * @param lexeme pointeur of the lexeme where you want to delete the value.
  * @brief This function erases the value of the lexeme.

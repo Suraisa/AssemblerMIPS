@@ -72,7 +72,7 @@ Collections' treatment
 
   if(!collectionStateMachine.error)
   {
-    DisplayCollectionLists(collections);  
+    // DisplayCollectionLists(collections);  
   }
 
   if(collectionStateMachine.error)
@@ -88,18 +88,21 @@ Collections' treatment
 Rallocations' treatment
 -----------------------
 */
+  free(pseudoDictionary);
 
   RELOCATIONTABLE relocationTable = CreateRelocationTable();
 
   UpdateRelocationTable(&relocationTable, collections.labelTable, &collections, dictionary);  
 
- // DisplayRelocationTable(relocationTable);
+  DisplayRelocationTable(relocationTable);
 
-  ErasedListDouble(&relocationTable.relocationText);
+  ErasedRelocationTable(&relocationTable);
 
   free(dictionary);
   ErasedQueueDouble(&lexemeQueue);
   ErasedCollectionLists(&collections);
+
+// int LabelTreatment(QUEUE_DOUBLE* lexemeQueue, INSTRUCTION* dicoInstruct, LIST_DOUBLE* hash)
 
   return 0;
 }

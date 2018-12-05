@@ -518,6 +518,7 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
             LIST_DOUBLE popedLexeme = PopInFrontDouble(lexemeQueue, 1);
             unsigned long int lineNumber = ((LEXEME*)popedLexeme->data)->lineNumber;
             int isPseudoInstruction = 0;
+
             if(!IsEmptyDouble(*lexemeQueue) && (((LEXEME *)(*lexemeQueue)->data)->state == STRING || ((LEXEME *)(*lexemeQueue)->data)->state == DIRECTIVE || ((LEXEME *)(*lexemeQueue)->data)->state == COMMA))
             {
                 PrintErrorCollection(stateMachine, lineNumber, "You can't use:","now" ,((LEXEME*)(popedLexeme->data))->type);
@@ -588,7 +589,7 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
                         }
 
                         SECTION section;
-
+                        
                         if(!isPseudoInstruction)
                         {
                             section = CreateInstructionSection(stateMachine->currentState, (stateMachine->shift)[stateMachine->actualCollection], instructionDictionary[dictionaryIndex].id, dictionaryIndex, lineNumber, isPseudoInstruction);
@@ -630,6 +631,8 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
         {
             int nbOperand = 0;
             unsigned long int lineNumber = 0;
+            int numberLexemes = 0;
+            LIST_DOUBLE lexemeList = NULL;
             if(stateMachine->numberOfInversedLexeme)
             {
                 ((SECTION*)(collections->collection[stateMachine->actualCollection]->prev->data))->data.instruction.lowerBits=1;
@@ -637,9 +640,8 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
             }
             do
             {
-                int numberLexemes = NumberLexemeOperand(*lexemeQueue);
-
-                LIST_DOUBLE lexemeList = PopInFrontDouble(lexemeQueue, numberLexemes);
+                numberLexemes = NumberLexemeOperand(*lexemeQueue);
+                lexemeList = PopInFrontDouble(lexemeQueue, numberLexemes);
 
                 if(!IsEmptyDouble(lexemeList))
                 {

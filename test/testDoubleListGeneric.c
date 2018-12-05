@@ -2,6 +2,9 @@
 
 #include "DoubleListGeneric.h"
 #include "DisplayType.h"
+#include "Lexeme.h"
+#include "Section.h"
+#include "DicoInstruct.h"
 
 int main()
 {
@@ -87,14 +90,6 @@ int main()
     AddInFrontDouble(&list1, &a, &DisplayInt, NULL, sizeof(long int));
     AddInFrontDouble(&list1, &a, &DisplayInt, NULL, sizeof(long int));
 
-    LIST_DOUBLE list2 = CopyList(list1, sizeof(long int));
-
-    ConcatenateListDouble(&list, &list2);
-
-    printf("\nList concatenated:\n");
-
-    DisplayDoubleList(list);
-
     ErasedListDouble(&list);
 
     printf("\nList erased:\n");
@@ -103,11 +98,13 @@ int main()
 
     printf("\nList copied:\n");
 
+    ErasedListDouble(&list1);
+
+    AddInFrontDouble(&list1, &a, &DisplayInt, NULL, sizeof(long int));
+
     DisplayDoubleList(list1);
 
     ErasedListDouble(&list1);
-
-    DisplayDoubleList(list1);
 
     return 0;
 }

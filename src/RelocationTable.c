@@ -75,7 +75,14 @@ void UpdateRelocationText(LIST_DOUBLE* relocationList, SECTION** section, LIST_D
           }
           case IMMEDIAT:
           {
-            rMips = R_MIPS_LO16;
+            if((**section).data.instruction.lowerBits)
+            {
+              rMips = R_MIPS_HI16;
+            }
+            else
+            {
+              rMips = R_MIPS_LO16;
+            }
             break;
           }
           case BASE_OFFSET:
@@ -87,7 +94,6 @@ void UpdateRelocationText(LIST_DOUBLE* relocationList, SECTION** section, LIST_D
           {
             if(operandType == RELATIVE)
               return;
-            printf("\nERROR in the relocation table\n");
             return;
           }
         }
@@ -106,10 +112,10 @@ void UpdateRelocationData(LIST_DOUBLE* relocationList, SECTION** section, LIST_D
   if (((LEXEME*)((**section).data.directiveValue->data))->state == SYMBOL){
     SECTION* dataSection = IsInHashTable(hash,(char*)(((LEXEME*)(**section).data.directiveValue->data)->value));
     if (!dataSection){
-      FillRelocationList(relocationList, UNDEF, 0, 0, (LEXEME**)(&((**section).data.directiveValue->data)));
+      FillRelocationList(relocationList, UNDEF, (**section).shift, R_MIPS_32, (LEXEME**)(&((**section).data.directiveValue->data)));
     }
     else{
-      FillRelocationList(relocationList, dataSection->data.label.section, dataSection->shift, R_MIPS_32, (LEXEME**)(&((**section).data.directiveValue->data)));
+      FillRelocationList(relocationList, dataSection->data.label.section, (**section).shift, R_MIPS_32, (LEXEME**)(&((**section).data.directiveValue->data)));
     }
   }
 }

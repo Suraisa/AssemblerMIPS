@@ -45,7 +45,7 @@ SECTION CreateInstructionSection(COLLECTION_STATE state, unsigned long int shift
     int index;
     for(index = 0; index<3; index++)
     {
-        section.data.instruction.lexemeList[index] = NULL;
+        section.data.instruction.lexemeList[index] = CreateListDouble();
     }
 
     return section;
@@ -93,6 +93,7 @@ int NumberLexemeOperand(LIST_DOUBLE lexemeList)
 int AddOperand(COLLECTION_FSM* stateMachine, SECTION* section, LIST_DOUBLE* fullLexemesList, LIST_DOUBLE* lexemeList, INSTRUCTION* instructionDictionary, PSEUDO_INSTRUCTION* pseudoDictionary)
 {
     int index=0;
+
     while (index<3 && !IsEmptyDouble(section->data.instruction.lexemeList[index]))
     {
         index++;
@@ -114,6 +115,7 @@ int AddOperand(COLLECTION_FSM* stateMachine, SECTION* section, LIST_DOUBLE* full
     {
         InitializationOperandFsm(&fsmOperand, instructionDictionary[section->data.instruction.dicoIndex].operands[index]);
         OperandFSM(&fsmOperand, lexemeList);
+
         if(fsmOperand.error)
         {
             section->data.instruction.dicoIndex = IndexPseudoInstruction(pseudoDictionary, section->data.instruction.name);
@@ -121,7 +123,7 @@ int AddOperand(COLLECTION_FSM* stateMachine, SECTION* section, LIST_DOUBLE* full
             if(section->data.instruction.dicoIndex == -1)
                 return 0;
 
-            section->data.instruction.pseudoInstruction = 1;
+            stateMachine->pseudoInstruction = 1;
             InitializationOperandFsm(&fsmOperand, pseudoDictionary[section->data.instruction.dicoIndex].operands[index]);
             OperandFSM(&fsmOperand, lexemeList);
 
@@ -160,7 +162,7 @@ int AddOperand(COLLECTION_FSM* stateMachine, SECTION* section, LIST_DOUBLE* full
     if (section->data.instruction.pseudoInstruction && index+1==pseudoDictionary[section->data.instruction.dicoIndex].typeNumber)
     {
         FILE* file = fopen("src/DicoPseudoInstruct.txt", "r");
-        
+
         if(!FindPseudoInstruction(section->data.instruction.name, &file, section))
                 return 0;
 

@@ -64,6 +64,18 @@ LEXEME CreateLexeme(LEXEME_STATE state, LIST_DOUBLE list, unsigned long int line
     return lexeme;
 }
 
+LEXEME CreateLongIntLexeme(LEXEME_STATE state, long int value, unsigned long int lineNumber)
+{
+    long int * lexemeValue = malloc(sizeof(*lexemeValue));
+    *lexemeValue = value;
+    LEXEME lexeme;
+    lexeme.type = CreateType(state);
+    lexeme.lineNumber = lineNumber;
+    lexeme.value = lexemeValue;
+    lexeme.state = state;
+    return lexeme;
+}
+
 void ErasedValueLexeme(void* lexeme)
 {
     free(((LEXEME*)lexeme)->value);

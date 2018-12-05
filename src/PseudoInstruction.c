@@ -4,7 +4,7 @@ int sizePseudoDico = 0;
 
 int FindPseudoInstruction(char* nameToFind, FILE** dicoPseudoInstruction, SECTION* section)
 {
-    char readingChar[2];
+    char readingChar[2] = "  ";
     char instructionName[20];
     int notFinded = 1;
     StringUpper(nameToFind);
