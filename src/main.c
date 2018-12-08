@@ -30,7 +30,10 @@ Lexemes' treatment
 */
 
   if(!LexemePass(&readingFile, &lexemeQueue))
+  {
+    ErasedListDouble(lexemeQueue);
     return 1;
+  }
 
 /*
 ----------------------
@@ -78,6 +81,7 @@ Collections' treatment
   if(collectionStateMachine.error)
   {
     free(dictionary);
+    free(pseudoDictionary);
     ErasedQueueDouble(&lexemeQueue);
     ErasedCollectionLists(&collections);
     return 1;

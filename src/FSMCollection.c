@@ -1,5 +1,4 @@
 #include "FSMCollection.h"
-#include <valgrind/memcheck.h>
 
 int InitializationCollection(COLLECTION_LISTS* collectionLists)
 {
@@ -618,6 +617,7 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
                         section = CreateInstructionSection(stateMachine->currentState, (stateMachine->shift)[stateMachine->actualCollection], pseudoDictionary[dictionaryIndex].id, dictionaryIndex, lineNumber, isPseudoInstruction);
                     }
                     AddAtLastDouble(&(collections->collection[stateMachine->actualCollection]), &section, DisplaySection, ErasedSection, sizeof(section));
+                    ErasedAtLastDouble(&popedLexeme);
                     break;
                 }
                 else
