@@ -1,0 +1,25 @@
+24
+ADD $$$ 0
+ADDI $$I 0
+SUB $$$ 0
+MULT $$ 0
+DIV $$ 0
+AND $$$ 0
+OR $$$ 0
+XOR $$$ 0
+ROTR $$S 0
+SLL $$S 0
+SRL $$S 0
+SLT $$$ 0
+LUI $I 0
+MFHI $ 0
+MFLO $ 0
+BEQ $$R 0
+BNE $$R 0
+BGTZ $R 0
+BLEZ $R 0
+J A 0
+JAL A 0
+JR $ 0
+LW $B 1
+SW $B 1
