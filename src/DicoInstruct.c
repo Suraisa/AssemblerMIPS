@@ -31,15 +31,10 @@ INSTRUCTION*InitializeDicoInstruct(char *nameDicoFile)
 
     while(index<sizeDico && !feof(file))
     {
-        fscanf(file, "%s %s %d", (dictionary[index].id), &(dictionary[index].operands), &(dictionary[index].hasPseudoInstruction));
-        if(dictionary[index].operands[0] != '0')
-        {
-            dictionary[index].typeNumber = strlen(dictionary[index].operands);
-        }
-        else
-        {
-            dictionary[index].typeNumber = 0;
-        }
+        char bitString[32];
+        fscanf(file, "%s %s %d %s %s %s %c", (dictionary[index].id), (dictionary[index].operands), &(dictionary[index].hasPseudoInstruction), bitString, dictionary[index].details.order, dictionary[index].details.modificable, &(dictionary[index].details.type));
+        dictionary[index].bitField.intInst = (unsigned int)strtol(bitString,NULL,2);
+        dictionary[index].typeNumber = strlen(dictionary[index].operands);
         index++;
     }
 

@@ -31,7 +31,7 @@ Lexemes' treatment
 
   if(!LexemePass(&readingFile, &lexemeQueue))
   {
-    ErasedListDouble(lexemeQueue);
+    ErasedListDouble(&lexemeQueue);
     return 1;
   }
 
@@ -99,10 +99,10 @@ Rallocations' treatment
 
   UpdateRelocationTable(&relocationTable, collections.labelTable, &collections, dictionary);
 
-  // DisplayRelocationTable(relocationTable);
+  DisplayRelocationTable(relocationTable);
   
   LabelTreatment(&collections, dictionary);
-  // DisplayCollectionLists(collections);
+  DisplayCollectionLists(collections);
 
   free(dictionary);
   ErasedCollectionLists(&collections);
