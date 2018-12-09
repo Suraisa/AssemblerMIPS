@@ -6,47 +6,54 @@
 #include <string.h>
 #include "Utils.h"
 
-typedef struct{
-unsigned int func:6,
-sa:5,
-rd:5 ,
-rt:5,
-rs:5,
-opcode:6;
+typedef struct
+{
+  unsigned int func:6,
+  sa:5,
+  rd:5,
+  rt:5,
+  rs:5,
+  opcode:6;
 } R;
 
-typedef struct{
-unsigned int immediate:16,
-rt:5,
-rs:5,
-opcode:6;
+typedef struct
+{
+  unsigned int immediate:16,
+  rt:5,
+  rs:5,
+  opcode:6;
 } I;
 
-typedef struct{
-unsigned int target:26,
-opcode:6;
+typedef struct
+{
+  unsigned int target:26,
+  opcode:6;
 } J;
 
-typedef union {
-  R r_inst ;
-  I i_inst ;
-  J j_inst ;
+typedef union
+{
+  R rInst;
+  I iInst;
+  J jInst;
+  unsigned int intInst;
+  char code[4];
 } BIT_FIELD;
 
-typedef struct{
-  char order[4];
-  char modificable;
+typedef struct
+{
+  char order[5];
+  char modificable[5];
   char type;
 } DETAILS_INSTRUCT;
 
 typedef struct
 {
-    char id[30];
-    char operands[3];
-    int hasPseudoInstruction;
-    int typeNumber;
-    // BIT_FIELD bitField;
-    // DETAILS_INSTRUCT details;
+  char id[30];
+  char operands[3];
+  int hasPseudoInstruction;
+  int typeNumber;
+  BIT_FIELD bitField;
+  DETAILS_INSTRUCT details;
 } INSTRUCTION;
 
 /**
