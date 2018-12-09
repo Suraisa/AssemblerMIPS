@@ -110,6 +110,7 @@ Rallocations' treatment
 
   SECTION_FIELD field = BitInstructionTreatment(dictionary, collections.collection[TEXT]);
   free(field.bitField);
+
   free(dictionary);
   ErasedCollectionLists(&collections);
 
