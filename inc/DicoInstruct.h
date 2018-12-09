@@ -28,15 +28,14 @@ opcode:6;
 } J;
 
 typedef union {
-  R rInst ;
-  I iInst ;
-  J jInst ;
-  unsigned int instInt;
+  R r_inst ;
+  I i_inst ;
+  J j_inst ;
 } BIT_FIELD;
 
 typedef struct{
   char order[4];
-  char modificable[4];
+  char modificable;
   char type;
 } DETAILS_INSTRUCT;
 
@@ -46,8 +45,8 @@ typedef struct
     char operands[3];
     int hasPseudoInstruction;
     int typeNumber;
-    BIT_FIELD bitField;
-    DETAILS_INSTRUCT details;
+    // BIT_FIELD bitField;
+    // DETAILS_INSTRUCT details;
 } INSTRUCTION;
 
 /**

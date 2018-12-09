@@ -31,19 +31,15 @@ INSTRUCTION*InitializeDicoInstruct(char *nameDicoFile)
 
     while(index<sizeDico && !feof(file))
     {
-        char charBinaryCode[32];
-        fscanf(file, "%s %s %d %s %s %s %c", (dictionary[index].id), (dictionary[index].operands), &(dictionary[index].hasPseudoInstruction), charBinaryCode, (dictionary[index].details.order), (dictionary[index].details.modificable), &dictionary[index].details.type);
+        fscanf(file, "%s %s %d", (dictionary[index].id), &(dictionary[index].operands), &(dictionary[index].hasPseudoInstruction));
         if(dictionary[index].operands[0] != '0')
         {
             dictionary[index].typeNumber = strlen(dictionary[index].operands);
-            dictionary[index].bitField.instInt = (unsigned int)strtol(charBinaryCode,NULL,2);
-          }
+        }
         else
         {
             dictionary[index].typeNumber = 0;
         }
-        printf("\n%s\n", (dictionary[index].details.order));
-        printf("\n%s %s %d %s %s %s %c \n", (dictionary[index].id), (dictionary[index].operands), (dictionary[index].hasPseudoInstruction), charBinaryCode, (dictionary[index].details.order), (dictionary[index].details.modificable), dictionary[index].details.type);
         index++;
     }
 
@@ -52,7 +48,7 @@ INSTRUCTION*InitializeDicoInstruct(char *nameDicoFile)
         printf("WARNING the dictionary's size is not the real one");
         sizeDico = index;
     }
-
+    
     fclose(file);
     return dictionary;
 }
