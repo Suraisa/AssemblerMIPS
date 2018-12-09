@@ -6,6 +6,14 @@
 #include "DoubleListGeneric.h"
 #include "Section.h"
 
+typedef enum
+{
+    rs = 's',
+    rt = 't',
+    rd = 'd',
+    sa = 'a'
+} REGISTER_ORDER;
+
 typedef struct
 {
     BIT_FIELD* bitField;

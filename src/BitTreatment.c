@@ -36,6 +36,8 @@ SECTION_FIELD BitInstructionTreatment(INSTRUCTION* dictionary, LIST_DOUBLE instr
     INSTRUCTION dicoInstruct;
     int indexOperand;
     int indexSlider = 0;
+    int indexRegisterDico;
+    int indexRegister = 0;
 
     do
     {
@@ -50,14 +52,52 @@ SECTION_FIELD BitInstructionTreatment(INSTRUCTION* dictionary, LIST_DOUBLE instr
                 {
                     if(indexOperand == 0)
                     {
-                        instBitTreatment.bitField[indexSlider].intInst = dicoInstruct.bitField.intInst | (long int)((LEXEME*)instData.lexemeList[indexOperand]->data)->value;
+                        instBitTreatment.bitField[indexSlider].intInst = dicoInstruct.bitField.intInst;
+                        instBitTreatment.bitField[indexSlider].jInst.target = *(unsigned int*)((LEXEME*)instData.lexemeList[indexOperand]->data)->value;
                         SwapCode(instBitTreatment.bitField[indexSlider].code);
                     }
                     break;
                 }
                 case 'R':
                 {
-                    
+                    instBitTreatment.bitField[indexSlider].intInst = dicoInstruct.bitField.intInst;
+                    for(indexRegisterDico = 0; indexRegisterDico<4; indexRegisterDico++)
+                    {
+                        if(dicoInstruct.details.modificable[indexRegisterDico])
+                        {
+                            switch(dicoInstruct.details.order[indexRegisterDico])
+                            {
+                                case 's':
+                                {
+                                    instBitTreatment.bitField[indexSlider].rInst.rs = *(unsigned int*)((LEXEME*)instData.lexemeList[indexRegister]->data)->value;
+                                    break;
+                                }
+                                case 'a':
+                                {
+                                    instBitTreatment.bitField[indexSlider].rInst.sa = *(unsigned int*)((LEXEME*)instData.lexemeList[indexRegister]->data)->value;
+                                    break;
+                                }
+                                case 'd':
+                                {
+                                    instBitTreatment.bitField[indexSlider].rInst.rd = *(unsigned int*)((LEXEME*)instData.lexemeList[indexRegister]->data)->value;
+                                    break;
+                                }
+                                case 't':
+                                {
+                                    instBitTreatment.bitField[indexSlider].rInst.rt = *(unsigned int*)((LEXEME*)instData.lexemeList[indexRegister]->data)->value;
+                                    break;
+                                }
+                            }
+                            indexRegister++;
+                        }
+                    }
+                    indexRegister = 0;
+                    instBitTreatment.bitField[indexSlider].jInst.target = *(unsigned int*)((LEXEME*)instData.lexemeList[indexOperand]->data)->value;
+                    SwapCode(instBitTreatment.bitField[indexSlider].code);
+                }
+                case 'I':
+                {
+
                 }
             }
         }

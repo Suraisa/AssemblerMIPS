@@ -2,8 +2,9 @@ CC = gcc
 src = src
 inc = inc
 test = test
+lib = build
 objdir = obj
-lib = -lm
+LDFLAGS = -lm -L$(lib)
 doxygenFile = doxyfile
 
 RELEASE = assembler.exe
@@ -37,7 +38,7 @@ $(objdir)/%.o : $(test)/%.c
 	$(CC) -c -g -I$(inc) -o $@ $<
 
 debug: $(obj)
-	$(CC) -o $(DEBUG) $^ $(lib)
+	$(CC) -o $(DEBUG) $^ $(LDFLAGS)
 
 # $(objdir)/%.o : $(src)/%.c
 # 	$(CC) -c -I$(inc) -o $@ $<
@@ -46,10 +47,10 @@ debug: $(obj)
 # 	$(CC) -c -I$(inc) -o $@ $<
 
 release: $(obj)
-	$(CC) -o $(RELEASE) $^ $(lib)
+	$(CC) -o $(RELEASE) $^ $(LDFLAGS)
 
 $(test)/test%.exe: $(objWithoutMain) $(objdir)/test%.o
-	$(CC) -o $@ $^ $(lib)
+	$(CC) -o $@ $^ $(LDFLAGS)
 
 allTest: $(testExe)
 	

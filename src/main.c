@@ -1,5 +1,8 @@
 #include <stdio.h>
 
+#include <pelf/pelf.h>
+#include <pelf/section.h>
+
 #include "DoubleQueueGeneric.h"
 #include "Global.h"
 #include "Utils.h"
@@ -11,6 +14,7 @@
 #include "RelocationTable.h"
 #include "AssemblerTreatment.h"
 #include "PseudoInstruction.h"
+#include "BitTreatment.h"
 
 int main(int argc, char *argv[])
 {
@@ -99,11 +103,13 @@ Rallocations' treatment
 
   UpdateRelocationTable(&relocationTable, collections.labelTable, &collections, dictionary);
 
-  DisplayRelocationTable(relocationTable);
+  //DisplayRelocationTable(relocationTable);
   
   LabelTreatment(&collections, dictionary);
   DisplayCollectionLists(collections);
 
+  SECTION_FIELD field = BitInstructionTreatment(dictionary, collections.collection[TEXT]);
+  free(field.bitField);
   free(dictionary);
   ErasedCollectionLists(&collections);
 

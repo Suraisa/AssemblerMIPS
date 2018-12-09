@@ -82,7 +82,7 @@ int InstructLabelTreatment(QUEUE_DOUBLE* lexemeQueue, INSTRUCTION* dicoInstruct,
         for(index = 0; index<3; index++)
         {
             operandType = dicoInstruct[((SECTION*)slider->data)->data.instruction.dicoIndex].typeNumber>index ? dicoInstruct[((SECTION*)slider->data)->data.instruction.dicoIndex].operands[index] : '\0';
-            if(operandType == 'R' || operandType == 'A' || operandType == 'B')
+            if(operandType == 'R' || operandType == 'A' || operandType == 'B' || operandType == 'I')
             {
                 if(!IsEmptyDouble(((SECTION*)slider->data)->data.instruction.lexemeList[index]) && ((LEXEME*)((SECTION*)slider->data)->data.instruction.lexemeList[index]->data)->state == SYMBOL)
                 {
@@ -90,13 +90,18 @@ int InstructLabelTreatment(QUEUE_DOUBLE* lexemeQueue, INSTRUCTION* dicoInstruct,
 
                     if(!section)
                     {
-                            lexeme = CreateLongIntLexeme(DECIMAL, 0, ((LEXEME*)((SECTION*)slider->data)->data.instruction.lexemeList[index]->data)->lineNumber);
-                            ErasedListDouble(&((SECTION*)slider->data)->data.instruction.lexemeList[index]);
-                            AddInFrontDouble(&((SECTION*)slider->data)->data.instruction.lexemeList[index], &lexeme, DisplayLexeme, ErasedValueLexeme, sizeof(lexeme));
+                        if(operandType == 'R')
+                        {
+                            printf("\nERROR the label isn't defined at line : %lu\n", ((LEXEME*)((SECTION*)slider->data)->data.instruction.lexemeList[index]->data)->lineNumber);
+                        }
+                        lexeme = CreateLongIntLexeme(DECIMAL, 0, ((LEXEME*)((SECTION*)slider->data)->data.instruction.lexemeList[index]->data)->lineNumber);
+                        ErasedListDouble(&((SECTION*)slider->data)->data.instruction.lexemeList[index]);
+                        AddInFrontDouble(&((SECTION*)slider->data)->data.instruction.lexemeList[index], &lexeme, DisplayLexeme, ErasedValueLexeme, sizeof(lexeme));
                     }
                     else
-                    {                        
-                        if(operandType == 'R' && operandType == 'A')
+                    {             
+                                   
+                        if(operandType == 'R')
                         {
                             if(section->data.label.section == TEXT)
                             {
