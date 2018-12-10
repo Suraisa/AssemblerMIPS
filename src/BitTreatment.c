@@ -22,6 +22,108 @@ SECTION_FIELD CreateSectionField(unsigned long int size)
     return sectionBitField;
 }
 
+#define JBitTreatment(jInst, absolute, indexOperand)\
+{\
+    if(indexOperand == 0)\
+    {\
+        jInst.target = absolute;\
+    }\
+}\
+
+#define RBitTreatment(indexRegisterDico, indexRegister, dicoInstructDetails, rInst, value)\
+{\
+    while(indexRegisterDico<4 && dicoInstructDetails.modificable[indexRegisterDico] != '1')\
+    {\
+        indexRegisterDico++;\
+    }\
+    if(dicoInstructDetails.modificable[indexRegisterDico] == '1')\
+    {\
+        switch(dicoInstructDetails.order[indexRegisterDico])\
+        {\
+            case 's':\
+            {\
+                rInst.rs = value;\
+                break;\
+            }\
+            case 'a':\
+            {\
+                rInst.sa = value;\
+                break;\
+            }\
+            case 'd':\
+            {\
+                rInst.rd = value;\
+                break;\
+            }\
+            case 't':\
+            {\
+                rInst.rt = value;\
+                break;\
+            }\
+        }\
+        indexRegister++;\
+    }\
+    indexRegisterDico++;\
+}\
+
+#define IBitTreatment(hasBaseOffset, indexRegisterDico, indexRegister, indexOperand, dicoInstruct, iInst, lexemeList)\
+{\
+    if(dicoInstruct.operands[indexOperand] != 'I' && dicoInstruct.operands[indexOperand] != 'R')\
+    {\
+        while(indexRegisterDico<2 && dicoInstruct.details.modificable[indexRegisterDico] != '1')\
+        {\
+            indexRegisterDico++;\
+        }\
+        if(dicoInstruct.details.modificable[indexRegisterDico] == '1')\
+        {\
+            switch(dicoInstruct.details.order[indexRegisterDico])\
+            {\
+                case 's':\
+                {\
+                    switch(dicoInstruct.operands[indexOperand])\
+                    {\
+                        case 'B':\
+                        {\
+                            hasBaseOffset = 1;\
+                            iInst.rs = *(unsigned int*)((LEXEME*)lexemeList->next->next->data)->value;\
+                            iInst.immediate = *(unsigned int*)((LEXEME*)lexemeList->data)->value;\
+                            break;\
+                        }\
+                        default:\
+                        {\
+                            iInst.rs = *(unsigned int*)((LEXEME*)lexemeList->data)->value;\
+                            break;\
+                        }\
+                    }\
+                    break;\
+                }\
+                case 't':\
+                {\
+                    switch(dicoInstruct.operands[indexOperand])\
+                    {\
+                        case 'B':\
+                        {\
+                            printf("\nError in the dictionary for instruction : %s", dicoInstruct.id);\
+                            break;\
+                        }\
+                        default:\
+                        {\
+                            iInst.rt = *(unsigned int*)((LEXEME*)lexemeList->data)->value;\
+                        }\
+                    }\
+                    break;\
+                }\
+            }\
+            indexRegister++;\
+        }\
+    }\
+    else\
+    {\
+        iInst.immediate = *(unsigned int*)((LEXEME*)lexemeList->data)->value;\
+    }\
+    indexRegisterDico++;\
+}\
+
 SECTION_FIELD BitInstructionTreatment(INSTRUCTION* dictionary, LIST_DOUBLE instructions)
 {
     if(instructions == NULL)
@@ -51,114 +153,27 @@ SECTION_FIELD BitInstructionTreatment(INSTRUCTION* dictionary, LIST_DOUBLE instr
             {
                 case 'J':
                 {
-                    if(indexOperand == 0)
-                    {
-                        instBitTreatment.bitField[indexSlider].jInst.target = *(unsigned int*)((LEXEME*)instData.lexemeList[indexOperand]->data)->value;
-                    }
+                    JBitTreatment(instBitTreatment.bitField[indexSlider].jInst, *(unsigned int*)((LEXEME*)instData.lexemeList[indexOperand]->data)->value, indexOperand);
                     break;
                 }
                 case 'R':
                 {
-                    while(indexRegisterDico<4 && dicoInstruct.details.modificable[indexRegisterDico] != '1')
-                    {
-                        indexRegisterDico++;
-                    }
-                    if(dicoInstruct.details.modificable[indexRegisterDico] == '1')
-                    {
-                        switch(dicoInstruct.details.order[indexRegisterDico])
-                        {
-                            case 's':
-                            {
-                                instBitTreatment.bitField[indexSlider].rInst.rs = *(unsigned int*)((LEXEME*)instData.lexemeList[indexRegister]->data)->value;
-                                break;
-                            }
-                            case 'a':
-                            {
-                                instBitTreatment.bitField[indexSlider].rInst.sa = *(unsigned int*)((LEXEME*)instData.lexemeList[indexRegister]->data)->value;
-                                break;
-                            }
-                            case 'd':
-                            {
-                                instBitTreatment.bitField[indexSlider].rInst.rd = *(unsigned int*)((LEXEME*)instData.lexemeList[indexRegister]->data)->value;
-                                break;
-                            }
-                            case 't':
-                            {
-                                instBitTreatment.bitField[indexSlider].rInst.rt = *(unsigned int*)((LEXEME*)instData.lexemeList[indexRegister]->data)->value;
-                                break;
-                            }
-                        }
-                        indexRegister++;
-                    }
-                    indexRegisterDico++;
+                    RBitTreatment(indexRegisterDico, indexRegister, dicoInstruct.details, instBitTreatment.bitField[indexSlider].rInst, *(unsigned int*)((LEXEME*)instData.lexemeList[indexRegister]->data)->value);
                     break;
                 }
                 case 'I':
                 {
-                    if(dicoInstruct.operands[indexOperand] != 'I')
-                    {
-                        while(indexRegisterDico<2 && dicoInstruct.details.modificable[indexRegisterDico] != '1')
-                        {
-                            indexRegisterDico++;
-                        }
-                        if(dicoInstruct.details.modificable[indexRegisterDico] == '1')
-                        {
-                            switch(dicoInstruct.details.order[indexRegisterDico])
-                            {
-                                case 's':
-                                {
-                                    switch(dicoInstruct.operands[indexOperand])
-                                    {
-                                        case 'B':
-                                        {
-                                            hasBaseOffset = 1;
-                                            instBitTreatment.bitField[indexSlider].iInst.rs = *(unsigned int*)((LEXEME*)instData.lexemeList[indexRegister]->next->next->data)->value;
-                                            instBitTreatment.bitField[indexSlider].iInst.immediate = *(unsigned int*)((LEXEME*)instData.lexemeList[indexRegister]->data)->value;
-                                            break;
-                                        }
-                                        default:
-                                        {
-                                            instBitTreatment.bitField[indexSlider].iInst.rs = *(unsigned int*)((LEXEME*)instData.lexemeList[indexRegister]->data)->value;
-                                            break;
-                                        }
-                                    }
-                                    break;
-                                }
-                                case 't':
-                                {
-                                    switch(dicoInstruct.operands[indexOperand])
-                                    {
-                                        case 'B':
-                                        {
-                                            printf("\nError in the dictionary for instruction : %s", dicoInstruct.id);
-                                            break;
-                                        }
-                                        default:
-                                        {
-                                            instBitTreatment.bitField[indexSlider].iInst.rt = *(unsigned int*)((LEXEME*)instData.lexemeList[indexRegister]->data)->value;
-                                        }
-                                    }
-                                    break;
-                                }
-                            }
-                            indexRegister++;
-                        }
-                    }
-                    else
-                    {
-                        instBitTreatment.bitField[indexSlider].iInst.immediate = *(unsigned int*)((LEXEME*)instData.lexemeList[indexOperand]->data)->value;
-                    }
-                    indexRegisterDico++;
+                    IBitTreatment(hasBaseOffset, indexRegisterDico, indexRegister, indexOperand, dicoInstruct, instBitTreatment.bitField[indexSlider].iInst, instData.lexemeList[indexRegister]);
                     break;
                 }
             }
             indexOperand++;
         }
         SwapCode(instBitTreatment.bitField[indexSlider].code);
-        printf("%08x\n", instBitTreatment.bitField[indexSlider].intInst);
         indexRegister = 0;
         indexOperand = 0;    
-        indexRegisterDico = 0;    
+        indexRegisterDico = 0;  
+        hasBaseOffset = 0;  
         indexSlider++;
         slider = slider->next;
     }while(firstNode != slider);

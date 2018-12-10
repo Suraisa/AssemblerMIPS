@@ -108,6 +108,12 @@ Rallocations' treatment
   LabelTreatment(&collections, dictionary);
   DisplayCollectionLists(collections);
 
+/*
+-------------------
+Bit field treatment
+-------------------
+*/
+
   SECTION_FIELD field = BitInstructionTreatment(dictionary, collections.collection[TEXT]);
   free(field.bitField);
 

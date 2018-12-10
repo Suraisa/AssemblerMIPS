@@ -105,7 +105,7 @@ int InstructLabelTreatment(QUEUE_DOUBLE* lexemeQueue, INSTRUCTION* dicoInstruct,
                         {
                             if(section->data.label.section == TEXT)
                             {
-                                value = section->shift - 4 - ((SECTION*)slider->data)->shift;
+                                value = (section->shift - 4 - ((SECTION*)slider->data)->shift)>>2;
                                 lexeme = CreateLongIntLexeme(DECIMAL, value, ((LEXEME*)((SECTION*)slider->data)->data.instruction.lexemeList[index]->data)->lineNumber);
                                 ErasedListDouble(&((SECTION*)slider->data)->data.instruction.lexemeList[index]);
                                 AddInFrontDouble(&((SECTION*)slider->data)->data.instruction.lexemeList[index], &lexeme, DisplayLexeme, ErasedValueLexeme, sizeof(lexeme));
@@ -118,7 +118,7 @@ int InstructLabelTreatment(QUEUE_DOUBLE* lexemeQueue, INSTRUCTION* dicoInstruct,
                         }
                         else if(operandType != 'R')
                         {
-                            value = section->shift;
+                            value = section->shift>>2;
                             lexeme = CreateLongIntLexeme(DECIMAL, value, ((LEXEME*)((SECTION*)slider->data)->data.instruction.lexemeList[index]->data)->lineNumber);
                             ErasedInFrontDouble(&((SECTION*)slider->data)->data.instruction.lexemeList[index]);
                             AddInFrontDouble(&((SECTION*)slider->data)->data.instruction.lexemeList[index], &lexeme, DisplayLexeme, ErasedValueLexeme, sizeof(lexeme));
