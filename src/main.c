@@ -106,8 +106,6 @@ Bit field treatment
   del_section(text);
   del_section(bss);
 
-
-
   free(dictionary);
   
   free(field.bitField);

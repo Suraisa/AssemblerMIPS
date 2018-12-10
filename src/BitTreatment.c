@@ -188,6 +188,5 @@ unsigned long int BitBssTreatment(LIST_DOUBLE bss)
         return 0;
 
     SECTION* section = (SECTION*)bss->prev->data;
-    long int lastSpaceAllocated = *(long int*)((LEXEME*)section->data.directiveValue->data)->value;
-    return section->shift + lastSpaceAllocated + lastSpaceAllocated%8%8;
+    return section->shift + *(long int*)((LEXEME*)section->data.directiveValue->data)->value;
 }
