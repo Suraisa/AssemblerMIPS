@@ -16,12 +16,11 @@ RELOCATIONTABLE CreateRelocationTable(){
   return relocationTable;
 }
 
-void FillRelocationList(LIST_DOUBLE* relocationList, COLLECTIONS symbolSection, unsigned long int relativeAddress, MIPS_TYPE typeRMIPS, LEXEME** symbolAddress){
+void FillRelocationList(LIST_DOUBLE* relocationList, COLLECTIONS symbolSection, unsigned long int relativeAddress, MIPS_TYPE typeRMIPS){
   LINKRELOCATION relocation;
   relocation.symbolSection=symbolSection;
   relocation.relativeAddress=relativeAddress;
   relocation.typeRMIPS=typeRMIPS;
-  relocation.symbolAddress=*symbolAddress;
   AddAtLastDouble(relocationList, &relocation, DisplayRelocation, NULL, sizeof(relocation));
 }
 
@@ -34,7 +33,6 @@ void DisplayRelocation(void* value){
   printf("\nSection where the symbol is defined : %s\n", collectionSection[((LINKRELOCATION*)value)->symbolSection]);
   printf("Relative adress : %lu\n", ((LINKRELOCATION*)value)->relativeAddress);
   printf("Type : %s\n", definedR_MIPS[((LINKRELOCATION*)value)->typeRMIPS]);
-  printf("Address of the symbol : %p",((LINKRELOCATION*)value)->symbolAddress);
 
   printf("\n%s", separator);
   printf("\n");
@@ -98,10 +96,10 @@ void UpdateRelocationText(LIST_DOUBLE* relocationList, SECTION** section, LIST_D
           }
         }
         if (!dataSection){
-          FillRelocationList(relocationList, UNDEF, (**section).shift, rMips, (LEXEME**)(&((**section).data.instruction.lexemeList[index]->data)));
+          FillRelocationList(relocationList, UNDEF, (**section).shift, rMips);
         }
         else{
-          FillRelocationList(relocationList, dataSection->data.label.section, (**section).shift, rMips, (LEXEME**)(&((**section).data.instruction.lexemeList[index]->data)));
+          FillRelocationList(relocationList, dataSection->data.label.section, (**section).shift, rMips);
         }
       }
     }
@@ -112,10 +110,10 @@ void UpdateRelocationData(LIST_DOUBLE* relocationList, SECTION** section, LIST_D
   if (((LEXEME*)((**section).data.directiveValue->data))->state == SYMBOL){
     SECTION* dataSection = IsInHashTable(hash,(char*)(((LEXEME*)(**section).data.directiveValue->data)->value));
     if (!dataSection){
-      FillRelocationList(relocationList, UNDEF, (**section).shift, R_MIPS_32, (LEXEME**)(&((**section).data.directiveValue->data)));
+      FillRelocationList(relocationList, UNDEF, (**section).shift, R_MIPS_32);
     }
     else{
-      FillRelocationList(relocationList, dataSection->data.label.section, (**section).shift, R_MIPS_32, (LEXEME**)(&((**section).data.directiveValue->data)));
+      FillRelocationList(relocationList, dataSection->data.label.section, (**section).shift, R_MIPS_32);
     }
   }
 }

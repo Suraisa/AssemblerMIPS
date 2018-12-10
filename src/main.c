@@ -1,7 +1,7 @@
 #include <stdio.h>
 
-#include <pelf/pelf.h>
 #include <pelf/section.h>
+#include "make_mips_elf.h"
 
 #include "DoubleQueueGeneric.h"
 #include "Global.h"
@@ -45,52 +45,14 @@ Collections' treatment
 ----------------------
 */
 
-  printf("\n\nCollections' treatment:\n\n");
-
   INSTRUCTION* dictionary;
   PSEUDO_INSTRUCTION* pseudoDictionary;
   COLLECTION_FSM collectionStateMachine;
   COLLECTION_LISTS collections;
 
-  if(!(dictionary = InitializeDicoInstruct("src/DicoInstruct.txt")))
-  {
-    printf("\n\nYou don't have enough memory available for the dictionary.\n\n");
+  if(!CollectionPass(&dictionary, &pseudoDictionary, &lexemeQueue, &collectionStateMachine, &collections))
     return 1;
-  }
-
-  if(!(pseudoDictionary = InitializePseudoDicoInstruct("src/DicoPseudoInstruct.txt")))
-  {
-    printf("\n\nYou don't have enough memory available for the dictionary.\n\n");
-    return 1;
-  }
-
-  if(!(InitializationCollection(&collections)))
-  {
-    printf("\n\nYou don't have enough memory available for the hashTable.\n\n");
-    return 1;
-  }
-
-  InitializationCollectionFsm(&collectionStateMachine);
-
-  while(!IsEmptyDouble(lexemeQueue))
-  {
-    CollectionFsm(&collectionStateMachine, &lexemeQueue, &collections, dictionary,pseudoDictionary);
-  }
-
-  if(!collectionStateMachine.error)
-  {
-    // DisplayCollectionLists(collections);  
-  }
-
-  if(collectionStateMachine.error)
-  {
-    free(dictionary);
-    free(pseudoDictionary);
-    ErasedQueueDouble(&lexemeQueue);
-    ErasedCollectionLists(&collections);
-    return 1;
-  }
-  int index = 0;
+  
 
 /*
 -----------------------
@@ -103,7 +65,7 @@ Rallocations' treatment
 
   UpdateRelocationTable(&relocationTable, collections.labelTable, &collections, dictionary);
 
-  //DisplayRelocationTable(relocationTable);
+  DisplayRelocationTable(relocationTable);
   
   LabelTreatment(&collections, dictionary);
   DisplayCollectionLists(collections);
@@ -115,9 +77,36 @@ Bit field treatment
 */
 
   SECTION_FIELD field = BitInstructionTreatment(dictionary, collections.collection[TEXT]);
-  free(field.bitField);
+
+  section     text = NULL;
+  section     data = NULL;
+  section      bss = NULL;
+  section shstrtab = NULL;
+  section   strtab = NULL;
+  section   symtab = NULL;
+  section  reltext = NULL;
+  section  reldata = NULL;
+
+  shstrtab = make_shstrtab_section();
+
+  text = make_text_section((int*)field.bitField, field.size);
+
+    if ( !text ) {
+        fprintf( stderr, "Unable to write .text section (missing information).\n" );
+        return -1;
+    }
+
+  print_section(shstrtab);
+  print_section( text );
+
+  del_section( shstrtab );
+  del_section( text );
+
 
   free(dictionary);
+  
+  free(field.bitField);
+
   ErasedCollectionLists(&collections);
 
   ErasedRelocationTable(&relocationTable);

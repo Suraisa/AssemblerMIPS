@@ -63,6 +63,54 @@ int LexemePass(FILE** readingFile, QUEUE_DOUBLE* lexemeQueue)
     return 1;
 }
 
+int CollectionPass(INSTRUCTION** dictionary, PSEUDO_INSTRUCTION** pseudoDictionary, LIST_DOUBLE* lexemeQueue, COLLECTION_FSM* collectionStateMachine, COLLECTION_LISTS* collections)
+{
+    printf("\n\nCollections' treatment:\n\n");
+
+    if(!(*dictionary = InitializeDicoInstruct("src/DicoInstruct.txt")))
+    {
+        printf("\n\nYou don't have enough memory available for the dictionary.\n\n");
+        return 0;
+    }
+
+    if(!(*pseudoDictionary = InitializePseudoDicoInstruct("src/DicoPseudoInstruct.txt")))
+    {
+        free(*dictionary);
+        printf("\n\nYou don't have enough memory available for the dictionary.\n\n");
+        return 0;
+    }
+
+    if(!(InitializationCollection(collections)))
+    {
+        free(*dictionary);
+        free(*pseudoDictionary);
+        printf("\n\nYou don't have enough memory available for the hashTable.\n\n");
+        return 0;
+    }
+
+    InitializationCollectionFsm(collectionStateMachine);
+
+    while(!IsEmptyDouble(*lexemeQueue))
+    {
+        CollectionFsm(collectionStateMachine, lexemeQueue, collections, *dictionary,*pseudoDictionary);
+    }
+
+    if(collectionStateMachine->error)
+    {
+        free(*dictionary);
+        free(*pseudoDictionary);
+        ErasedQueueDouble(lexemeQueue);
+        ErasedCollectionLists(collections);
+        return 0;
+    }
+    else
+    {
+        DisplayCollectionLists(*collections);  
+    }
+    return 1;
+}
+
+
 int InstructLabelTreatment(QUEUE_DOUBLE* lexemeQueue, INSTRUCTION* dicoInstruct, LIST_DOUBLE* hash)
 {
     if (IsEmptyDouble(*lexemeQueue))

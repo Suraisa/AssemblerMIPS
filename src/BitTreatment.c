@@ -103,7 +103,7 @@ SECTION_FIELD CreateSectionField(unsigned long int size)
                     {\
                         case 'B':\
                         {\
-                            printf("\nError in the dictionary for instruction : %s", dicoInstruct.id);\
+                            printf("\nError in the dictionary for instruction : %s\n", dicoInstruct.id);\
                             break;\
                         }\
                         default:\
@@ -170,6 +170,7 @@ SECTION_FIELD BitInstructionTreatment(INSTRUCTION* dictionary, LIST_DOUBLE instr
             indexOperand++;
         }
         SwapCode(instBitTreatment.bitField[indexSlider].code);
+        printf("%s %08x\n", dicoInstruct.id, instBitTreatment.bitField[indexSlider].intInst);
         indexRegister = 0;
         indexOperand = 0;    
         indexRegisterDico = 0;  

@@ -4,7 +4,7 @@ inc = inc
 test = test
 lib = lib
 objdir = obj
-LDFLAGS = -lm -L$(lib)
+LDFLAGS = -lm -L$(lib) -lpelf
 doxygenFile = doxyfile
 
 RELEASE = assembler.exe
