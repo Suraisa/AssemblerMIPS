@@ -18,6 +18,7 @@ void InitializationCollectionFsm(COLLECTION_FSM *stateMachine)
 {
     stateMachine->previousState = INIT_COLLECTION;
     stateMachine->currentState = INIT_COLLECTION;
+    stateMachine->actualCollection = TEXT;
     stateMachine->error = 0;
     stateMachine->inState = 0;
     stateMachine->pseudoInstruction = 0;
