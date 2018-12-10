@@ -181,3 +181,13 @@ SECTION_FIELD BitInstructionTreatment(INSTRUCTION* dictionary, LIST_DOUBLE instr
 
     return instBitTreatment;
 }
+
+unsigned long int BitBssTreatment(LIST_DOUBLE bss)
+{
+    if (IsEmptyDouble(bss))
+        return 0;
+
+    SECTION* section = (SECTION*)bss->prev->data;
+    long int lastSpaceAllocated = *(long int*)((LEXEME*)section->data.directiveValue->data)->value;
+    return section->shift + lastSpaceAllocated + lastSpaceAllocated%8%8;
+}

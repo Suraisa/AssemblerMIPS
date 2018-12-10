@@ -22,6 +22,8 @@ typedef struct
 
 SECTION_FIELD CreateSectionField(unsigned long int size);
 
+unsigned long int BitBssTreatment(LIST_DOUBLE bss);
+
 SECTION_FIELD BitInstructionTreatment(INSTRUCTION* instruction, LIST_DOUBLE instructions);
 
 #endif

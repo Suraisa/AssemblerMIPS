@@ -88,19 +88,24 @@ Bit field treatment
   section  reldata = NULL;
 
   shstrtab = make_shstrtab_section();
+  bss = make_bss_section((int)BitBssTreatment(collections.collection[BSS]));
 
   text = make_text_section((int*)field.bitField, field.size);
 
-    if ( !text ) {
-        fprintf( stderr, "Unable to write .text section (missing information).\n" );
-        return -1;
-    }
+  if ( !text )
+  {
+    fprintf( stderr, "Unable to write .text section (missing information).\n" );
+    return -1;
+  }
 
   print_section(shstrtab);
-  print_section( text );
+  print_section(text);
+  print_section(bss);
 
-  del_section( shstrtab );
-  del_section( text );
+  del_section(shstrtab);
+  del_section(text);
+  del_section(bss);
+
 
 
   free(dictionary);
