@@ -53,13 +53,12 @@ Collections' treatment
   if(!CollectionPass(&dictionary, &pseudoDictionary, &lexemeQueue, &collectionStateMachine, &collections))
     return 1;
   
-
+  free(pseudoDictionary);
 /*
 -----------------------
 Rallocations' treatment
 -----------------------
 */
-  free(pseudoDictionary);
 
   RELOCATIONTABLE relocationTable = CreateRelocationTable();
 
@@ -92,7 +91,7 @@ Bit field treatment
 
   text = make_text_section((int*)field.bitField, field.size);
 
-  if ( !text )
+  if (!text)
   {
     fprintf( stderr, "Unable to write .text section (missing information).\n" );
     return -1;

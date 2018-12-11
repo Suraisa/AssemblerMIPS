@@ -4,6 +4,7 @@ inc = inc
 test = test
 lib = lib
 objdir = obj
+CFLAGS = -Wall -Werror -Wextra
 LDFLAGS = -lm -L$(lib) -lpelf
 doxygenFile = doxyfile
 
@@ -47,7 +48,7 @@ debug: $(obj)
 # 	$(CC) -c -I$(inc) -o $@ $<
 
 release: $(obj)
-	$(CC) -o $(RELEASE) $^ $(LDFLAGS)
+	$(CC) $(CFLAGS) -o $(RELEASE) $^ $(LDFLAGS)
 
 $(test)/test%.exe: $(objWithoutMain) $(objdir)/test%.o
 	$(CC) -o $@ $^ $(LDFLAGS)

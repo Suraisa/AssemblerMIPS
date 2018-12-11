@@ -91,18 +91,30 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
 
             if(!strcmp(lexemeValue, ".text"))
             {
+                if(((LEXEME *)(*lexemeQueue)->next->data)->state != RETURN)
+                {
+                    PrintErrorCollection(stateMachine, ((LEXEME*)((*lexemeQueue)->data))->lineNumber, "The section's name, need to be alone on the line.","" ,"");
+                }
                 stateMachine->actualCollection = TEXT;
                 stateMachine->previousState = stateMachine->currentState;
                 stateMachine->currentState = INIT_COLLECTION;
             }
             else if(!strcmp(lexemeValue, ".bss"))
             {
+                if(((LEXEME *)(*lexemeQueue)->next->data)->state != RETURN)
+                {
+                    PrintErrorCollection(stateMachine, ((LEXEME*)((*lexemeQueue)->data))->lineNumber, "The section's name, need to be alone on the line.","" ,"");
+                }
                 stateMachine->actualCollection = BSS;
                 stateMachine->previousState = stateMachine->currentState;
                 stateMachine->currentState = INIT_COLLECTION;
             }
             else if(!strcmp(lexemeValue, ".data"))
             {
+                if(((LEXEME *)(*lexemeQueue)->next->data)->state != RETURN)
+                {
+                    PrintErrorCollection(stateMachine, ((LEXEME*)((*lexemeQueue)->data))->lineNumber, "The section's name, need to be alone on the line.","" ,"");
+                }
                 stateMachine->actualCollection = DATA;
                 stateMachine->previousState = stateMachine->currentState;
                 stateMachine->currentState = INIT_COLLECTION;
@@ -564,7 +576,10 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
                             {
                                 FILE* file = fopen("src/DicoPseudoInstruct.txt", "r");
                                 SECTION section;
-                                printf("%d\n",FindPseudoInstruction((char*)((LEXEME*)popedLexeme->data)->value, &file, &section));
+                                if(!FindPseudoInstruction((char*)((LEXEME*)popedLexeme->data)->value, &file, &section))
+                                {
+                                    PrintErrorCollection(stateMachine, lineNumber, "Error in pseudo instruction:","" , (char*)((LEXEME*)popedLexeme->data)->value);                                    
+                                }
                                 QUEUE_DOUBLE concatenateList = CreateListDouble();
                                 CreateNewListLexeme(&file, &concatenateList, &section);
                                 ConcatenateListDouble(lexemeQueue, &concatenateList);
