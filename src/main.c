@@ -15,6 +15,7 @@
 #include "AssemblerTreatment.h"
 #include "PseudoInstruction.h"
 #include "BitTreatment.h"
+#include "SymbolTreatment.h"
 
 int main(int argc, char *argv[])
 {
@@ -90,6 +91,11 @@ Bit field treatment
   bss = make_bss_section((int)BitBssTreatment(collections.collection[BSS]));
 
   text = make_text_section((int*)field.bitField, field.size);
+  // RELOC_TAB textReloc = CreateRelocTab(relocationTable.relocationText, symtab, shstrtab, strtab);
+  // RELOC_TAB dataReloc = CreateRelocTab(relocationTable.relocationData, symtab, shstrtab, strtab);
+
+  // reltext  = make_rel32_section( ".rel.text", textReloc.table,textReloc.size);
+  // reldata  = make_rel32_section( ".rel.data", dataReloc.table,dataReloc.size);
 
   if (!text)
   {
@@ -100,14 +106,20 @@ Bit field treatment
   print_section(shstrtab);
   print_section(text);
   print_section(bss);
+  // print_section(reltext);
+  // print_section(reldata);
 
   del_section(shstrtab);
   del_section(text);
   del_section(bss);
+  // del_section(reltext);
+  // del_section(reldata);
 
   free(dictionary);
   
   free(field.bitField);
+  // free(textReloc.table);
+  // free(dataReloc.table);
 
   ErasedCollectionLists(&collections);
 

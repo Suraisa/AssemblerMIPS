@@ -11,9 +11,9 @@ char* collectionType[8] = {
     "INSTRUCTION1"};
 
 char* collectionSection[4] = {
-    "TEXT",
-    "DATA",
-    "BSS",
+    ".text",
+    ".data",
+    ".bss",
     "UNDEF"};
 
 void InitializeCollectionLists(COLLECTION_LISTS* collections)
