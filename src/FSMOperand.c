@@ -296,6 +296,7 @@ int IsBaseOffset(LIST_DOUBLE* listLexeme)
     int findSign = 0;
     int sign = 1;
     int isCorrect = 0;
+    int index = 0;
 
     if(SizeListDouble(listOperand) > 5)
         return 0;
@@ -304,6 +305,7 @@ int IsBaseOffset(LIST_DOUBLE* listLexeme)
     {
         if(findSign && ((LEXEME *)listOperand->prev->data)->state == OPERATOR)
         {
+            index--;
             firstNode = listOperand;
             ErasedInFrontDouble(listLexeme);
         }
@@ -328,9 +330,8 @@ int IsBaseOffset(LIST_DOUBLE* listLexeme)
                 if(findSign)
                     return 0;
 
-                if(((LEXEME *)listOperand->prev->data)->state != PARENTHESISRIGHT)
+                if(((LEXEME *)listOperand->next->data)->state != DECIMAL && ((LEXEME *)listOperand->next->data)->state != HEXADECIMAL)
                     return 0;
-
                 if(*(char*)lexeme.value == '-')
                 {
                     sign = -1;
@@ -340,10 +341,7 @@ int IsBaseOffset(LIST_DOUBLE* listLexeme)
             }
             case HEXADECIMAL:
             case DECIMAL:
-            {
-                if(((LEXEME *)listOperand->prev->data)->state != PARENTHESISRIGHT && !findSign)
-                    return 0;
-                
+            {   
                 if(sign == 1)
                 {
                     if(*(int*)lexeme.value > SHRT_MAX)
@@ -354,31 +352,49 @@ int IsBaseOffset(LIST_DOUBLE* listLexeme)
                     if(*(int*)lexeme.value > -SHRT_MIN)
                         return 0;
                 }
+                if(SizeListDouble(listOperand) == index+1)
+                {
+                    CreateNewBaseOffset(listLexeme);
+                }
+                if(((LEXEME *)listOperand->next->data)->state != PARENTHESISLEFT && !findSign)
+                    return 0;
+
                 break;
             }
             case PARENTHESISLEFT:
             {
-                if (((LEXEME *)listOperand->prev->data)->state != HEXADECIMAL && ((LEXEME *)listOperand->prev->data)->state != DECIMAL && ((LEXEME *)listOperand->prev->data)->state != SYMBOL)
+                if (((LEXEME *)listOperand->next->data)->state != REGISTER)
                     return 0;
                 break;
             }
             case REGISTER:
             {
-                if(((LEXEME *)listOperand->prev->data)->state != PARENTHESISLEFT)
+                if(((LEXEME *)listOperand->next->data)->state != PARENTHESISRIGHT)
                     return 0;
                 break;
             }
             case PARENTHESISRIGHT:
             {
-                if(((LEXEME *)listOperand->prev->data)->state != REGISTER)
+                if(((LEXEME *)listOperand->next->data)->state != OPERATOR && ((LEXEME *)listOperand->next->data)->state != HEXADECIMAL && ((LEXEME *)listOperand->next->data)->state != DECIMAL)
                     return 0;
                 
                 isCorrect = 1;
                 break;
             }
         }
+        index++;
         listOperand = listOperand->next;
     }while (firstNode != listOperand);
     *(long int*)((LEXEME *)(*listLexeme)->data)->value *= sign;
     return isCorrect;
+}
+
+void CreateNewBaseOffset(QUEUE_DOUBLE* lexemeQueue)
+{
+    FILE* file = fopen("src/CreateBaseOffset.txt", "r");
+    QUEUE_DOUBLE concatenateList = CreateListDouble();
+    CreateNewListLexeme(&file, &concatenateList, NULL);
+    ConcatenateListDouble(lexemeQueue, &concatenateList);
+    (*lexemeQueue)->next = concatenateList;
+    fclose(file);
 }

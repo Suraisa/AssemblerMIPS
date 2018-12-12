@@ -33,10 +33,10 @@ help:
 
 
 $(objdir)/%.o : $(src)/%.c
-	$(CC) -c -g -I$(inc) -o $@ $<
+	$(CC) -c -g3 -I$(inc) -o $@ $<
 
 $(objdir)/%.o : $(test)/%.c
-	$(CC) -c -g -I$(inc) -o $@ $<
+	$(CC) -c -g3 -I$(inc) -o $@ $<
 
 debug: $(obj)
 	$(CC) -o $(DEBUG) $^ $(LDFLAGS)

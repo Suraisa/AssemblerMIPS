@@ -95,11 +95,11 @@ Bit field treatment
   bss = make_bss_section((int)BitBssTreatment(collections.collection[BSS]));
 
   text = make_text_section((int*)field.bitField, field.size);
-  // RELOC_TAB textReloc = CreateRelocTab(relocationTable.relocationText, symtab, shstrtab, strtab);
-  // RELOC_TAB dataReloc = CreateRelocTab(relocationTable.relocationData, symtab, shstrtab, strtab);
+  RELOC_TAB textReloc = CreateRelocTab(relocationTable.relocationText, symtab, shstrtab, strtab);
+  RELOC_TAB dataReloc = CreateRelocTab(relocationTable.relocationData, symtab, shstrtab, strtab);
 
-  // reltext  = make_rel32_section( ".rel.text", textReloc.table,textReloc.size);
-  // reldata  = make_rel32_section( ".rel.data", dataReloc.table,dataReloc.size);
+  reltext  = make_rel32_section( ".rel.text", textReloc.table,textReloc.size);
+  reldata  = make_rel32_section( ".rel.data", dataReloc.table,dataReloc.size);
 
   if (!text)
   {
@@ -112,22 +112,22 @@ Bit field treatment
   print_section(bss);
   print_section(strtab);
   print_section(symtab);
-  // print_section(reltext);
-  // print_section(reldata);
+  print_section(reltext);
+  print_section(reldata);
 
   del_section(shstrtab);
   del_section(text);
   del_section(bss);
   del_section(strtab);
   del_section(symtab);
-  // del_section(reltext);
-  // del_section(reldata);
+  del_section(reltext);
+  del_section(reldata);
 
   free(dictionary);
   
   free(field.bitField);
-  // free(textReloc.table);
-  // free(dataReloc.table);
+  free(textReloc.table);
+  free(dataReloc.table);
 
   ErasedListDouble(&allLabel);
 

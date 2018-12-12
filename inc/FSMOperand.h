@@ -80,4 +80,6 @@ int IsShiftAmount(LIST_DOUBLE* listLexeme);
  */
 void OperandFSM(FSM_STATE_OPERAND* fsm, LIST_DOUBLE* listOperand);
 
+void CreateNewBaseOffset(QUEUE_DOUBLE* lexemeQueue);
+
 #endif

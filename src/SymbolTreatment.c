@@ -15,6 +15,7 @@ RELOC_TAB CreateRelocTab(LIST_DOUBLE relocList, section symtab, section shstrtab
     LIST_DOUBLE firstNode = relocList;
     LIST_DOUBLE slider = firstNode;
     LINKRELOCATION* relocElement;
+    int r_info;
     int index = 0;
 
     do
@@ -42,6 +43,7 @@ Elf32_Sym* CreateSymbol(section strtab, section shstrtab, SYM_ELEMENT* element, 
 {
     int index;
     int type;
+    int shndx;
     Elf32_Sym* symTableElements = malloc(size*sizeof(Elf32_Sym));
     for (index = 0; index<size; index++)
     {
@@ -49,9 +51,10 @@ Elf32_Sym* CreateSymbol(section strtab, section shstrtab, SYM_ELEMENT* element, 
         symTableElements[index].st_size = 0;
         symTableElements[index].st_value = element[index].shift;
         type = element[index].undef ? STB_GLOBAL : STB_LOCAL;
+        shndx = element[index].undef ? SHN_UNDEF : elf_get_string_index( shstrtab->start, shstrtab->sz, collectionSection[element[index].sectionType] );
         symTableElements[index].st_info = ELF32_ST_INFO( type, STT_NOTYPE );
         symTableElements[index].st_other = 0;
-        symTableElements[index].st_shndx = elf_get_string_index( shstrtab->start, shstrtab->sz, collectionSection[element[index].sectionType] );
+        symTableElements[index].st_shndx = shndx;
     }
     return symTableElements;
 }
