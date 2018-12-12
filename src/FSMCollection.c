@@ -69,7 +69,7 @@ void InitCollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue)
     }
 }
 
-void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLLECTION_LISTS* collections, INSTRUCTION* instructionDictionary, PSEUDO_INSTRUCTION* pseudoDictionary)
+void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLLECTION_LISTS* collections, INSTRUCTION* instructionDictionary, PSEUDO_INSTRUCTION* pseudoDictionary, LIST_DOUBLE* allSymbol)
 {
     switch (stateMachine->currentState)
     {
@@ -79,7 +79,7 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
             if (stateMachine->currentState != INIT_COLLECTION)
             {
                 stateMachine->inState = 0;
-                CollectionFsm(stateMachine, lexemeQueue, collections, instructionDictionary, pseudoDictionary);
+                CollectionFsm(stateMachine, lexemeQueue, collections, instructionDictionary, pseudoDictionary, allSymbol);
                 break;
             }
             ErasedInFrontDouble(lexemeQueue);
@@ -543,13 +543,15 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
                 if(!IsEmptyDouble(*lexemeQueue) && ((LEXEME *)(*lexemeQueue)->data)->state == COLON)
                 {
                     SECTION section = CreateLabelSection(*stateMachine, &popedLexeme);
-                    if(!AddHashTable(&(collections->labelTable), &section))
+                    SYM_TREATMENT sectionAdded;
+                    if(!(sectionAdded.symbolSection = AddHashTable(&(collections->labelTable), &section)))
                     {
                         PrintErrorCollection(stateMachine, lineNumber, "Two label with the same name","" , (char*)((LEXEME*)popedLexeme->data)->value);
-                    
                     }
                     else
                     {
+                        sectionAdded.undef = 0;
+                        AddAtLastDouble(allSymbol, &sectionAdded, NULL, NULL, sizeof(sectionAdded));
                         stateMachine->previousState = stateMachine->currentState;
                         stateMachine->currentState = INIT_COLLECTION;
                     }

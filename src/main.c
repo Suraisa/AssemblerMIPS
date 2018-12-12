@@ -50,8 +50,9 @@ Collections' treatment
   PSEUDO_INSTRUCTION* pseudoDictionary;
   COLLECTION_FSM collectionStateMachine;
   COLLECTION_LISTS collections;
+  LIST_DOUBLE allLabel;
 
-  if(!CollectionPass(&dictionary, &pseudoDictionary, &lexemeQueue, &collectionStateMachine, &collections))
+  if(!CollectionPass(&dictionary, &pseudoDictionary, &lexemeQueue, &collectionStateMachine, &collections, &allLabel))
     return 1;
   
   free(pseudoDictionary);
@@ -63,20 +64,15 @@ Rallocations' treatment
 
   RELOCATIONTABLE relocationTable = CreateRelocationTable();
 
-  UpdateRelocationTable(&relocationTable, collections.labelTable, &collections, dictionary);
+  UpdateRelocationTable(&relocationTable, collections.labelTable, &collections, dictionary, &allLabel);
 
   DisplayRelocationTable(relocationTable);
-  
-  LabelTreatment(&collections, dictionary);
-  DisplayCollectionLists(collections);
 
 /*
 -------------------
 Bit field treatment
 -------------------
 */
-
-  SECTION_FIELD field = BitInstructionTreatment(dictionary, collections.collection[TEXT]);
 
   section     text = NULL;
   section     data = NULL;
@@ -88,6 +84,14 @@ Bit field treatment
   section  reldata = NULL;
 
   shstrtab = make_shstrtab_section();
+
+  CreateSymStrTab(allLabel, &symtab, shstrtab, &strtab);
+
+  LabelTreatment(&collections, dictionary);
+  // DisplayCollectionLists(collections);
+
+  SECTION_FIELD field = BitInstructionTreatment(dictionary, collections.collection[TEXT]);
+
   bss = make_bss_section((int)BitBssTreatment(collections.collection[BSS]));
 
   text = make_text_section((int*)field.bitField, field.size);
@@ -106,12 +110,16 @@ Bit field treatment
   print_section(shstrtab);
   print_section(text);
   print_section(bss);
+  print_section(strtab);
+  print_section(symtab);
   // print_section(reltext);
   // print_section(reldata);
 
   del_section(shstrtab);
   del_section(text);
   del_section(bss);
+  del_section(strtab);
+  del_section(symtab);
   // del_section(reltext);
   // del_section(reldata);
 
@@ -120,6 +128,8 @@ Bit field treatment
   free(field.bitField);
   // free(textReloc.table);
   // free(dataReloc.table);
+
+  ErasedListDouble(&allLabel);
 
   ErasedCollectionLists(&collections);
 

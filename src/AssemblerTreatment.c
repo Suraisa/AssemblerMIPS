@@ -63,9 +63,11 @@ int LexemePass(FILE** readingFile, QUEUE_DOUBLE* lexemeQueue)
     return 1;
 }
 
-int CollectionPass(INSTRUCTION** dictionary, PSEUDO_INSTRUCTION** pseudoDictionary, LIST_DOUBLE* lexemeQueue, COLLECTION_FSM* collectionStateMachine, COLLECTION_LISTS* collections)
+int CollectionPass(INSTRUCTION** dictionary, PSEUDO_INSTRUCTION** pseudoDictionary, LIST_DOUBLE* lexemeQueue, COLLECTION_FSM* collectionStateMachine, COLLECTION_LISTS* collections, LIST_DOUBLE* allSymbol)
 {
     printf("\n\nCollections' treatment:\n\n");
+
+    *allSymbol = CreateListDouble();
 
     if(!(*dictionary = InitializeDicoInstruct("src/DicoInstruct.txt")))
     {
@@ -92,7 +94,7 @@ int CollectionPass(INSTRUCTION** dictionary, PSEUDO_INSTRUCTION** pseudoDictiona
 
     while(!IsEmptyDouble(*lexemeQueue))
     {
-        CollectionFsm(collectionStateMachine, lexemeQueue, collections, *dictionary,*pseudoDictionary);
+        CollectionFsm(collectionStateMachine, lexemeQueue, collections, *dictionary,*pseudoDictionary, allSymbol);
     }
 
     if(collectionStateMachine->error)

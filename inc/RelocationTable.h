@@ -5,6 +5,7 @@
 #include "Section.h"
 #include "FSMOperand.h"
 #include "Lexeme.h"
+#include "FSMCollection.h"
 
 typedef enum
 {
@@ -66,7 +67,7 @@ void DisplayRelocationTable(RELOCATIONTABLE relocationTable);
  * @brief Update of the relocation's table of text.
  *
  */
-void UpdateRelocationText(LIST_DOUBLE* relocationList, SECTION** section, LIST_DOUBLE *hash, INSTRUCTION* dicoInstruct);
+void UpdateRelocationText(LIST_DOUBLE* relocationList, SECTION** section, LIST_DOUBLE *hash, INSTRUCTION* dicoInstruct, LIST_DOUBLE* allSymbol);
 
 /**
  * @param relocationList Pointer on a list of relocation to update it.
@@ -74,7 +75,7 @@ void UpdateRelocationText(LIST_DOUBLE* relocationList, SECTION** section, LIST_D
  * @brief Update of the relocation's table of data.
  *
  */
-void UpdateRelocationData(LIST_DOUBLE* relocationList, SECTION** section, LIST_DOUBLE *hash);
+void UpdateRelocationData(LIST_DOUBLE* relocationList, SECTION** section, LIST_DOUBLE *hash, LIST_DOUBLE* allSymbol);
 
 /**
  * @param relocationTable Table of relocation which contain the text' table and the data's table.
@@ -83,7 +84,7 @@ void UpdateRelocationData(LIST_DOUBLE* relocationList, SECTION** section, LIST_D
  * @brief Update of the relocation's table.
  *
  */
-void UpdateRelocationTable(RELOCATIONTABLE* relocationTable, LIST_DOUBLE *hash, COLLECTION_LISTS* collectionsList, INSTRUCTION* dicoInstruct);
+void UpdateRelocationTable(RELOCATIONTABLE* relocationTable, LIST_DOUBLE *hash, COLLECTION_LISTS* collectionsList, INSTRUCTION* dicoInstruct, LIST_DOUBLE* allSymbol);
 
 /**
  * @param relocationTable Pointer on the table of relocation.

@@ -52,6 +52,8 @@ typedef struct
 
 #include "Section.h"
 #include "PseudoInstruction.h"
+#include "SymbolTreatment.h"
+
 
 int InitializationCollection(COLLECTION_LISTS* collectionLists);
 
@@ -78,7 +80,7 @@ void InitCollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue);
  * @brief It's the Init stateMachine which change the stateMachine's state to the right one.
  * 
  */
-void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLLECTION_LISTS* collections, INSTRUCTION* instructionDictionary, PSEUDO_INSTRUCTION* pseudoDictionary);
+void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLLECTION_LISTS* collections, INSTRUCTION* instructionDictionary, PSEUDO_INSTRUCTION* pseudoDictionary, LIST_DOUBLE* allSymbol);
 
 /**
  * @param stateMachine COLLECTION_FSM* to change the error state and the inState state.

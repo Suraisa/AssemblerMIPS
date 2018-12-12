@@ -170,7 +170,6 @@ SECTION_FIELD BitInstructionTreatment(INSTRUCTION* dictionary, LIST_DOUBLE instr
             indexOperand++;
         }
         SwapCode(instBitTreatment.bitField[indexSlider].code);
-        printf("%s %08x\n", dicoInstruct.id, instBitTreatment.bitField[indexSlider].intInst);
         indexRegister = 0;
         indexOperand = 0;    
         indexRegisterDico = 0;  

@@ -54,11 +54,12 @@ void DisplayRelocationTable(RELOCATIONTABLE relocationTable)
     printf("\n%s\n", separator);
 }
 
-void UpdateRelocationText(LIST_DOUBLE* relocationList, SECTION** section, LIST_DOUBLE *hash, INSTRUCTION* dicoInstruct){
+void UpdateRelocationText(LIST_DOUBLE* relocationList, SECTION** section, LIST_DOUBLE *hash, INSTRUCTION* dicoInstruct, LIST_DOUBLE* allSymbol){
   int index;
   MIPS_TYPE rMips;
   SECTION* dataSection;
   OPERAND_TYPE operandType;
+  SYM_TREATMENT symbolAdded;
   for (index=0 ; index<3 ; index++){
     if ((**section).data.instruction.lexemeList[index]){
       if (((LEXEME*)(**section).data.instruction.lexemeList[index]->data)->state == SYMBOL){
@@ -97,6 +98,9 @@ void UpdateRelocationText(LIST_DOUBLE* relocationList, SECTION** section, LIST_D
         }
         if (!dataSection){
           FillRelocationList(relocationList, UNDEF, (**section).shift, rMips);
+          symbolAdded.symbolSection = *section;
+          symbolAdded.undef = 1;
+          AddAtLastDouble(allSymbol, &symbolAdded, NULL, NULL, sizeof(symbolAdded));
         }
         else{
           FillRelocationList(relocationList, dataSection->data.label.section, (**section).shift, rMips);
@@ -106,11 +110,15 @@ void UpdateRelocationText(LIST_DOUBLE* relocationList, SECTION** section, LIST_D
   }
 }
 
-void UpdateRelocationData(LIST_DOUBLE* relocationList, SECTION** section, LIST_DOUBLE *hash){
+void UpdateRelocationData(LIST_DOUBLE* relocationList, SECTION** section, LIST_DOUBLE *hash, LIST_DOUBLE* allSymbol){
+  SYM_TREATMENT symbolAdded;
   if (((LEXEME*)((**section).data.directiveValue->data))->state == SYMBOL){
     SECTION* dataSection = IsInHashTable(hash,(char*)(((LEXEME*)(**section).data.directiveValue->data)->value));
     if (!dataSection){
       FillRelocationList(relocationList, UNDEF, (**section).shift, R_MIPS_32);
+      symbolAdded.symbolSection = *section;
+      symbolAdded.undef = 1;
+      AddAtLastDouble(allSymbol, &symbolAdded, NULL, NULL, sizeof(symbolAdded));
     }
     else{
       FillRelocationList(relocationList, dataSection->data.label.section, (**section).shift, R_MIPS_32);
@@ -118,7 +126,7 @@ void UpdateRelocationData(LIST_DOUBLE* relocationList, SECTION** section, LIST_D
   }
 }
 
-void UpdateRelocationTable(RELOCATIONTABLE* relocationTable, LIST_DOUBLE *hash, COLLECTION_LISTS* collectionsList, INSTRUCTION* dicoInstruct){
+void UpdateRelocationTable(RELOCATIONTABLE* relocationTable, LIST_DOUBLE *hash, COLLECTION_LISTS* collectionsList, INSTRUCTION* dicoInstruct, LIST_DOUBLE* allSymbol){
   int i;
   for(i = 0; i<2; i++)
   {
@@ -137,7 +145,7 @@ void UpdateRelocationTable(RELOCATIONTABLE* relocationTable, LIST_DOUBLE *hash, 
       case TEXT :
         do
         {
-          UpdateRelocationText(&(*relocationTable).relocationText, section, hash, dicoInstruct);
+          UpdateRelocationText(&(*relocationTable).relocationText, section, hash, dicoInstruct, allSymbol);
           slider = slider->next;
           section = (SECTION**)&slider->data;
         }while(slider != firstNode);
@@ -145,7 +153,7 @@ void UpdateRelocationTable(RELOCATIONTABLE* relocationTable, LIST_DOUBLE *hash, 
       case DATA :
         do
         {
-          UpdateRelocationData(&(*relocationTable).relocationData, section, hash);
+          UpdateRelocationData(&(*relocationTable).relocationData, section, hash, allSymbol);
           slider = slider->next;
           section = (SECTION**)&slider->data;
         }while(slider != firstNode);

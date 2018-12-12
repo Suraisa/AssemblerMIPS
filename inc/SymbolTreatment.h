@@ -9,9 +9,22 @@
 
 typedef struct
 {
-    Elf32_Sym* table;
+    void* symbolSection;
+    int undef;
+}SYM_TREATMENT;
+
+typedef struct
+{
+    unsigned long int shift;
+    int undef;
+    COLLECTIONS sectionType;
+}SYM_ELEMENT;
+
+typedef struct
+{
+    char* table;
     unsigned long int size;
-}SYM_TAB;
+}STR_TAB;
 
 typedef struct
 {
@@ -20,5 +33,11 @@ typedef struct
 }RELOC_TAB;
 
 RELOC_TAB CreateRelocTab(LIST_DOUBLE relocList, section symtab, section shstrtab, section strtab);
+
+SYM_ELEMENT CreateSymbolElement(unsigned long int shift, int undef, COLLECTIONS type);
+
+Elf32_Sym* CreateSymbol(section strtab, section shstrtab, SYM_ELEMENT* element, unsigned long int size, char** allSymbols);
+
+void CreateSymStrTab(LIST_DOUBLE symbolSection, section* symtab, section shstrtab, section* strtab);
 
 #endif

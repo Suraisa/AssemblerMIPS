@@ -14,7 +14,7 @@ void OpenAssembleeFile(int argc, char *argv[], FILE** readingFile);
 
 int LexemePass(FILE** readingFile, QUEUE_DOUBLE* lexemeQueue);
 
-int CollectionPass(INSTRUCTION** dictionary, PSEUDO_INSTRUCTION** pseudoDictionary, LIST_DOUBLE* lexemeQueue, COLLECTION_FSM* collectionStateMachine, COLLECTION_LISTS* collections);
+int CollectionPass(INSTRUCTION** dictionary, PSEUDO_INSTRUCTION** pseudoDictionary, LIST_DOUBLE* lexemeQueue, COLLECTION_FSM* collectionStateMachine, COLLECTION_LISTS* collections, LIST_DOUBLE* allSymbol);
 
 int InstructLabelTreatment(QUEUE_DOUBLE* lexemeQueue, INSTRUCTION* dicoInstruct, LIST_DOUBLE* hash);
 
