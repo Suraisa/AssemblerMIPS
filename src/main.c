@@ -85,10 +85,11 @@ BitinstructField treatment
 
   shstrtab = make_shstrtab_section();
 
-  CreateSymStrTab(allLabel, &symtab, shstrtab, &strtab);
+  char** allSymbolTab = CreateSymStrTab(allLabel, &symtab, shstrtab, &strtab);
+  int numberOfElement = SizeListDouble(allLabel);
 
   LabelTreatment(&collections, dictionary);
-  // DisplayCollectionLists(collections);
+  DisplayCollectionLists(collections);
 
   SECTION_FIELD instructField = BitInstructionTreatment(dictionary, collections.collection[TEXT], collectionStateMachine.nextShift[TEXT]);
   SECTION_FIELD dataField = BitDataTreatment(collections.collection[DATA], collectionStateMachine.nextShift[DATA]);
@@ -97,8 +98,8 @@ BitinstructField treatment
 
   text = make_text_section((int*)instructField.bitField, instructField.size);
   data = make_data_section((int*)dataField.bitField, collectionStateMachine.nextShift[DATA]);
-  RELOC_TAB textReloc = CreateRelocTab(relocationTable.relocationText, symtab, shstrtab, strtab);
-  RELOC_TAB dataReloc = CreateRelocTab(relocationTable.relocationData, symtab, shstrtab, strtab);
+  RELOC_TAB textReloc = CreateRelocTab(relocationTable.relocationText, symtab, shstrtab, strtab, allSymbolTab);
+  RELOC_TAB dataReloc = CreateRelocTab(relocationTable.relocationData, symtab, shstrtab, strtab, allSymbolTab);
 
   reltext  = make_rel32_section( ".rel.text", textReloc.table,textReloc.size);
   reldata  = make_rel32_section( ".rel.data", dataReloc.table,dataReloc.size);
@@ -110,7 +111,7 @@ BitinstructField treatment
   }
 
   char* machine = "mips";
-  char* name = "files/miam_sujet.o";
+  char* name = ChangeExtension(argv[argc-1], ".o");
   int noreorder = 1;
 
   elf_write_relocatable( name, machine, noreorder,
@@ -141,7 +142,10 @@ BitinstructField treatment
   del_section(reltext);
   del_section(reldata);
 
+  ErasedTableString(allSymbolTab, numberOfElement);
+
   free(dictionary);
+  free(name);
   
   free(instructField.bitField);
   free(dataField.bitField);

@@ -9,9 +9,8 @@ boucle:
     BEQ $t0 , $t1 , byebye
     NOP
     addi $t1 , $t1 , 1
-    J boucle
+    J boucle 
     NOP
-    BLT $1,$2,byebye
 byebye:
     JAL viteviteauru
 

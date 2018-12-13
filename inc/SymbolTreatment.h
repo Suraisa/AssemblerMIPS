@@ -32,12 +32,12 @@ typedef struct
     unsigned long int size;
 }RELOC_TAB;
 
-RELOC_TAB CreateRelocTab(LIST_DOUBLE relocList, section symtab, section shstrtab, section strtab);
+RELOC_TAB CreateRelocTab(LIST_DOUBLE relocList, section symtab, section shstrtab, section strtab, char** allSymbol);
 
 SYM_ELEMENT CreateSymbolElement(unsigned long int shift, int undef, COLLECTIONS type);
 
 Elf32_Sym* CreateSymbol(section strtab, section shstrtab, SYM_ELEMENT* element, unsigned long int size, char** allSymbols);
 
-void CreateSymStrTab(LIST_DOUBLE symbolSection, section* symtab, section shstrtab, section* strtab);
+char** CreateSymStrTab(LIST_DOUBLE symbolSection, section* symtab, section shstrtab, section* strtab);
 
 #endif

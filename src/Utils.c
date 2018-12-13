@@ -316,11 +316,38 @@ char* CutString(char* fullString, int start, int length)
     int index; 
     for(index = start; index<start+ length; index++)
     {
-        printf("%d\n", index);
         newString[index-start] = fullString[index];
     }
 
     newString[index-start] = '\0';
 
     return newString;
+}
+
+void ErasedTableString(char** table, int size)
+{
+    int i;
+    for (i = 0; i<size; i++)
+    {
+        free(table[i]);
+    }
+    free(table);
+}
+
+char* ChangeExtension(char* string, char* extension)
+{
+    char valueToFind = '.';
+    int size = 0;
+    int index = 0;
+    while(string[size] != valueToFind)
+    {
+        size++;
+    }
+    char* stringCreated = calloc(size+strlen(extension)+1, sizeof(*stringCreated));
+    for(index = 0; index<size; index++)
+    {
+        stringCreated[index] = string[index];
+    }
+    strcat(stringCreated, extension);
+    return stringCreated;
 }

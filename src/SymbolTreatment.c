@@ -1,6 +1,6 @@
 #include "SymbolTreatment.h"
 
-RELOC_TAB CreateRelocTab(LIST_DOUBLE relocList, section symtab, section shstrtab, section strtab)
+RELOC_TAB CreateRelocTab(LIST_DOUBLE relocList, section symtab, section shstrtab, section strtab, char** allSymbol)
 {
     if(IsEmptyDouble(relocList))
         return (RELOC_TAB){.size = 0, .table = NULL};
@@ -22,7 +22,11 @@ RELOC_TAB CreateRelocTab(LIST_DOUBLE relocList, section symtab, section shstrtab
     {
         relocElement = (LINKRELOCATION*)slider->data;
         relocTable.table[index].r_offset = relocElement->relativeAddress;
-        relocTable.table[index].r_info = ELF32_R_INFO(elf_get_sym_index_from_name(symtab, shstrtab, strtab, collectionSection[relocElement->symbolSection]),relocElement->typeRMIPS);
+        if((r_info = elf_get_sym_index_from_name(symtab, shstrtab, strtab, collectionSection[relocElement->symbolSection])) == -1 && allSymbol != NULL)
+        {
+            r_info = elf_get_sym_index_from_name(symtab, shstrtab, strtab, allSymbol[index+1]);
+        }
+        relocTable.table[index].r_info = ELF32_R_INFO(r_info,relocElement->typeRMIPS);
         index++;
         slider = slider->next;
     }while(slider != firstNode);
@@ -59,13 +63,13 @@ Elf32_Sym* CreateSymbol(section strtab, section shstrtab, SYM_ELEMENT* element, 
     return symTableElements;
 }
 
-void CreateSymStrTab(LIST_DOUBLE symbolSection, section* symtab, section shstrtab, section* strtab)
+char** CreateSymStrTab(LIST_DOUBLE symbolSection, section* symtab, section shstrtab, section* strtab)
 {
     if(IsEmptyDouble(symbolSection))
     {
         *strtab = make_strtab_section(NULL, 0);
         *symtab = make_symtab_section(shstrtab, *strtab, NULL, 0);
-        return;
+        return NULL;
     }
 
     LIST_DOUBLE firstNode = symbolSection;
@@ -90,19 +94,24 @@ void CreateSymStrTab(LIST_DOUBLE symbolSection, section* symtab, section shstrta
                 {
                     indexOperand++;
                 }
-                table[index] = (char*)((LEXEME*)sectionData.instruction.lexemeList[indexOperand]->data)->value;
+                
+                table[index] = malloc(strlen((char*)((LEXEME*)sectionData.instruction.lexemeList[indexOperand]->data)->value)+1);
+                strcpy(table[index], (char*)((LEXEME*)sectionData.instruction.lexemeList[indexOperand]->data)->value);
             }
             else
             {
-                table[index] = (char*)((LEXEME*)sectionData.directiveValue->data)->value;
+                table[index] = malloc(strlen((char*)((LEXEME*)sectionData.directiveValue->data)->value)+1);
+                strcpy(table[index], (char*)((LEXEME*)sectionData.directiveValue->data)->value);
             }
             syms[index] = CreateSymbolElement(0, 1, UNDEF);
         }
         else
         {
             syms[index] = CreateSymbolElement(((SECTION*)((SYM_TREATMENT*)slider->data)->symbolSection)->shift, 0, ((SECTION*)((SYM_TREATMENT*)slider->data)->symbolSection)->data.label.section);
-            table[index] = (char*)((LEXEME*)((SECTION*)((SYM_TREATMENT*)slider->data)->symbolSection)->data.label.lexemeList->data)->value;
+            table[index] = malloc(strlen((char*)((LEXEME*)((SECTION*)((SYM_TREATMENT*)slider->data)->symbolSection)->data.label.lexemeList->data)->value)+1);
+            strcpy(table[index], (char*)((LEXEME*)((SECTION*)((SYM_TREATMENT*)slider->data)->symbolSection)->data.label.lexemeList->data)->value);
         }
+        printf("test %s %d\n",table[index], index);
         index++;
         slider = slider->next;
     }while(slider != firstNode);
@@ -110,6 +119,6 @@ void CreateSymStrTab(LIST_DOUBLE symbolSection, section* symtab, section shstrta
     Elf32_Sym* elf32Sym = CreateSymbol(*strtab, shstrtab, syms, numberOfElement, table);
     *symtab = make_symtab_section(shstrtab, *strtab, elf32Sym, numberOfElement);
     free(elf32Sym);
-    free(table);
     free(syms);
+    return table;
 }

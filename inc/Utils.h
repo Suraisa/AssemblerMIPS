@@ -158,4 +158,8 @@ void ReplaceString(char** fullString, char* replaceString, int start, int end);
  */
 char* CutString(char* fullString, int start, int length);
 
+void ErasedTableString(char** table, int size);
+
+char* ChangeExtension(char* string, char* extension);
+
 #endif

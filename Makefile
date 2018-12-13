@@ -8,6 +8,8 @@ CFLAGS = -Wall -Werror -Wextra
 LDFLAGS = -lm -L$(lib) -lpelf
 doxygenFile = doxyfile
 
+updateLib = 0
+
 RELEASE = assembler.exe
 DEBUG = assembler.dbg
 
@@ -54,6 +56,9 @@ $(test)/test%.exe: $(objWithoutMain) $(objdir)/test%.o
 	$(CC) -o $@ $^ $(LDFLAGS)
 
 allTest: $(testExe)
+
+exportLib:
+	@export LD_LIBRARY_PATH=/home/raphael/Project/AssemblerMIPS/lib/:/usr/local/lib/
 	
 documentation : 
 	doxygen $(doxygenFile)

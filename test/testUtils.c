@@ -48,7 +48,7 @@ int main()
     char* string = malloc(10);
     strcpy(string,"TheString");
 
-    ReplaceString(&string, "test", 3,5);
+    ReplaceString(&string, "test", 5, 5);
     printf("\n%s\n", string);
 
     free(string);
