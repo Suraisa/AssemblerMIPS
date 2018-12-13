@@ -32,4 +32,8 @@
 
 #define HASHCHAR 3
 
+#define OP_INSTRUCT_MAX 3
+
+#define OP_PSEUDO_MAX 9
+
 #endif

@@ -228,17 +228,28 @@ int IsAvailableRegister(char* registerToTest, int** newName)
         }
         return 0;
     }
-    else if ((registerToTest)[0] == 't' && StringSize(registerToTest) == 3)
+    else if (((registerToTest)[0] == 't' || (registerToTest)[0] == 's') && StringSize(registerToTest) == 3)
     {
         if((registerToTest)[1] >= '0' && (registerToTest)[1] <= '9')
         {
             if((registerToTest)[1] <= '7')
             {
-                ChangeRegisterName(newName, (registerToTest)[1] + 8 - '0');
+                if((registerToTest)[0] == 's')
+                {
+                    ChangeRegisterName(newName, (registerToTest)[1] + 16 - '0');
+                }
+                else
+                {
+                    ChangeRegisterName(newName, (registerToTest)[1] + 8 - '0');
+                }
+            }
+            else if((registerToTest)[0] == 't')
+            {
+                ChangeRegisterName(newName, (registerToTest)[1] + 16 - '0');
             }
             else
             {
-                ChangeRegisterName(newName, (registerToTest)[1] + 16 - '0');
+                return 0;
             }
             return 1;
         }

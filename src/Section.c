@@ -43,7 +43,7 @@ SECTION CreateInstructionSection(COLLECTION_STATE state, unsigned long int shift
     section.data.instruction.pseudoInstruction = pseudoInstruction;
 
     int index;
-    for(index = 0; index<3; index++)
+    for(index = 0; index<OP_PSEUDO_MAX; index++)
     {
         section.data.instruction.lexemeList[index] = CreateListDouble();
     }
@@ -94,7 +94,7 @@ int AddOperand(COLLECTION_FSM* stateMachine, SECTION* section, LIST_DOUBLE* full
 {
     int index=0;
 
-    while (index<3 && !IsEmptyDouble(section->data.instruction.lexemeList[index]))
+    while (index<OP_INSTRUCT_MAX && !IsEmptyDouble(section->data.instruction.lexemeList[index]))
     {
         index++;
     }
@@ -196,7 +196,7 @@ void DisplaySection(void* value)
             printf("\nInstruction: %19s\n", section.data.instruction.name);
             printf("Line number: %19lu\n", section.data.instruction.lineNumber);
             int index;
-            for (index = 0; index < 3; index++)
+            for (index = 0; index < OP_INSTRUCT_MAX; index++)
             {
                 if(!IsEmptyDouble(section.data.instruction.lexemeList[index]))
                 {
@@ -241,7 +241,7 @@ void ErasedSection(void* value)
         case INST:
         {
             int index = 0;
-            for (index; index < 3; index++)
+            for (index; index < OP_PSEUDO_MAX; index++)
             {
                 ErasedListDouble(&(*(SECTION*)value).data.instruction.lexemeList[index]);
             }

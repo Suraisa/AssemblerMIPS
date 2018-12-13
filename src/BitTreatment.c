@@ -124,13 +124,13 @@ SECTION_FIELD CreateSectionField(unsigned long int size)
     indexRegisterDico++;\
 }\
 
-SECTION_FIELD BitInstructionTreatment(INSTRUCTION* dictionary, LIST_DOUBLE instructions)
+SECTION_FIELD BitInstructionTreatment(INSTRUCTION* dictionary, LIST_DOUBLE instructions, unsigned long int size)
 {
     if(instructions == NULL)
         return (SECTION_FIELD){.bitField = NULL, .size = 0};
 
 
-    SECTION_FIELD instBitTreatment = CreateSectionField(((SECTION*)instructions->prev->data)->shift/4+1);
+    SECTION_FIELD instBitTreatment = CreateSectionField(size>>2);
     
     LIST_DOUBLE firstNode = instructions;
     LIST_DOUBLE slider = instructions;
@@ -181,11 +181,78 @@ SECTION_FIELD BitInstructionTreatment(INSTRUCTION* dictionary, LIST_DOUBLE instr
     return instBitTreatment;
 }
 
-unsigned long int BitBssTreatment(LIST_DOUBLE bss)
+SECTION_FIELD BitDataTreatment(LIST_DOUBLE data, unsigned long int size)
 {
-    if (IsEmptyDouble(bss))
-        return 0;
+    if(data == NULL)
+        return (SECTION_FIELD){.bitField = NULL, .size = 0};
 
-    SECTION* section = (SECTION*)bss->prev->data;
-    return section->shift + *(long int*)((LEXEME*)section->data.directiveValue->data)->value;
+    SECTION_FIELD dataBitTreatment = CreateSectionField((size + size%4%4)>>2);
+    
+    LIST_DOUBLE firstNode = data;
+    LIST_DOUBLE slider = data;
+    int indexField = 0;
+    int octet = 0;
+    int shift = 0;
+    int counter;
+    do
+    {
+        switch(((SECTION*)slider->data)->state)
+        {
+            case ASCIZZ:
+            {
+                for(counter = 0; counter<strlen(((LEXEME*)((SECTION*)slider->data)->data.directiveValue->data)->value)+1; counter++)
+                {
+                    dataBitTreatment.bitField[indexField].code[octet] = ((char*)((LEXEME*)((SECTION*)slider->data)->data.directiveValue->data)->value)[counter];
+                    octet++;
+                    if(!(octet%4) && octet)
+                    {
+                        octet = 0;
+                        indexField ++;
+                    }
+                }
+                break;
+            }
+            case WORD:
+            {
+                shift = octet%4;
+                if(!shift && octet)
+                {
+                    for (counter = 0; counter<shift%4; counter++)
+                    {
+                        dataBitTreatment.bitField[indexField].code[octet] = 0;
+                        octet++;
+                    }
+                    octet = 0;
+                    indexField ++;
+                }
+                dataBitTreatment.bitField[indexField].intInst = *(long int*)((LEXEME*)((SECTION*)slider->data)->data.directiveValue->data)->value;
+                SwapCode(dataBitTreatment.bitField[indexField].code);
+                indexField ++;
+                break;
+            }
+            case BYTE:
+            {
+                dataBitTreatment.bitField[indexField].code[octet] = *(long int*)((LEXEME*)((SECTION*)slider->data)->data.directiveValue->data)->value;
+                octet++;
+                break;
+            }
+            case SPACE:
+            {
+                for(counter = 0; counter<*(long int*)((LEXEME*)((SECTION*)slider->data)->data.directiveValue->data)->value; counter++)
+                {
+                    dataBitTreatment.bitField[indexField].code[octet] = 0;
+                    octet++;
+                    if(!(octet%4) && octet)
+                    {
+                        octet = 0;
+                        indexField ++;
+                    }
+                }
+                break;
+            }
+        }
+        slider = slider->next;
+    }while(firstNode != slider);
+    
+    return dataBitTreatment;
 }

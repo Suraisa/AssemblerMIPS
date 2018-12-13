@@ -5,6 +5,7 @@
 #include "DoubleQueueGeneric.h"
 #include "FSMOperand.h"
 #include "DicoInstruct.h"
+#include "Global.h"
 
 #ifndef ENUM_COLLECTION
 #define ENUM_COLLECTION
@@ -47,7 +48,7 @@ typedef struct
     int lowerBits;
     unsigned long int lineNumber;
     int pseudoInstruction;
-    QUEUE_DOUBLE lexemeList[3];
+    QUEUE_DOUBLE lexemeList[OP_PSEUDO_MAX];
 } INSTRUCTION_DATA;
 
 typedef struct

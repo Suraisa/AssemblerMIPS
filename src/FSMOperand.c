@@ -375,7 +375,7 @@ int IsBaseOffset(LIST_DOUBLE* listLexeme)
             }
             case PARENTHESISRIGHT:
             {
-                if(((LEXEME *)listOperand->next->data)->state != OPERATOR && ((LEXEME *)listOperand->next->data)->state != HEXADECIMAL && ((LEXEME *)listOperand->next->data)->state != DECIMAL)
+                if(listOperand->next != firstNode)
                     return 0;
                 
                 isCorrect = 1;

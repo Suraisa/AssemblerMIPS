@@ -7,10 +7,12 @@
 #include "Utils.h"
 #include "Lexeme.h"
 #include "FSMLexeme.h"
+#include "Global.h"
+
 typedef struct
 {
     char id[30];
-    char operands[3];
+    char operands[OP_INSTRUCT_MAX];
     int typeNumber;
 } PSEUDO_INSTRUCTION;
 

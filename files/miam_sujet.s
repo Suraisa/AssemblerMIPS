@@ -2,7 +2,7 @@
 # allons au ru
 .set noreorder
 .text
-    Lw $t0 , -0x32
+    Lw $t0 , lunchtime
     LW $6, -200($7)
     ADDI $t1,$zero,8
 boucle:
@@ -19,7 +19,7 @@ byebye:
 lunchtime: 
     .word 12
     .word menu
-    .asciiz "ils : \"au ru!\""
+    .asciiz "ils disent : \"au ru!\""
 .bss 
 menu:
     .space 24

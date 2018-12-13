@@ -91,7 +91,7 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
 
             if(!strcmp(lexemeValue, ".text"))
             {
-                if(((LEXEME *)(*lexemeQueue)->next->data)->state != RETURN)
+                if(!(*lexemeQueue)->next && ((LEXEME *)(*lexemeQueue)->next->data)->state != RETURN && ((LEXEME *)(*lexemeQueue)->next->data)->state != COMMENT)
                 {
                     PrintErrorCollection(stateMachine, ((LEXEME*)((*lexemeQueue)->data))->lineNumber, "The section's name, need to be alone on the line.","" ,"");
                 }
@@ -101,7 +101,7 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
             }
             else if(!strcmp(lexemeValue, ".bss"))
             {
-                if(((LEXEME *)(*lexemeQueue)->next->data)->state != RETURN)
+                if(!(*lexemeQueue)->next && ((LEXEME *)(*lexemeQueue)->next->data)->state != RETURN && ((LEXEME *)(*lexemeQueue)->next->data)->state != COMMENT)
                 {
                     PrintErrorCollection(stateMachine, ((LEXEME*)((*lexemeQueue)->data))->lineNumber, "The section's name, need to be alone on the line.","" ,"");
                 }
@@ -111,7 +111,7 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
             }
             else if(!strcmp(lexemeValue, ".data"))
             {
-                if(((LEXEME *)(*lexemeQueue)->next->data)->state != RETURN)
+                if(!(*lexemeQueue)->next && ((LEXEME *)(*lexemeQueue)->next->data)->state != RETURN && ((LEXEME *)(*lexemeQueue)->next->data)->state != COMMENT)
                 {
                     PrintErrorCollection(stateMachine, ((LEXEME*)((*lexemeQueue)->data))->lineNumber, "The section's name, need to be alone on the line.","" ,"");
                 }
@@ -251,11 +251,8 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
                 case STRING:
                 {
                     int stringSize = StringSize((char*)((LEXEME*)(popedLexeme->data))->value)-1;
+                    (stateMachine->shift)[stateMachine->actualCollection] = (stateMachine->nextShift)[stateMachine->actualCollection];
                     (stateMachine->nextShift)[stateMachine->actualCollection] += stringSize;
-                    if(stringSize >= 18)
-                        {
-                            PrintErrorCollection(stateMachine, ((LEXEME*)(popedLexeme->data))->lineNumber, "The size of the string is too big","" ,((LEXEME*)(popedLexeme->data))->type);
-                        }
                     if(IsEmptyDouble(*lexemeQueue))
                     {
                         (stateMachine->nextShift)[stateMachine->actualCollection] += 1;

@@ -222,7 +222,7 @@ void LexemeFsm(char *readingChar, QUEUE_DOUBLE *lexemeQueue, LIST_DOUBLE *readin
         }
         else
         {
-            if (*readingChar == '\n' || *readingChar == '\t' || *readingChar == ' ')
+            if (*readingChar == '\n' || *readingChar == '\t' || *readingChar == ' ' || *readingChar == '#')
             {
                 LexemeTreatment(lexemeQueue, stateMachine->currentState, readingValue, *lineNumber);
                 stateMachine->currentState = INIT;
@@ -303,13 +303,13 @@ void LexemeFsm(char *readingChar, QUEUE_DOUBLE *lexemeQueue, LIST_DOUBLE *readin
     }
     default:
     {
-        if (CharIsNumberLetter(*readingChar))
+        if (CharIsNumberLetter(*readingChar) || *readingChar == '-' || *readingChar == '_')
         {
             AddInFrontDouble(readingValue, readingChar, &DisplayChar, NULL, sizeof(char));
         }
         else
         {
-            if (*readingChar == '\n' || *readingChar == '\t' || *readingChar == ' ' || *readingChar == ':' || *readingChar == '(')
+            if (*readingChar == '\n' || *readingChar == '\t' || *readingChar == ' ' || *readingChar == ':' || *readingChar == '(' || *readingChar == '#')
             {
                 LexemeTreatment(lexemeQueue, stateMachine->currentState, readingValue, *lineNumber);
                 stateMachine->currentState = INIT;
@@ -348,6 +348,7 @@ void RegisterTreatment(QUEUE_DOUBLE* lexemeQueue, LEXEME_FSM *stateMachine, LIST
         int* registerName;
         if(!IsAvailableRegister(stringValue, &registerName))
         {
+            printf("%s", stringValue);
             PrintError(stateMachine, *lineNumber, "Invalid Register", '\0', definedType[stateMachine->currentState]);
         }
         else

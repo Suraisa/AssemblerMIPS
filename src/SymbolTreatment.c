@@ -62,7 +62,11 @@ Elf32_Sym* CreateSymbol(section strtab, section shstrtab, SYM_ELEMENT* element, 
 void CreateSymStrTab(LIST_DOUBLE symbolSection, section* symtab, section shstrtab, section* strtab)
 {
     if(IsEmptyDouble(symbolSection))
+    {
+        *strtab = make_strtab_section(NULL, 0);
+        *symtab = make_symtab_section(shstrtab, *strtab, NULL, 0);
         return;
+    }
 
     LIST_DOUBLE firstNode = symbolSection;
     LIST_DOUBLE slider = firstNode;

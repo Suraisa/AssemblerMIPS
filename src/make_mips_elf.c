@@ -99,7 +99,7 @@ section make_data_section( int data_prog[], int nb_data ) {
     section        data = new_section( ".data", SECTION_CHUNK_SZ );
 
     if (nb_data>0) {
-        write_section( data, (unsigned char *)(data_prog), sizeof(*data_prog)*nb_data, 0);
+        write_section( data, (unsigned char *)(data_prog), nb_data, 0);
     }
     return data;
 }

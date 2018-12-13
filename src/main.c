@@ -70,7 +70,7 @@ Rallocations' treatment
 
 /*
 -------------------
-Bit field treatment
+BitinstructField treatment
 -------------------
 */
 
@@ -90,11 +90,13 @@ Bit field treatment
   LabelTreatment(&collections, dictionary);
   // DisplayCollectionLists(collections);
 
-  SECTION_FIELD field = BitInstructionTreatment(dictionary, collections.collection[TEXT]);
+  SECTION_FIELD instructField = BitInstructionTreatment(dictionary, collections.collection[TEXT], collectionStateMachine.nextShift[TEXT]);
+  SECTION_FIELD dataField = BitDataTreatment(collections.collection[DATA], collectionStateMachine.nextShift[DATA]);
 
-  bss = make_bss_section((int)BitBssTreatment(collections.collection[BSS]));
+  bss = make_bss_section((int)collectionStateMachine.nextShift[BSS]);
 
-  text = make_text_section((int*)field.bitField, field.size);
+  text = make_text_section((int*)instructField.bitField, instructField.size);
+  data = make_data_section((int*)dataField.bitField, collectionStateMachine.nextShift[DATA]);
   RELOC_TAB textReloc = CreateRelocTab(relocationTable.relocationText, symtab, shstrtab, strtab);
   RELOC_TAB dataReloc = CreateRelocTab(relocationTable.relocationData, symtab, shstrtab, strtab);
 
@@ -107,8 +109,23 @@ Bit field treatment
     return -1;
   }
 
+  char* machine = "mips";
+  char* name = "files/miam_sujet.o";
+  int noreorder = 1;
+
+  elf_write_relocatable( name, machine, noreorder,
+                           text->start, text->sz,
+                           data->start, data->sz,
+                           bss->start, bss->sz,
+                           shstrtab->start, shstrtab->sz,
+                           strtab->start, strtab->sz,
+                           symtab->start, symtab->sz,
+                           reltext->start, reltext->sz,
+                           reldata->start, reldata->sz);
+
   print_section(shstrtab);
   print_section(text);
+  print_section(data);
   print_section(bss);
   print_section(strtab);
   print_section(symtab);
@@ -117,6 +134,7 @@ Bit field treatment
 
   del_section(shstrtab);
   del_section(text);
+  del_section(data);
   del_section(bss);
   del_section(strtab);
   del_section(symtab);
@@ -125,7 +143,8 @@ Bit field treatment
 
   free(dictionary);
   
-  free(field.bitField);
+  free(instructField.bitField);
+  free(dataField.bitField);
   free(textReloc.table);
   free(dataReloc.table);
 

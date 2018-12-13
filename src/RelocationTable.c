@@ -60,7 +60,7 @@ void UpdateRelocationText(LIST_DOUBLE* relocationList, SECTION** section, LIST_D
   SECTION* dataSection;
   OPERAND_TYPE operandType;
   SYM_TREATMENT symbolAdded;
-  for (index=0 ; index<3 ; index++){
+  for (index=0 ; index<OP_INSTRUCT_MAX ; index++){
     if ((**section).data.instruction.lexemeList[index]){
       if (((LEXEME*)(**section).data.instruction.lexemeList[index]->data)->state == SYMBOL){
         dataSection = IsInHashTable(hash,((char*)((LEXEME*)(**section).data.instruction.lexemeList[index]->data)->value));
