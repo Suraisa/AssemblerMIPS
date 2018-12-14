@@ -354,6 +354,9 @@ char* ChangeExtension(char* string, char* extension)
 
 int StringInList(LIST_DOUBLE list, char* string)
 {
+    if(IsEmptyDouble(list))
+        return 0;
+    
     LIST_DOUBLE firstNode = list;
     LIST_DOUBLE slider = firstNode;
     int isIn = 0;

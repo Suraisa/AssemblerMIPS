@@ -22,10 +22,9 @@ RELOC_TAB CreateRelocTab(LIST_DOUBLE relocList, section symtab, section shstrtab
     {
         relocElement = (LINKRELOCATION*)slider->data;
         relocTable.table[index].r_offset = relocElement->relativeAddress;
-        printf("%d\n", relocElement->relativeAddress);
         if((r_info = elf_get_sym_index_from_name(symtab, shstrtab, strtab, collectionSection[relocElement->symbolSection])) == -1 && allSymbol != NULL)
         {
-            r_info = elf_get_sym_index_from_name(symtab, shstrtab, strtab, allSymbol[index+1]);
+            r_info = elf_get_sym_index_from_name(symtab, shstrtab, strtab, (char*)relocElement->string);
         }
         relocTable.table[index].r_info = ELF32_R_INFO(r_info,relocElement->typeRMIPS);
         index++;

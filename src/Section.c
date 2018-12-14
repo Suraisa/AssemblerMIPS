@@ -39,7 +39,7 @@ SECTION CreateInstructionSection(COLLECTION_STATE state, unsigned long int shift
     section.data.instruction.name = instructionName;
     section.data.instruction.dicoIndex = dicoIndex;
     section.data.instruction.lineNumber = lineNumber;
-    section.data.instruction.lowerBits = 1;
+    section.data.instruction.lowerBits = 0;
     section.data.instruction.pseudoInstruction = pseudoInstruction;
 
     int index;
