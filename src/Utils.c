@@ -351,3 +351,18 @@ char* ChangeExtension(char* string, char* extension)
     strcat(stringCreated, extension);
     return stringCreated;
 }
+
+int StringInList(LIST_DOUBLE list, char* string)
+{
+    LIST_DOUBLE firstNode = list;
+    LIST_DOUBLE slider = firstNode;
+    int isIn = 0;
+    do
+    {
+        if(!strcmp((char*)slider->data, string))
+            return 1;
+
+        slider = slider->next;
+    }while(slider != firstNode );
+    return 0;
+}

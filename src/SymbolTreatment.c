@@ -22,6 +22,7 @@ RELOC_TAB CreateRelocTab(LIST_DOUBLE relocList, section symtab, section shstrtab
     {
         relocElement = (LINKRELOCATION*)slider->data;
         relocTable.table[index].r_offset = relocElement->relativeAddress;
+        printf("%d\n", relocElement->relativeAddress);
         if((r_info = elf_get_sym_index_from_name(symtab, shstrtab, strtab, collectionSection[relocElement->symbolSection])) == -1 && allSymbol != NULL)
         {
             r_info = elf_get_sym_index_from_name(symtab, shstrtab, strtab, allSymbol[index+1]);
@@ -111,7 +112,6 @@ char** CreateSymStrTab(LIST_DOUBLE symbolSection, section* symtab, section shstr
             table[index] = malloc(strlen((char*)((LEXEME*)((SECTION*)((SYM_TREATMENT*)slider->data)->symbolSection)->data.label.lexemeList->data)->value)+1);
             strcpy(table[index], (char*)((LEXEME*)((SECTION*)((SYM_TREATMENT*)slider->data)->symbolSection)->data.label.lexemeList->data)->value);
         }
-        printf("test %s %d\n",table[index], index);
         index++;
         slider = slider->next;
     }while(slider != firstNode);

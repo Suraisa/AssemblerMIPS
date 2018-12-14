@@ -132,7 +132,7 @@ void LexemeFsm(char *readingChar, QUEUE_DOUBLE *lexemeQueue, LIST_DOUBLE *readin
         {
             stateMachine->inState = !stateMachine->inState;
         }
-        else if (*readingChar == '"' && stateMachine->inState)
+        else if (*readingChar == '"' && stateMachine->inState || (*readingChar == 't' || *readingChar == '\\' || *readingChar == 'n' || *readingChar == 'r') && stateMachine->inState && *(char*)(*readingValue)->data == 0x5c)
         {
             if(*(char*)(*readingValue)->data != 0x5c)
             {
@@ -140,6 +140,18 @@ void LexemeFsm(char *readingChar, QUEUE_DOUBLE *lexemeQueue, LIST_DOUBLE *readin
             }
             else
             {
+                switch(*readingChar)
+                {
+                    case 't':
+                        *readingChar = 0x9;
+                    break;
+                    case 'n':
+                        *readingChar = 0xA;
+                    break;
+                    case 'r':
+                        *readingChar = 0xD;
+                    break;
+                }
                 ErasedInFrontDouble(readingValue);
                 AddInFrontDouble(readingValue, readingChar, &DisplayChar, NULL, sizeof(char));
             }
@@ -267,12 +279,12 @@ void LexemeFsm(char *readingChar, QUEUE_DOUBLE *lexemeQueue, LIST_DOUBLE *readin
         }
         if ((0x2F < *readingChar && *readingChar < 0x3A))
         {
-            int* readingInt = malloc(sizeof(int));
+            int* readingInt = (int*)calloc(1, sizeof(int));
 
             if (readingInt == NULL)
                 return;
 
-            *readingInt = (int)strtol(readingChar, NULL, 10);
+            *readingInt = *readingChar-'0';
             AddInFrontDouble(readingValue, readingInt, &DisplayInt, NULL, sizeof(int));
             free(readingInt);
         }

@@ -162,4 +162,6 @@ void ErasedTableString(char** table, int size);
 
 char* ChangeExtension(char* string, char* extension);
 
+int StringInList(LIST_DOUBLE list, char* string);
+
 #endif

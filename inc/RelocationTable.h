@@ -23,6 +23,7 @@ typedef struct
   COLLECTIONS symbolSection; // 0 : text, 1 : data, 2 : bss
   unsigned long int relativeAddress; // Relative adress of the symbol in relation to the section
   MIPS_TYPE typeRMIPS;
+  void* string;
 } LINKRELOCATION;
 
 typedef struct
@@ -45,7 +46,7 @@ RELOCATIONTABLE CreateRelocationTable();
  * @brief Fill a list of relocation.
  *
  */
-void FillRelocationList(LIST_DOUBLE* relocationList, COLLECTIONS symbolSection, unsigned long int relativeAddress, MIPS_TYPE typeRMIPS);
+void FillRelocationList(LIST_DOUBLE* relocationList, COLLECTIONS symbolSection, unsigned long int relativeAddress, MIPS_TYPE typeRMIPS, void* value);
 
 /**
  * @param value Display value, ie a node of a list.

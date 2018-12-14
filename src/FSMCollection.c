@@ -239,6 +239,7 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
                 {
                     if(stateMachine->inState == 2)
                     {
+                        (stateMachine->nextShift)[stateMachine->actualCollection] += 1;
                         stateMachine->inState = 3;
                     }
                     else

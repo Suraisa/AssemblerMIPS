@@ -16,11 +16,12 @@ RELOCATIONTABLE CreateRelocationTable(){
   return relocationTable;
 }
 
-void FillRelocationList(LIST_DOUBLE* relocationList, COLLECTIONS symbolSection, unsigned long int relativeAddress, MIPS_TYPE typeRMIPS){
+void FillRelocationList(LIST_DOUBLE* relocationList, COLLECTIONS symbolSection, unsigned long int relativeAddress, MIPS_TYPE typeRMIPS, void* charValue){
   LINKRELOCATION relocation;
   relocation.symbolSection=symbolSection;
   relocation.relativeAddress=relativeAddress;
   relocation.typeRMIPS=typeRMIPS;
+  relocation.string = charValue;
   AddAtLastDouble(relocationList, &relocation, DisplayRelocation, NULL, sizeof(relocation));
 }
 
@@ -33,6 +34,7 @@ void DisplayRelocation(void* value){
   printf("\nSection where the symbol is defined : %s\n", collectionSection[((LINKRELOCATION*)value)->symbolSection]);
   printf("Relative adress : %lu\n", ((LINKRELOCATION*)value)->relativeAddress);
   printf("Type : %s\n", definedR_MIPS[((LINKRELOCATION*)value)->typeRMIPS]);
+  printf("Unknown name? %s\n", (char*)((LINKRELOCATION*)value)->string);
 
   printf("\n%s", separator);
   printf("\n");
@@ -97,13 +99,16 @@ void UpdateRelocationText(LIST_DOUBLE* relocationList, SECTION** section, LIST_D
           }
         }
         if (!dataSection){
-          FillRelocationList(relocationList, UNDEF, (**section).shift, rMips);
-          symbolAdded.symbolSection = *section;
-          symbolAdded.undef = 1;
-          AddAtLastDouble(allSymbol, &symbolAdded, NULL, NULL, sizeof(symbolAdded));
+          if(!StringInList(*allSymbol, ((char*)((LEXEME*)(**section).data.instruction.lexemeList[index]->data)->value)))
+          {
+            symbolAdded.symbolSection = *section;
+            symbolAdded.undef = 1;
+            AddAtLastDouble(allSymbol, &symbolAdded, NULL, NULL, sizeof(symbolAdded));
+            FillRelocationList(relocationList, UNDEF, (**section).shift, rMips, ((LEXEME*)((SECTION*)((SYM_TREATMENT*)(*allSymbol)->prev->data)->symbolSection)->data.instruction.lexemeList[index]->data)->value);
+          }
         }
         else{
-          FillRelocationList(relocationList, dataSection->data.label.section, (**section).shift, rMips);
+          FillRelocationList(relocationList, dataSection->data.label.section, (**section).shift, rMips, "");
         }
       }
     }
@@ -115,13 +120,16 @@ void UpdateRelocationData(LIST_DOUBLE* relocationList, SECTION** section, LIST_D
   if (((LEXEME*)((**section).data.directiveValue->data))->state == SYMBOL){
     SECTION* dataSection = IsInHashTable(hash,(char*)(((LEXEME*)(**section).data.directiveValue->data)->value));
     if (!dataSection){
-      FillRelocationList(relocationList, UNDEF, (**section).shift, R_MIPS_32);
-      symbolAdded.symbolSection = *section;
-      symbolAdded.undef = 1;
-      AddAtLastDouble(allSymbol, &symbolAdded, NULL, NULL, sizeof(symbolAdded));
+      if(!StringInList(*allSymbol, (char*)(((LEXEME*)(**section).data.directiveValue->data)->value)))
+      {
+        symbolAdded.symbolSection = *section;
+        symbolAdded.undef = 1;
+        AddAtLastDouble(allSymbol, &symbolAdded, NULL, NULL, sizeof(symbolAdded));
+        FillRelocationList(relocationList, UNDEF, (**section).shift, R_MIPS_32, ((LEXEME*)((SECTION*)((SYM_TREATMENT*)(*allSymbol)->prev->data)->symbolSection)->data.directiveValue->data)->value);
+      }
     }
     else{
-      FillRelocationList(relocationList, dataSection->data.label.section, (**section).shift, R_MIPS_32);
+      FillRelocationList(relocationList, dataSection->data.label.section, (**section).shift, R_MIPS_32, "");
     }
   }
 }

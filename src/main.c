@@ -89,7 +89,7 @@ BitinstructField treatment
   int numberOfElement = SizeListDouble(allLabel);
 
   LabelTreatment(&collections, dictionary);
-  DisplayCollectionLists(collections);
+  // DisplayCollectionLists(collections);
 
   SECTION_FIELD instructField = BitInstructionTreatment(dictionary, collections.collection[TEXT], collectionStateMachine.nextShift[TEXT]);
   SECTION_FIELD dataField = BitDataTreatment(collections.collection[DATA], collectionStateMachine.nextShift[DATA]);
@@ -124,14 +124,14 @@ BitinstructField treatment
                            reltext->start, reltext->sz,
                            reldata->start, reldata->sz);
 
-  print_section(shstrtab);
-  print_section(text);
-  print_section(data);
-  print_section(bss);
-  print_section(strtab);
-  print_section(symtab);
-  print_section(reltext);
-  print_section(reldata);
+  // print_section(shstrtab);
+  // print_section(text);
+  // print_section(data);
+  // print_section(bss);
+  // print_section(strtab);
+  // print_section(symtab);
+  // print_section(reltext);
+  // print_section(reldata);
 
   del_section(shstrtab);
   del_section(text);
