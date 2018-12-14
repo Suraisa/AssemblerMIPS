@@ -147,6 +147,7 @@ SECTION_FIELD BitInstructionTreatment(INSTRUCTION* dictionary, LIST_DOUBLE instr
         instData = ((SECTION*)slider->data)->data.instruction;
         dicoInstruct = dictionary[instData.dicoIndex];
         instBitTreatment.bitField[indexSlider].intInst = dicoInstruct.bitField.intInst;
+
         while (indexOperand<3 && !IsEmptyDouble(instData.lexemeList[indexOperand]))
         {
             switch(dicoInstruct.details.type)

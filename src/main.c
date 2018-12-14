@@ -66,7 +66,7 @@ Rallocations' treatment
 
   UpdateRelocationTable(&relocationTable, collections.labelTable, &collections, dictionary, &allLabel);
 
-  DisplayRelocationTable(relocationTable);
+  // DisplayRelocationTable(relocationTable);
 
 /*
 -------------------

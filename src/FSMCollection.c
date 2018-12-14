@@ -597,7 +597,7 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
 
                     if(IsEmptyDouble(*lexemeQueue) || ((LEXEME *)(*lexemeQueue)->data)->state == RETURN || ((LEXEME *)(*lexemeQueue)->data)->state == COMMENT)
                     {
-                        if(!IsEmptyDouble(collections->collection[stateMachine->actualCollection]->prev) && ((SECTION*)(collections->collection[stateMachine->actualCollection]->prev->data))->data.instruction.lineNumber == lineNumber)
+                        if(!IsEmptyDouble(collections->collection[stateMachine->actualCollection]) && !IsEmptyDouble(collections->collection[stateMachine->actualCollection]->prev) && ((SECTION*)(collections->collection[stateMachine->actualCollection]->prev->data))->data.instruction.lineNumber == lineNumber)
                         {
                             PrintErrorCollection(stateMachine, lineNumber, "You have two instructions on the same line", "", "");
                             ErasedListDouble(&popedLexeme);
