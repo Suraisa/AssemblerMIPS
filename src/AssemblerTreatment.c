@@ -144,11 +144,19 @@ int InstructLabelTreatment(QUEUE_DOUBLE* lexemeQueue, INSTRUCTION* dicoInstruct,
                     {
                         if(operandType == 'R')
                         {
-                            printf("\nERROR the label isn't defined at line : %lu\n", ((LEXEME*)((SECTION*)slider->data)->data.instruction.lexemeList[index]->data)->lineNumber);
+                            lexeme = CreateLongIntLexeme(DECIMAL, ((SECTION*)slider->data)->shift, ((LEXEME*)instruction.lexemeList[index]->data)->lineNumber);
                         }
-                        lexeme = CreateLongIntLexeme(DECIMAL, 0, ((LEXEME*)instruction.lexemeList[index]->data)->lineNumber);
-                        ErasedListDouble(&((SECTION*)slider->data)->data.instruction.lexemeList[index]);
+                        if(operandType == 'B')
+                        {
+                            lexeme = CreateLongIntLexeme(DECIMAL, 0, ((LEXEME*)instruction.lexemeList[index]->data)->lineNumber);
+                        }
+                        else
+                        {
+                            lexeme = CreateLongIntLexeme(DECIMAL, 0, ((LEXEME*)instruction.lexemeList[index]->data)->lineNumber);
+                        }
+                        ErasedInFrontDouble(&((SECTION*)slider->data)->data.instruction.lexemeList[index]);
                         AddInFrontDouble(&((SECTION*)slider->data)->data.instruction.lexemeList[index], &lexeme, DisplayLexeme, ErasedValueLexeme, sizeof(lexeme));
+
                     }
                     else
                     {             
