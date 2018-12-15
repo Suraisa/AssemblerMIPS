@@ -73,19 +73,12 @@ Rallocations' treatment
 BitinstructField treatment
 -------------------
 */
+ALL_ELF_TABLE tables;
+InitializationAllElfTable(tables);
 
-  section     text = NULL;
-  section     data = NULL;
-  section      bss = NULL;
-  section shstrtab = NULL;
-  section   strtab = NULL;
-  section   symtab = NULL;
-  section  reltext = NULL;
-  section  reldata = NULL;
+  tables.shstrtab = make_shstrtab_section();
 
-  shstrtab = make_shstrtab_section();
-
-  char** allSymbolTab = CreateSymStrTab(allLabel, &symtab, shstrtab, &strtab);
+  char** allSymbolTab = CreateSymStrTab(allLabel, &tables.symtab, tables.shstrtab, &tables.strtab);
   int numberOfElement = SizeListDouble(allLabel);
 
   LabelTreatment(&collections, dictionary);
@@ -94,17 +87,17 @@ BitinstructField treatment
   SECTION_FIELD instructField = BitInstructionTreatment(dictionary, collections.collection[TEXT], collectionStateMachine.nextShift[TEXT]);
   SECTION_FIELD dataField = BitDataTreatment(collections.collection[DATA], collectionStateMachine.nextShift[DATA]);
 
-  bss = make_bss_section((int)collectionStateMachine.nextShift[BSS]);
+  tables.bss = make_bss_section((int)collectionStateMachine.nextShift[BSS]);
 
-  text = make_text_section((int*)instructField.bitField, instructField.size);
-  data = make_data_section((int*)dataField.bitField, collectionStateMachine.nextShift[DATA]);
-  RELOC_TAB textReloc = CreateRelocTab(relocationTable.relocationText, symtab, shstrtab, strtab, allSymbolTab);
-  RELOC_TAB dataReloc = CreateRelocTab(relocationTable.relocationData, symtab, shstrtab, strtab, allSymbolTab);
+  tables.text = make_text_section((int*)instructField.bitField, instructField.size);
+  tables.data = make_data_section((int*)dataField.bitField, collectionStateMachine.nextShift[DATA]);
+  RELOC_TAB textReloc = CreateRelocTab(relocationTable.relocationText, tables.symtab, tables.shstrtab, tables.strtab, allSymbolTab);
+  RELOC_TAB dataReloc = CreateRelocTab(relocationTable.relocationData, tables.symtab, tables.shstrtab, tables.strtab, allSymbolTab);
 
-  reltext  = make_rel32_section( ".rel.text", textReloc.table,textReloc.size);
-  reldata  = make_rel32_section( ".rel.data", dataReloc.table,dataReloc.size);
+  tables.reltext  = make_rel32_section( ".rel.text", textReloc.table,textReloc.size);
+  tables.reldata  = make_rel32_section( ".rel.data", dataReloc.table,dataReloc.size);
 
-  if (!text)
+  if (!tables.text)
   {
     fprintf( stderr, "Unable to write .text section (missing information).\n" );
     return -1;
@@ -115,50 +108,17 @@ BitinstructField treatment
   int noreorder = 1;
 
   elf_write_relocatable( name, machine, noreorder,
-                           text->start, text->sz,
-                           data->start, data->sz,
-                           bss->start, bss->sz,
-                           shstrtab->start, shstrtab->sz,
-                           strtab->start, strtab->sz,
-                           symtab->start, symtab->sz,
-                           reltext->start, reltext->sz,
-                           reldata->start, reldata->sz);
+                           tables.text->start, tables.text->sz,
+                           tables.data->start, tables.data->sz,
+                           tables.bss->start, tables.bss->sz,
+                           tables.shstrtab->start, tables.shstrtab->sz,
+                           tables.strtab->start, tables.strtab->sz,
+                           tables.symtab->start, tables.symtab->sz,
+                           tables.reltext->start, tables.reltext->sz,
+                           tables.reldata->start, tables.reldata->sz);
 
-  // print_section(shstrtab);
-  // print_section(text);
-  // print_section(data);
-  // print_section(bss);
-  // print_section(strtab);
-  // print_section(symtab);
-  // print_section(reltext);
-  // print_section(reldata);
-
-  del_section(shstrtab);
-  del_section(text);
-  del_section(data);
-  del_section(bss);
-  del_section(strtab);
-  del_section(symtab);
-  del_section(reltext);
-  del_section(reldata);
-
-  ErasedTableString(allSymbolTab, numberOfElement);
-
-  free(dictionary);
-  free(name);
-  
-  free(instructField.bitField);
-  free(dataField.bitField);
-  free(textReloc.table);
-  free(dataReloc.table);
-
-  ErasedListDouble(&allLabel);
-
-  ErasedCollectionLists(&collections);
-
-  ErasedRelocationTable(&relocationTable);
-
-  ErasedQueueDouble(&lexemeQueue);
+  //DisplayAllSections(tables);
+  CleanTheProject(tables, allSymbolTab, numberOfElement, dictionary, name, instructField, dataField, textReloc, dataReloc, allLabel, collections, relocationTable, lexemeQueue);
 
   return 0;
 }
