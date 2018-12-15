@@ -315,7 +315,7 @@ void LexemeFsm(char *readingChar, QUEUE_DOUBLE *lexemeQueue, LIST_DOUBLE *readin
     }
     default:
     {
-        if (CharIsNumberLetter(*readingChar) || *readingChar == '-' || *readingChar == '_')
+        if (CharIsNumberLetter(*readingChar) || *readingChar == '_')
         {
             AddInFrontDouble(readingValue, readingChar, &DisplayChar, NULL, sizeof(char));
         }
