@@ -210,14 +210,14 @@ checkOptions() {
 # textual dump of MIPS object
 #############################
 mipsObjdump() {
-        mips-elf-objdump -s -r -t -j .text -j .data -j .bss $1 
+        mips-objdump -s -r -t -j .text -j .data -j .bss $1 
 }
 
 #############################
 # my MIPS object diff
 #############################
 diffmipsObjdump() {
-diff --context=2 -I "format de fichier" $DIFF_OPTIONS -B <(mips-elf-objdump -s -r -t -j .text -j .data -j .bss $1 | tail -n +3 | grep -v none) <(mips-elf-objdump -s -r -t -j .text -j .data -j .bss $2 | tail -n +3 | grep -v none)
+diff --context=2 -I "format de fichier" $DIFF_OPTIONS -B <(mips-objdump -s -r -t -j .text -j .data -j .bss $1 | tail -n +3 | grep -v none) <(mips-objdump -s -r -t -j .text -j .data -j .bss $2 | tail -n +3 | grep -v none)
 }
 
 
