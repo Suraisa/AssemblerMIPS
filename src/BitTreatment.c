@@ -131,7 +131,7 @@ SECTION_FIELD BitInstructionTreatment(INSTRUCTION* dictionary, LIST_DOUBLE instr
 
 
     SECTION_FIELD instBitTreatment = CreateSectionField(size>>2);
-    
+
     LIST_DOUBLE firstNode = instructions;
     LIST_DOUBLE slider = instructions;
     INSTRUCTION_DATA instData;
@@ -172,9 +172,9 @@ SECTION_FIELD BitInstructionTreatment(INSTRUCTION* dictionary, LIST_DOUBLE instr
         }
         SwapCode(instBitTreatment.bitField[indexSlider].code);
         indexRegister = 0;
-        indexOperand = 0;    
-        indexRegisterDico = 0;  
-        hasBaseOffset = 0;  
+        indexOperand = 0;
+        indexRegisterDico = 0;
+        hasBaseOffset = 0;
         indexSlider++;
         slider = slider->next;
     }while(firstNode != slider);
@@ -188,7 +188,7 @@ SECTION_FIELD BitDataTreatment(LIST_DOUBLE data, unsigned long int size)
         return (SECTION_FIELD){.bitField = NULL, .size = 0};
 
     SECTION_FIELD dataBitTreatment = CreateSectionField((size + size%4%4)>>2);
-    
+
     LIST_DOUBLE firstNode = data;
     LIST_DOUBLE slider = data;
     int indexField = 0;
@@ -216,9 +216,9 @@ SECTION_FIELD BitDataTreatment(LIST_DOUBLE data, unsigned long int size)
             case WORD:
             {
                 shift = octet%4;
-                if(!shift && octet)
+                if(shift && octet)
                 {
-                    for (counter = 0; counter<shift%4; counter++)
+                    for (counter = 0; counter<4-shift; counter++)
                     {
                         dataBitTreatment.bitField[indexField].code[octet] = 0;
                         octet++;
@@ -254,6 +254,6 @@ SECTION_FIELD BitDataTreatment(LIST_DOUBLE data, unsigned long int size)
         }
         slider = slider->next;
     }while(firstNode != slider);
-    
+
     return dataBitTreatment;
 }

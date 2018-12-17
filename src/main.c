@@ -20,9 +20,9 @@
 int main(int argc, char *argv[])
 {
   FILE* readingFile;
-  
+
   OpenAssembleeFile(argc, argv, &readingFile);
-  
+
   if(!readingFile)
     return 0;
 
@@ -54,7 +54,7 @@ Collections' treatment
 
   if(!CollectionPass(&dictionary, &pseudoDictionary, &lexemeQueue, &collectionStateMachine, &collections, &allLabel))
     return 1;
-  
+
   free(pseudoDictionary);
 /*
 -----------------------
@@ -82,7 +82,7 @@ InitializationAllElfTable(tables);
   int numberOfElement = SizeListDouble(allLabel);
 
   LabelTreatment(&collections, dictionary);
-  // DisplayCollectionLists(collections);
+  //DisplayCollectionLists(collections);
 
   SECTION_FIELD instructField = BitInstructionTreatment(dictionary, collections.collection[TEXT], collectionStateMachine.nextShift[TEXT]);
   SECTION_FIELD dataField = BitDataTreatment(collections.collection[DATA], collectionStateMachine.nextShift[DATA]);

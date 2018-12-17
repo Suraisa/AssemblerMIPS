@@ -46,7 +46,7 @@ int LexemePass(FILE** readingFile, QUEUE_DOUBLE* lexemeQueue)
 
         if(!lexemeStateMachine.error)
         {
-        // DisplayDoubleList(*lexemeQueue);
+        DisplayDoubleList(*lexemeQueue);
         }
 
         fclose(*readingFile);
@@ -107,7 +107,7 @@ int CollectionPass(INSTRUCTION** dictionary, PSEUDO_INSTRUCTION** pseudoDictiona
     }
     else
     {
-        // DisplayCollectionLists(*collections);  
+        DisplayCollectionLists(*collections);
     }
     return 1;
 }
@@ -159,8 +159,8 @@ int InstructLabelTreatment(QUEUE_DOUBLE* lexemeQueue, INSTRUCTION* dicoInstruct,
 
                     }
                     else
-                    {             
-                                   
+                    {
+
                         if(operandType == 'R')
                         {
                             if(section->data.label.section == TEXT)
@@ -228,7 +228,7 @@ void DataLabelTreatment(QUEUE_DOUBLE* lexemeQueue, INSTRUCTION* dicoInstruct, LI
                 AddInFrontDouble(&((SECTION*)slider->data)->data.directiveValue, &lexeme, DisplayLexeme, ErasedValueLexeme, sizeof(lexeme));
             }
             else
-            {                        
+            {
                 value = section->shift;
                 lexeme = CreateLongIntLexeme(DECIMAL, value, ((LEXEME*)((SECTION*)slider->data)->data.directiveValue->data)->lineNumber);
                 ErasedInFrontDouble(&((SECTION*)slider->data)->data.directiveValue);

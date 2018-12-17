@@ -98,12 +98,12 @@ void LexemeFsm(char *readingChar, QUEUE_DOUBLE *lexemeQueue, LIST_DOUBLE *readin
         if(stateMachine->currentState == HEXADECIMAL)
         {
             HexadecimalTreatment(lexemeQueue, stateMachine, readingValue, *lineNumber);
-            return;            
+            return;
         }
         if(stateMachine->currentState == REGISTER)
         {
-            RegisterTreatment(lexemeQueue, stateMachine, readingValue, lineNumber, readingChar, finishedFile);         
-            return;   
+            RegisterTreatment(lexemeQueue, stateMachine, readingValue, lineNumber, readingChar, finishedFile);
+            return;
         }
         LexemeTreatment(lexemeQueue, stateMachine->currentState, readingValue, *lineNumber);
         return;
@@ -132,7 +132,7 @@ void LexemeFsm(char *readingChar, QUEUE_DOUBLE *lexemeQueue, LIST_DOUBLE *readin
         {
             stateMachine->inState = !stateMachine->inState;
         }
-        else if (*readingChar == '"' && stateMachine->inState || (*readingChar == 't' || *readingChar == '\\' || *readingChar == 'n' || *readingChar == 'r') && stateMachine->inState && *(char*)(*readingValue)->data == 0x5c)
+        else if (*readingChar == '"' && stateMachine->inState || (*readingChar == 't' || *readingChar == 0x5C || *readingChar == 'n' || *readingChar == 'r') && stateMachine->inState && !IsEmptyDouble(*readingValue) && *(char*)(*readingValue)->data == 0x5c)
         {
             if(*(char*)(*readingValue)->data != 0x5c)
             {
@@ -267,7 +267,7 @@ void LexemeFsm(char *readingChar, QUEUE_DOUBLE *lexemeQueue, LIST_DOUBLE *readin
             stateMachine->currentState = INIT;
             LexemeFsm(readingChar, lexemeQueue, readingValue, stateMachine, lineNumber, 0);
             break;
-        }   
+        }
         if (SizeListDouble(*readingValue) == 1)
         {
             if (*(int *)((*readingValue)->data) == 0 && (*readingChar == 0x58 || *readingChar == 0x78))
@@ -372,11 +372,11 @@ void RegisterTreatment(QUEUE_DOUBLE* lexemeQueue, LEXEME_FSM *stateMachine, LIST
         free(registerName);
         stateMachine->currentState = INIT;
         stateMachine->inState = !stateMachine->inState;
-        
+
         if(finishedFile)
             return;
 
-        LexemeFsm(readingChar, lexemeQueue, readingValue, stateMachine, lineNumber, 0);        
+        LexemeFsm(readingChar, lexemeQueue, readingValue, stateMachine, lineNumber, 0);
     }
     else
     {

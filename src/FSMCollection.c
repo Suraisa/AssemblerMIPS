@@ -578,7 +578,7 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
                                 SECTION section;
                                 if(!FindPseudoInstruction((char*)((LEXEME*)popedLexeme->data)->value, &file, &section))
                                 {
-                                    PrintErrorCollection(stateMachine, lineNumber, "Error in pseudo instruction:","" , (char*)((LEXEME*)popedLexeme->data)->value);                                    
+                                    PrintErrorCollection(stateMachine, lineNumber, "Error in pseudo instruction:","" , (char*)((LEXEME*)popedLexeme->data)->value);
                                 }
                                 QUEUE_DOUBLE concatenateList = CreateListDouble();
                                 CreateNewListLexeme(&file, &concatenateList, &section);
@@ -592,7 +592,7 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
                             }
                         }
                     }
-                    
+
                     stateMachine->previousState = stateMachine->currentState;
 
                     if(IsEmptyDouble(*lexemeQueue) || ((LEXEME *)(*lexemeQueue)->data)->state == RETURN || ((LEXEME *)(*lexemeQueue)->data)->state == COMMENT)
@@ -606,7 +606,7 @@ void CollectionFsm(COLLECTION_FSM *stateMachine, QUEUE_DOUBLE *lexemeQueue, COLL
                         }
 
                         SECTION section;
-                        
+
                         if(!isPseudoInstruction)
                         {
                             section = CreateInstructionSection(stateMachine->currentState, (stateMachine->shift)[stateMachine->actualCollection], instructionDictionary[dictionaryIndex].id, dictionaryIndex, lineNumber, isPseudoInstruction);
